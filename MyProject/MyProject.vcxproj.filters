@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\Common">
+      <UniqueIdentifier>{f7f73b4b-c1da-49d0-8fd2-8c504a922908}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\SceneController">
+      <UniqueIdentifier>{223e1ced-1b86-437f-8a66-23f5986bdfdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ConcreteScene">
+      <UniqueIdentifier>{dc8261a6-02db-48e2-936a-87fa6180e624}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Singleton">
+      <UniqueIdentifier>{31088077-db6a-45c3-9bd5-f528e3242b21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\match game">
+      <UniqueIdentifier>{5ed7f2a4-5183-478c-8e04-3961fac60061}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ConcreteScene\TitleScene">
+      <UniqueIdentifier>{5ca945e6-d8ff-4814-9283-e2289ba5fa76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ConcreteScene\GameScene">
+      <UniqueIdentifier>{9059677a-6910-4eed-b7f4-591d69d5cba6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ConcreteScene\MenuScene">
+      <UniqueIdentifier>{aacf0788-ffce-462c-9d96-f8c07fedbf3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ConcreteScene\GameScene\draw">
+      <UniqueIdentifier>{6cdbd00e-c51e-4e47-ba03-6605d69a91d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ConcreteScene\ResultScene">
+      <UniqueIdentifier>{07b68408-6706-491e-99cf-2b8c5999451b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ConcreteScene\GameScene\progress">
+      <UniqueIdentifier>{1e5ef222-d4b9-447a-9053-26cc20577e77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ConcreteScene\RuleScene">
+      <UniqueIdentifier>{11c72331-3063-4d5f-a74a-fcf711cb95de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ConcreteScene\DebugScene">
+      <UniqueIdentifier>{ed66a868-ebc3-4331-b665-ad1239b2f582}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ConcreteScene\ResultScene\Draw">
+      <UniqueIdentifier>{6c3e3030-7301-4673-a563-e02c6edd3b16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ConcreteScene\ReplayScene">
+      <UniqueIdentifier>{6d689bb1-38dd-46dd-8137-06ff5a0bdf37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ConcreteScene\ReplayScene\Draw">
+      <UniqueIdentifier>{90730051-02e8-40a7-a7c2-42efa4ce6a3d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Looper.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Define.cpp">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Fps.cpp">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Error.cpp">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractScene.cpp">
+      <Filter>ソース ファイル\SceneController</Filter>
+    </ClCompile>
+    <ClCompile Include="Parameter.cpp">
+      <Filter>ソース ファイル\SceneController</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>ソース ファイル\SceneController</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemMain.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="MatchGameCommon.cpp">
+      <Filter>ソース ファイル\match game</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleAnime.cpp">
+      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>ソース ファイル\ConcreteScene\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>ソース ファイル\ConcreteScene\MenuScene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneChangeEffect.cpp">
+      <Filter>ソース ファイル\ConcreteScene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameHand.cpp">
+      <Filter>ソース ファイル\ConcreteScene\GameScene\draw</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLog.cpp">
+      <Filter>ソース ファイル\ConcreteScene\GameScene\draw</Filter>
+    </ClCompile>
+    <ClCompile Include="GameParam.cpp">
+      <Filter>ソース ファイル\ConcreteScene\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameAnime.cpp">
+      <Filter>ソース ファイル\ConcreteScene\GameScene\draw</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultScene.cpp">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuDrawBack.cpp">
+      <Filter>ソース ファイル\ConcreteScene\MenuScene</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuBox.cpp">
+      <Filter>ソース ファイル\ConcreteScene\MenuScene</Filter>
+    </ClCompile>
+    <ClCompile Include="MatchGameCPU.cpp">
+      <Filter>ソース ファイル\match game</Filter>
+    </ClCompile>
+    <ClCompile Include="MatchGameList.cpp">
+      <Filter>ソース ファイル\match game</Filter>
+    </ClCompile>
+    <ClCompile Include="MatchGameOut.cpp">
+      <Filter>ソース ファイル\match game</Filter>
+    </ClCompile>
+    <ClCompile Include="RuleScene.cpp">
+      <Filter>ソース ファイル\ConcreteScene\RuleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="RuleParam.cpp">
+      <Filter>ソース ファイル\ConcreteScene\RuleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="RulePage.cpp">
+      <Filter>ソース ファイル\ConcreteScene\RuleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="MatchGameList2.cpp">
+      <Filter>ソース ファイル\match game</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugScene.cpp">
+      <Filter>ソース ファイル\ConcreteScene\DebugScene</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultDrawBack.cpp">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultDrawHand.cpp">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultString.cpp">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultKey.cpp">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Setting.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="ReplayScene.cpp">
+      <Filter>ソース ファイル\ConcreteScene\ReplayScene</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Looper.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Fps.h">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Error.h">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractScene.h">
+      <Filter>ソース ファイル\SceneController</Filter>
+    </ClInclude>
+    <ClInclude Include="Parameter.h">
+      <Filter>ソース ファイル\SceneController</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneEnum.h">
+      <Filter>ソース ファイル\ConcreteScene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>ソース ファイル\SceneController</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneChangeListenerInterface.h">
+      <Filter>ソース ファイル\SceneController</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemMain.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="MatchGameCommon.h">
+      <Filter>ソース ファイル\match game</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleAnime.h">
+      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>ソース ファイル\ConcreteScene\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScene.h">
+      <Filter>ソース ファイル\ConcreteScene\MenuScene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneChangeEffect.h">
+      <Filter>ソース ファイル\ConcreteScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameParam.h">
+      <Filter>ソース ファイル\ConcreteScene\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameHand.h">
+      <Filter>ソース ファイル\ConcreteScene\GameScene\draw</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLog.h">
+      <Filter>ソース ファイル\ConcreteScene\GameScene\draw</Filter>
+    </ClInclude>
+    <ClInclude Include="GameAnime.h">
+      <Filter>ソース ファイル\ConcreteScene\GameScene\draw</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultScene.h">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameSelectingHand.h">
+      <Filter>ソース ファイル\ConcreteScene\GameScene\progress</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuDrawBack.h">
+      <Filter>ソース ファイル\ConcreteScene\MenuScene</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuBox.h">
+      <Filter>ソース ファイル\ConcreteScene\MenuScene</Filter>
+    </ClInclude>
+    <ClInclude Include="RuleScene.h">
+      <Filter>ソース ファイル\ConcreteScene\RuleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="RuleParam.h">
+      <Filter>ソース ファイル\ConcreteScene\RuleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="RulePage.h">
+      <Filter>ソース ファイル\ConcreteScene\RuleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugScene.h">
+      <Filter>ソース ファイル\ConcreteScene\DebugScene</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultDrawBack.h">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultDrawHand.h">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultString.h">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultKey.h">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Setting.h">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="ReplayScene.h">
+      <Filter>ソース ファイル\ConcreteScene\ReplayScene</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\iconsetting.rc">
+      <Filter>リソース ファイル</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
