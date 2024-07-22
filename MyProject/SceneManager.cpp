@@ -1,12 +1,14 @@
-﻿#include"SceneManager.h"
-#include"TitleScene.h"
-#include"GameScene.h"
-#include"MenuScene.h"
-#include"ResultScene.h"
-#include"RuleScene.h"
-#include"DebugScene.h"
-#include"ReplayScene.h"
-#include"Error.h"
+﻿
+#include"SceneManager.h"
+
+#include "dxlib_assert.h"
+#include "TitleScene.h"
+#include "GameScene.h"
+#include "MenuScene.h"
+#include "ResultScene.h"
+#include "RuleScene.h"
+#include "DebugScene.h"
+#include "ReplayScene.h"
 
 const int ADD_SCENE = 1;
 const int BACK_SCENE = 2;
@@ -27,7 +29,7 @@ SceneManger::SceneManger() :
 bool SceneManger::updateTopScene()
 {
     if (m_uniqueSceneStack.empty() == true) {
-        ERR("シーンが存在していないため、一番上のシーンを更新できません");
+        ASSERT(false, "シーンが存在していないため、一番上のシーンを更新できません");
     }
 
     //トップのシーンを更新する。falseが返ってきたらソフトを終了する
@@ -37,7 +39,7 @@ bool SceneManger::updateTopScene()
 void SceneManger::drawTopScene() const
 {
     if (m_uniqueSceneStack.empty() == true) {
-        ERR("シーンが存在していないため、一番上のシーンを描画できません");
+        ASSERT(false, "シーンが存在していないため、一番上のシーンを描画できません");
     }
 
     m_uniqueSceneStack.top()->draw();
@@ -100,7 +102,10 @@ void SceneManger::sceneChangeExecute()
         }
 
         //新たなトップシーンにパラメータを渡す
-        if (m_uniqueSceneStack.empty() == true) { ERR("シーン削除に失敗しました。シーンが何もないところにパラメータを挿入しようとしています"); }
+        if (m_uniqueSceneStack.empty() == true) {
+            ASSERT(false, "シーンが存在していないため、パラメータを渡すことができません");
+        }
+
         m_uniqueSceneStack.top()->receiveParameterInCaseOfDeleteScene(m_tempParam);
 
         //命令をリセットする
@@ -128,7 +133,7 @@ void SceneManger::sceneChangeExecute()
     else {
         std::string err = "シーン変更クラスでエラーが発生しました。\n不明なコマンド...";
         err += std::to_string(m_scenechange_command);
-        ERR(err);
+        ASSERT(false, err.c_str());
     }
 
 }
@@ -166,7 +171,7 @@ void SceneManger::m_addNewScene(const enumScene _scene_name, const Parameter& _p
             break;
 
         default:
-            ERR("存在していないシーンの追加依頼が出されました");
+            ASSERT_MUST_NOT_REACH_HERE();
             break;
     }
 }

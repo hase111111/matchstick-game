@@ -1,83 +1,86 @@
+ï»¿
 #include "MenuScene.h"
-#include "DxLib.h"
+
+#include <DxLib.h>
+
+#include "dxlib_assert.h"
 #include "Keyboard.h"
-#include "Error.h"
 
 MenuScene::MenuScene(SceneChangeListenerInterface* pScli, const Parameter& parameter) : AbstractScene(pScli, parameter)
 {
-	m_scene_change_effect.init(3);
+    m_scene_change_effect.init(3);
 }
 
 bool MenuScene::update()
 {
-	//”wŒi‚ÌXV‚Íí‚És‚¤
-	m_draw_back.update();
+    //èƒŒæ™¯ã®æ›´æ–°ã¯å¸¸ã«è¡Œã†
+    m_draw_back.update();
 
-	//ƒV[ƒ“ƒGƒtƒFƒNƒg‚ÌXV‚ªI—¹‚µ‚Ä‚©‚çƒƒCƒ“‚Ìˆ—‚ğs‚¤
-	if (m_scene_change_effect.update() == false)
-	{
-		//ƒQ[ƒ€I—¹‚Ìˆ—
-		if (m_box.getGameEnd() == true) 
-		{
-			//ƒQ[ƒ€I—¹‚È‚ç‚ÎFALSE‚ğ•Ô‚·
-			return false;
-		}
+    //ã‚·ãƒ¼ãƒ³ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®æ›´æ–°ãŒçµ‚äº†ã—ã¦ã‹ã‚‰ãƒ¡ã‚¤ãƒ³ã®å‡¦ç†ã‚’è¡Œã†
+    if (m_scene_change_effect.update() == false)
+    {
+        //ã‚²ãƒ¼ãƒ çµ‚äº†ã®å‡¦ç†
+        if (m_box.getGameEnd() == true)
+        {
+            //ã‚²ãƒ¼ãƒ çµ‚äº†ãªã‚‰ã°FALSEã‚’è¿”ã™
+            return false;
+        }
 
-		//ƒV[ƒ“ƒ`ƒFƒ“ƒW–½—ß‚ªo‚é‚©‚Ç‚¤‚©
-		if (m_box.update(m_which_scene, m_param) == true) {
-			m_scene_change_flag = true;
+        //ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å‘½ä»¤ãŒå‡ºã‚‹ã‹ã©ã†ã‹
+        if (m_box.update(m_which_scene, m_param) == true) {
+            m_scene_change_flag = true;
 
-			if (m_which_scene == enumScene::title) { m_scene_change_effect.init(2); }
-			else { m_scene_change_effect.init(0); }
+            if (m_which_scene == enumScene::title) { m_scene_change_effect.init(2); }
+            else { m_scene_change_effect.init(0); }
 
-			return true;
-		}
+            return true;
+        }
 
-		//ƒV[ƒ“ƒ`ƒFƒ“ƒW–½—ß‚ªo‚Ä‚¢‚é‚È‚ç‚Î
-		if (m_scene_change_flag == true) 
-		{
-			if (m_which_scene == enumScene::title) {
-				mp_listenerInterface->deleteNowScene(m_param);
-			}
-			else if (m_which_scene == enumScene::game) {
-				mp_listenerInterface->addNewScene(enumScene::game, m_param);
-			}
-			else if (m_which_scene == enumScene::rule) {
-				mp_listenerInterface->addNewScene(enumScene::rule, m_param);
-			}
-			else if (m_which_scene == enumScene::result) {
-				mp_listenerInterface->addNewScene(enumScene::result, m_param);
-			}
-			else if (m_which_scene == enumScene::replay) {
-				mp_listenerInterface->addNewScene(enumScene::replay, m_param);
-			}
-			else { ERR("MenuScene‚©‚ç—\Šú‚µ‚È‚¢ƒV[ƒ“‚Ö‚ÌˆÚ“®ˆ—‚ªs‚í‚ê‚Ü‚µ‚½B\nŠëŒ¯‚Å‚Í‚È‚¢‚Å‚·‚ª–Ê“|‚È“®ì‚µ‚Ä‚Ù‚µ‚­‚È‚¢‚Ì‚ÅI—¹‚³‚¹‚Ü‚µ‚½w"); }
-			return true;
-		}
-	}
+        //ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸å‘½ä»¤ãŒå‡ºã¦ã„ã‚‹ãªã‚‰ã°
+        if (m_scene_change_flag == true)
+        {
+            if (m_which_scene == enumScene::title) {
+                mp_listenerInterface->deleteNowScene(m_param);
+            }
+            else if (m_which_scene == enumScene::game) {
+                mp_listenerInterface->addNewScene(enumScene::game, m_param);
+            }
+            else if (m_which_scene == enumScene::rule) {
+                mp_listenerInterface->addNewScene(enumScene::rule, m_param);
+            }
+            else if (m_which_scene == enumScene::result) {
+                mp_listenerInterface->addNewScene(enumScene::result, m_param);
+            }
+            else if (m_which_scene == enumScene::replay) {
+                mp_listenerInterface->addNewScene(enumScene::replay, m_param);
+            }
+            else { ASSERT_MUST_NOT_REACH_HERE(); }
+            return true;
+        }
+    }
 
-	return true;
+    return true;
 }
 
 void MenuScene::draw() const
 {
-	//”wŒi‚ğ•`‰æ
-	m_draw_back.draw();
+    //èƒŒæ™¯ã‚’æç”»
+    m_draw_back.draw();
 
-	//lŠp‚ğ•`‰æ
-	m_box.draw();
+    //å››è§’ã‚’æç”»
+    m_box.draw();
 
-	//ƒV[ƒ“ƒ`ƒFƒ“ƒWƒGƒtƒFƒNƒg‚ğ•`‰æ
-	m_scene_change_effect.draw();
+    //ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’æç”»
+    m_scene_change_effect.draw();
 }
 
 void MenuScene::receiveParameterInCaseOfDeleteScene(const Parameter& parameter)
 {
-	//ƒV[ƒ“ƒ`ƒFƒ“ƒW‚ÌƒGƒtƒFƒNƒg‚ğÄ¶‚·‚é
-	m_scene_change_effect.init(1);
+    //ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å†ç”Ÿã™ã‚‹
+    m_scene_change_effect.init(1);
 
-	//ƒV[ƒ“ƒ`ƒFƒ“ƒW—p‚Ìƒtƒ‰ƒO‚ğ–ß‚·
-	m_scene_change_flag = false;
-	m_which_scene = enumScene::title;
-	m_param.resetParam();
+    //ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ç”¨ã®ãƒ•ãƒ©ã‚°ã‚’æˆ»ã™
+    m_scene_change_flag = false;
+    m_which_scene = enumScene::title;
+    m_param.resetParam();
 }

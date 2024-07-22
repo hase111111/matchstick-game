@@ -78,9 +78,6 @@
     <ClCompile Include="Define.cpp">
       <Filter>ソース ファイル\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Error.cpp">
-      <Filter>ソース ファイル\Common</Filter>
-    </ClCompile>
     <ClCompile Include="AbstractScene.cpp">
       <Filter>ソース ファイル\SceneController</Filter>
     </ClCompile>
@@ -210,9 +207,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Define.h">
-      <Filter>ソース ファイル\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Error.h">
       <Filter>ソース ファイル\Common</Filter>
     </ClInclude>
     <ClInclude Include="AbstractScene.h">

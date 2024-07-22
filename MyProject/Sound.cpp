@@ -1,7 +1,7 @@
 ﻿
 #include <DxLib.h>
 
-#include "error.h"
+#include "dxlib_assert.h"
 #include "sound.h"
 
 int Sound::myLoadSound(std::string _path)
@@ -13,7 +13,7 @@ int Sound::myLoadSound(std::string _path)
     if (temp_sound == -1) {
         std::string err_mes = "サウンドエフェクトのロードができませんでした\n読み込みに失敗したファイル : ";
         err_mes += _path;
-        ERR(err_mes);
+        ASSERT(false, err_mes.c_str());
     }
 
     m_soundeffect[_path] = temp_sound;
@@ -40,7 +40,7 @@ void Sound::startBGM(std::string _path) {
         if ((m_bgm[_path] = LoadSoundMem(_path.c_str())) == -1) {
             std::string err_mes = "音楽のロードができませんでした\n読み込みに失敗したファイル : ";
             err_mes += _path;
-            ERR(err_mes);
+            ASSERT(false, err_mes.c_str());
         };
 
         //音量を変更する
@@ -49,7 +49,7 @@ void Sound::startBGM(std::string _path) {
 
     //再生する
     if (PlaySoundMem(m_bgm[_path], DX_PLAYTYPE_LOOP) == -1) {
-        ERR("楽曲の再生ができませんでした。");
+        ASSERT(false, "BGMの再生に失敗しました");
     };
 
     //再生中のBGMのパスを記録する

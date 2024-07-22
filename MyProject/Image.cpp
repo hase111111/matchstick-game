@@ -1,20 +1,23 @@
-#include"Image.h"
-#include"DxLib.h"
-#include"Error.h"
+ï»¿
+#include "Image.h"
+
+#include <DxLib.h>
+
+#include "dxlib_assert.h"
 
 void Image::release() {
 }
 
 int Image::LoadGraph_EX(const std::string str) {
-	//Šù‚É“Ç‚İ‚İÏ‚İ‚È‚ç‚Î
-	if (m_images.count(str) != 0) { return m_images.at(str); }
+    // æ—¢ã«èª­ã¿è¾¼ã¿æ¸ˆã¿ãªã‚‰ã°
+    if (m_images.count(str) != 0) { return m_images.at(str); }
 
-	//‚»‚¤‚Å‚È‚¯‚ê‚Î‰æ‘œ‚ğ“Ç‚İ‚Ş
-	const int temp_gr_handle = LoadGraph(str.c_str());
+    // ãã†ã§ãªã‘ã‚Œã°ç”»åƒã‚’èª­ã¿è¾¼ã‚€
+    const int temp_gr_handle = LoadGraph(str.c_str());
 
-	if (temp_gr_handle == -1) { ERR("‰æ‘œ‚Ì“Ç‚İ‚İ‚É¸”s‚µ‚Ü‚µ‚½"); }
+    if (temp_gr_handle == -1) { ASSERT(false, "ç”»åƒã®èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ã¾ã—ãŸ"); }
 
-	//‹L˜^
-	m_images[str] = temp_gr_handle;
-	return temp_gr_handle;
+    // è¨˜éŒ²
+    m_images[str] = temp_gr_handle;
+    return temp_gr_handle;
 }

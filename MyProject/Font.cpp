@@ -1,34 +1,37 @@
+ï»¿
 #include "Font.h"
-#include "DxLib.h"
-#include "Error.h"
+
+#include <DxLib.h>
+
+#include "dxlib_assert.h"
 
 int Font::getFontHandle(const std::string _path) {
 
-    //ƒtƒHƒ“ƒg‚ğ‚·‚Å‚É“Ç‚İ‚ñ‚Å‚¢‚é‚È‚ç‚»‚Ìƒnƒ“ƒhƒ‹‚ğ‘—‚é
+    //ãƒ•ã‚©ãƒ³ãƒˆã‚’ã™ã§ã«èª­ã¿è¾¼ã‚“ã§ã„ã‚‹ãªã‚‰ãã®ãƒãƒ³ãƒ‰ãƒ«ã‚’é€ã‚‹
     if (m_path.count(_path) != 0) {
         return m_path.at(_path);
     }
 
-    //“Ç‚İ‚Ş
+    //èª­ã¿è¾¼ã‚€
     int _font;
     _font = LoadFontDataToHandle(_path.c_str());
 
-    //“Ç‚İ‚İ‚É¸”s‚µ‚½‚È‚çƒGƒ‰[ƒƒbƒZ[ƒW‚ğ•\¦
-    if (_font == -1) { 
-        std::string err_mes = "‚ª“Ç‚İ‚ß‚Ü‚¹‚ñ‚Å‚µ‚½";
+    //èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸãªã‚‰ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
+    if (_font == -1) {
+        std::string err_mes = "ãŒèª­ã¿è¾¼ã‚ã¾ã›ã‚“ã§ã—ãŸ";
         err_mes = _path + err_mes;
-        ERR(err_mes.c_str());
+        ASSERT(false, err_mes.c_str());
     }
 
-    //“Ç‚İ‚ñ‚¾ƒpƒX‚ğ‹L˜^
+    //èª­ã¿è¾¼ã‚“ã ãƒ‘ã‚¹ã‚’è¨˜éŒ²
     m_path[_path] = _font;
 
-    //Å‘å”‚ğã‰ñ‚é‚È‚ç‚ÎƒGƒ‰[ƒƒbƒZ[ƒW‚ğ•\¦
+    //æœ€å¤§æ•°ã‚’ä¸Šå›ã‚‹ãªã‚‰ã°ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
     if (m_path.size() > MAX_FONT_HANDLE_NUM) {
-        std::string err_mes2 = "ƒtƒHƒ“ƒg‚Ì“Ç‚İ‚İÅ‘å”F";
+        std::string err_mes2 = "ãƒ•ã‚©ãƒ³ãƒˆã®èª­ã¿è¾¼ã¿æœ€å¤§æ•°ï¼š";
         err_mes2 += std::to_string(MAX_FONT_HANDLE_NUM);
-        err_mes2 += "‚ğã‰ñ‚é”‚ÌƒtƒHƒ“ƒg‚ª“Ç‚İ‚Ü‚ê‚Ü‚µ‚½B";
-        ERR("");
+        err_mes2 += "ã‚’ä¸Šå›ã‚‹æ•°ã®ãƒ•ã‚©ãƒ³ãƒˆãŒèª­ã¿è¾¼ã¾ã‚Œã¾ã—ãŸã€‚";
+        ASSERT(false, err_mes2.c_str());
     }
 
     return _font;

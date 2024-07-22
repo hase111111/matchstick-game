@@ -23,7 +23,7 @@ void ErrorAssert(const std::string& error_mes,
 //! @brief エラーが発生したときにエラーメッセージを表示する．
 //! @param error_mes エラーメッセージ．
 #define ERROR_MESSAGE(error_mes) \
-::homerun::assert_internal::ErrorAssert(error_mes, __FILE__, __FUNCTION__, __LINE__)
+::match_stick::assert_internal::ErrorAssert(error_mes, __FILE__, __FUNCTION__, __LINE__)
 
 //! @brief エラーが発生したときにエラーメッセージを表示する．
 //! @param expr エラーが発生したかどうかの条件．

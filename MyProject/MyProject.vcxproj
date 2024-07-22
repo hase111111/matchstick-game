@@ -173,7 +173,6 @@
     <ClCompile Include="dxlib_assert.cpp" />
     <ClCompile Include="dxlib_keyboard.cpp" />
     <ClCompile Include="dxlib_mouse.cpp" />
-    <ClCompile Include="Error.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="fps_controller.cpp" />
     <ClCompile Include="GameAnime.cpp" />
@@ -220,7 +219,6 @@
     <ClInclude Include="dxlib_assert.h" />
     <ClInclude Include="dxlib_keyboard.h" />
     <ClInclude Include="dxlib_mouse.h" />
-    <ClInclude Include="Error.h" />
     <ClInclude Include="error_message_box.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="fps_controller.h" />
