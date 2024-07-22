@@ -1,17 +1,17 @@
 ﻿
 #include <DxLib.h>
 
+#include "error_message_box.h"
 #include "system_main.h"
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
-{
+int WINAPI WinMain(HINSTANCE h, HINSTANCE h_prev, LPSTR cmd, int cmd_show) {
     SystemMain system_main;
 
     if (system_main.initialize()) {
         system_main.main();
     }
     else {
-        MessageBox(NULL, TEXT("関数:DxLibInitがエラーを起こしたため\n緊急終了しました。\nP.S このアプリは二重起動できません"), TEXT("報告"), MB_ICONERROR);
+        ErrorMessage::show("初期化に失敗しました。");
     }
 
     system_main.finalize();

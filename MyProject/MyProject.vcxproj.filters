@@ -61,6 +61,9 @@
     <Filter Include="ソース ファイル\ConcreteScene\ReplayScene\Draw">
       <UniqueIdentifier>{90730051-02e8-40a7-a7c2-42efa4ce6a3d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Systems">
+      <UniqueIdentifier>{cd406cf8-0c3d-4f77-8926-cfe6fe8e77f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -186,6 +189,9 @@
     <ClCompile Include="ReplayScene.cpp">
       <Filter>ソース ファイル\ConcreteScene\ReplayScene</Filter>
     </ClCompile>
+    <ClCompile Include="dxlib_assert.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="looper.h">
@@ -307,6 +313,12 @@
     </ClInclude>
     <ClInclude Include="ReplayScene.h">
       <Filter>ソース ファイル\ConcreteScene\ReplayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_assert.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="error_message_box.h">
+      <Filter>ソース ファイル\Systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

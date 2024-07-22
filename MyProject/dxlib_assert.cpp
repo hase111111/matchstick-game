@@ -7,6 +7,8 @@
 void match_stick::assert_internal::ErrorAssert(
     const std::string& error_mes, const LPCSTR file,
     const LPCSTR func, const int line) {
+
+    // エラーメッセージを表示する．
     clsDx();
     printfDx("Error! Please press the X button on the window to exit! \n\n");
     printfDx("<Error Cause>\n%s\n\n", error_mes.c_str());

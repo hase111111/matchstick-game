@@ -1,4 +1,4 @@
-#include"SceneManager.h"
+ï»¿#include"SceneManager.h"
 #include"TitleScene.h"
 #include"GameScene.h"
 #include"MenuScene.h"
@@ -13,160 +13,160 @@ const int BACK_SCENE = 2;
 const int DELETE_ALL_SCENE = 3;
 const int NO_COMMAND = -1;
 
-SceneManger::SceneManger() : 
-	m_first_scene(enumScene::title),
-	m_scenechange_command(NO_COMMAND),
-	m_scene_name(enumScene::title),
-	m_how_many_scene(0)
+SceneManger::SceneManger() :
+    m_first_scene(enumScene::title),
+    m_scenechange_command(NO_COMMAND),
+    m_scene_name(enumScene::title),
+    m_how_many_scene(0)
 {
-	//ˆê”ÔÅ‰‚ÌƒV[ƒ“‚ğ’Ç‰Á
-	Parameter p;
-	m_addNewScene(m_first_scene, p);
+    //ä¸€ç•ªæœ€åˆã®ã‚·ãƒ¼ãƒ³ã‚’è¿½åŠ 
+    Parameter p;
+    m_addNewScene(m_first_scene, p);
 }
 
 bool SceneManger::updateTopScene()
 {
-	if (m_uniqueSceneStack.empty() == true) {
-		ERR("ƒV[ƒ“‚ª‘¶İ‚µ‚Ä‚¢‚È‚¢‚½‚ßAˆê”Ôã‚ÌƒV[ƒ“‚ğXV‚Å‚«‚Ü‚¹‚ñ");
-	}
+    if (m_uniqueSceneStack.empty() == true) {
+        ERR("ã‚·ãƒ¼ãƒ³ãŒå­˜åœ¨ã—ã¦ã„ãªã„ãŸã‚ã€ä¸€ç•ªä¸Šã®ã‚·ãƒ¼ãƒ³ã‚’æ›´æ–°ã§ãã¾ã›ã‚“");
+    }
 
-	//ƒgƒbƒv‚ÌƒV[ƒ“‚ğXV‚·‚éBfalse‚ª•Ô‚Á‚Ä‚«‚½‚çƒ\ƒtƒg‚ğI—¹‚·‚é
-	return m_uniqueSceneStack.top()->update();
+    //ãƒˆãƒƒãƒ—ã®ã‚·ãƒ¼ãƒ³ã‚’æ›´æ–°ã™ã‚‹ã€‚falseãŒè¿”ã£ã¦ããŸã‚‰ã‚½ãƒ•ãƒˆã‚’çµ‚äº†ã™ã‚‹
+    return m_uniqueSceneStack.top()->update();
 }
 
 void SceneManger::drawTopScene() const
 {
-	if (m_uniqueSceneStack.empty() == true) {
-		ERR("ƒV[ƒ“‚ª‘¶İ‚µ‚Ä‚¢‚È‚¢‚½‚ßAˆê”Ôã‚ÌƒV[ƒ“‚ğ•`‰æ‚Å‚«‚Ü‚¹‚ñ");
-	}
+    if (m_uniqueSceneStack.empty() == true) {
+        ERR("ã‚·ãƒ¼ãƒ³ãŒå­˜åœ¨ã—ã¦ã„ãªã„ãŸã‚ã€ä¸€ç•ªä¸Šã®ã‚·ãƒ¼ãƒ³ã‚’æç”»ã§ãã¾ã›ã‚“");
+    }
 
-	m_uniqueSceneStack.top()->draw();
+    m_uniqueSceneStack.top()->draw();
 }
 
 
 void SceneManger::addNewScene(const enumScene _sceneName, const Parameter& parameter)
 {
-	//ƒV[ƒ“’Ç‰Á‚Ì–½—ß‚ğo‚·
-	m_scenechange_command = ADD_SCENE;
-	m_scene_name = _sceneName;
-	m_tempParam = parameter;
+    //ã‚·ãƒ¼ãƒ³è¿½åŠ ã®å‘½ä»¤ã‚’å‡ºã™
+    m_scenechange_command = ADD_SCENE;
+    m_scene_name = _sceneName;
+    m_tempParam = parameter;
 }
 
-void SceneManger::deleteNowScene(const Parameter& parameter,int _how_many)
+void SceneManger::deleteNowScene(const Parameter& parameter, int _how_many)
 {
-	//ƒV[ƒ“íœ‚Ì–½—ß‚ğo‚·
-	m_scenechange_command = BACK_SCENE;
-	m_tempParam = parameter;
-	m_how_many_scene = _how_many;
+    //ã‚·ãƒ¼ãƒ³å‰Šé™¤ã®å‘½ä»¤ã‚’å‡ºã™
+    m_scenechange_command = BACK_SCENE;
+    m_tempParam = parameter;
+    m_how_many_scene = _how_many;
 }
 
 void SceneManger::deleteAllScene()
 {
-	//ƒV[ƒ“íœ‚Ì–½—ß‚ğo‚·
-	m_scenechange_command = DELETE_ALL_SCENE;
+    //ã‚·ãƒ¼ãƒ³å‰Šé™¤ã®å‘½ä»¤ã‚’å‡ºã™
+    m_scenechange_command = DELETE_ALL_SCENE;
 }
 
 
 void SceneManger::sceneChangeExecute()
 {
-	if (m_scenechange_command == NO_COMMAND) {
-		//‰½‚à‚µ‚È‚¢
-	}
-	else if (m_scenechange_command == ADD_SCENE) //ƒV[ƒ“’Ç‰Á–½—ß‚Ì
-	{
-		//ƒV[ƒ“’Ç‰Á
-		m_addNewScene(m_scene_name, m_tempParam);
+    if (m_scenechange_command == NO_COMMAND) {
+        //ä½•ã‚‚ã—ãªã„
+    }
+    else if (m_scenechange_command == ADD_SCENE) //ã‚·ãƒ¼ãƒ³è¿½åŠ å‘½ä»¤ã®æ™‚
+    {
+        //ã‚·ãƒ¼ãƒ³è¿½åŠ 
+        m_addNewScene(m_scene_name, m_tempParam);
 
-		//–½—ß‚ğƒŠƒZƒbƒg‚·‚é
-		m_scenechange_command = NO_COMMAND;
-		m_tempParam.resetParam();
-	}
-	else if (m_scenechange_command == BACK_SCENE) //ƒV[ƒ“íœ–½—ß‚Ì
-	{
-		//ƒV[ƒ“‚ğíœ
-		int cnt = (m_how_many_scene > 1) ? m_how_many_scene : 1;
+        //å‘½ä»¤ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
+        m_scenechange_command = NO_COMMAND;
+        m_tempParam.resetParam();
+    }
+    else if (m_scenechange_command == BACK_SCENE) //ã‚·ãƒ¼ãƒ³å‰Šé™¤å‘½ä»¤ã®æ™‚
+    {
+        //ã‚·ãƒ¼ãƒ³ã‚’å‰Šé™¤
+        int cnt = (m_how_many_scene > 1) ? m_how_many_scene : 1;
 
-		for (int i = 0; i < cnt; i++)
-		{
-			if (m_uniqueSceneStack.empty() == false) {
-				m_uniqueSceneStack.pop();
-			}
-		}
+        for (int i = 0; i < cnt; i++)
+        {
+            if (m_uniqueSceneStack.empty() == false) {
+                m_uniqueSceneStack.pop();
+            }
+        }
 
-		//ƒV[ƒ“‚ª‘¶İ‚µ‚È‚¢‚È‚çÅ‰‚ÌƒV[ƒ“‚ğ’Ç‰Á
-		if (m_uniqueSceneStack.empty() == true) {
-			Parameter p;
-			m_addNewScene(m_first_scene, p);
-		}
+        //ã‚·ãƒ¼ãƒ³ãŒå­˜åœ¨ã—ãªã„ãªã‚‰æœ€åˆã®ã‚·ãƒ¼ãƒ³ã‚’è¿½åŠ 
+        if (m_uniqueSceneStack.empty() == true) {
+            Parameter p;
+            m_addNewScene(m_first_scene, p);
+        }
 
-		//V‚½‚ÈƒgƒbƒvƒV[ƒ“‚Éƒpƒ‰ƒ[ƒ^‚ğ“n‚·
-		if (m_uniqueSceneStack.empty() == true) { ERR("ƒV[ƒ“íœ‚É¸”s‚µ‚Ü‚µ‚½BƒV[ƒ“‚ª‰½‚à‚È‚¢‚Æ‚±‚ë‚Éƒpƒ‰ƒ[ƒ^‚ğ‘}“ü‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚Ü‚·"); }
-		m_uniqueSceneStack.top()->receiveParameterInCaseOfDeleteScene(m_tempParam);
+        //æ–°ãŸãªãƒˆãƒƒãƒ—ã‚·ãƒ¼ãƒ³ã«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ¸¡ã™
+        if (m_uniqueSceneStack.empty() == true) { ERR("ã‚·ãƒ¼ãƒ³å‰Šé™¤ã«å¤±æ•—ã—ã¾ã—ãŸã€‚ã‚·ãƒ¼ãƒ³ãŒä½•ã‚‚ãªã„ã¨ã“ã‚ã«ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æŒ¿å…¥ã—ã‚ˆã†ã¨ã—ã¦ã„ã¾ã™"); }
+        m_uniqueSceneStack.top()->receiveParameterInCaseOfDeleteScene(m_tempParam);
 
-		//–½—ß‚ğƒŠƒZƒbƒg‚·‚é
-		m_scenechange_command = NO_COMMAND;
+        //å‘½ä»¤ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
+        m_scenechange_command = NO_COMMAND;
 
-		//ƒpƒ‰ƒ[ƒ^‚ğƒŠƒZƒbƒg‚·‚é
-		m_tempParam.resetParam();
-	}
-	else if (m_scenechange_command == DELETE_ALL_SCENE) {
-		//‘SƒV[ƒ“íœ–½—ß‚Ì
+        //ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
+        m_tempParam.resetParam();
+    }
+    else if (m_scenechange_command == DELETE_ALL_SCENE) {
+        //å…¨ã‚·ãƒ¼ãƒ³å‰Šé™¤å‘½ä»¤ã®æ™‚
 
-		//‘SƒV[ƒ“‚ğíœ
-		while (m_uniqueSceneStack.empty() == false) {
-			m_uniqueSceneStack.pop();
-		}
+        //å…¨ã‚·ãƒ¼ãƒ³ã‚’å‰Šé™¤
+        while (m_uniqueSceneStack.empty() == false) {
+            m_uniqueSceneStack.pop();
+        }
 
-		//Å‰‚ÌƒV[ƒ“‚ğ’Ç‰Á
-		Parameter p;
-		m_addNewScene(m_first_scene, p);
+        //æœ€åˆã®ã‚·ãƒ¼ãƒ³ã‚’è¿½åŠ 
+        Parameter p;
+        m_addNewScene(m_first_scene, p);
 
-		//–½—ß‚ğƒŠƒZƒbƒg‚·‚é
-		m_scenechange_command = NO_COMMAND;
-		m_tempParam.resetParam();
-	}
-	else {
-		std::string err = "ƒV[ƒ“•ÏXƒNƒ‰ƒX‚ÅƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B\n•s–¾‚ÈƒRƒ}ƒ“ƒh...";
-		err += std::to_string(m_scenechange_command);
-		ERR(err);
-	}
+        //å‘½ä»¤ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
+        m_scenechange_command = NO_COMMAND;
+        m_tempParam.resetParam();
+    }
+    else {
+        std::string err = "ã‚·ãƒ¼ãƒ³å¤‰æ›´ã‚¯ãƒ©ã‚¹ã§ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚\nä¸æ˜ãªã‚³ãƒãƒ³ãƒ‰...";
+        err += std::to_string(m_scenechange_command);
+        ERR(err);
+    }
 
 }
 
 void SceneManger::m_addNewScene(const enumScene _scene_name, const Parameter& _parameter)
 {
-	switch (_scene_name)
-	{
-	case enumScene::title:
-		m_uniqueSceneStack.push(std::make_unique<TitleScene>(this, _parameter));
-		break;
+    switch (_scene_name)
+    {
+        case enumScene::title:
+            m_uniqueSceneStack.push(std::make_unique<TitleScene>(this, _parameter));
+            break;
 
-	case enumScene::game:
-		m_uniqueSceneStack.push(std::make_unique<GameScene>(this, _parameter));
-		break;
+        case enumScene::game:
+            m_uniqueSceneStack.push(std::make_unique<GameScene>(this, _parameter));
+            break;
 
-	case enumScene::menu:
-		m_uniqueSceneStack.push(std::make_unique<MenuScene>(this, _parameter));
-		break;
+        case enumScene::menu:
+            m_uniqueSceneStack.push(std::make_unique<MenuScene>(this, _parameter));
+            break;
 
-	case enumScene::result:
-		m_uniqueSceneStack.push(std::make_unique<ResultScene>(this, _parameter));
-		break;
+        case enumScene::result:
+            m_uniqueSceneStack.push(std::make_unique<ResultScene>(this, _parameter));
+            break;
 
-	case enumScene::rule:
-		m_uniqueSceneStack.push(std::make_unique<RuleScene>(this, _parameter));
-		break;
+        case enumScene::rule:
+            m_uniqueSceneStack.push(std::make_unique<RuleScene>(this, _parameter));
+            break;
 
-	case enumScene::debug:
-		m_uniqueSceneStack.push(std::make_unique<DebugScene>(this, _parameter));
-		break;
+        case enumScene::debug:
+            m_uniqueSceneStack.push(std::make_unique<DebugScene>(this, _parameter));
+            break;
 
-	case enumScene::replay:
-		m_uniqueSceneStack.push(std::make_unique<ReplayScene>(this, _parameter));
-		break;
+        case enumScene::replay:
+            m_uniqueSceneStack.push(std::make_unique<ReplayScene>(this, _parameter));
+            break;
 
-	default:
-		ERR("‘¶İ‚µ‚Ä‚¢‚È‚¢ƒV[ƒ“‚Ì’Ç‰ÁˆË—Š‚ªo‚³‚ê‚Ü‚µ‚½");
-		break;
-	}
+        default:
+            ERR("å­˜åœ¨ã—ã¦ã„ãªã„ã‚·ãƒ¼ãƒ³ã®è¿½åŠ ä¾é ¼ãŒå‡ºã•ã‚Œã¾ã—ãŸ");
+            break;
+    }
 }

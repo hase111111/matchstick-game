@@ -25,7 +25,7 @@ bool SystemMain::initialize() const {
     Sound::getIns()->changeVolume(Setting::getIns()->getSettingVol());
 
     // フルスクリーン設定
-    if (Setting::getIns()->getSettingFulWin() == false) {
+    if (!Setting::getIns()->getSettingFulWin()) {
         // ウィンドウモードで起動する場合
         ChangeWindowMode(TRUE);
 
@@ -43,7 +43,7 @@ bool SystemMain::initialize() const {
     }
 
     // DXライブラリ初期化処理
-    if (DxLib_Init()) {
+    if (DxLib_Init() < -1) {
         // 異常終了したら即座にやめる
         return false;
     }
