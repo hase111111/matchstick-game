@@ -6,7 +6,7 @@
 
 #include "error_message_box.h"
 #include "system_main.h"
-
+#include "toml_sample.h"
 
 int WINAPI WinMain(HINSTANCE h, HINSTANCE h_prev, LPSTR cmd, int cmd_show) {
 
