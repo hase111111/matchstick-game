@@ -16,21 +16,21 @@ bool SceneStack::updateTopScene()
 {
     ASSERT(!scene_ptr_stack_.empty(), "The scene does not exist.");
 
-    return scene_ptr_stack_.top()->Update();
+    return scene_ptr_stack_.top()->update();
 }
 
 void SceneStack::drawTopScene() const
 {
     ASSERT(!scene_ptr_stack_.empty(), "The scene does not exist.");
 
-    scene_ptr_stack_.top()->Draw();
+    scene_ptr_stack_.top()->draw();
 }
 
 void SceneStack::addNewScene(const SceneName scene_name, const SceneChangeParameter& parameter)
 {
     auto new_scene_ptr = scene_creator_ptr_->createScene(scene_name);
 
-    new_scene_ptr->OnStart(parameter);  // パラメータを渡して，初期化処理を行う．
+    new_scene_ptr->onStart(parameter);  // パラメータを渡して，初期化処理を行う．
 
     scene_ptr_stack_.push(std::move(new_scene_ptr));
 }
@@ -48,7 +48,7 @@ void SceneStack::deleteNowScene(const int delete_num, const SceneChangeParameter
     ASSERT(!scene_ptr_stack_.empty(), "The scene does not exist.");  // 冗長になるが，確認する．
 
     // 削除後のシーンに対して，引数のパラメータを渡して，初期化処理を行う．
-    scene_ptr_stack_.top()->OnReturnFromOtherScene(parameter);
+    scene_ptr_stack_.top()->onReturnFromOtherScene(parameter);
 }
 
 void SceneStack::deleteAllScene()
@@ -65,10 +65,10 @@ void SceneStack::deleteAllScene()
 
 void SceneStack::initializeScene()
 {
-    auto first_scene_ptr = scene_creator_ptr_->createScene(SceneName::kTitle);
+    auto first_scene_ptr = scene_creator_ptr_->createScene(SceneName::kDebug);
     SceneChangeParameter parameter;
 
-    first_scene_ptr->OnStart(parameter);  // 空のパラメータを渡して，初期化処理を行う．
+    first_scene_ptr->onStart(parameter);  // 空のパラメータを渡して，初期化処理を行う．
 
     scene_ptr_stack_.push(std::move(first_scene_ptr));
 }
