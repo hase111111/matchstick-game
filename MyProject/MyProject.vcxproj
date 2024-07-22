@@ -158,6 +158,7 @@
     <ClCompile Include="AbstractScene.cpp" />
     <ClCompile Include="DebugScene.cpp" />
     <ClCompile Include="Define.cpp" />
+    <ClCompile Include="dxlib_assert.cpp" />
     <ClCompile Include="Error.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Fps.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="AbstractScene.h" />
     <ClInclude Include="DebugScene.h" />
     <ClInclude Include="Define.h" />
+    <ClInclude Include="dxlib_assert.h" />
     <ClInclude Include="Error.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Fps.h" />
