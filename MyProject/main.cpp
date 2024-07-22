@@ -4,6 +4,8 @@
 #include "error_message_box.h"
 #include "system_main.h"
 
+using namespace match_stick;
+
 int WINAPI WinMain(HINSTANCE h, HINSTANCE h_prev, LPSTR cmd, int cmd_show) {
     SystemMain system_main;
 

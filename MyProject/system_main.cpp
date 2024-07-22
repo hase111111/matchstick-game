@@ -1,13 +1,15 @@
 ﻿
+#include "system_main.h"
+
 #include <DxLib.h>
 
 #include "define.h"
-#include "looper.h"
+#include "game_main_loop.h"
 #include "setting.h"
 #include "sound.h"
-#include "system_main.h"
 
-// DXライブラリやゲームの初期処理
+namespace match_stick {
+
 bool SystemMain::initialize() const {
     // icon.rcで設定したアイコンファイルをセットする
     SetWindowIconID(333);
@@ -54,17 +56,21 @@ bool SystemMain::initialize() const {
     return true;
 }
 
-// DXライブラリやゲームの終了処理
 void SystemMain::finalize() const {
+    // DxLibの終了処理を呼ぶ
     DxLib_End();
 }
 
-// メイン処理
 void SystemMain::main() const {
-    Looper looper;
-    while (!ScreenFlip() && !ProcessMessage() && !ClearDrawScreen()) {
-        if (!looper.loop()) {
+
+    GameMainLoop game_main_loop;
+
+    // メインループ
+    while (!ProcessMessage()) {
+        if (!game_main_loop.loop()) {
             break;
         }
     }
 }
+
+}  // namespace match_stick

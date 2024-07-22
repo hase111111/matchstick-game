@@ -1,6 +1,8 @@
 ﻿
 #pragma once
 
+namespace match_stick {
+
 class SystemMain final
 {
 public:
@@ -11,3 +13,5 @@ public:
     void finalize() const;
     void main() const;
 };
+
+}  // namespace match_stick

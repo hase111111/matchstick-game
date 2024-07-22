@@ -165,7 +165,7 @@
     <ClCompile Include="dxlib_assert.cpp" />
     <ClCompile Include="Error.cpp" />
     <ClCompile Include="Font.cpp" />
-    <ClCompile Include="Fps.cpp" />
+    <ClCompile Include="fps_controller.cpp" />
     <ClCompile Include="GameAnime.cpp" />
     <ClCompile Include="GameHand.cpp" />
     <ClCompile Include="GameLog.cpp" />
@@ -173,7 +173,7 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Keyboard.cpp" />
-    <ClCompile Include="looper.cpp" />
+    <ClCompile Include="game_main_loop.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MatchGameCommon.cpp" />
     <ClCompile Include="MatchGameCPU.cpp" />
@@ -210,7 +210,7 @@
     <ClInclude Include="Error.h" />
     <ClInclude Include="error_message_box.h" />
     <ClInclude Include="Font.h" />
-    <ClInclude Include="Fps.h" />
+    <ClInclude Include="fps_controller.h" />
     <ClInclude Include="GameAnime.h" />
     <ClInclude Include="GameHand.h" />
     <ClInclude Include="GameLog.h" />
@@ -219,7 +219,7 @@
     <ClInclude Include="GameSelectingHand.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="Keyboard.h" />
-    <ClInclude Include="looper.h" />
+    <ClInclude Include="game_main_loop.h" />
     <ClInclude Include="MatchGameCommon.h" />
     <ClInclude Include="MenuBox.h" />
     <ClInclude Include="MenuDrawBack.h" />
