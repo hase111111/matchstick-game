@@ -1,18 +1,19 @@
+ï»¿
 #include"DxLib.h"
 #include"SystemMain.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	SystemMain _sys;
+    SystemMain _sys;
 
-	if ( _sys.initialize() ) {
-		_sys.main();
-	}
-	else{
-		MessageBox(NULL, TEXT("ŠÖ”:DxLibInit‚ªƒGƒ‰[‚ğ‹N‚±‚µ‚½‚½‚ß\n‹Ù‹}I—¹‚µ‚Ü‚µ‚½B\nP.S ‚±‚ÌƒAƒvƒŠ‚Í“ñd‹N“®‚Å‚«‚Ü‚¹‚ñ"), TEXT("•ñ"), MB_ICONERROR);
-	}
+    if (_sys.initialize()) {
+        _sys.main();
+    }
+    else {
+        MessageBox(NULL, TEXT("é–¢æ•°:DxLibInitãŒã‚¨ãƒ©ãƒ¼ã‚’èµ·ã“ã—ãŸãŸã‚\nç·Šæ€¥çµ‚äº†ã—ã¾ã—ãŸã€‚\nP.S ã“ã®ã‚¢ãƒ—ãƒªã¯äºŒé‡èµ·å‹•ã§ãã¾ã›ã‚“"), TEXT("å ±å‘Š"), MB_ICONERROR);
+    }
 
-	_sys.finalize();
+    _sys.finalize();
 
-	return 0;
+    return 0;
 }
