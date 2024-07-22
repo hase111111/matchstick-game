@@ -64,18 +64,15 @@
     <Filter Include="ソース ファイル\Systems">
       <UniqueIdentifier>{cd406cf8-0c3d-4f77-8926-cfe6fe8e77f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Common\Input">
+      <UniqueIdentifier>{9a6a7272-5bd8-4396-8770-4254a9dbfe84}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="looper.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Define.cpp">
-      <Filter>ソース ファイル\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Fps.cpp">
       <Filter>ソース ファイル\Common</Filter>
     </ClCompile>
     <ClCompile Include="Error.cpp">
@@ -189,18 +186,24 @@
     <ClCompile Include="ReplayScene.cpp">
       <Filter>ソース ファイル\ConcreteScene\ReplayScene</Filter>
     </ClCompile>
-    <ClCompile Include="dxlib_assert.cpp">
+    <ClCompile Include="fps_controller.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="game_main_loop.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="dxlib_mouse.cpp">
+      <Filter>ソース ファイル\Common\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="dxlib_assert.cpp">
+      <Filter>ソース ファイル\Common\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="dxlib_keyboard.cpp">
+      <Filter>ソース ファイル\Common\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="looper.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Define.h">
-      <Filter>ソース ファイル\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Fps.h">
       <Filter>ソース ファイル\Common</Filter>
     </ClInclude>
     <ClInclude Include="Error.h">
@@ -314,11 +317,23 @@
     <ClInclude Include="ReplayScene.h">
       <Filter>ソース ファイル\ConcreteScene\ReplayScene</Filter>
     </ClInclude>
-    <ClInclude Include="dxlib_assert.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="error_message_box.h">
       <Filter>ソース ファイル\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="fps_controller.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="game_main_loop.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_assert.h">
+      <Filter>ソース ファイル\Common\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_keyboard.h">
+      <Filter>ソース ファイル\Common\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_mouse.h">
+      <Filter>ソース ファイル\Common\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
