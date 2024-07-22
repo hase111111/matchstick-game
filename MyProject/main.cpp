@@ -1,4 +1,7 @@
 ﻿
+// C28521 を無視する
+#pragma warning(disable: 28251)
+
 #include <DxLib.h>
 
 #include "error_message_box.h"
