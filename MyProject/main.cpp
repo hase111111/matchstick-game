@@ -1,5 +1,5 @@
 ﻿
-// C28521 を無視する
+// C28251 を無視する
 #pragma warning(disable: 28251)
 
 #include <DxLib.h>
