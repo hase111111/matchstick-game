@@ -1,103 +1,104 @@
-#include "Setting.h"
+ï»¿
 #include <fstream>
 #include <string>
 
+#include "setting.h"
+
 void Setting::loadSettingFile()
 {
-	std::string filename = "./setting.conf";
-	std::ifstream result_file;
+    std::string filename = "./setting.conf";
+    std::ifstream result_file;
 
-	//“ü—ÍEƒoƒCƒiƒŠƒ‚[ƒh‚Åƒtƒ@ƒCƒ‹‚ğŠJ‚­
-	result_file.open(filename, std::ios::in | std::ios::binary);
+    // å…¥åŠ›ãƒ»ãƒã‚¤ãƒŠãƒªãƒ¢ãƒ¼ãƒ‰ã§ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
+    result_file.open(filename, std::ios::in | std::ios::binary);
 
-	//“Ç‚İ‚İ‚É¸”s‚µ‚½ê‡I—¹
-	if (result_file.is_open() == false) 
-	{
-		setDefState();	//ƒfƒtƒHƒ‹ƒg‚ÌƒXƒe[ƒ^ƒX‚ğƒZƒbƒg‚·‚é
-		saveSettingFile(m_vol, m_window_mode, m_anime_cut);
-		return;
-	}
+    // èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸå ´åˆçµ‚äº†
+    if (result_file.is_open() == false) {
+        setDefState();	//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ã‚»ãƒƒãƒˆã™ã‚‹
+        saveSettingFile(m_vol, m_window_mode, m_anime_cut);
+        return;
+    }
 
-	//ƒf[ƒ^‚ğ“Ç‚İ‚Ş
-	char buf = 0;
+    // ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
+    char buf = 0;
 
-	if (result_file.eof() == true) { return; }	//ƒtƒ@ƒCƒ‹‚ÌI’[‚È‚ç‚ÎI—¹
-	result_file.read(&buf, sizeof(buf));		//ƒtƒ@ƒCƒ‹‚©‚çˆê•¶š“Ç‚İ‚Ş
-	m_vol = (int)buf;							//‘ã“ü‚·‚é
-	m_vol = (m_vol < 0) ? 0 : m_vol;
-	m_vol = (m_vol > 100) ? 100 : m_vol;
+    if (result_file.eof() == true) { return; }	// ãƒ•ã‚¡ã‚¤ãƒ«ã®çµ‚ç«¯ãªã‚‰ã°çµ‚äº†
+    result_file.read(&buf, sizeof(buf));		// ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ä¸€æ–‡å­—èª­ã¿è¾¼ã‚€
+    m_vol = (int)buf;							// ä»£å…¥ã™ã‚‹
+    m_vol = (m_vol < 0) ? 0 : m_vol;
+    m_vol = (m_vol > 100) ? 100 : m_vol;
 
-	if (result_file.eof() == true) { return; }	//ƒtƒ@ƒCƒ‹‚ÌI’[‚È‚ç‚ÎI—¹
-	result_file.read(&buf, sizeof(buf));		//ƒtƒ@ƒCƒ‹‚©‚çˆê•¶š“Ç‚İ‚Ş
-	m_window_mode = (buf != 0) ? true : false;
+    if (result_file.eof() == true) { return; }	//ãƒ•ã‚¡ã‚¤ãƒ«ã®çµ‚ç«¯ãªã‚‰ã°çµ‚äº†
+    result_file.read(&buf, sizeof(buf));		//ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ä¸€æ–‡å­—èª­ã¿è¾¼ã‚€
+    m_window_mode = (buf != 0) ? true : false;
 
-	if (result_file.eof() == true) { return; }	//ƒtƒ@ƒCƒ‹‚ÌI’[‚È‚ç‚ÎI—¹
-	result_file.read(&buf, sizeof(buf));		//ƒtƒ@ƒCƒ‹‚©‚çˆê•¶š“Ç‚İ‚Ş
-	m_anime_cut = (buf != 0) ? true : false;
+    if (result_file.eof() == true) { return; }	//ãƒ•ã‚¡ã‚¤ãƒ«ã®çµ‚ç«¯ãªã‚‰ã°çµ‚äº†
+    result_file.read(&buf, sizeof(buf));		//ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ä¸€æ–‡å­—èª­ã¿è¾¼ã‚€
+    m_anime_cut = (buf != 0) ? true : false;
 
-	//ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
-	result_file.close();
+    //ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
+    result_file.close();
 }
 
 void Setting::saveSettingFile(const int _vol, const bool _win, const bool _anime)
 {
-	std::string filename = "./setting.conf";
-	std::ofstream result_file;
+    std::string filename = "./setting.conf";
+    std::ofstream result_file;
 
-	//o—ÍEƒoƒCƒiƒŠƒ‚[ƒh‚Åƒtƒ@ƒCƒ‹‚ğŠJ‚­
-	result_file.open(filename, std::ios::out | std::ios::binary);
+    //å‡ºåŠ›ãƒ»ãƒã‚¤ãƒŠãƒªãƒ¢ãƒ¼ãƒ‰ã§ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
+    result_file.open(filename, std::ios::out | std::ios::binary);
 
-	//“Ç‚İ‚İ‚É¸”s‚µ‚½ê‡I—¹
-	if (result_file.is_open() == false)
-	{
-		return;
-	}
+    //èª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸå ´åˆçµ‚äº†
+    if (result_file.is_open() == false)
+    {
+        return;
+    }
 
-	//ƒf[ƒ^‚ğ‘‚«‚Ş
-	char buf = 0;
+    //ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€
+    char buf = 0;
 
-	//‰¹—Ê‚Ì‘‚«‚İ
-	m_vol = (_vol < 0) ? 0 : _vol;
-	m_vol = (_vol > 100) ? 100 : _vol;
+    //éŸ³é‡ã®æ›¸ãè¾¼ã¿
+    m_vol = (_vol < 0) ? 0 : _vol;
+    m_vol = (_vol > 100) ? 100 : _vol;
 
-	buf = (char)m_vol;
-	result_file.write(&buf, sizeof(buf));
+    buf = (char)m_vol;
+    result_file.write(&buf, sizeof(buf));
 
-	//ƒtƒ‹ƒXƒN
-	m_window_mode = _win;
-	buf = (m_window_mode == true) ? 1 : 0;
-	result_file.write(&buf, sizeof(buf));
+    //ãƒ•ãƒ«ã‚¹ã‚¯
+    m_window_mode = _win;
+    buf = (m_window_mode == true) ? 1 : 0;
+    result_file.write(&buf, sizeof(buf));
 
-	//ƒAƒjƒ
-	m_anime_cut = _anime;
-	buf = (m_anime_cut == true) ? 1 : 0;
-	result_file.write(&buf, sizeof(buf));
+    //ã‚¢ãƒ‹ãƒ¡
+    m_anime_cut = _anime;
+    buf = (m_anime_cut == true) ? 1 : 0;
+    result_file.write(&buf, sizeof(buf));
 
-	//ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
-	result_file.close();
+    //ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
+    result_file.close();
 }
 
 int Setting::getSettingVol(const bool def_flag) const
 {
-	if (def_flag == true) return m_DEF_VOL;
-	return m_vol;
+    if (def_flag == true) return m_DEF_VOL;
+    return m_vol;
 }
 
 bool Setting::getSettingFulWin(const bool def_flag) const
 {
-	if (def_flag == true) return m_DEF_WIN;
-	return m_window_mode;
+    if (def_flag == true) return m_DEF_WIN;
+    return m_window_mode;
 }
 
 bool Setting::getSettingAnime(const bool def_flag) const
 {
-	if (def_flag == true) return m_DEF_ANIME;
-	return m_anime_cut;
+    if (def_flag == true) return m_DEF_ANIME;
+    return m_anime_cut;
 }
 
 void Setting::setDefState()
 {
-	m_vol = m_DEF_VOL;
-	m_anime_cut = m_DEF_ANIME;
-	m_window_mode = m_DEF_WIN;
+    m_vol = m_DEF_VOL;
+    m_anime_cut = m_DEF_ANIME;
+    m_window_mode = m_DEF_WIN;
 }

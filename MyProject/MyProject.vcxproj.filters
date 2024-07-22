@@ -66,7 +66,7 @@
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Looper.cpp">
+    <ClCompile Include="looper.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Define.cpp">
@@ -99,10 +99,10 @@
     <ClCompile Include="Keyboard.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="SystemMain.cpp">
+    <ClCompile Include="system_main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Sound.cpp">
+    <ClCompile Include="sound.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
     <ClCompile Include="MatchGameCommon.cpp">
@@ -180,7 +180,7 @@
     <ClCompile Include="ResultKey.cpp">
       <Filter>ソース ファイル\ConcreteScene\ResultScene</Filter>
     </ClCompile>
-    <ClCompile Include="Setting.cpp">
+    <ClCompile Include="setting.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
     <ClCompile Include="ReplayScene.cpp">
@@ -188,7 +188,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Looper.h">
+    <ClInclude Include="looper.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Define.h">
@@ -215,7 +215,7 @@
     <ClInclude Include="Image.h">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClInclude>
-    <ClInclude Include="Singleton.h">
+    <ClInclude Include="singleton.h">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="SceneChangeListenerInterface.h">
@@ -230,10 +230,10 @@
     <ClInclude Include="Keyboard.h">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClInclude>
-    <ClInclude Include="SystemMain.h">
+    <ClInclude Include="system_main.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Sound.h">
+    <ClInclude Include="sound.h">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="MatchGameCommon.h">
@@ -302,7 +302,7 @@
     <ClInclude Include="ResultKey.h">
       <Filter>ソース ファイル\ConcreteScene\ResultScene</Filter>
     </ClInclude>
-    <ClInclude Include="Setting.h">
+    <ClInclude Include="setting.h">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="ReplayScene.h">

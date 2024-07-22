@@ -1,25 +1,24 @@
-#include"Looper.h"
-#include"Keyboard.h"
+ï»¿
+#include "keyboard.h"
+#include "looper.h"
 
-Looper::Looper()
-{
+Looper::Looper() {
 }
 
-bool Looper::loop()
-{
-	//“ü—Í‚ğæ“¾
-	Keyboard::getIns()->update();
+bool Looper::loop() {
+    // å…¥åŠ›ã‚’å–å¾—
+    Keyboard::getIns()->update();
 
-	//ƒV[ƒ“‚ÌƒXƒ^ƒbƒN‚Ìˆê”Ôã‚ğÀs
-	if (m_sceneMgr.updateTopScene() == false) { return false; }
-	m_sceneMgr.drawTopScene();
+    // ã‚·ãƒ¼ãƒ³ã®ã‚¹ã‚¿ãƒƒã‚¯ã®ä¸€ç•ªä¸Šã‚’å®Ÿè¡Œ
+    if (!m_sceneMgr.updateTopScene()) { return false; }
+    m_sceneMgr.drawTopScene();
 
-	//fps‚ğ§Œä‚·‚é‚½‚ß‚ÌŠÖ”
-	m_fps.wait();
-	//m_fps.draw();
+    // fpsã‚’åˆ¶å¾¡ã™ã‚‹ãŸã‚ã®é–¢æ•°
+    m_fps.wait();
+    // m_fps.draw();
 
-	//‘Sˆ—‚Ì‹sŒã,ƒV[ƒ“ƒ`ƒFƒ“ƒW‚ğs‚¤
-	m_sceneMgr.sceneChangeExecute();
+    // å…¨å‡¦ç†ã®é‚è¡Œå¾Œ,ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚’è¡Œã†
+    m_sceneMgr.sceneChangeExecute();
 
-	return true;
+    return true;
 }

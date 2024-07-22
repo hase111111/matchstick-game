@@ -1,16 +1,19 @@
+﻿
 #pragma once
-#include"SceneManager.h"
-#include<memory>
-#include"Fps.h"
+
+#include <memory>
+
+#include "fps.h"
+#include "SceneManager.h"
 
 class Looper {
 public:
-	Looper();
-	~Looper() = default;
+    Looper();
+    ~Looper() = default;
 
-	bool loop();
+    bool loop();
 
 private:
-	SceneManger m_sceneMgr;
-	Fps m_fps;
+    SceneManger m_sceneMgr;
+    Fps m_fps;
 };

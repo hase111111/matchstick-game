@@ -1,19 +1,20 @@
 ﻿
-#include"DxLib.h"
-#include"SystemMain.h"
+#include <DxLib.h>
+
+#include "system_main.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-    SystemMain _sys;
+    SystemMain system_main;
 
-    if (_sys.initialize()) {
-        _sys.main();
+    if (system_main.initialize()) {
+        system_main.main();
     }
     else {
         MessageBox(NULL, TEXT("関数:DxLibInitがエラーを起こしたため\n緊急終了しました。\nP.S このアプリは二重起動できません"), TEXT("報告"), MB_ICONERROR);
     }
 
-    _sys.finalize();
+    system_main.finalize();
 
     return 0;
 }

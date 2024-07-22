@@ -1,12 +1,14 @@
+﻿
 #pragma once
-#include "Singleton.h"
+
 #include <map>
-#include<string>
+#include <string>
+
+#include "singleton.h"
 
 class Sound final : public Singleton<Sound> {
-
 public:
-    Sound() {};
+    Sound() = default;
     ~Sound() = default;
 
     int myLoadSound(std::string _path);

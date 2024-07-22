@@ -1,6 +1,8 @@
-#include "Sound.h"
-#include "Error.h"
-#include "DxLib.h"
+ï»¿
+#include <DxLib.h>
+
+#include "error.h"
+#include "sound.h"
 
 int Sound::myLoadSound(std::string _path)
 {
@@ -9,14 +11,14 @@ int Sound::myLoadSound(std::string _path)
     const int temp_sound = LoadSoundMem(_path.c_str());
 
     if (temp_sound == -1) {
-        std::string err_mes = "ƒTƒEƒ“ƒhƒGƒtƒFƒNƒg‚Ìƒ[ƒh‚ª‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½\n“Ç‚Ýž‚Ý‚ÉŽ¸”s‚µ‚½ƒtƒ@ƒCƒ‹ : ";
+        std::string err_mes = "ã‚µã‚¦ãƒ³ãƒ‰ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ãƒ­ãƒ¼ãƒ‰ãŒã§ãã¾ã›ã‚“ã§ã—ãŸ\nèª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸãƒ•ã‚¡ã‚¤ãƒ« : ";
         err_mes += _path;
         ERR(err_mes);
     }
 
     m_soundeffect[_path] = temp_sound;
 
-    //‰¹—Ê‚ð•ÏX‚·‚é
+    //éŸ³é‡ã‚’å¤‰æ›´ã™ã‚‹
     ChangeVolumeSoundMem(255 * m_percent / 100, m_soundeffect[_path]);
 
     return m_soundeffect[_path];
@@ -24,33 +26,33 @@ int Sound::myLoadSound(std::string _path)
 
 void Sound::startBGM(std::string _path) {
 
-//‘¼‚ÌBGM‚ÌÄ¶ó‹µ‚ð’²‚×‚é
+    //ä»–ã®BGMã®å†ç”ŸçŠ¶æ³ã‚’èª¿ã¹ã‚‹
     for (auto i = m_bgm.begin(); i != m_bgm.end(); ++i) {
 
-        //Ä¶’†‚È‚ç’âŽ~‚·‚é
+        //å†ç”Ÿä¸­ãªã‚‰åœæ­¢ã™ã‚‹
         if (CheckSoundMem(i->second) == 1) {
             StopSoundMem(i->second);
         }
     }
 
-//“Ç‚Ýž‚ÝÏ‚Ý‚Å‚È‚¯‚ê‚Îƒ[ƒh‚·‚é
+    //èª­ã¿è¾¼ã¿æ¸ˆã¿ã§ãªã‘ã‚Œã°ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
     if (m_bgm.count(_path) == 0) {
-        if ((m_bgm[_path] = LoadSoundMem(_path.c_str())) == -1) { 
-            std::string err_mes = "‰¹Šy‚Ìƒ[ƒh‚ª‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½\n“Ç‚Ýž‚Ý‚ÉŽ¸”s‚µ‚½ƒtƒ@ƒCƒ‹ : ";
+        if ((m_bgm[_path] = LoadSoundMem(_path.c_str())) == -1) {
+            std::string err_mes = "éŸ³æ¥½ã®ãƒ­ãƒ¼ãƒ‰ãŒã§ãã¾ã›ã‚“ã§ã—ãŸ\nèª­ã¿è¾¼ã¿ã«å¤±æ•—ã—ãŸãƒ•ã‚¡ã‚¤ãƒ« : ";
             err_mes += _path;
             ERR(err_mes);
         };
 
-        //‰¹—Ê‚ð•ÏX‚·‚é
+        //éŸ³é‡ã‚’å¤‰æ›´ã™ã‚‹
         ChangeVolumeSoundMem(255 * m_percent / 100, m_bgm[_path]);
     }
 
-//Ä¶‚·‚é
+    //å†ç”Ÿã™ã‚‹
     if (PlaySoundMem(m_bgm[_path], DX_PLAYTYPE_LOOP) == -1) {
-        ERR("Šy‹È‚ÌÄ¶‚ª‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½B");
+        ERR("æ¥½æ›²ã®å†ç”ŸãŒã§ãã¾ã›ã‚“ã§ã—ãŸã€‚");
     };
 
-//Ä¶’†‚ÌBGM‚ÌƒpƒX‚ð‹L˜^‚·‚é
+    //å†ç”Ÿä¸­ã®BGMã®ãƒ‘ã‚¹ã‚’è¨˜éŒ²ã™ã‚‹
     m_playbgm = _path;
 }
 
@@ -64,12 +66,12 @@ void Sound::changeVolume(const int percent)
     if (m_percent > 100) { m_percent = 100; }
     if (m_percent < 0) { m_percent = 0; }
 
-    //BGM‚Ì‰¹—Ê‚ð‚·‚×‚Ä•ÏX‚·‚é
+    //BGMã®éŸ³é‡ã‚’ã™ã¹ã¦å¤‰æ›´ã™ã‚‹
     for (auto i = m_bgm.begin(); i != m_bgm.end(); ++i) {
         ChangeVolumeSoundMem(255 * m_percent / 100, i->second);
     }
 
-    //SE‚Ì‰¹—Ê‚ð‚·‚×‚Ä•ÏX‚·‚é
+    //SEã®éŸ³é‡ã‚’ã™ã¹ã¦å¤‰æ›´ã™ã‚‹
     for (auto i = m_soundeffect.begin(); i != m_soundeffect.end(); ++i) {
         ChangeVolumeSoundMem(255 * m_percent / 100, i->second);
     }

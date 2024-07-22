@@ -168,7 +168,7 @@
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Keyboard.cpp" />
-    <ClCompile Include="Looper.cpp" />
+    <ClCompile Include="looper.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MatchGameCommon.cpp" />
     <ClCompile Include="MatchGameCPU.cpp" />
@@ -191,9 +191,9 @@
     <ClCompile Include="RuleScene.cpp" />
     <ClCompile Include="SceneChangeEffect.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="Setting.cpp" />
-    <ClCompile Include="Sound.cpp" />
-    <ClCompile Include="SystemMain.cpp" />
+    <ClCompile Include="setting.cpp" />
+    <ClCompile Include="sound.cpp" />
+    <ClCompile Include="system_main.cpp" />
     <ClCompile Include="TitleAnime.cpp" />
     <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
@@ -212,7 +212,7 @@
     <ClInclude Include="GameSelectingHand.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="Keyboard.h" />
-    <ClInclude Include="Looper.h" />
+    <ClInclude Include="looper.h" />
     <ClInclude Include="MatchGameCommon.h" />
     <ClInclude Include="MenuBox.h" />
     <ClInclude Include="MenuDrawBack.h" />
@@ -232,10 +232,10 @@
     <ClInclude Include="SceneChangeListenerInterface.h" />
     <ClInclude Include="SceneEnum.h" />
     <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="Setting.h" />
-    <ClInclude Include="Singleton.h" />
-    <ClInclude Include="Sound.h" />
-    <ClInclude Include="SystemMain.h" />
+    <ClInclude Include="setting.h" />
+    <ClInclude Include="singleton.h" />
+    <ClInclude Include="sound.h" />
+    <ClInclude Include="system_main.h" />
     <ClInclude Include="TitleAnime.h" />
     <ClInclude Include="TitleScene.h" />
   </ItemGroup>

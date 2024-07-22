@@ -1,11 +1,13 @@
+﻿
 #pragma once
-#include "Singleton.h"
-#include <map>
-#include<string>
 
-class Setting final : public Singleton<Setting> 
-{
-    Setting() {};
+#include <map>
+#include <string>
+
+#include "singleton.h"
+
+class Setting final : public Singleton<Setting> {
+    Setting() = default;
     friend Singleton< Setting >;
 
 public:

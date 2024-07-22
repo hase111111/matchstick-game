@@ -1,8 +1,8 @@
+﻿
 #pragma once
 
 template <typename _T>
 class Singleton {
-
 protected:
     Singleton() = default;
     virtual ~Singleton() = default;
@@ -10,9 +10,8 @@ protected:
     Singleton& operator=(const Singleton& r) = default;
 
 public:
-	static _T* getIns() {
-		static _T inst;
-		return &inst;
-	};
-
+    static _T* getIns() {
+        static _T inst;
+        return &inst;
+    }
 };
