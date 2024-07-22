@@ -18,15 +18,15 @@ class SceneStack final
 public:
     SceneStack(std::unique_ptr<SceneCreator>&& scene_creator_ptr);
 
-    bool UpdateTopScene();
-    void DrawTopScene() const;
+    bool updateTopScene();
+    void drawTopScene() const;
 
-    void AddNewScene(SceneName scene_name, const SceneChangeParameter& parameter);
-    void DeleteNowScene(int delete_num, const SceneChangeParameter& parameter);
-    void DeleteAllScene();
+    void addNewScene(SceneName scene_name, const SceneChangeParameter& parameter);
+    void deleteNowScene(int delete_num, const SceneChangeParameter& parameter);
+    void deleteAllScene();
 
 private:
-    void InitializeScene();
+    void initializeScene();
 
     std::stack<std::unique_ptr<IScene>> scene_ptr_stack_;  //!< シーンを格納する配列．スタック．
 

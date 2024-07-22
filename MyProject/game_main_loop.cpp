@@ -4,6 +4,7 @@
 #include <DxLib.h>
 
 #include "keyboard.h"
+#include "language_record_initializer.h"
 
 
 namespace match_stick {
@@ -17,33 +18,28 @@ GameMainLoop::GameMainLoop() :
     scene_change_executer_{ scene_change_listener_ptr_, scene_stack_ptr_ } {
 }
 
-bool GameMainLoop::loop()
-{
-    //入力を取得
+bool GameMainLoop::loop() {
+    // 入力を取得
     keyboard_ptr_->update();
     mouse_ptr_->update();
 
     // シーンのスタックの一番上を実行する．
-    if (!scene_stack_ptr_->UpdateTopScene())
-    {
+    if (!scene_stack_ptr_->updateTopScene()) {
         return false;
     }
 
     // 処理が重い場合はここでコマ落ちさせる．
-    if (!fps_controller_.skipDrawScene())
-    {
+    if (!fps_controller_.skipDrawScene()) {
         // スクリーンを消す．
-        if (ClearDrawScreen() != 0)
-        {
+        if (ClearDrawScreen() != 0) {
             return false;
         }
 
         // 描画する．
-        scene_stack_ptr_->DrawTopScene();
+        scene_stack_ptr_->drawTopScene();
 
         // スクリーンに表示する．
-        if (ScreenFlip() != 0)
-        {
+        if (ScreenFlip() != 0) {
             return false;
         }
     }
@@ -52,13 +48,12 @@ bool GameMainLoop::loop()
     fps_controller_.wait();
 
     // シーンの変更を実行する．
-    scene_change_executer_.Execute();
+    scene_change_executer_.execute();
 
     return true;
 }
 
-std::shared_ptr<SceneStack> GameMainLoop::initializeSceneStack() const
-{
+std::shared_ptr<SceneStack> GameMainLoop::initializeSceneStack() const {
     ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
     ASSERT_NOT_NULL_PTR(keyboard_ptr_);
     ASSERT_NOT_NULL_PTR(mouse_ptr_);

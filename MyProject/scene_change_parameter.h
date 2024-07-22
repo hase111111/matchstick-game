@@ -16,21 +16,21 @@ public:
     SceneChangeParameter() = default;
     ~SceneChangeParameter() = default;
 
-    bool HasParameter(const std::string& key) const
+    bool hasParameter(const std::string& key) const
     {
         return parameters_.find(key) != parameters_.end();
     }
 
     template <typename T,
         typename = std::enable_if_t<std::is_same_v<T, int> || std::is_same_v<T, double> || std::is_same_v<T, std::string>>>
-    void SetParameter(const std::string& key, T value)
+    void setParameter(const std::string& key, T value)
     {
         parameters_[key] = value;
     }
 
     template <typename T,
         typename = std::enable_if_t<std::is_same_v<T, int> || std::is_same_v<T, double> || std::is_same_v<T, std::string>>>
-    T GetParameter(const std::string& key) const
+    T getParameter(const std::string& key) const
     {
         auto it = parameters_.find(key);
 
@@ -39,7 +39,7 @@ public:
         return std::get<T>(it->second);
     }
 
-    void Reset();
+    void reset();
 
 private:
     std::map<std::string, std::variant<int, double, std::string>> parameters_;

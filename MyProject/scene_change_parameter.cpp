@@ -3,8 +3,7 @@
 
 namespace match_stick {
 
-void SceneChangeParameter::Reset()
-{
+void SceneChangeParameter::reset() {
     parameters_.clear();
 }
 

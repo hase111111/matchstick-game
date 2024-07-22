@@ -6,8 +6,7 @@
 
 namespace match_stick {
 
-class SceneChangeListener final
-{
+class SceneChangeListener final {
 public:
     enum class RequestType
     {
@@ -17,11 +16,11 @@ public:
         kDeleteAllScene
     };
 
-    void RequestAddScene(SceneName scene_name, const SceneChangeParameter& parameter);
-    void RequestDeleteScene(int delete_num, const SceneChangeParameter& parameter);
-    void RequestDeleteAllScene();
+    void requestAddScene(SceneName scene_name, const SceneChangeParameter& parameter);
+    void requestDeleteScene(int delete_num, const SceneChangeParameter& parameter);
+    void requestDeleteAllScene();
 
-    bool HasRequest() const;
+    bool hasRequest() const;
 
     //! @brief リクエストを受け取る．
     //! 受け取った後，リクエストはリセットされる．
@@ -30,7 +29,7 @@ public:
     //! @param[out] parameter パラメータ．
     //! @param[out] delete_num 削除するシーンの数．
     //! @return リクエストの種類．
-    RequestType ReceiveRequest(SceneName* scene_name, SceneChangeParameter* parameter, int* delete_num);
+    RequestType receiveRequest(SceneName* scene_name, SceneChangeParameter* parameter, int* delete_num);
 
 private:
     SceneName scene_name_{ SceneName::kTitle };

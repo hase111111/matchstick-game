@@ -187,6 +187,7 @@
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="game_main_loop.cpp" />
     <ClCompile Include="language_record.cpp" />
+    <ClCompile Include="language_record_initializer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MatchGameCommon.cpp" />
     <ClCompile Include="MatchGameCPU.cpp" />
@@ -247,6 +248,7 @@
     <ClInclude Include="i_scene.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="language_record.h" />
+    <ClInclude Include="language_record_initializer.h" />
     <ClInclude Include="MatchGameCommon.h" />
     <ClInclude Include="MenuBox.h" />
     <ClInclude Include="MenuDrawBack.h" />

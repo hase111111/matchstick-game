@@ -240,6 +240,9 @@
     <ClCompile Include="language_record.cpp">
       <Filter>ソース ファイル\Resource</Filter>
     </ClCompile>
+    <ClCompile Include="language_record_initializer.cpp">
+      <Filter>ソース ファイル\Resource</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Define.h">
@@ -414,6 +417,9 @@
       <Filter>ソース ファイル\Resource</Filter>
     </ClInclude>
     <ClInclude Include="language_record.h">
+      <Filter>ソース ファイル\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="language_record_initializer.h">
       <Filter>ソース ファイル\Resource</Filter>
     </ClInclude>
   </ItemGroup>

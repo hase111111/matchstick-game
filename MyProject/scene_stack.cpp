@@ -9,33 +9,33 @@ namespace match_stick
 SceneStack::SceneStack(std::unique_ptr<SceneCreator>&& scene_creator_ptr) :
     scene_creator_ptr_(std::move(scene_creator_ptr))
 {
-    InitializeScene();
+    initializeScene();
 }
 
-bool SceneStack::UpdateTopScene()
+bool SceneStack::updateTopScene()
 {
     ASSERT(!scene_ptr_stack_.empty(), "The scene does not exist.");
 
     return scene_ptr_stack_.top()->Update();
 }
 
-void SceneStack::DrawTopScene() const
+void SceneStack::drawTopScene() const
 {
     ASSERT(!scene_ptr_stack_.empty(), "The scene does not exist.");
 
     scene_ptr_stack_.top()->Draw();
 }
 
-void SceneStack::AddNewScene(const SceneName scene_name, const SceneChangeParameter& parameter)
+void SceneStack::addNewScene(const SceneName scene_name, const SceneChangeParameter& parameter)
 {
-    auto new_scene_ptr = scene_creator_ptr_->CreateScene(scene_name);
+    auto new_scene_ptr = scene_creator_ptr_->createScene(scene_name);
 
     new_scene_ptr->OnStart(parameter);  // パラメータを渡して，初期化処理を行う．
 
     scene_ptr_stack_.push(std::move(new_scene_ptr));
 }
 
-void SceneStack::DeleteNowScene(const int delete_num, const SceneChangeParameter& parameter)
+void SceneStack::deleteNowScene(const int delete_num, const SceneChangeParameter& parameter)
 {
     ASSERT(delete_num <= scene_ptr_stack_.size(), "The number of scenes to delete is invalid.");
 
@@ -51,7 +51,7 @@ void SceneStack::DeleteNowScene(const int delete_num, const SceneChangeParameter
     scene_ptr_stack_.top()->OnReturnFromOtherScene(parameter);
 }
 
-void SceneStack::DeleteAllScene()
+void SceneStack::deleteAllScene()
 {
     // シーンを全て削除する．
     while (!scene_ptr_stack_.empty())
@@ -60,12 +60,12 @@ void SceneStack::DeleteAllScene()
     }
 
     // 初期シーンを再度生成する．
-    InitializeScene();
+    initializeScene();
 }
 
-void SceneStack::InitializeScene()
+void SceneStack::initializeScene()
 {
-    auto first_scene_ptr = scene_creator_ptr_->CreateScene(SceneName::kTitle);
+    auto first_scene_ptr = scene_creator_ptr_->createScene(SceneName::kTitle);
     SceneChangeParameter parameter;
 
     first_scene_ptr->OnStart(parameter);  // 空のパラメータを渡して，初期化処理を行う．

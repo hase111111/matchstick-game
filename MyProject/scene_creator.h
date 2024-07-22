@@ -30,7 +30,7 @@ public:
         const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr);
     ~SceneCreator() = default;
 
-    std::unique_ptr<IScene> CreateScene(SceneName scene_name) const;
+    std::unique_ptr<IScene> createScene(SceneName scene_name) const;
 
 private:
     const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;

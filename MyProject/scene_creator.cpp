@@ -36,18 +36,13 @@ SceneCreator::SceneCreator(
     ASSERT_NOT_NULL_PTR(sound_effect_loader_ptr_);
 }
 
-std::unique_ptr<IScene> SceneCreator::CreateScene(const SceneName scene_name) const
+std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) const
 {
     switch (scene_name)
     {
         case SceneName::kTitle:
         {
             // return std::make_unique<TitleScene>(scene_change_listener_ptr_, language_record_ptr_, mouse_ptr_, bgm_player_ptr_, font_loader_ptr_, image_loader_ptr_, sound_effect_loader_ptr_);
-            return nullptr;
-        }
-        case SceneName::kSetting:
-        {
-            // return std::make_unique<SettingScene>(scene_change_listener_ptr_, language_record_ptr_, mouse_ptr_, bgm_player_ptr_, font_loader_ptr_, image_loader_ptr_, sound_effect_loader_ptr_);
             return nullptr;
         }
         default:

@@ -7,7 +7,7 @@
 namespace match_stick
 {
 
-void SceneChangeListener::RequestAddScene(const SceneName scene_name, const SceneChangeParameter& parameter)
+void SceneChangeListener::requestAddScene(const SceneName scene_name, const SceneChangeParameter& parameter)
 {
     // リクエストを設定する．
     has_request_ = true;
@@ -18,7 +18,7 @@ void SceneChangeListener::RequestAddScene(const SceneName scene_name, const Scen
     parameter_ = parameter;
 }
 
-void SceneChangeListener::RequestDeleteScene(const int delete_num, const SceneChangeParameter& parameter)
+void SceneChangeListener::requestDeleteScene(const int delete_num, const SceneChangeParameter& parameter)
 {
     // リクエストを設定する．
     has_request_ = true;
@@ -29,19 +29,19 @@ void SceneChangeListener::RequestDeleteScene(const int delete_num, const SceneCh
     delete_num_ = delete_num;
 }
 
-void SceneChangeListener::RequestDeleteAllScene()
+void SceneChangeListener::requestDeleteAllScene()
 {
     // リクエストを設定する．
     has_request_ = true;
     request_type_ = RequestType::kDeleteAllScene;
 }
 
-bool SceneChangeListener::HasRequest() const
+bool SceneChangeListener::hasRequest() const
 {
     return has_request_;
 }
 
-SceneChangeListener::RequestType SceneChangeListener::ReceiveRequest(SceneName* scene_name, SceneChangeParameter* parameter, int* delete_num)
+SceneChangeListener::RequestType SceneChangeListener::receiveRequest(SceneName* scene_name, SceneChangeParameter* parameter, int* delete_num)
 {
     // 引数が nullでないかチェックする．
     ASSERT_NOT_NULL_PTR(scene_name);

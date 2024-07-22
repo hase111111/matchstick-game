@@ -4,23 +4,20 @@
 #include "dxlib_assert.h"
 
 
-namespace match_stick
-{
+namespace match_stick {
 
 SceneChangeExecuter::SceneChangeExecuter(
     const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
     const std::shared_ptr<SceneStack>& scene_stack_ptr) :
     scene_change_listener_ptr_{ scene_change_listener_ptr },
-    scene_stack_ptr_{ scene_stack_ptr }
-{
+    scene_stack_ptr_{ scene_stack_ptr } {
     ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
     ASSERT_NOT_NULL_PTR(scene_stack_ptr_);
 }
 
-void SceneChangeExecuter::Execute()
-{
+void SceneChangeExecuter::execute() {
     // リクエストがない場合は何もしない．
-    if (!scene_change_listener_ptr_->HasRequest())
+    if (!scene_change_listener_ptr_->hasRequest())
     {
         return;
     }
@@ -29,24 +26,24 @@ void SceneChangeExecuter::Execute()
     SceneName scene_name;
     SceneChangeParameter parameter;
     int delete_num;
-    const auto request_type = scene_change_listener_ptr_->ReceiveRequest(&scene_name, &parameter, &delete_num);
+    const auto request_type = scene_change_listener_ptr_->receiveRequest(&scene_name, &parameter, &delete_num);
 
     // リクエストに応じて処理を行う．
     switch (request_type)
     {
         case SceneChangeListener::RequestType::kAddScene:
         {
-            scene_stack_ptr_->AddNewScene(scene_name, parameter);
+            scene_stack_ptr_->addNewScene(scene_name, parameter);
             break;
         }
         case SceneChangeListener::RequestType::kDeleteScene:
         {
-            scene_stack_ptr_->DeleteNowScene(delete_num, parameter);
+            scene_stack_ptr_->deleteNowScene(delete_num, parameter);
             break;
         }
         case SceneChangeListener::RequestType::kDeleteAllScene:
         {
-            scene_stack_ptr_->DeleteAllScene();
+            scene_stack_ptr_->deleteAllScene();
             break;
         }
         default:
