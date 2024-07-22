@@ -221,9 +221,9 @@
     <ClInclude Include="GameParam.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameSelectingHand.h" />
+    <ClInclude Include="game_main_loop.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="Keyboard.h" />
-    <ClInclude Include="game_main_loop.h" />
     <ClInclude Include="MatchGameCommon.h" />
     <ClInclude Include="MenuBox.h" />
     <ClInclude Include="MenuDrawBack.h" />

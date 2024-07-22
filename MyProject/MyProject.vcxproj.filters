@@ -186,9 +186,6 @@
     <ClCompile Include="ReplayScene.cpp">
       <Filter>ソース ファイル\ConcreteScene\ReplayScene</Filter>
     </ClCompile>
-    <ClCompile Include="fps_controller.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="game_main_loop.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -200,6 +197,9 @@
     </ClCompile>
     <ClCompile Include="dxlib_keyboard.cpp">
       <Filter>ソース ファイル\Common\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="fps_controller.cpp">
+      <Filter>ソース ファイル\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -320,12 +320,6 @@
     <ClInclude Include="error_message_box.h">
       <Filter>ソース ファイル\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="fps_controller.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="game_main_loop.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="dxlib_assert.h">
       <Filter>ソース ファイル\Common\Input</Filter>
     </ClInclude>
@@ -334,6 +328,12 @@
     </ClInclude>
     <ClInclude Include="dxlib_mouse.h">
       <Filter>ソース ファイル\Common\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="fps_controller.h">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="game_main_loop.h">
+      <Filter>ソース ファイル\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
