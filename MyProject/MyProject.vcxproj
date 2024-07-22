@@ -168,12 +168,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AbstractScene.cpp" />
+    <ClCompile Include="bgm_player.cpp" />
     <ClCompile Include="DebugScene.cpp" />
     <ClCompile Include="Define.cpp" />
     <ClCompile Include="dxlib_assert.cpp" />
     <ClCompile Include="dxlib_keyboard.cpp" />
     <ClCompile Include="dxlib_mouse.cpp" />
     <ClCompile Include="Font.cpp" />
+    <ClCompile Include="font_loader.cpp" />
     <ClCompile Include="fps_controller.cpp" />
     <ClCompile Include="GameAnime.cpp" />
     <ClCompile Include="GameHand.cpp" />
@@ -181,8 +183,10 @@
     <ClCompile Include="GameParam.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="image_loader.cpp" />
     <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="game_main_loop.cpp" />
+    <ClCompile Include="language_record.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MatchGameCommon.cpp" />
     <ClCompile Include="MatchGameCPU.cpp" />
@@ -212,6 +216,7 @@
     <ClCompile Include="scene_stack.cpp" />
     <ClCompile Include="setting.cpp" />
     <ClCompile Include="sound.cpp" />
+    <ClCompile Include="sound_effect_loader.cpp" />
     <ClCompile Include="system_main.cpp" />
     <ClCompile Include="TitleAnime.cpp" />
     <ClCompile Include="TitleScene.cpp" />
@@ -219,6 +224,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractScene.h" />
+    <ClInclude Include="bgm_player.h" />
     <ClInclude Include="DebugScene.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="dxlib_assert.h" />
@@ -226,6 +232,7 @@
     <ClInclude Include="dxlib_mouse.h" />
     <ClInclude Include="error_message_box.h" />
     <ClInclude Include="Font.h" />
+    <ClInclude Include="font_loader.h" />
     <ClInclude Include="fps_controller.h" />
     <ClInclude Include="GameAnime.h" />
     <ClInclude Include="GameHand.h" />
@@ -235,8 +242,11 @@
     <ClInclude Include="GameSelectingHand.h" />
     <ClInclude Include="game_main_loop.h" />
     <ClInclude Include="Image.h" />
+    <ClInclude Include="image_loader.h" />
     <ClInclude Include="implicit_metafunction_for_toml11.h" />
+    <ClInclude Include="i_scene.h" />
     <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="language_record.h" />
     <ClInclude Include="MatchGameCommon.h" />
     <ClInclude Include="MenuBox.h" />
     <ClInclude Include="MenuDrawBack.h" />
@@ -265,6 +275,7 @@
     <ClInclude Include="setting.h" />
     <ClInclude Include="singleton.h" />
     <ClInclude Include="sound.h" />
+    <ClInclude Include="sound_effect_loader.h" />
     <ClInclude Include="system_main.h" />
     <ClInclude Include="TitleAnime.h" />
     <ClInclude Include="TitleScene.h" />

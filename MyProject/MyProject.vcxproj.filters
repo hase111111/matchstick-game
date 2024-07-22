@@ -70,6 +70,12 @@
     <Filter Include="ソース ファイル\Common\Toml11">
       <UniqueIdentifier>{56dbbd5b-9d6b-4979-bf06-b4e8677b0ebb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\SceneController\Old">
+      <UniqueIdentifier>{cae995da-e614-49fc-97d3-634c7971a137}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Resource">
+      <UniqueIdentifier>{f7603a56-e309-4a8f-bf75-c71e2272fdcf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -77,15 +83,6 @@
     </ClCompile>
     <ClCompile Include="Define.cpp">
       <Filter>ソース ファイル\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="AbstractScene.cpp">
-      <Filter>ソース ファイル\SceneController</Filter>
-    </ClCompile>
-    <ClCompile Include="Parameter.cpp">
-      <Filter>ソース ファイル\SceneController</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>ソース ファイル\SceneController</Filter>
     </ClCompile>
     <ClCompile Include="Image.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
@@ -204,46 +201,58 @@
     <ClCompile Include="system_main.cpp">
       <Filter>ソース ファイル\Systems</Filter>
     </ClCompile>
+    <ClCompile Include="AbstractScene.cpp">
+      <Filter>ソース ファイル\SceneController\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="Parameter.cpp">
+      <Filter>ソース ファイル\SceneController\Old</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>ソース ファイル\SceneController\Old</Filter>
+    </ClCompile>
     <ClCompile Include="scene_change_executer.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\SceneController</Filter>
     </ClCompile>
     <ClCompile Include="scene_change_listener.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\SceneController</Filter>
     </ClCompile>
     <ClCompile Include="scene_change_parameter.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\SceneController</Filter>
     </ClCompile>
     <ClCompile Include="scene_creator.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\SceneController</Filter>
     </ClCompile>
     <ClCompile Include="scene_stack.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\SceneController</Filter>
+    </ClCompile>
+    <ClCompile Include="image_loader.cpp">
+      <Filter>ソース ファイル\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="bgm_player.cpp">
+      <Filter>ソース ファイル\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="font_loader.cpp">
+      <Filter>ソース ファイル\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="sound_effect_loader.cpp">
+      <Filter>ソース ファイル\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="language_record.cpp">
+      <Filter>ソース ファイル\Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Define.h">
       <Filter>ソース ファイル\Common</Filter>
     </ClInclude>
-    <ClInclude Include="AbstractScene.h">
-      <Filter>ソース ファイル\SceneController</Filter>
-    </ClInclude>
-    <ClInclude Include="Parameter.h">
-      <Filter>ソース ファイル\SceneController</Filter>
-    </ClInclude>
     <ClInclude Include="SceneEnum.h">
       <Filter>ソース ファイル\ConcreteScene</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>ソース ファイル\SceneController</Filter>
     </ClInclude>
     <ClInclude Include="Image.h">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="singleton.h">
       <Filter>ソース ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneChangeListenerInterface.h">
-      <Filter>ソース ファイル\SceneController</Filter>
     </ClInclude>
     <ClInclude Include="Mouse.h">
       <Filter>ソース ファイル\Singleton</Filter>
@@ -359,23 +368,53 @@
     <ClInclude Include="system_main.h">
       <Filter>ソース ファイル\Systems</Filter>
     </ClInclude>
+    <ClInclude Include="AbstractScene.h">
+      <Filter>ソース ファイル\SceneController\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="Parameter.h">
+      <Filter>ソース ファイル\SceneController\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneChangeListenerInterface.h">
+      <Filter>ソース ファイル\SceneController\Old</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>ソース ファイル\SceneController\Old</Filter>
+    </ClInclude>
     <ClInclude Include="scene_change_executer.h">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\SceneController</Filter>
     </ClInclude>
     <ClInclude Include="scene_change_listener.h">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\SceneController</Filter>
     </ClInclude>
     <ClInclude Include="scene_change_parameter.h">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\SceneController</Filter>
     </ClInclude>
     <ClInclude Include="scene_creator.h">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\SceneController</Filter>
     </ClInclude>
     <ClInclude Include="scene_name.h">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\SceneController</Filter>
     </ClInclude>
     <ClInclude Include="scene_stack.h">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\SceneController</Filter>
+    </ClInclude>
+    <ClInclude Include="i_scene.h">
+      <Filter>ソース ファイル\SceneController</Filter>
+    </ClInclude>
+    <ClInclude Include="image_loader.h">
+      <Filter>ソース ファイル\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="bgm_player.h">
+      <Filter>ソース ファイル\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="font_loader.h">
+      <Filter>ソース ファイル\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="sound_effect_loader.h">
+      <Filter>ソース ファイル\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="language_record.h">
+      <Filter>ソース ファイル\Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
