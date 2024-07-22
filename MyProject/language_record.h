@@ -1,11 +1,10 @@
-
-#ifndef HOMERUN_LANGUAGE_RECORED_H_
-#define HOMERUN_LANGUAGE_RECORED_H_
+﻿
+#pragma once
 
 #include <map>
 #include <string>
 
-namespace homerun
+namespace match_stick
 {
 
 class LanguageRecord final
@@ -25,6 +24,4 @@ private:
     std::map<std::string, std::map<Country, std::string>> records_;
 };
 
-}  // namespace homerun
-
-#endif  // HOMERUN_LANGUAGE_RECORED_H_
+}  // namespace match_stick

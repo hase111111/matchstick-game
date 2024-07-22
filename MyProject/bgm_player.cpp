@@ -1,4 +1,4 @@
-
+ï»¿
 #include "bgm_player.h"
 
 #include <DxLib.h>
@@ -6,13 +6,10 @@
 #include "dxlib_assert.h"
 
 
-namespace homerun
-{
+namespace match_stick {
 
-void BgmPlayer::Load(const std::string& bgm_file)
-{
-    if (bgm_handle_.count(bgm_file) != 0)
-    {
+void BgmPlayer::Load(const std::string& bgm_file) {
+    if (bgm_handle_.count(bgm_file) != 0) {
         return;
     }
 
@@ -22,21 +19,18 @@ void BgmPlayer::Load(const std::string& bgm_file)
 
     bgm_handle_[bgm_file] = bgm_handle;
 
-    // ‰¹—Ê‚ð•ÏX‚·‚éD
+    // éŸ³é‡ã‚’å¤‰æ›´ã™ã‚‹ï¼Ž
     ChangeVolumeSoundMem(255 * volume_percent_ / 100, bgm_handle_[bgm_file]);
 }
 
-void BgmPlayer::Play(const std::string& bgm_file)
-{
-    if (current_bgm_.has_value())
-    {
-        if (current_bgm_.value() == bgm_file)
-        {
-            // ‚·‚Å‚ÉÄ¶’†‚ÌBGM‚Æ“¯‚¶BGM‚ðÄ¶‚µ‚æ‚¤‚Æ‚µ‚½ê‡‚Í‰½‚à‚µ‚È‚¢D
+void BgmPlayer::Play(const std::string& bgm_file) {
+    if (current_bgm_.has_value()) {
+        if (current_bgm_.value() == bgm_file) {
+            // ã™ã§ã«å†ç”Ÿä¸­ã®BGMã¨åŒã˜BGMã‚’å†ç”Ÿã—ã‚ˆã†ã¨ã—ãŸå ´åˆã¯ä½•ã‚‚ã—ãªã„ï¼Ž
             return;
         }
 
-        // ‚·‚Å‚ÉÄ¶’†‚ÌBGM‚ð’âŽ~‚·‚éD
+        // ã™ã§ã«å†ç”Ÿä¸­ã®BGMã‚’åœæ­¢ã™ã‚‹ï¼Ž
         Stop();
     }
 
@@ -44,32 +38,27 @@ void BgmPlayer::Play(const std::string& bgm_file)
     current_bgm_ = bgm_file;
 }
 
-void BgmPlayer::LoadAndPlay(const std::string& bgm_file)
-{
+void BgmPlayer::LoadAndPlay(const std::string& bgm_file) {
     Load(bgm_file);
     Play(bgm_file);
 }
 
-void BgmPlayer::Stop()
-{
-    if (current_bgm_.has_value())
-    {
+void BgmPlayer::Stop() {
+    if (current_bgm_.has_value()) {
         StopSoundMem(bgm_handle_[current_bgm_.value()]);
 
         current_bgm_.reset();
     }
 }
 
-void BgmPlayer::ChangeVolume(const int volume)
-{
+void BgmPlayer::ChangeVolume(const int volume) {
     ASSERT(volume >= 0 && volume <= 100, "Volume must be in the range of 0 to 100.");
 
     volume_percent_ = volume;
 
-    if (current_bgm_.has_value())
-    {
+    if (current_bgm_.has_value()) {
         ChangeVolumeSoundMem(255 * volume_percent_ / 100, bgm_handle_[current_bgm_.value()]);
     }
 }
 
-}  // namespace homerun
+}  // namespace match_stick

@@ -1,25 +1,19 @@
-
-#ifndef HOMERUN_FONT_LOADER_H_
-#define HOMERUN_FONT_LOADER_H_
+ï»¿
+#pragma once
 
 #include <map>
 #include <string>
 
+namespace match_stick {
 
-namespace homerun
-{
-
-class FontLoader final
-{
+class FontLoader final {
 public:
     int LoadAndGetFontHandle(const std::string& file_path, int edge = 0);
 
 private:
-    static constexpr int kMaxFontHandleNum = 10;  //! ƒtƒHƒ“ƒg‚Ì“Ç‚İ‚İ‚ÌÅ‘å”‚ğİ’è‚·‚éD
+    static constexpr int kMaxFontHandleNum = 10;  //! ãƒ•ã‚©ãƒ³ãƒˆã®èª­ã¿è¾¼ã¿ã®æœ€å¤§æ•°ã‚’è¨­å®šã™ã‚‹ï¼
 
-    std::map<std::string, int> font_handle_;  //!< ƒtƒHƒ“ƒg‚ğŠi”[‚·‚é”z—ñDƒL[‚Íƒtƒ@ƒCƒ‹ƒpƒXD
+    std::map<std::string, int> font_handle_;  //!< ãƒ•ã‚©ãƒ³ãƒˆã‚’æ ¼ç´ã™ã‚‹é…åˆ—ï¼ã‚­ãƒ¼ã¯ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ï¼
 };
 
-}  // namespace homerun
-
-#endif  // HOMERUN_FONT_LOADER_H_
+}  // namespace match_stick

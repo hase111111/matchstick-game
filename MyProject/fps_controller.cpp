@@ -126,4 +126,4 @@ bool FpsController::targetFpsIsValid() const {
     return true;
 }
 
-}  // namespace homerun
+}  // namespace match_stick

@@ -1,16 +1,13 @@
-
-#ifndef HOMERUN_BGM_PLAYER_H_
-#define HOMERUN_BGM_PLAYER_H_
+﻿
+#pragma once
 
 #include <map>
 #include <optional>
 #include <string>
 
-namespace homerun
-{
+namespace match_stick {
 
-class BgmPlayer final
-{
+class BgmPlayer final {
 public:
     void Load(const std::string& bgm_file);
     void Play(const std::string& bgm_file);
@@ -25,6 +22,4 @@ private:
     std::optional<std::string> current_bgm_{ std::nullopt };
 };
 
-}  // namespace homerun
-
-#endif  // HOMERUN_BGM_PLAYER_H_
+}  // namespace match_stick

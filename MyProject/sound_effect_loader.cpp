@@ -6,7 +6,7 @@
 #include "dxlib_assert.h"
 
 
-namespace homerun
+namespace match_stick
 {
 
 int SoundEffectLoader::LoadAndGetSoundHandle(const std::string& file_path)
@@ -40,4 +40,4 @@ void SoundEffectLoader::ChangeAllSoundVolume(const int volume)
     }
 }
 
-}  // namespace homerun
+}  // namespace match_stick

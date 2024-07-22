@@ -1,14 +1,13 @@
-
-#ifndef HOMERUN_SOUND_EFFECT_LOADER_H_
-#define HOMERUN_SOUND_EFFECT_LOADER_H_
+ï»¿
+#pragma once
 
 #include <map>
 #include <string>
 
-namespace homerun
+namespace match_stick
 {
 
-//! @brief SE‚ğ“Ç‚İ‚ŞƒNƒ‰ƒXD
+//! @brief SEã‚’èª­ã¿è¾¼ã‚€ã‚¯ãƒ©ã‚¹ï¼
 class SoundEffectLoader final
 {
 public:
@@ -17,11 +16,9 @@ public:
     void ChangeAllSoundVolume(int volume);
 
 private:
-    std::map<std::string, int> sound_handle_;  //!< SE‚ğŠi”[‚·‚é”z—ñDƒL[‚Íƒtƒ@ƒCƒ‹ƒpƒXD
+    std::map<std::string, int> sound_handle_;  //!< SEã‚’æ ¼ç´ã™ã‚‹é…åˆ—ï¼ã‚­ãƒ¼ã¯ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ï¼
 
-    int volume_percent_{ 100 };  //!< SE‚Ì‰¹—ÊD
+    int volume_percent_{ 100 };  //!< SEã®éŸ³é‡ï¼
 };
 
-}  // namespace homerun
-
-#endif  // HOMERUN_SOUND_EFFECT_LOADER_H_
+}  // namespace match_stick

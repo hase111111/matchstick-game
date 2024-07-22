@@ -1,4 +1,4 @@
-
+ï»¿
 #include "font_loader.h"
 
 #include <DxLib.h>
@@ -6,30 +6,28 @@
 #include "dxlib_assert.h"
 
 
-namespace homerun
-{
+namespace match_stick {
 
-int FontLoader::LoadAndGetFontHandle(const std::string& file_path, const int edge)
-{
-    // ƒtƒHƒ“ƒg‚ğ‚·‚Å‚É“Ç‚İ‚ñ‚Å‚¢‚é‚È‚ç‚»‚Ìƒnƒ“ƒhƒ‹‚ğ•Ô‚·D
-    if (font_handle_.count(file_path) != 0)
-    {
+int FontLoader::LoadAndGetFontHandle(const std::string& file_path, const int edge) {
+
+    // ãƒ•ã‚©ãƒ³ãƒˆã‚’ã™ã§ã«èª­ã¿è¾¼ã‚“ã§ã„ã‚‹ãªã‚‰ãã®ãƒãƒ³ãƒ‰ãƒ«ã‚’è¿”ã™ï¼
+    if (font_handle_.count(file_path) != 0) {
         return font_handle_.at(file_path);
     }
 
-    // “Ç‚İ‚ŞD
+    // èª­ã¿è¾¼ã‚€ï¼
     int font_handle;
     font_handle = LoadFontDataToHandle(file_path.c_str(), edge);
 
-    ASSERT(font_handle >= 0, "Failed to load font. File Path : " + file_path);  // assert“à‚Å“Ç‚İ‚İˆ—‚ğ‚µ‚Ä‚Í‚¢‚¯‚È‚¢‚Ì‚Å’ˆÓD
+    ASSERT(font_handle >= 0, "Failed to load font. File Path : " + file_path);  // assertå†…ã§èª­ã¿è¾¼ã¿å‡¦ç†ã‚’ã—ã¦ã¯ã„ã‘ãªã„ã®ã§æ³¨æ„ï¼
 
-    // “Ç‚İ‚ñ‚¾ƒpƒX‚ğ‹L˜^‚·‚éD
+    // èª­ã¿è¾¼ã‚“ã ãƒ‘ã‚¹ã‚’è¨˜éŒ²ã™ã‚‹ï¼
     font_handle_[file_path] = font_handle;
 
-    // Å‘å”‚ğã‰ñ‚é‚È‚ç‚ÎƒGƒ‰[ƒƒbƒZ[ƒW‚ğ•\¦‚·‚éD
+    // æœ€å¤§æ•°ã‚’ä¸Šå›ã‚‹ãªã‚‰ã°ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤ºã™ã‚‹ï¼
     ASSERT(font_handle_.size() <= kMaxFontHandleNum, "The number of loaded fonts exceeds the maximum number of fonts.");
 
     return font_handle_.at(file_path);;
 }
 
-}
+}  // namespace match_stick

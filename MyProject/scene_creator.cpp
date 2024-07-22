@@ -2,16 +2,16 @@
 #include "scene_creator.h"
 
 #include "dxlib_assert.h"
-#include "setting_scene.h"
-#include "title_scene.h"
+// #include "setting_scene.h"
+// #include "title_scene.h"
 
 namespace match_stick {
 
 SceneCreator::SceneCreator(
     const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
     const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-    const std::shared_ptr<const DxlibKeyboard>& keyboard_ptr,
-    const std::shared_ptr<const DxlibMouse>& mouse_ptr,
+    const std::shared_ptr<const DxLibKeyboard>& keyboard_ptr,
+    const std::shared_ptr<const DxLibMouse>& mouse_ptr,
     const std::shared_ptr<BgmPlayer>& bgm_player_ptr,
     const std::shared_ptr<FontLoader>& font_loader_ptr,
     const std::shared_ptr<ImageLoader>& image_loader_ptr,
@@ -42,11 +42,13 @@ std::unique_ptr<IScene> SceneCreator::CreateScene(const SceneName scene_name) co
     {
         case SceneName::kTitle:
         {
-            return std::make_unique<TitleScene>(scene_change_listener_ptr_, language_record_ptr_, mouse_ptr_, bgm_player_ptr_, font_loader_ptr_, image_loader_ptr_, sound_effect_loader_ptr_);
+            // return std::make_unique<TitleScene>(scene_change_listener_ptr_, language_record_ptr_, mouse_ptr_, bgm_player_ptr_, font_loader_ptr_, image_loader_ptr_, sound_effect_loader_ptr_);
+            return nullptr;
         }
         case SceneName::kSetting:
         {
-            return std::make_unique<SettingScene>(scene_change_listener_ptr_, language_record_ptr_, mouse_ptr_, bgm_player_ptr_, font_loader_ptr_, image_loader_ptr_, sound_effect_loader_ptr_);
+            // return std::make_unique<SettingScene>(scene_change_listener_ptr_, language_record_ptr_, mouse_ptr_, bgm_player_ptr_, font_loader_ptr_, image_loader_ptr_, sound_effect_loader_ptr_);
+            return nullptr;
         }
         default:
         {
