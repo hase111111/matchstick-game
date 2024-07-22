@@ -260,7 +260,6 @@
     <ClInclude Include="TitleAnime.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="toml11_define.h" />
-    <ClInclude Include="toml_sample.h" />
     <ClInclude Include="toml_serialize_macro.h" />
   </ItemGroup>
   <ItemGroup>

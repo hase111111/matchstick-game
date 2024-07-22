@@ -67,6 +67,9 @@
     <Filter Include="ソース ファイル\Common\Input">
       <UniqueIdentifier>{9a6a7272-5bd8-4396-8770-4254a9dbfe84}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Common\Toml11">
+      <UniqueIdentifier>{56dbbd5b-9d6b-4979-bf06-b4e8677b0ebb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -98,9 +101,6 @@
     </ClCompile>
     <ClCompile Include="Keyboard.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="system_main.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="sound.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
@@ -186,9 +186,6 @@
     <ClCompile Include="ReplayScene.cpp">
       <Filter>ソース ファイル\ConcreteScene\ReplayScene</Filter>
     </ClCompile>
-    <ClCompile Include="game_main_loop.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="dxlib_mouse.cpp">
       <Filter>ソース ファイル\Common\Input</Filter>
     </ClCompile>
@@ -200,6 +197,15 @@
     </ClCompile>
     <ClCompile Include="fps_controller.cpp">
       <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="toml_serialize_macro.cpp">
+      <Filter>ソース ファイル\Common\Toml11</Filter>
+    </ClCompile>
+    <ClCompile Include="game_main_loop.cpp">
+      <Filter>ソース ファイル\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="system_main.cpp">
+      <Filter>ソース ファイル\Systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -238,9 +244,6 @@
     </ClInclude>
     <ClInclude Include="Keyboard.h">
       <Filter>ソース ファイル\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="system_main.h">
-      <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="sound.h">
       <Filter>ソース ファイル\Singleton</Filter>
@@ -332,8 +335,20 @@
     <ClInclude Include="fps_controller.h">
       <Filter>ソース ファイル\Common</Filter>
     </ClInclude>
+    <ClInclude Include="toml11_define.h">
+      <Filter>ソース ファイル\Common\Toml11</Filter>
+    </ClInclude>
+    <ClInclude Include="toml_serialize_macro.h">
+      <Filter>ソース ファイル\Common\Toml11</Filter>
+    </ClInclude>
+    <ClInclude Include="implicit_metafunction_for_toml11.h">
+      <Filter>ソース ファイル\Common\Toml11</Filter>
+    </ClInclude>
     <ClInclude Include="game_main_loop.h">
-      <Filter>ソース ファイル\Common</Filter>
+      <Filter>ソース ファイル\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="system_main.h">
+      <Filter>ソース ファイル\Systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
