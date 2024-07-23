@@ -7,7 +7,6 @@
 #include "MenuScene.h"
 #include "ResultScene.h"
 #include "RuleScene.h"
-#include "DebugScene.h"
 #include "ReplayScene.h"
 
 const int ADD_SCENE = 1;

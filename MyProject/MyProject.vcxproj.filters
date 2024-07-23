@@ -159,9 +159,6 @@
     <ClCompile Include="MatchGameList2.cpp">
       <Filter>ソース ファイル\match game</Filter>
     </ClCompile>
-    <ClCompile Include="DebugScene.cpp">
-      <Filter>ソース ファイル\ConcreteScene\DebugScene</Filter>
-    </ClCompile>
     <ClCompile Include="ResultDrawBack.cpp">
       <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
     </ClCompile>
@@ -243,6 +240,9 @@
     <ClCompile Include="language_record_initializer.cpp">
       <Filter>ソース ファイル\Resource</Filter>
     </ClCompile>
+    <ClCompile Include="debug_scene.cpp">
+      <Filter>ソース ファイル\ConcreteScene\DebugScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Define.h">
@@ -319,9 +319,6 @@
     </ClInclude>
     <ClInclude Include="RulePage.h">
       <Filter>ソース ファイル\ConcreteScene\RuleScene</Filter>
-    </ClInclude>
-    <ClInclude Include="DebugScene.h">
-      <Filter>ソース ファイル\ConcreteScene\DebugScene</Filter>
     </ClInclude>
     <ClInclude Include="ResultDrawBack.h">
       <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
@@ -421,6 +418,9 @@
     </ClInclude>
     <ClInclude Include="language_record_initializer.h">
       <Filter>ソース ファイル\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="debug_scene.h">
+      <Filter>ソース ファイル\ConcreteScene\DebugScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -169,7 +169,7 @@
   <ItemGroup>
     <ClCompile Include="AbstractScene.cpp" />
     <ClCompile Include="bgm_player.cpp" />
-    <ClCompile Include="DebugScene.cpp" />
+    <ClCompile Include="debug_scene.cpp" />
     <ClCompile Include="Define.cpp" />
     <ClCompile Include="dxlib_assert.cpp" />
     <ClCompile Include="dxlib_keyboard.cpp" />
@@ -226,7 +226,7 @@
   <ItemGroup>
     <ClInclude Include="AbstractScene.h" />
     <ClInclude Include="bgm_player.h" />
-    <ClInclude Include="DebugScene.h" />
+    <ClInclude Include="debug_scene.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="dxlib_assert.h" />
     <ClInclude Include="dxlib_keyboard.h" />
