@@ -204,9 +204,6 @@
     <ClCompile Include="Parameter.cpp">
       <Filter>ソース ファイル\SceneController\Old</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>ソース ファイル\SceneController\Old</Filter>
-    </ClCompile>
     <ClCompile Include="scene_change_executer.cpp">
       <Filter>ソース ファイル\SceneController</Filter>
     </ClCompile>
@@ -375,9 +372,6 @@
       <Filter>ソース ファイル\SceneController\Old</Filter>
     </ClInclude>
     <ClInclude Include="SceneChangeListenerInterface.h">
-      <Filter>ソース ファイル\SceneController\Old</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
       <Filter>ソース ファイル\SceneController\Old</Filter>
     </ClInclude>
     <ClInclude Include="scene_change_executer.h">

@@ -209,7 +209,6 @@
     <ClCompile Include="RuleParam.cpp" />
     <ClCompile Include="RuleScene.cpp" />
     <ClCompile Include="SceneChangeEffect.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="scene_change_executer.cpp" />
     <ClCompile Include="scene_change_listener.cpp" />
     <ClCompile Include="scene_change_parameter.cpp" />
@@ -267,7 +266,6 @@
     <ClInclude Include="SceneChangeEffect.h" />
     <ClInclude Include="SceneChangeListenerInterface.h" />
     <ClInclude Include="SceneEnum.h" />
-    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="scene_change_executer.h" />
     <ClInclude Include="scene_change_listener.h" />
     <ClInclude Include="scene_change_parameter.h" />
