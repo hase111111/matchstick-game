@@ -65,7 +65,7 @@ void SceneStack::deleteAllScene()
 
 void SceneStack::initializeScene()
 {
-    auto first_scene_ptr = scene_creator_ptr_->createScene(SceneName::kDebug);
+    auto first_scene_ptr = scene_creator_ptr_->createScene(SceneName::kTitle);
     SceneChangeParameter parameter;
 
     first_scene_ptr->onStart(parameter);  // 空のパラメータを渡して，初期化処理を行う．

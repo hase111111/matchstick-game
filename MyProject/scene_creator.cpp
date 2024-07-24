@@ -3,6 +3,7 @@
 
 #include "debug_scene.h"
 #include "dxlib_assert.h"
+#include "title_scene.h"
 
 namespace match_stick {
 
@@ -22,8 +23,8 @@ SceneCreator::SceneCreator(
     bgm_player_ptr_(bgm_player_ptr),
     font_loader_ptr_(font_loader_ptr),
     image_loader_ptr_(image_loader_ptr),
-    sound_effect_loader_ptr_(sound_loader_ptr)
-{
+    sound_effect_loader_ptr_(sound_loader_ptr) {
+
     ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
 
     ASSERT_NOT_NULL_PTR(keyboard_ptr_);
@@ -35,17 +36,21 @@ SceneCreator::SceneCreator(
     ASSERT_NOT_NULL_PTR(sound_effect_loader_ptr_);
 }
 
-std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) const
-{
-    switch (scene_name)
-    {
-        case SceneName::kDebug:
-        {
+std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) const {
+    switch (scene_name) {
+        case SceneName::kDebug: {
             return std::make_unique<DebugScene>();
-            // return std::make_unique<TitleScene>(scene_change_listener_ptr_, language_record_ptr_, mouse_ptr_, bgm_player_ptr_, font_loader_ptr_, image_loader_ptr_, sound_effect_loader_ptr_);
         }
-        default:
-        {
+        case SceneName::kTitle: {
+            return std::make_unique<TitleScene>(
+                scene_change_listener_ptr_,
+                language_record_ptr_,
+                keyboard_ptr_,
+                font_loader_ptr_,
+                image_loader_ptr_,
+                sound_effect_loader_ptr_);
+        }
+        default: {
             ASSERT_MUST_NOT_REACH_HERE();
             return nullptr;
         }

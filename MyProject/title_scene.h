@@ -1,0 +1,46 @@
+﻿
+#pragma once
+
+#include <memory>
+
+#include "dxlib_keyboard.h"
+#include "font_loader.h"
+#include "i_scene.h"
+#include "image_loader.h"
+#include "language_record.h"
+#include "scene_change_listener.h"
+#include "sound_effect_loader.h"
+
+
+namespace match_stick {
+
+class TitleScene final : public IScene {
+public:
+    TitleScene(
+        std::shared_ptr<SceneChangeListener> scene_change_listener_ptr,
+        std::shared_ptr<const LanguageRecord> language_record_ptr,
+        std::shared_ptr<const DxLibKeyboard> keyboard_ptr,
+        std::shared_ptr<const FontLoader> font_loader_ptr,
+        std::shared_ptr<const ImageLoader> img_loader_ptr,
+        std::shared_ptr<const SoundEffectLoader> sound_effect_loader_ptr);
+
+    ~TitleScene() = default;
+
+    bool update() override;
+
+    void draw() const override;
+
+    void onStart(const SceneChangeParameter& parameter) override;
+
+    void onReturnFromOtherScene(const SceneChangeParameter& parameter) override;
+
+private:
+    std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
+    std::shared_ptr<const LanguageRecord> language_record_ptr_;
+    std::shared_ptr<const DxLibKeyboard> keyboard_ptr_;
+    std::shared_ptr<const FontLoader> font_loader_ptr_;
+    std::shared_ptr<const ImageLoader> img_loader_ptr_;
+    std::shared_ptr<const SoundEffectLoader> sound_effect_loader_ptr_;
+};
+
+}  // namespace match_stick

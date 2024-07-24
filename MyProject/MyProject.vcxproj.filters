@@ -240,6 +240,9 @@
     <ClCompile Include="debug_scene.cpp">
       <Filter>ソース ファイル\ConcreteScene\DebugScene</Filter>
     </ClCompile>
+    <ClCompile Include="title_scene.cpp">
+      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Define.h">
@@ -415,6 +418,9 @@
     </ClInclude>
     <ClInclude Include="debug_scene.h">
       <Filter>ソース ファイル\ConcreteScene\DebugScene</Filter>
+    </ClInclude>
+    <ClInclude Include="title_scene.h">
+      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

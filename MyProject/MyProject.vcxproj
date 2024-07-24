@@ -220,6 +220,7 @@
     <ClCompile Include="system_main.cpp" />
     <ClCompile Include="TitleAnime.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="title_scene.cpp" />
     <ClCompile Include="toml_serialize_macro.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +280,7 @@
     <ClInclude Include="system_main.h" />
     <ClInclude Include="TitleAnime.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="title_scene.h" />
     <ClInclude Include="toml11_define.h" />
     <ClInclude Include="toml_serialize_macro.h" />
   </ItemGroup>
