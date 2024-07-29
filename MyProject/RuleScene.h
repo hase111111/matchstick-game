@@ -1,35 +1,35 @@
-#pragma once
-#include "AbstractScene.h"
-#include "SceneChangeEffect.h"
-#include"RulePage.h"
-
-class RuleScene : public AbstractScene 
-{
-public:
-	RuleScene(SceneChangeListenerInterface* pScli, const Parameter& parameter);
-
-	bool update() override;
-	void draw() const override;
-	void receiveParameterInCaseOfDeleteScene(const Parameter& parameter) override;
-
-private:
-	SceneChangeEffect m_scene_change;
-	RulePage m_rule;
-
-	int m_page;
-	int m_page_MAX;
-	bool m_scene_change_flag = false;
-
-	//•`‰æ—p‚ÌƒtƒHƒ“ƒg
-	int m_font;
-
-	//•`‰æ—p‚Ì‰æ‘œƒnƒ“ƒhƒ‹
-	int m_image;
-
-	//ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-	int m_sound;
-
-	//ƒNƒ‰ƒX‚Â‚­‚é‚Ì‚¾‚é‚­‚È‚Á‚Ä‚«‚½‚Ì‚ÅŠÖ”
-	void m_drawArrow() const;
-	void m_drawBack() const;
-};
+ï»¿//#pragma once
+//#include "AbstractScene.h"
+//#include "SceneChangeEffect.h"
+//#include"RulePage.h"
+//
+//class RuleScene : public AbstractScene 
+//{
+//public:
+//	RuleScene(SceneChangeListenerInterface* pScli, const Parameter& parameter);
+//
+//	bool update() override;
+//	void draw() const override;
+//	void receiveParameterInCaseOfDeleteScene(const Parameter& parameter) override;
+//
+//private:
+//	SceneChangeEffect m_scene_change;
+//	RulePage m_rule;
+//
+//	int m_page;
+//	int m_page_MAX;
+//	bool m_scene_change_flag = false;
+//
+//	//æç”»ç”¨ã®ãƒ•ã‚©ãƒ³ãƒˆ
+//	int m_font;
+//
+//	//æç”»ç”¨ã®ç”»åƒãƒãƒ³ãƒ‰ãƒ«
+//	int m_image;
+//
+//	//ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+//	int m_sound;
+//
+//	//ã‚¯ãƒ©ã‚¹ã¤ãã‚‹ã®ã ã‚‹ããªã£ã¦ããŸã®ã§é–¢æ•°
+//	void m_drawArrow() const;
+//	void m_drawBack() const;
+//};

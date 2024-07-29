@@ -1,25 +1,25 @@
-#pragma once
-#include "AbstractScene.h"
-#include "SceneChangeEffect.h"
-#include "MenuDrawBack.h"
-#include "MenuBox.h"
-
-class MenuScene : public AbstractScene {
-public:
-	MenuScene(SceneChangeListenerInterface* pScli, const Parameter& parameter);
-
-	bool update() override;
-	void draw() const override;
-	void receiveParameterInCaseOfDeleteScene(const Parameter& parameter) override;
-
-private:
-	//ƒNƒ‰ƒX
-	SceneChangeEffect m_scene_change_effect;
-	MenuDrawBack m_draw_back;
-	MenuBox m_box;
-
-	//ƒV[ƒ“ƒ`ƒFƒ“ƒW—p‚Ì•Ï”
-	bool m_scene_change_flag = false;
-	enumScene m_which_scene = enumScene::title;
-	Parameter m_param;
-};
+ï»¿//#pragma once
+//#include "AbstractScene.h"
+//#include "SceneChangeEffect.h"
+//#include "MenuDrawBack.h"
+//#include "MenuBox.h"
+//
+//class MenuScene : public AbstractScene {
+//public:
+//	MenuScene(SceneChangeListenerInterface* pScli, const Parameter& parameter);
+//
+//	bool update() override;
+//	void draw() const override;
+//	void receiveParameterInCaseOfDeleteScene(const Parameter& parameter) override;
+//
+//private:
+//	//ã‚¯ãƒ©ã‚¹
+//	SceneChangeEffect m_scene_change_effect;
+//	MenuDrawBack m_draw_back;
+//	MenuBox m_box;
+//
+//	//ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ç”¨ã®å¤‰æ•°
+//	bool m_scene_change_flag = false;
+//	enumScene m_which_scene = enumScene::title;
+//	Parameter m_param;
+//};

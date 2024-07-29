@@ -1,18 +1,18 @@
-#pragma once
-#include<string>
-
-class MenuDrawBack
-{
-public:
-	MenuDrawBack();
-
-	void update();
-	void draw() const;
-
-private:
-
-	const std::string MESSAGE = "E‚yƒL[‚ÅŒˆ’è@@E•ûŒüƒL[‚Å‘I‘ğ@@E•ûŒüƒL[{ctrlƒL[‚Åƒƒjƒ…[€–ÚØ‚è‘Ö‚¦@@EEscƒL[‚Åƒ^ƒCƒgƒ‹‚É–ß‚é@@";
-
-	int m_font_handle = 0;
-	int m_counter = 0;
-};
+ï»¿//#pragma once
+//#include<string>
+//
+//class MenuDrawBack
+//{
+//public:
+//	MenuDrawBack();
+//
+//	void update();
+//	void draw() const;
+//
+//private:
+//
+//	const std::string MESSAGE = "ãƒ»ï¼ºã‚­ãƒ¼ã§æ±ºå®šã€€ã€€ãƒ»æ–¹å‘ã‚­ãƒ¼ã§é¸æŠã€€ã€€ãƒ»æ–¹å‘ã‚­ãƒ¼ï¼‹ctrlã‚­ãƒ¼ã§ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®åˆ‡ã‚Šæ›¿ãˆã€€ã€€ãƒ»Escã‚­ãƒ¼ã§ã‚¿ã‚¤ãƒˆãƒ«ã«æˆ»ã‚‹ã€€ã€€";
+//
+//	int m_font_handle = 0;
+//	int m_counter = 0;
+//};

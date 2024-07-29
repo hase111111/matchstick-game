@@ -1,55 +1,55 @@
-#include "ResultKey.h"
-#include "Keyboard.h"
-#include "DxLib.h"
-#include "Sound.h"
-
-ResultKey::ResultKey()
-{
-    //ÉTÉEÉìÉhÉnÉìÉhÉãÇÉçÅ[ÉhÇ∑ÇÈ
-    m_sound_select = Sound::getIns()->myLoadSound("data/sound/selecting.mp3");
-}
-
-void ResultKey::init(const bool _mod, const bool _self)
-{
-    m_mod_rule = _mod;
-    m_self_harm = _self;
-}
-
-bool ResultKey::update(const std::vector<MatchField>& _field, int& _select, bool& _replay, bool& _replay_fail)
-{
-    //è„â∫Ç´Å[ÇâüÇµÇΩÇ∆Ç´ÇÃèàóù
-    if (Keyboard::getIns()->getPressingCount(KEY_INPUT_UP) == 1)
-    {
-        _select--;
-        if (_select < 0) { _select = 0; }
-        else { PlaySoundMem(m_sound_select, DX_PLAYTYPE_BACK); }
-    }
-    else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_DOWN) == 1)
-    {
-        _select++;
-        if (_select >= _field.size()) { _select = (int)_field.size() - 1; }
-        else { PlaySoundMem(m_sound_select, DX_PLAYTYPE_BACK); }
-    }
-
-    //ESCÉLÅ[Ç≈ñﬂÇÈèàóù
-    if (Keyboard::getIns()->getPressingCount(KEY_INPUT_ESCAPE) == 1)
-    {
-        return false;
-    }
-
-    //ZÇ´Å[Ç≈ï€ë∂Ç∑ÇÈèàóù
-    if (Keyboard::getIns()->getPressingCount(KEY_INPUT_Z) == 1 && _replay == false)
-    {
-        PlaySoundMem(m_sound_select, DX_PLAYTYPE_BACK);
-
-        if (VariousFunctionsForMatchGame::outputFieldList(_field, m_mod_rule, m_self_harm) == false)
-        {
-            _replay_fail = true;
-        }
-
-        //ï€ë∂çœÇ›ÉtÉâÉOÇóßÇƒÇÈ
-        _replay = true;
-    }
-
-    return true;
-}
+Ôªø//#include "ResultKey.h"
+//#include "Keyboard.h"
+//#include "DxLib.h"
+//#include "Sound.h"
+//
+//ResultKey::ResultKey()
+//{
+//    //„Çµ„Ç¶„É≥„Éâ„Éè„É≥„Éâ„É´„Çí„É≠„Éº„Éâ„Åô„Çã
+//    m_sound_select = Sound::getIns()->myLoadSound("data/sound/selecting.mp3");
+//}
+//
+//void ResultKey::init(const bool _mod, const bool _self)
+//{
+//    m_mod_rule = _mod;
+//    m_self_harm = _self;
+//}
+//
+//bool ResultKey::update(const std::vector<MatchField>& _field, int& _select, bool& _replay, bool& _replay_fail)
+//{
+//    //‰∏ä‰∏ã„Åç„Éº„ÇíÊäº„Åó„Åü„Å®„Åç„ÅÆÂá¶ÁêÜ
+//    if (Keyboard::getIns()->getPressingCount(KEY_INPUT_UP) == 1)
+//    {
+//        _select--;
+//        if (_select < 0) { _select = 0; }
+//        else { PlaySoundMem(m_sound_select, DX_PLAYTYPE_BACK); }
+//    }
+//    else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_DOWN) == 1)
+//    {
+//        _select++;
+//        if (_select >= _field.size()) { _select = (int)_field.size() - 1; }
+//        else { PlaySoundMem(m_sound_select, DX_PLAYTYPE_BACK); }
+//    }
+//
+//    //ESC„Ç≠„Éº„ÅßÊàª„ÇãÂá¶ÁêÜ
+//    if (Keyboard::getIns()->getPressingCount(KEY_INPUT_ESCAPE) == 1)
+//    {
+//        return false;
+//    }
+//
+//    //Z„Åç„Éº„Åß‰øùÂ≠ò„Åô„ÇãÂá¶ÁêÜ
+//    if (Keyboard::getIns()->getPressingCount(KEY_INPUT_Z) == 1 && _replay == false)
+//    {
+//        PlaySoundMem(m_sound_select, DX_PLAYTYPE_BACK);
+//
+//        if (VariousFunctionsForMatchGame::outputFieldList(_field, m_mod_rule, m_self_harm) == false)
+//        {
+//            _replay_fail = true;
+//        }
+//
+//        //‰øùÂ≠òÊ∏à„Åø„Éï„É©„Ç∞„ÇíÁ´ã„Å¶„Çã
+//        _replay = true;
+//    }
+//
+//    return true;
+//}

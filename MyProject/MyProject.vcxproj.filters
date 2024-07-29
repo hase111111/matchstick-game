@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\Common">
-      <UniqueIdentifier>{f7f73b4b-c1da-49d0-8fd2-8c504a922908}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\SceneController">
       <UniqueIdentifier>{223e1ced-1b86-437f-8a66-23f5986bdfdb}</UniqueIdentifier>
     </Filter>
@@ -27,12 +24,6 @@
     </Filter>
     <Filter Include="ソース ファイル\Systems">
       <UniqueIdentifier>{cd406cf8-0c3d-4f77-8926-cfe6fe8e77f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Common\Input">
-      <UniqueIdentifier>{9a6a7272-5bd8-4396-8770-4254a9dbfe84}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Common\Toml11">
-      <UniqueIdentifier>{56dbbd5b-9d6b-4979-bf06-b4e8677b0ebb}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\SceneController\Old">
       <UniqueIdentifier>{cae995da-e614-49fc-97d3-634c7971a137}</UniqueIdentifier>
@@ -55,38 +46,47 @@
     <Filter Include="ソース ファイル\scenes\title_scene\entity">
       <UniqueIdentifier>{16700c1f-3448-45ff-b362-71079bfc61c8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\scenes\GameScene">
-      <UniqueIdentifier>{9059677a-6910-4eed-b7f4-591d69d5cba6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\GameScene\draw">
-      <UniqueIdentifier>{6cdbd00e-c51e-4e47-ba03-6605d69a91d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\GameScene\progress">
-      <UniqueIdentifier>{1e5ef222-d4b9-447a-9053-26cc20577e77}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\MenuScene">
-      <UniqueIdentifier>{aacf0788-ffce-462c-9d96-f8c07fedbf3c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\ResultScene">
-      <UniqueIdentifier>{07b68408-6706-491e-99cf-2b8c5999451b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\ResultScene\Draw">
-      <UniqueIdentifier>{6c3e3030-7301-4673-a563-e02c6edd3b16}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\RuleScene">
-      <UniqueIdentifier>{11c72331-3063-4d5f-a74a-fcf711cb95de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\DebugScene">
-      <UniqueIdentifier>{ed66a868-ebc3-4331-b665-ad1239b2f582}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\ReplayScene">
-      <UniqueIdentifier>{6d689bb1-38dd-46dd-8137-06ff5a0bdf37}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\ReplayScene\Draw">
-      <UniqueIdentifier>{90730051-02e8-40a7-a7c2-42efa4ce6a3d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\scenes\all_scene_entity">
       <UniqueIdentifier>{2d319d02-0f4b-4bfc-8a4d-730616d5b03f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\debug_scene">
+      <UniqueIdentifier>{ed66a868-ebc3-4331-b665-ad1239b2f582}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\common">
+      <UniqueIdentifier>{f7f73b4b-c1da-49d0-8fd2-8c504a922908}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\common\input">
+      <UniqueIdentifier>{9a6a7272-5bd8-4396-8770-4254a9dbfe84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\common\toml11">
+      <UniqueIdentifier>{56dbbd5b-9d6b-4979-bf06-b4e8677b0ebb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\_old">
+      <UniqueIdentifier>{2ae8811f-ecde-4568-bed8-2f4ba0fea400}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\_old\RuleScene">
+      <UniqueIdentifier>{11c72331-3063-4d5f-a74a-fcf711cb95de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\_old\ReplayScene">
+      <UniqueIdentifier>{6d689bb1-38dd-46dd-8137-06ff5a0bdf37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\_old\GameScene">
+      <UniqueIdentifier>{9059677a-6910-4eed-b7f4-591d69d5cba6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\_old\GameScene\draw">
+      <UniqueIdentifier>{6cdbd00e-c51e-4e47-ba03-6605d69a91d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\_old\GameScene\progress">
+      <UniqueIdentifier>{1e5ef222-d4b9-447a-9053-26cc20577e77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\_old\ResultScene">
+      <UniqueIdentifier>{07b68408-6706-491e-99cf-2b8c5999451b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\_old\ResultScene\Draw">
+      <UniqueIdentifier>{6c3e3030-7301-4673-a563-e02c6edd3b16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\_old\MenuScene">
+      <UniqueIdentifier>{aacf0788-ffce-462c-9d96-f8c07fedbf3c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -94,7 +94,7 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Define.cpp">
-      <Filter>ソース ファイル\Common</Filter>
+      <Filter>ソース ファイル\common</Filter>
     </ClCompile>
     <ClCompile Include="Image.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
@@ -115,34 +115,31 @@
       <Filter>ソース ファイル\match game</Filter>
     </ClCompile>
     <ClCompile Include="GameScene.cpp">
-      <Filter>ソース ファイル\scenes\GameScene</Filter>
+      <Filter>ソース ファイル\scenes\_old\GameScene</Filter>
     </ClCompile>
     <ClCompile Include="MenuScene.cpp">
-      <Filter>ソース ファイル\scenes\MenuScene</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneChangeEffect.cpp">
-      <Filter>ソース ファイル\scenes</Filter>
+      <Filter>ソース ファイル\scenes\_old\MenuScene</Filter>
     </ClCompile>
     <ClCompile Include="GameHand.cpp">
-      <Filter>ソース ファイル\scenes\GameScene\draw</Filter>
+      <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
     </ClCompile>
     <ClCompile Include="GameLog.cpp">
-      <Filter>ソース ファイル\scenes\GameScene\draw</Filter>
+      <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
     </ClCompile>
     <ClCompile Include="GameParam.cpp">
-      <Filter>ソース ファイル\scenes\GameScene</Filter>
+      <Filter>ソース ファイル\scenes\_old\GameScene</Filter>
     </ClCompile>
     <ClCompile Include="GameAnime.cpp">
-      <Filter>ソース ファイル\scenes\GameScene\draw</Filter>
+      <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
     </ClCompile>
     <ClCompile Include="ResultScene.cpp">
-      <Filter>ソース ファイル\scenes\ResultScene</Filter>
+      <Filter>ソース ファイル\scenes\_old\ResultScene</Filter>
     </ClCompile>
     <ClCompile Include="MenuDrawBack.cpp">
-      <Filter>ソース ファイル\scenes\MenuScene</Filter>
+      <Filter>ソース ファイル\scenes\_old\MenuScene</Filter>
     </ClCompile>
     <ClCompile Include="MenuBox.cpp">
-      <Filter>ソース ファイル\scenes\MenuScene</Filter>
+      <Filter>ソース ファイル\scenes\_old\MenuScene</Filter>
     </ClCompile>
     <ClCompile Include="MatchGameCPU.cpp">
       <Filter>ソース ファイル\match game</Filter>
@@ -153,47 +150,44 @@
     <ClCompile Include="MatchGameOut.cpp">
       <Filter>ソース ファイル\match game</Filter>
     </ClCompile>
-    <ClCompile Include="RuleScene.cpp">
-      <Filter>ソース ファイル\scenes\RuleScene</Filter>
-    </ClCompile>
     <ClCompile Include="RuleParam.cpp">
-      <Filter>ソース ファイル\scenes\RuleScene</Filter>
+      <Filter>ソース ファイル\scenes\_old\RuleScene</Filter>
     </ClCompile>
     <ClCompile Include="RulePage.cpp">
-      <Filter>ソース ファイル\scenes\RuleScene</Filter>
+      <Filter>ソース ファイル\scenes\_old\RuleScene</Filter>
     </ClCompile>
     <ClCompile Include="MatchGameList2.cpp">
       <Filter>ソース ファイル\match game</Filter>
     </ClCompile>
     <ClCompile Include="ResultDrawBack.cpp">
-      <Filter>ソース ファイル\scenes\ResultScene\Draw</Filter>
+      <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
     </ClCompile>
     <ClCompile Include="ResultDrawHand.cpp">
-      <Filter>ソース ファイル\scenes\ResultScene\Draw</Filter>
+      <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
     </ClCompile>
     <ClCompile Include="ResultString.cpp">
-      <Filter>ソース ファイル\scenes\ResultScene\Draw</Filter>
+      <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
     </ClCompile>
     <ClCompile Include="ResultKey.cpp">
-      <Filter>ソース ファイル\scenes\ResultScene</Filter>
+      <Filter>ソース ファイル\scenes\_old\ResultScene</Filter>
     </ClCompile>
     <ClCompile Include="setting.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
     <ClCompile Include="ReplayScene.cpp">
-      <Filter>ソース ファイル\scenes\ReplayScene</Filter>
+      <Filter>ソース ファイル\scenes\_old\ReplayScene</Filter>
     </ClCompile>
     <ClCompile Include="dxlib_mouse.cpp">
-      <Filter>ソース ファイル\Common\Input</Filter>
+      <Filter>ソース ファイル\common\input</Filter>
     </ClCompile>
     <ClCompile Include="dxlib_keyboard.cpp">
-      <Filter>ソース ファイル\Common\Input</Filter>
+      <Filter>ソース ファイル\common\input</Filter>
     </ClCompile>
     <ClCompile Include="fps_controller.cpp">
-      <Filter>ソース ファイル\Common</Filter>
+      <Filter>ソース ファイル\common</Filter>
     </ClCompile>
     <ClCompile Include="toml_serialize_macro.cpp">
-      <Filter>ソース ファイル\Common\Toml11</Filter>
+      <Filter>ソース ファイル\common\toml11</Filter>
     </ClCompile>
     <ClCompile Include="game_main_loop.cpp">
       <Filter>ソース ファイル\Systems</Filter>
@@ -241,7 +235,7 @@
       <Filter>ソース ファイル\Resource</Filter>
     </ClCompile>
     <ClCompile Include="debug_scene.cpp">
-      <Filter>ソース ファイル\scenes\DebugScene</Filter>
+      <Filter>ソース ファイル\scenes\debug_scene</Filter>
     </ClCompile>
     <ClCompile Include="title_scene.cpp">
       <Filter>ソース ファイル\scenes\title_scene</Filter>
@@ -250,7 +244,7 @@
       <Filter>ソース ファイル\Render</Filter>
     </ClCompile>
     <ClCompile Include="dxlib_assert.cpp">
-      <Filter>ソース ファイル\Common</Filter>
+      <Filter>ソース ファイル\common</Filter>
     </ClCompile>
     <ClCompile Include="entity_updater.cpp">
       <Filter>ソース ファイル\Updatable</Filter>
@@ -270,10 +264,16 @@
     <ClCompile Include="scene_switcher_title.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="SceneChangeEffect.cpp">
+      <Filter>ソース ファイル\scenes\_old</Filter>
+    </ClCompile>
+    <ClCompile Include="RuleScene.cpp">
+      <Filter>ソース ファイル\scenes\_old\RuleScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Define.h">
-      <Filter>ソース ファイル\Common</Filter>
+      <Filter>ソース ファイル\common</Filter>
     </ClInclude>
     <ClInclude Include="SceneEnum.h">
       <Filter>ソース ファイル\scenes</Filter>
@@ -300,85 +300,79 @@
       <Filter>ソース ファイル\match game</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
-      <Filter>ソース ファイル\scenes\GameScene</Filter>
+      <Filter>ソース ファイル\scenes\_old\GameScene</Filter>
     </ClInclude>
     <ClInclude Include="MenuScene.h">
-      <Filter>ソース ファイル\scenes\MenuScene</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneChangeEffect.h">
-      <Filter>ソース ファイル\scenes</Filter>
+      <Filter>ソース ファイル\scenes\_old\MenuScene</Filter>
     </ClInclude>
     <ClInclude Include="GameParam.h">
-      <Filter>ソース ファイル\scenes\GameScene</Filter>
+      <Filter>ソース ファイル\scenes\_old\GameScene</Filter>
     </ClInclude>
     <ClInclude Include="GameHand.h">
-      <Filter>ソース ファイル\scenes\GameScene\draw</Filter>
+      <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
     </ClInclude>
     <ClInclude Include="GameLog.h">
-      <Filter>ソース ファイル\scenes\GameScene\draw</Filter>
+      <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
     </ClInclude>
     <ClInclude Include="GameAnime.h">
-      <Filter>ソース ファイル\scenes\GameScene\draw</Filter>
+      <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
     </ClInclude>
     <ClInclude Include="ResultScene.h">
-      <Filter>ソース ファイル\scenes\ResultScene</Filter>
+      <Filter>ソース ファイル\scenes\_old\ResultScene</Filter>
     </ClInclude>
     <ClInclude Include="GameSelectingHand.h">
-      <Filter>ソース ファイル\scenes\GameScene\progress</Filter>
+      <Filter>ソース ファイル\scenes\_old\GameScene\progress</Filter>
     </ClInclude>
     <ClInclude Include="MenuDrawBack.h">
-      <Filter>ソース ファイル\scenes\MenuScene</Filter>
+      <Filter>ソース ファイル\scenes\_old\MenuScene</Filter>
     </ClInclude>
     <ClInclude Include="MenuBox.h">
-      <Filter>ソース ファイル\scenes\MenuScene</Filter>
-    </ClInclude>
-    <ClInclude Include="RuleScene.h">
-      <Filter>ソース ファイル\scenes\RuleScene</Filter>
+      <Filter>ソース ファイル\scenes\_old\MenuScene</Filter>
     </ClInclude>
     <ClInclude Include="RuleParam.h">
-      <Filter>ソース ファイル\scenes\RuleScene</Filter>
+      <Filter>ソース ファイル\scenes\_old\RuleScene</Filter>
     </ClInclude>
     <ClInclude Include="RulePage.h">
-      <Filter>ソース ファイル\scenes\RuleScene</Filter>
+      <Filter>ソース ファイル\scenes\_old\RuleScene</Filter>
     </ClInclude>
     <ClInclude Include="ResultDrawBack.h">
-      <Filter>ソース ファイル\scenes\ResultScene\Draw</Filter>
+      <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
     </ClInclude>
     <ClInclude Include="ResultDrawHand.h">
-      <Filter>ソース ファイル\scenes\ResultScene\Draw</Filter>
+      <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
     </ClInclude>
     <ClInclude Include="ResultString.h">
-      <Filter>ソース ファイル\scenes\ResultScene\Draw</Filter>
+      <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
     </ClInclude>
     <ClInclude Include="ResultKey.h">
-      <Filter>ソース ファイル\scenes\ResultScene</Filter>
+      <Filter>ソース ファイル\scenes\_old\ResultScene</Filter>
     </ClInclude>
     <ClInclude Include="setting.h">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="ReplayScene.h">
-      <Filter>ソース ファイル\scenes\ReplayScene</Filter>
+      <Filter>ソース ファイル\scenes\_old\ReplayScene</Filter>
     </ClInclude>
     <ClInclude Include="error_message_box.h">
       <Filter>ソース ファイル\Systems</Filter>
     </ClInclude>
     <ClInclude Include="dxlib_keyboard.h">
-      <Filter>ソース ファイル\Common\Input</Filter>
+      <Filter>ソース ファイル\common\input</Filter>
     </ClInclude>
     <ClInclude Include="dxlib_mouse.h">
-      <Filter>ソース ファイル\Common\Input</Filter>
+      <Filter>ソース ファイル\common\input</Filter>
     </ClInclude>
     <ClInclude Include="fps_controller.h">
-      <Filter>ソース ファイル\Common</Filter>
+      <Filter>ソース ファイル\common</Filter>
     </ClInclude>
     <ClInclude Include="toml11_define.h">
-      <Filter>ソース ファイル\Common\Toml11</Filter>
+      <Filter>ソース ファイル\common\toml11</Filter>
     </ClInclude>
     <ClInclude Include="toml_serialize_macro.h">
-      <Filter>ソース ファイル\Common\Toml11</Filter>
+      <Filter>ソース ファイル\common\toml11</Filter>
     </ClInclude>
     <ClInclude Include="implicit_metafunction_for_toml11.h">
-      <Filter>ソース ファイル\Common\Toml11</Filter>
+      <Filter>ソース ファイル\common\toml11</Filter>
     </ClInclude>
     <ClInclude Include="game_main_loop.h">
       <Filter>ソース ファイル\Systems</Filter>
@@ -435,7 +429,7 @@
       <Filter>ソース ファイル\Resource</Filter>
     </ClInclude>
     <ClInclude Include="debug_scene.h">
-      <Filter>ソース ファイル\scenes\DebugScene</Filter>
+      <Filter>ソース ファイル\scenes\debug_scene</Filter>
     </ClInclude>
     <ClInclude Include="title_scene.h">
       <Filter>ソース ファイル\scenes\title_scene</Filter>
@@ -447,7 +441,7 @@
       <Filter>ソース ファイル\Render</Filter>
     </ClInclude>
     <ClInclude Include="dxlib_assert.h">
-      <Filter>ソース ファイル\Common</Filter>
+      <Filter>ソース ファイル\common</Filter>
     </ClInclude>
     <ClInclude Include="i_updatable_entity.h">
       <Filter>ソース ファイル\Updatable</Filter>
@@ -469,6 +463,12 @@
     </ClInclude>
     <ClInclude Include="scene_switcher_title.h">
       <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneChangeEffect.h">
+      <Filter>ソース ファイル\scenes\_old</Filter>
+    </ClInclude>
+    <ClInclude Include="RuleScene.h">
+      <Filter>ソース ファイル\scenes\_old\RuleScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

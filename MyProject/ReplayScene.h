@@ -1,44 +1,44 @@
-#pragma once
-#include "AbstractScene.h"
-#include"SceneChangeEffect.h"
-#include"MatchGameCommon.h"
-#include<vector>
-#include"GameAnime.h"
-#include"GameHand.h"
-#include"GameLog.h"
-
-class ReplayScene : public AbstractScene
-{
-public:
-	ReplayScene(SceneChangeListenerInterface* pScli, const Parameter& parameter);
-
-	bool update() override;
-	void draw() const override;
-
-	void receiveParameterInCaseOfDeleteScene(const Parameter& parameter) override;
-
-private:
-	//ƒNƒ‰ƒX
-	SceneChangeEffect m_sceneChange;	//ƒV[ƒ“ƒ`ƒFƒ“ƒW‚ÌƒGƒtƒFƒNƒg
-	GameAnime m_gameAnime;
-	GameHand m_gameHand;
-	GameLog m_gameLog;
-
-	//ƒQ[ƒ€—p‚Ìƒpƒ‰ƒ[ƒ^
-	bool m_mod_rule = false;		//MOD 5ƒ‹[ƒ‹‚ª“K—p‚³‚ê‚Ä‚¢‚é‚©‚Ìƒtƒ‰ƒO
-	bool m_self_rule = false;		//©ƒ‹[ƒ‹‚ªÌ—p‚³‚ê‚Ä‚¢‚é‚©‚Ìƒtƒ‰ƒO
-	std::vector<MatchField> m_field_list;	//ƒtƒB[ƒ‹ƒh‚ÌƒŠƒXƒg
-
-	//ƒ}ƒbƒ`ƒQ[ƒ€‚Ì”Õ–Ê
-	MatchField m_field;
-	int m_turn = 0;
-	bool m_player_is_first;
-
-	//•Ï”Eƒtƒ‰ƒO
-	bool m_illegal_field = false;	//•s³‚È”Õ–Ê‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	bool m_scene_change = false;	//‚±‚Ìƒtƒ‰ƒO‚ª—§‚Á‚½‚ÉƒV[ƒ“‚ğ–ß‚·
-
-	//ŠÖ”
-	void m_loadParam(const Parameter parameter);	//ƒpƒ‰ƒ[ƒ^‚ğó‚¯æ‚é
-	bool m_isIllegalFieldList(const std::vector<MatchField>& _field) const;		//•s³‚ÈƒtƒB[ƒ‹ƒhƒŠƒXƒg‚©‚Ç‚¤‚©‚ğ’²‚×‚é
-};
+ï»¿//#pragma once
+//#include "AbstractScene.h"
+//#include"SceneChangeEffect.h"
+//#include"MatchGameCommon.h"
+//#include<vector>
+//#include"GameAnime.h"
+//#include"GameHand.h"
+//#include"GameLog.h"
+//
+//class ReplayScene : public AbstractScene
+//{
+//public:
+//	ReplayScene(SceneChangeListenerInterface* pScli, const Parameter& parameter);
+//
+//	bool update() override;
+//	void draw() const override;
+//
+//	void receiveParameterInCaseOfDeleteScene(const Parameter& parameter) override;
+//
+//private:
+//	//ã‚¯ãƒ©ã‚¹
+//	SceneChangeEffect m_sceneChange;	//ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+//	GameAnime m_gameAnime;
+//	GameHand m_gameHand;
+//	GameLog m_gameLog;
+//
+//	//ã‚²ãƒ¼ãƒ ç”¨ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
+//	bool m_mod_rule = false;		//MOD 5ãƒ«ãƒ¼ãƒ«ãŒé©ç”¨ã•ã‚Œã¦ã„ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°
+//	bool m_self_rule = false;		//è‡ªå‚·ãƒ«ãƒ¼ãƒ«ãŒæ¡ç”¨ã•ã‚Œã¦ã„ã‚‹ã‹ã®ãƒ•ãƒ©ã‚°
+//	std::vector<MatchField> m_field_list;	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®ãƒªã‚¹ãƒˆ
+//
+//	//ãƒãƒƒãƒã‚²ãƒ¼ãƒ ã®ç›¤é¢
+//	MatchField m_field;
+//	int m_turn = 0;
+//	bool m_player_is_first;
+//
+//	//å¤‰æ•°ãƒ»ãƒ•ãƒ©ã‚°
+//	bool m_illegal_field = false;	//ä¸æ­£ãªç›¤é¢ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+//	bool m_scene_change = false;	//ã“ã®ãƒ•ãƒ©ã‚°ãŒç«‹ã£ãŸæ™‚ã«ã‚·ãƒ¼ãƒ³ã‚’æˆ»ã™
+//
+//	//é–¢æ•°
+//	void m_loadParam(const Parameter parameter);	//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚‹
+//	bool m_isIllegalFieldList(const std::vector<MatchField>& _field) const;		//ä¸æ­£ãªãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒªã‚¹ãƒˆã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
+//};

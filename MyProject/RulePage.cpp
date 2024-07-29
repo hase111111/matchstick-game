@@ -1,285 +1,285 @@
-#include "RulePage.h"
-#include"Font.h"
-#include"DxLib.h"
-#include "Define.h"
-
-RulePage::RulePage()
-{
-	m_setFunc();
-
-	m_font_24 = myLoadFont("data/font/PixelMplus10_size24.dft");
-	m_font_32 = myLoadFont("data/font/PixelMplus10_size32.dft");
-}
-
-void RulePage::draw(int _page) const
-{
-	if (m_draw_page.size() <= _page) { _page = (int)m_draw_page.size() - 1; }
-	if (0 > _page) { _page = 0; }
-	(this->*m_draw_page[_page])();
-}
-
-int RulePage::getPageNum() const
-{
-	return (int)m_draw_page.size();
-}
-
-void RulePage::m_draw_BaseRule00() const
-{
-	std::string str;
-	const int POSX_HALF = Define::WIN_SIZEX / 2;
-	const int STR_Y = 24;
-	const int STR_X = Define::WIN_SIZEY * 17 / 80;
-
-	//ƒ^ƒCƒgƒ‹•\¦
-	str ="Šî–{ƒ‹[ƒ‹ 1 / 2";
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
-
-	//•¶Í
-	str = "";
-	str += "1. æèAŒãè‚ğŒˆ‚ß‚éB@@@@@@@@@@@@@@@@@@@@@\n";
-	str += "\n";
-	str += "2. —¼ƒvƒŒƒCƒ„[‚Í—¼è‚Ìl·‚µw‚ğ—§‚Ä‚éB@@@@@@@@@@@@\n";
-	str += "\n";
-	str += "3. æè”Ô‚©‚ç‘Šè‚Ìè‚Ì‚¢‚¸‚ê‚©ˆê‚Â‚ğ‘I‘ğ‚µ‚ÄUŒ‚‚·‚éBUŒ‚‚³‚ê‚½\n";
-	str += "   è‚ÍA‘I‘ğ‚µ‚½è‚Ìw–{”•ª’Ç‰Á‚Åw‚ğ—§‚Ä‚éB i—á‚¦‚Î3–{w‚ª—§\n";
-	str += "   ‚Á‚½è‚Å‘Šè‚Ìw‚ª 1–{—§‚Á‚Ä‚¢‚éè‚ğUŒ‚‚µ‚½A‘Šè‚Íw‚ğ‚S–{\n";
-	str += "   —§‚Ä‚éB)\n";
-	str += "   0 ‚Ìè‚ÍUŒ‚‚·‚é‚±‚Æ‚ª‚Å‚«‚¸A‚Ü‚½UŒ‚‘ÎÛ‚É‘I‘ğ‚·‚é‚±‚Æ‚ª‚Å‚«\n";
-	str += "   ‚È‚¢B\n";
-	str += "\n";
-	str += "4. UŒ‚‚É‚æ‚Á‚ÄA—§‚Ä‚½w‚Ì”‚ª5ˆÈã‚Æ‚È‚é‚»‚Ìè‚ÍÁ–Å(—§‚Ä‚½w\n";
-	str += "   ‚ğ‚·‚×‚ÄÜ‚è‚½‚½‚Ş)‚·‚éB\n";
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_24) / 2, STR_X, GetColor(0, 0, 0), m_font_24, str.c_str());
-}
-
-void RulePage::m_draw_BaseRule01() const
-{
-	std::string str;
-	const int POSX_HALF = Define::WIN_SIZEX / 2;
-	const int STR_Y = 24;
-	const int STR_X = Define::WIN_SIZEY * 17 / 80;
-
-	//ƒ^ƒCƒgƒ‹•\¦
-	str = "Šî–{ƒ‹[ƒ‹ 2 / 2";
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
-
-	//•¶Í
-	str = "";
-	str = "5. ‘Šè‚Ìè‚ğ‚·‚×‚ÄÁ–Å‚³‚¹‚½AŸ—˜‚Æ‚È‚éB@@@@@@@@@@ \n";
-	str += "\n";
-	str += "6. “¯ˆê”Õ–Ê‚ª4‰ñˆÈãŒ»‚ê‚½‚Æ‚«Aç“úè‚Æ‚µ‚Äˆø‚«•ª‚¯‚Æ‚È‚éB“¯ˆê\n";
-	str += "   ‚Ì”Õ–Ê‚ªŒ»‚ê‚½‚Æ‚«‚ÍA‰æ–Ê¶‚É‘¶İ‚·‚éƒƒO‚ÌF‚ª•Ï‰»‚·‚é‚½‚ßA\n";
-	str += "   ‚»‚ê‚ğ—p‚¢‚Ä”»’f‚·‚é‚Æ‚æ‚¢B\n";
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_24) / 2, STR_X, GetColor(0, 0, 0), m_font_24, str.c_str());
-}
-
-void RulePage::m_draw_Saihai() const
-{
-	std::string str;
-	const int POSX_HALF = Define::WIN_SIZEX / 2;
-
-	//ƒ^ƒCƒgƒ‹•\¦
-	str = "ƒ[ƒJƒ‹ƒ‹[ƒ‹FÑ”z";
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
-
-	//•¶Í
-	str = "";
-	str += "UŒ‚‚Ì•Ï‚í‚è‚És‚¤‚±‚Æ‚ª‚Å‚«‚és“®B\n\n";
-	str += "w‚Ì‡Œv–{”‚ª•Ï‚í‚ç‚È‚¢‚æ‚¤‚ÉA‰E‚Æ¶‚Åw‚Ì”‚ğ\n";
-	str += "‚©‚¦‚é‚±‚Æ‚ª‚Å‚«‚éB (—á‚¦‚Î©•ª‚Ìè‚ª1A3‚ÌA\n";
-	str += "2A2 ‚â 0A4 ‚É•ÏX‚·‚é‚±‚Æ‚ª‚Å‚«‚éB)\n\n";
-	str += "‚È‚¨AÑ”z‚Í‡’†‚Éˆê“x‚µ‚©s‚¤‚±‚Æ‚ª‚Å‚«‚È‚¢B\n";
-	str += "‚Ü‚½¶‰E‚Ì”š‚ğ“ü‚ê‘Ö‚¦‚é‚¾‚¯‚ÌÑ”z‚Í‚Å‚«‚È‚¢B\n";
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 17 / 80, GetColor(0, 0, 0), m_font_32, str.c_str());
-}
-
-void RulePage::m_draw_Self() const
-{
-	std::string str;
-	const int POSX_HALF = Define::WIN_SIZEX / 2;
-
-	//ƒ^ƒCƒgƒ‹•\¦
-	str = "ƒ[ƒJƒ‹ƒ‹[ƒ‹F©";
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
-
-	//•¶Í
-	str = "";
-	str += "UŒ‚‚ÌÛ‚ÉA©•ª‚Ìè‚ğ‘I‘ğ‚µ‚ÄUŒ‚‚·‚é‚±‚Æ‚ª‚Å‚«\n";
-	str += "‚éƒ‹[ƒ‹B\n";
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 17 / 80, GetColor(0, 0, 0), m_font_32, str.c_str());
-}
-
-void RulePage::m_draw_Mod5() const
-{
-	std::string str;
-	const int POSX_HALF = Define::WIN_SIZEX / 2;
-	const int STR_Y = 24;
-	const int STR_X = Define::WIN_SIZEY * 17 / 80;
-
-	//ƒ^ƒCƒgƒ‹•\¦
-	str = "ƒ[ƒJƒ‹ƒ‹[ƒ‹FMOD 5";
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
-
-	//•¶Í
-	str = "";
-	str += "UŒ‚‚ÌÛ‚ÉA©•ª‚Ìè‚ğ‘I‘ğ‚µ‚ÄUŒ‚‚·‚é‚±‚Æ‚ª‚Å‚«\n";
-	str += "UŒ‚‚ÌA5‚ğã‰ñ‚Á‚½‚È‚ç‚Îè—]‚ğ‚Æ‚éƒ‹[ƒ‹B @\n\n";
-	str += "—á‚¦‚Î3‚Ìè‚Å4‚ğUŒ‚‚µ‚½ê‡AUŒ‚‚³‚ê‚½è‚Í 2 \n";
-	str += "3 + 4 = 7,7 mod 5 = 2 ‚Æ‚È‚éB\n\n";
-
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, STR_X, GetColor(0, 0, 0), m_font_32, str.c_str());
-}
-
-void RulePage::m_draw_Senryaku00() const
-{
-	std::string str;
-	const int POSX_HALF = Define::WIN_SIZEX / 2;
-	const int STR_Y = 24;
-	const int STR_X = Define::WIN_SIZEY * 17 / 80;
-
-	//ƒ^ƒCƒgƒ‹•\¦
-	str = "í—ªw“ì 1 / 2";
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
-
-	//•¶Í
-	str = "";
-	str += "‚±‚ÌƒQ[ƒ€‚É‚¨‚¢‚Ä‘å–‚Èíp‚ÍˆÈ‰º‚Ì’Ê‚è‚Å‚ ‚éB@@@@@@@ \n";
-	str += "\n";
-	str += "E[0,1]‚É‚µ‚È‚¢\n";
-	str += "\n";
-	str += "EÑ”z‚Í©•ª‚Ìè‚ª•Ğè‚É‚È‚Á‚½‚Ì‚İg—p‚·‚é\n";
-	str += "\n";
-	str += "E‘Šè‚ª[0,1]‚Ì‚ÍA©‚È‚Ç‚ğ‹ìg‚µ‚Ä‚»‚ê‚ğƒL[ƒv‚·‚é\n";
-	str += "\n";
-	str += "‚±‚ê‚ç‚Ìí—ª‚ğ—p‚¢‚é‚±‚Æ‚ÅNORMAL‚Ü‚Å‚ÌCPU‚É‚ÍŠÈ’P‚ÉŸ—˜‚·‚é‚±‚Æ\n";
-	str += "‚ª‚Å‚«‚é‚¾‚ë‚¤BHARDˆÈã‚ÌCPU‚ÉŸ—˜‚µ‚½‚¢ê‡AÅ‚“ïˆÕ“x‚ÌCPU\n";
-	str += "‚Æí‚¢‚»‚Ìs“®‚ğ^—‚·‚é‚±‚Æ‚ª‚æ‚¢‚¾‚ë‚¤B(í—ªw“ì•úŠü)\n";
-
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_24) / 2, STR_X, GetColor(0, 0, 0), m_font_24, str.c_str());
-}
-
-void RulePage::m_draw_Senryaku01() const
-{
-	std::string str;
-	const int POSX_HALF = Define::WIN_SIZEX / 2;
-	const int STR_Y = 24;
-	const int STR_X = Define::WIN_SIZEY * 17 / 80;
-
-	//ƒ^ƒCƒgƒ‹•\¦
-	str = "í—ªw“ì 2 / 2";
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
-
-	//•¶Í
-	str = "";
-	str += "‚½‚¾A‚Ô‚Á‚¿‚á‚¯‚Ä‚µ‚Ü‚¤‚Æ‚±‚ÌƒQ[ƒ€‚É‚Í”‘½‚­‚ÌŒ‡Š×‚ª‚ ‚éB‚»\n";
-	str += "‚Ìˆê‚Â‚ªMod 5ƒ‹[ƒ‹‚ğÌ—p‚µ‚È‚¢ê‡Aæè•KŸAŒãè•KŸ‚Å‚ ‚é‚±\n";
-	str += "‚Æ‚¾B‚»‚Ì‚½‚ßAí‚ÉÅ‘Pè‚ğ‘I‚Ñ‘±‚¯‚éIMPOSSIBLE‚ÌCPU‚É‚ÍA‚ ‚È\n";
-	str += "‚½‚ªí‚ÉÅ‘Pè‚ğ‘I‘ğ‚µ‚Ä‚àŸ—˜‚·‚é‚±‚Æ‚ª‚Å‚«‚È‚¢ê‡‚ª‚ ‚éB\n";
-	str += "\n";
-	str += "‚à‚¤ˆê‚Â‚ÍMOD 5‚Ìƒ‹[ƒ‹‚ğ“K—p‚µ‚½ê‡A—¼Ò‚ªÅ‘Pè‚ğ‘I‚Ñ‘±‚¯‚é\n";
-	str += "ŒÀ‚èç“úè‚Æ‚È‚Á‚Ä‚µ‚Ü‚¤‚±‚Æ‚Å‚ ‚éB‚»‚Ì‚½‚ßA‚±‚Ìê‡‚àÅ‚“ï\n";
-	str += "ˆÕ“x‚ÌCPU‚É‚ÍŸ—˜‚·‚é‚±‚Æ‚ª‚Å‚«‚È‚¢B\n";
-	str += "\n";
-	str += "‚»‚Ì‚½‚ßAí—ª‚ğ‚¢‚©‚ÉÅ“K‰»‚µ‚½‚Æ‚µ‚Ä‚à•KŸ‚Æ‚Í‚È‚ç‚È‚¢BŠ‘F\n";
-	str += "q‚Ç‚à‚Ìè—V‚Ñ‚Æ‚¢‚¤‚±‚Æ‚Å‚ ‚é......B";
-
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_24) / 2, STR_X, GetColor(0, 0, 0), m_font_24, str.c_str());
-}
-
-void RulePage::m_draw_Other00() const
-{
-	std::string str;
-	const int POSX_HALF = Define::WIN_SIZEX / 2;
-	const int STR_Y = 24;
-	const int STR_X = Define::WIN_SIZEY * 17 / 80;
-
-	//ƒ^ƒCƒgƒ‹•\¦
-	str = "Ì—p‚³‚ê‚Ä‚¢‚È‚¢ƒ‹[ƒ‹‚Æ•â‘« 1 / 3";
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
-
-	//•¶Í
-	str = "";
-	str += "E•ªg\n";
-	str += "@w‚ª—§‚Á‚Ä‚¢‚éè‚ª•Ğè‚Ì‚İ‚Ìê‡A‰ñ”§ŒÀ‚È‚­Ñ”z‚ğ‚·‚é‚±‚Æ\n";
-	str += "@‚ª‚Å‚«‚éƒ‹[ƒ‹B‚±‚Ìƒ‹[ƒ‹‚ª‘¶İ‚·‚éê‡Aˆø‚«•ª‚¯‚É‚¿‚Ş\n";
-	str += "@‚±‚Æ‚ª”ñí‚É—eˆÕ‚É‚È‚é‚½‚ßAÌ—p‚µ‚È‚©‚Á‚½B\n";
-	str += "\n";
-	str += "E‚UˆÈã‚ÅÁ–Å\n";
-	str += "@w‚Ì–{”‚ª6–{‚ğ’´‚¦‚½‚Æ‚«‚ÉAÁ–Å‚·‚éƒ‹[ƒ‹B‚±‚ÌƒQ[ƒ€‚Å‚Í\n";
-	str += "@MOD 5ƒ‹[ƒ‹‚ğÌ—p‚µ‚½‚½‚ßA‚±‚Ìƒ‹[ƒ‹‚Æ‘g‚İ‡‚í‚¹‚é‚Æˆ—‚ª–Ê\n";
-	str += "@“|‚Å‚ ‚éB‚æ‚Á‚ÄÌ—p‚µ‚È‚©‚Á‚½B\n";
-
-
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_24) / 2, STR_X, GetColor(0, 0, 0), m_font_24, str.c_str());
-}
-
-void RulePage::m_draw_Other01() const
-{
-	std::string str;
-	const int POSX_HALF = Define::WIN_SIZEX / 2;
-	const int STR_Y = 24;
-	const int STR_X = Define::WIN_SIZEY * 17 / 80;
-
-	//ƒ^ƒCƒgƒ‹•\¦
-	str = "Ì—p‚³‚ê‚Ä‚¢‚È‚¢ƒ‹[ƒ‹‚Æ•â‘« 2 / 3";
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
-
-	//•¶Í
-	str = "";
-	str += "Eˆø‚«•ª‚¯\n";
-	str += "@‚±‚ÌƒQ[ƒ€‚Å‚Í“¯ˆê”Õ–Ê‚ª4‰ñˆÈãŒ»‚ê‚½‚Æ‚«ˆø‚«•ª‚¯‚Æ‚·‚éƒ‹[\n";
-	str += "@ƒ‹‚ª‘¶İ‚·‚é‚ªA‚±‚Ìƒ‹[ƒ‹‚Í‚±‚ÌƒQ[ƒ€ƒIƒŠƒWƒiƒ‹‚Ì‚à‚Ì‚Å‚ \n";
-	str += "@‚éB‚±‚Ìƒ‹[ƒ‹‚ª‘¶İ‚µ‚È‚¢ê‡A‘Îí‚ğ–³ŒÀ‚É‘±‚¯‚é‚±‚Æ‚ª‚Å‚«\n";
-	str += "@‚é‚½‚ßA‚»‚ê‚ğ–h‚®‚½‚ß‚É‚±‚Ìƒ‹[ƒ‹‚ğ’Ç‰Á‚µ‚½B\n";
-	str += "\n";
-	str += "EÑ”z 1 / 2\n";
-	str += "@Ñ”z‚ğ‡’†ˆê“x‚µ‚©g‚¤‚±‚Æ‚ª‚Å‚«‚È‚¢‚Æ‚¢‚¤ƒ‹[ƒ‹‚à‚±‚ÌƒQ[\n";
-	str += "@ƒ€ƒIƒŠƒWƒiƒ‹‚Ì‚à‚Ì‚Å‚ ‚éB“–‰‚ÍÑ”z‚ğ‡’†‰½“x‚Å‚àg‚¤‚±‚Æ\n";
-	str += "@‚Å‚«‚éƒ‹[ƒ‹‚ğÌ—p‚·‚é—\’è‚¾‚Á‚½‚ªA”s–k–Ú‘O‚Ìó‹µ‚©‚ç—eˆÕ‚É\n";
-	str += "@ˆø‚«•ª‚¯‚É‚¿‚Ş‚±‚Æ‚ª‚Å‚«‚é‚½‚ßAƒQ[ƒ€«‚ğ‘å‚«‚­‘¹‚È‚¤‚à\n";
-	str += "@‚Ì‚Æ‚µ‚ÄÌ—p‚µ‚È‚©‚Á‚½B";
-
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_24) / 2, STR_X, GetColor(0, 0, 0), m_font_24, str.c_str());
-}
-
-void RulePage::m_draw_Other02() const
-{
-	std::string str;
-	const int POSX_HALF = Define::WIN_SIZEX / 2;
-	const int STR_Y = 24;
-	const int STR_X = Define::WIN_SIZEY * 17 / 80;
-
-	//ƒ^ƒCƒgƒ‹•\¦
-	str = "Ì—p‚³‚ê‚Ä‚¢‚È‚¢ƒ‹[ƒ‹‚Æ•â‘« 3 / 3";
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
-
-	//•¶Í
-	str = "";
-	str += "EÑ”z 2 / 2\n";
-	str += "E‚±‚ÌƒQ[ƒ€‚Å‚ÍA—¼è‚Ì”š‚ğ“ü‚ê‘Ö‚¦‚é‚¾‚¯‚ÌÑ”z‚ğ‹Ö~‚µ‚Ä‚¢\n";
-	str += "@‚éB‚±‚ê‚ÍˆÀˆÕ‚ÈŠÔ‰Ò‚¬‚ğ–h‚®‚½‚ß‚Å‚ ‚éB(‚Ô‚Á‚¿‚á‚¯‚é‚ÆA¶\n";
-	str += "@‰E‚Ì”š‚ğ¸‡‚Éƒ\[ƒg‚µ‚Ä‚¢‚é‚Ì‚Å“ü‚ê‘Ö‚¦‚ª‚Å‚«‚é‚ÆƒvƒƒOƒ‰\n";
-	str += "@ƒ€‚ª–Ê“|‚É‚È‚é‚Ì‚ÅÌ—p‚µ‚½‚­‚È‚©‚Á‚½B)\n";
-	str += "\n";
-	str += "E•â‘«\n";
-	str += "@‚±‚ÌƒQ[ƒ€‚Ìƒ^ƒCƒgƒ‹‚Íuƒ}ƒbƒ`–_ƒQ[ƒ€v‚Æ‚µ‚Ä‚ ‚é‚ªA’nˆæ‚É\n";
-	str += "@‚æ‚Á‚Ä‚±‚Ìè—V‚Ñ‚ÌŒÄ‚Ñ•û‚Íˆá‚¤‚æ‚¤‚Å‚ ‚éBuí‘ˆvuŠ„‚è‚Î‚µv\n";
-	str += "@uƒuƒ‰ƒtƒBƒ“v‚È‚Ç—lX‚Å‚ ‚éB‚È‚¨A§ìÒ‚Ì’nŒ³‚Å‚Íí‘ˆ‚ÆŒÄ‚Î\n";
-	str += "@‚ê‚é‚±‚Æ‚ª‘½‚©‚Á‚½B\n";
-
-	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_24) / 2, STR_X, GetColor(0, 0, 0), m_font_24, str.c_str());
-}
-
-void RulePage::m_setFunc()
-{
-	m_draw_page.push_back(&RulePage::m_draw_BaseRule00);
-	m_draw_page.push_back(&RulePage::m_draw_BaseRule01);
-	m_draw_page.push_back(&RulePage::m_draw_Saihai);
-	m_draw_page.push_back(&RulePage::m_draw_Self);
-	m_draw_page.push_back(&RulePage::m_draw_Mod5);
-	m_draw_page.push_back(&RulePage::m_draw_Senryaku00);
-	m_draw_page.push_back(&RulePage::m_draw_Senryaku01);
-	m_draw_page.push_back(&RulePage::m_draw_Other00);
-	m_draw_page.push_back(&RulePage::m_draw_Other01);
-	m_draw_page.push_back(&RulePage::m_draw_Other02);
-}
+ï»¿//#include "RulePage.h"
+//#include"Font.h"
+//#include"DxLib.h"
+//#include "Define.h"
+//
+//RulePage::RulePage()
+//{
+//	m_setFunc();
+//
+//	m_font_24 = myLoadFont("data/font/PixelMplus10_size24.dft");
+//	m_font_32 = myLoadFont("data/font/PixelMplus10_size32.dft");
+//}
+//
+//void RulePage::draw(int _page) const
+//{
+//	if (m_draw_page.size() <= _page) { _page = (int)m_draw_page.size() - 1; }
+//	if (0 > _page) { _page = 0; }
+//	(this->*m_draw_page[_page])();
+//}
+//
+//int RulePage::getPageNum() const
+//{
+//	return (int)m_draw_page.size();
+//}
+//
+//void RulePage::m_draw_BaseRule00() const
+//{
+//	std::string str;
+//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//	const int STR_Y = 24;
+//	const int STR_X = Define::WIN_SIZEY * 17 / 80;
+//
+//	//ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤º
+//	str ="åŸºæœ¬ãƒ«ãƒ¼ãƒ« 1 / 2";
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//
+//	//æ–‡ç« 
+//	str = "";
+//	str += "1. å…ˆæ‰‹ã€å¾Œæ‰‹ã‚’æ±ºã‚ã‚‹ã€‚ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€\n";
+//	str += "\n";
+//	str += "2. ä¸¡ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¯ä¸¡æ‰‹ã®äººå·®ã—æŒ‡ã‚’ç«‹ã¦ã‚‹ã€‚ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€\n";
+//	str += "\n";
+//	str += "3. å…ˆæ‰‹ç•ªã‹ã‚‰ç›¸æ‰‹ã®æ‰‹ã®ã„ãšã‚Œã‹ä¸€ã¤ã‚’é¸æŠã—ã¦æ”»æ’ƒã™ã‚‹ã€‚æ”»æ’ƒã•ã‚ŒãŸ\n";
+//	str += "   æ‰‹ã¯ã€é¸æŠã—ãŸæ‰‹ã®æŒ‡æœ¬æ•°åˆ†è¿½åŠ ã§æŒ‡ã‚’ç«‹ã¦ã‚‹ã€‚ ï¼ˆä¾‹ãˆã°3æœ¬æŒ‡ãŒç«‹\n";
+//	str += "   ã£ãŸæ‰‹ã§ç›¸æ‰‹ã®æŒ‡ãŒ 1æœ¬ç«‹ã£ã¦ã„ã‚‹æ‰‹ã‚’æ”»æ’ƒã—ãŸæ™‚ã€ç›¸æ‰‹ã¯æŒ‡ã‚’ï¼”æœ¬\n";
+//	str += "   ç«‹ã¦ã‚‹ã€‚)\n";
+//	str += "   0 ã®æ‰‹ã¯æ”»æ’ƒã™ã‚‹ã“ã¨ãŒã§ããšã€ã¾ãŸæ”»æ’ƒå¯¾è±¡ã«é¸æŠã™ã‚‹ã“ã¨ãŒã§ã\n";
+//	str += "   ãªã„ã€‚\n";
+//	str += "\n";
+//	str += "4. æ”»æ’ƒã«ã‚ˆã£ã¦ã€ç«‹ã¦ãŸæŒ‡ã®æ•°ãŒ5ä»¥ä¸Šã¨ãªã‚‹æ™‚ãã®æ‰‹ã¯æ¶ˆæ»…(ç«‹ã¦ãŸæŒ‡\n";
+//	str += "   ã‚’ã™ã¹ã¦æŠ˜ã‚ŠãŸãŸã‚€)ã™ã‚‹ã€‚\n";
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_24) / 2, STR_X, GetColor(0, 0, 0), m_font_24, str.c_str());
+//}
+//
+//void RulePage::m_draw_BaseRule01() const
+//{
+//	std::string str;
+//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//	const int STR_Y = 24;
+//	const int STR_X = Define::WIN_SIZEY * 17 / 80;
+//
+//	//ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤º
+//	str = "åŸºæœ¬ãƒ«ãƒ¼ãƒ« 2 / 2";
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//
+//	//æ–‡ç« 
+//	str = "";
+//	str = "5. ç›¸æ‰‹ã®æ‰‹ã‚’ã™ã¹ã¦æ¶ˆæ»…ã•ã›ãŸæ™‚ã€å‹åˆ©ã¨ãªã‚‹ã€‚ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ \n";
+//	str += "\n";
+//	str += "6. åŒä¸€ç›¤é¢ãŒ4å›ä»¥ä¸Šç¾ã‚ŒãŸã¨ãã€åƒæ—¥æ‰‹ã¨ã—ã¦å¼•ãåˆ†ã‘ã¨ãªã‚‹ã€‚åŒä¸€\n";
+//	str += "   ã®ç›¤é¢ãŒç¾ã‚ŒãŸã¨ãã¯ã€ç”»é¢å·¦ã«å­˜åœ¨ã™ã‚‹ãƒ­ã‚°ã®è‰²ãŒå¤‰åŒ–ã™ã‚‹ãŸã‚ã€\n";
+//	str += "   ãã‚Œã‚’ç”¨ã„ã¦åˆ¤æ–­ã™ã‚‹ã¨ã‚ˆã„ã€‚\n";
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_24) / 2, STR_X, GetColor(0, 0, 0), m_font_24, str.c_str());
+//}
+//
+//void RulePage::m_draw_Saihai() const
+//{
+//	std::string str;
+//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//
+//	//ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤º
+//	str = "ãƒ­ãƒ¼ã‚«ãƒ«ãƒ«ãƒ¼ãƒ«ï¼šé‡‡é…";
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//
+//	//æ–‡ç« 
+//	str = "";
+//	str += "æ”»æ’ƒã®å¤‰ã‚ã‚Šã«è¡Œã†ã“ã¨ãŒã§ãã‚‹è¡Œå‹•ã€‚\n\n";
+//	str += "æŒ‡ã®åˆè¨ˆæœ¬æ•°ãŒå¤‰ã‚ã‚‰ãªã„ã‚ˆã†ã«ã€å³ã¨å·¦ã§æŒ‡ã®æ•°ã‚’\n";
+//	str += "ã‹ãˆã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚ (ä¾‹ãˆã°è‡ªåˆ†ã®æ‰‹ãŒ1ã€3ã®æ™‚ã€\n";
+//	str += "2ã€2 ã‚„ 0ã€4 ã«å¤‰æ›´ã™ã‚‹ã“ã¨ãŒã§ãã‚‹ã€‚)\n\n";
+//	str += "ãªãŠã€é‡‡é…ã¯è©¦åˆä¸­ã«ä¸€åº¦ã—ã‹è¡Œã†ã“ã¨ãŒã§ããªã„ã€‚\n";
+//	str += "ã¾ãŸå·¦å³ã®æ•°å­—ã‚’å…¥ã‚Œæ›¿ãˆã‚‹ã ã‘ã®é‡‡é…ã¯ã§ããªã„ã€‚\n";
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 17 / 80, GetColor(0, 0, 0), m_font_32, str.c_str());
+//}
+//
+//void RulePage::m_draw_Self() const
+//{
+//	std::string str;
+//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//
+//	//ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤º
+//	str = "ãƒ­ãƒ¼ã‚«ãƒ«ãƒ«ãƒ¼ãƒ«ï¼šè‡ªå‚·";
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//
+//	//æ–‡ç« 
+//	str = "";
+//	str += "æ”»æ’ƒã®éš›ã«ã€è‡ªåˆ†ã®æ‰‹ã‚’é¸æŠã—ã¦æ”»æ’ƒã™ã‚‹ã“ã¨ãŒã§ã\n";
+//	str += "ã‚‹ãƒ«ãƒ¼ãƒ«ã€‚\n";
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 17 / 80, GetColor(0, 0, 0), m_font_32, str.c_str());
+//}
+//
+//void RulePage::m_draw_Mod5() const
+//{
+//	std::string str;
+//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//	const int STR_Y = 24;
+//	const int STR_X = Define::WIN_SIZEY * 17 / 80;
+//
+//	//ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤º
+//	str = "ãƒ­ãƒ¼ã‚«ãƒ«ãƒ«ãƒ¼ãƒ«ï¼šMOD 5";
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//
+//	//æ–‡ç« 
+//	str = "";
+//	str += "æ”»æ’ƒã®éš›ã«ã€è‡ªåˆ†ã®æ‰‹ã‚’é¸æŠã—ã¦æ”»æ’ƒã™ã‚‹ã“ã¨ãŒã§ã\n";
+//	str += "æ”»æ’ƒã®æ™‚ã€5ã‚’ä¸Šå›ã£ãŸãªã‚‰ã°å‰°ä½™ã‚’ã¨ã‚‹ãƒ«ãƒ¼ãƒ«ã€‚ ã€€\n\n";
+//	str += "ä¾‹ãˆã°3ã®æ‰‹ã§4ã‚’æ”»æ’ƒã—ãŸå ´åˆã€æ”»æ’ƒã•ã‚ŒãŸæ‰‹ã¯ 2 \n";
+//	str += "3 + 4 = 7,7 mod 5 = 2 ã¨ãªã‚‹ã€‚\n\n";
+//
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, STR_X, GetColor(0, 0, 0), m_font_32, str.c_str());
+//}
+//
+//void RulePage::m_draw_Senryaku00() const
+//{
+//	std::string str;
+//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//	const int STR_Y = 24;
+//	const int STR_X = Define::WIN_SIZEY * 17 / 80;
+//
+//	//ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤º
+//	str = "æˆ¦ç•¥æŒ‡å— 1 / 2";
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//
+//	//æ–‡ç« 
+//	str = "";
+//	str += "ã“ã®ã‚²ãƒ¼ãƒ ã«ãŠã„ã¦å¤§äº‹ãªæˆ¦è¡“ã¯ä»¥ä¸‹ã®é€šã‚Šã§ã‚ã‚‹ã€‚ã€€ã€€ã€€ã€€ã€€ã€€ã€€ \n";
+//	str += "\n";
+//	str += "ãƒ»[0,1]ã«ã—ãªã„\n";
+//	str += "\n";
+//	str += "ãƒ»é‡‡é…ã¯è‡ªåˆ†ã®æ‰‹ãŒç‰‡æ‰‹ã«ãªã£ãŸæ™‚ã®ã¿ä½¿ç”¨ã™ã‚‹\n";
+//	str += "\n";
+//	str += "ãƒ»ç›¸æ‰‹ãŒ[0,1]ã®æ™‚ã¯ã€è‡ªå‚·ãªã©ã‚’é§†ä½¿ã—ã¦ãã‚Œã‚’ã‚­ãƒ¼ãƒ—ã™ã‚‹\n";
+//	str += "\n";
+//	str += "ã“ã‚Œã‚‰ã®æˆ¦ç•¥ã‚’ç”¨ã„ã‚‹ã“ã¨ã§NORMALã¾ã§ã®CPUã«ã¯ç°¡å˜ã«å‹åˆ©ã™ã‚‹ã“ã¨\n";
+//	str += "ãŒã§ãã‚‹ã ã‚ã†ã€‚HARDä»¥ä¸Šã®CPUã«å‹åˆ©ã—ãŸã„å ´åˆã€æœ€é«˜é›£æ˜“åº¦ã®CPU\n";
+//	str += "ã¨æˆ¦ã„ãã®è¡Œå‹•ã‚’çœŸä¼¼ã™ã‚‹ã“ã¨ãŒã‚ˆã„ã ã‚ã†ã€‚(æˆ¦ç•¥æŒ‡å—æ”¾æ£„)\n";
+//
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_24) / 2, STR_X, GetColor(0, 0, 0), m_font_24, str.c_str());
+//}
+//
+//void RulePage::m_draw_Senryaku01() const
+//{
+//	std::string str;
+//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//	const int STR_Y = 24;
+//	const int STR_X = Define::WIN_SIZEY * 17 / 80;
+//
+//	//ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤º
+//	str = "æˆ¦ç•¥æŒ‡å— 2 / 2";
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//
+//	//æ–‡ç« 
+//	str = "";
+//	str += "ãŸã ã€ã¶ã£ã¡ã‚ƒã‘ã¦ã—ã¾ã†ã¨ã“ã®ã‚²ãƒ¼ãƒ ã«ã¯æ•°å¤šãã®æ¬ é™¥ãŒã‚ã‚‹ã€‚ã\n";
+//	str += "ã®ä¸€ã¤ãŒMod 5ãƒ«ãƒ¼ãƒ«ã‚’æ¡ç”¨ã—ãªã„å ´åˆã€å…ˆæ‰‹å¿…å‹ã€å¾Œæ‰‹å¿…å‹ã§ã‚ã‚‹ã“\n";
+//	str += "ã¨ã ã€‚ãã®ãŸã‚ã€å¸¸ã«æœ€å–„æ‰‹ã‚’é¸ã³ç¶šã‘ã‚‹IMPOSSIBLEã®CPUã«ã¯ã€ã‚ãª\n";
+//	str += "ãŸãŒå¸¸ã«æœ€å–„æ‰‹ã‚’é¸æŠã—ã¦ã‚‚å‹åˆ©ã™ã‚‹ã“ã¨ãŒã§ããªã„å ´åˆãŒã‚ã‚‹ã€‚\n";
+//	str += "\n";
+//	str += "ã‚‚ã†ä¸€ã¤ã¯MOD 5ã®ãƒ«ãƒ¼ãƒ«ã‚’é©ç”¨ã—ãŸå ´åˆã€ä¸¡è€…ãŒæœ€å–„æ‰‹ã‚’é¸ã³ç¶šã‘ã‚‹\n";
+//	str += "é™ã‚Šåƒæ—¥æ‰‹ã¨ãªã£ã¦ã—ã¾ã†ã“ã¨ã§ã‚ã‚‹ã€‚ãã®ãŸã‚ã€ã“ã®å ´åˆã‚‚æœ€é«˜é›£\n";
+//	str += "æ˜“åº¦ã®CPUã«ã¯å‹åˆ©ã™ã‚‹ã“ã¨ãŒã§ããªã„ã€‚\n";
+//	str += "\n";
+//	str += "ãã®ãŸã‚ã€æˆ¦ç•¥ã‚’ã„ã‹ã«æœ€é©åŒ–ã—ãŸã¨ã—ã¦ã‚‚å¿…å‹ã¨ã¯ãªã‚‰ãªã„ã€‚æ‰€è©®\n";
+//	str += "å­ã©ã‚‚ã®æ‰‹éŠã³ã¨ã„ã†ã“ã¨ã§ã‚ã‚‹......ã€‚";
+//
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_24) / 2, STR_X, GetColor(0, 0, 0), m_font_24, str.c_str());
+//}
+//
+//void RulePage::m_draw_Other00() const
+//{
+//	std::string str;
+//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//	const int STR_Y = 24;
+//	const int STR_X = Define::WIN_SIZEY * 17 / 80;
+//
+//	//ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤º
+//	str = "æ¡ç”¨ã•ã‚Œã¦ã„ãªã„ãƒ«ãƒ¼ãƒ«ã¨è£œè¶³ 1 / 3";
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//
+//	//æ–‡ç« 
+//	str = "";
+//	str += "ãƒ»åˆ†èº«\n";
+//	str += "ã€€æŒ‡ãŒç«‹ã£ã¦ã„ã‚‹æ‰‹ãŒç‰‡æ‰‹ã®ã¿ã®å ´åˆã€å›æ•°åˆ¶é™ãªãé‡‡é…ã‚’ã™ã‚‹ã“ã¨\n";
+//	str += "ã€€ãŒã§ãã‚‹ãƒ«ãƒ¼ãƒ«ã€‚ã“ã®ãƒ«ãƒ¼ãƒ«ãŒå­˜åœ¨ã™ã‚‹å ´åˆã€å¼•ãåˆ†ã‘ã«æŒã¡è¾¼ã‚€\n";
+//	str += "ã€€ã“ã¨ãŒéå¸¸ã«å®¹æ˜“ã«ãªã‚‹ãŸã‚ã€æ¡ç”¨ã—ãªã‹ã£ãŸã€‚\n";
+//	str += "\n";
+//	str += "ãƒ»ï¼–ä»¥ä¸Šã§æ¶ˆæ»…\n";
+//	str += "ã€€æŒ‡ã®æœ¬æ•°ãŒ6æœ¬ã‚’è¶…ãˆãŸã¨ãã«ã€æ¶ˆæ»…ã™ã‚‹ãƒ«ãƒ¼ãƒ«ã€‚ã“ã®ã‚²ãƒ¼ãƒ ã§ã¯\n";
+//	str += "ã€€MOD 5ãƒ«ãƒ¼ãƒ«ã‚’æ¡ç”¨ã—ãŸãŸã‚ã€ã“ã®ãƒ«ãƒ¼ãƒ«ã¨çµ„ã¿åˆã‚ã›ã‚‹ã¨å‡¦ç†ãŒé¢\n";
+//	str += "ã€€å€’ã§ã‚ã‚‹ã€‚ã‚ˆã£ã¦æ¡ç”¨ã—ãªã‹ã£ãŸã€‚\n";
+//
+//
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_24) / 2, STR_X, GetColor(0, 0, 0), m_font_24, str.c_str());
+//}
+//
+//void RulePage::m_draw_Other01() const
+//{
+//	std::string str;
+//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//	const int STR_Y = 24;
+//	const int STR_X = Define::WIN_SIZEY * 17 / 80;
+//
+//	//ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤º
+//	str = "æ¡ç”¨ã•ã‚Œã¦ã„ãªã„ãƒ«ãƒ¼ãƒ«ã¨è£œè¶³ 2 / 3";
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//
+//	//æ–‡ç« 
+//	str = "";
+//	str += "ãƒ»å¼•ãåˆ†ã‘\n";
+//	str += "ã€€ã“ã®ã‚²ãƒ¼ãƒ ã§ã¯åŒä¸€ç›¤é¢ãŒ4å›ä»¥ä¸Šç¾ã‚ŒãŸã¨ãå¼•ãåˆ†ã‘ã¨ã™ã‚‹ãƒ«ãƒ¼\n";
+//	str += "ã€€ãƒ«ãŒå­˜åœ¨ã™ã‚‹ãŒã€ã“ã®ãƒ«ãƒ¼ãƒ«ã¯ã“ã®ã‚²ãƒ¼ãƒ ã‚ªãƒªã‚¸ãƒŠãƒ«ã®ã‚‚ã®ã§ã‚\n";
+//	str += "ã€€ã‚‹ã€‚ã“ã®ãƒ«ãƒ¼ãƒ«ãŒå­˜åœ¨ã—ãªã„å ´åˆã€å¯¾æˆ¦ã‚’ç„¡é™ã«ç¶šã‘ã‚‹ã“ã¨ãŒã§ã\n";
+//	str += "ã€€ã‚‹ãŸã‚ã€ãã‚Œã‚’é˜²ããŸã‚ã«ã“ã®ãƒ«ãƒ¼ãƒ«ã‚’è¿½åŠ ã—ãŸã€‚\n";
+//	str += "\n";
+//	str += "ãƒ»é‡‡é… 1 / 2\n";
+//	str += "ã€€é‡‡é…ã‚’è©¦åˆä¸­ä¸€åº¦ã—ã‹ä½¿ã†ã“ã¨ãŒã§ããªã„ã¨ã„ã†ãƒ«ãƒ¼ãƒ«ã‚‚ã“ã®ã‚²ãƒ¼\n";
+//	str += "ã€€ãƒ ã‚ªãƒªã‚¸ãƒŠãƒ«ã®ã‚‚ã®ã§ã‚ã‚‹ã€‚å½“åˆã¯é‡‡é…ã‚’è©¦åˆä¸­ä½•åº¦ã§ã‚‚ä½¿ã†ã“ã¨\n";
+//	str += "ã€€ã§ãã‚‹ãƒ«ãƒ¼ãƒ«ã‚’æ¡ç”¨ã™ã‚‹äºˆå®šã ã£ãŸãŒã€æ•—åŒ—ç›®å‰ã®çŠ¶æ³ã‹ã‚‰å®¹æ˜“ã«\n";
+//	str += "ã€€å¼•ãåˆ†ã‘ã«æŒã¡è¾¼ã‚€ã“ã¨ãŒã§ãã‚‹ãŸã‚ã€ã‚²ãƒ¼ãƒ æ€§ã‚’å¤§ããæãªã†ã‚‚\n";
+//	str += "ã€€ã®ã¨ã—ã¦æ¡ç”¨ã—ãªã‹ã£ãŸã€‚";
+//
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_24) / 2, STR_X, GetColor(0, 0, 0), m_font_24, str.c_str());
+//}
+//
+//void RulePage::m_draw_Other02() const
+//{
+//	std::string str;
+//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//	const int STR_Y = 24;
+//	const int STR_X = Define::WIN_SIZEY * 17 / 80;
+//
+//	//ã‚¿ã‚¤ãƒˆãƒ«è¡¨ç¤º
+//	str = "æ¡ç”¨ã•ã‚Œã¦ã„ãªã„ãƒ«ãƒ¼ãƒ«ã¨è£œè¶³ 3 / 3";
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//
+//	//æ–‡ç« 
+//	str = "";
+//	str += "ãƒ»é‡‡é… 2 / 2\n";
+//	str += "ãƒ»ã“ã®ã‚²ãƒ¼ãƒ ã§ã¯ã€ä¸¡æ‰‹ã®æ•°å­—ã‚’å…¥ã‚Œæ›¿ãˆã‚‹ã ã‘ã®é‡‡é…ã‚’ç¦æ­¢ã—ã¦ã„\n";
+//	str += "ã€€ã‚‹ã€‚ã“ã‚Œã¯å®‰æ˜“ãªæ™‚é–“ç¨¼ãã‚’é˜²ããŸã‚ã§ã‚ã‚‹ã€‚(ã¶ã£ã¡ã‚ƒã‘ã‚‹ã¨ã€å·¦\n";
+//	str += "ã€€å³ã®æ•°å­—ã‚’æ˜‡é †ã«ã‚½ãƒ¼ãƒˆã—ã¦ã„ã‚‹ã®ã§å…¥ã‚Œæ›¿ãˆãŒã§ãã‚‹ã¨ãƒ—ãƒ­ã‚°ãƒ©\n";
+//	str += "ã€€ãƒ ãŒé¢å€’ã«ãªã‚‹ã®ã§æ¡ç”¨ã—ãŸããªã‹ã£ãŸã€‚)\n";
+//	str += "\n";
+//	str += "ãƒ»è£œè¶³\n";
+//	str += "ã€€ã“ã®ã‚²ãƒ¼ãƒ ã®ã‚¿ã‚¤ãƒˆãƒ«ã¯ã€Œãƒãƒƒãƒæ£’ã‚²ãƒ¼ãƒ ã€ã¨ã—ã¦ã‚ã‚‹ãŒã€åœ°åŸŸã«\n";
+//	str += "ã€€ã‚ˆã£ã¦ã“ã®æ‰‹éŠã³ã®å‘¼ã³æ–¹ã¯é•ã†ã‚ˆã†ã§ã‚ã‚‹ã€‚ã€Œæˆ¦äº‰ã€ã€Œå‰²ã‚Šã°ã—ã€\n";
+//	str += "ã€€ã€Œãƒ–ãƒ©ãƒ•ã‚£ãƒ³ã€ãªã©æ§˜ã€…ã§ã‚ã‚‹ã€‚ãªãŠã€åˆ¶ä½œè€…ã®åœ°å…ƒã§ã¯æˆ¦äº‰ã¨å‘¼ã°\n";
+//	str += "ã€€ã‚Œã‚‹ã“ã¨ãŒå¤šã‹ã£ãŸã€‚\n";
+//
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_24) / 2, STR_X, GetColor(0, 0, 0), m_font_24, str.c_str());
+//}
+//
+//void RulePage::m_setFunc()
+//{
+//	m_draw_page.push_back(&RulePage::m_draw_BaseRule00);
+//	m_draw_page.push_back(&RulePage::m_draw_BaseRule01);
+//	m_draw_page.push_back(&RulePage::m_draw_Saihai);
+//	m_draw_page.push_back(&RulePage::m_draw_Self);
+//	m_draw_page.push_back(&RulePage::m_draw_Mod5);
+//	m_draw_page.push_back(&RulePage::m_draw_Senryaku00);
+//	m_draw_page.push_back(&RulePage::m_draw_Senryaku01);
+//	m_draw_page.push_back(&RulePage::m_draw_Other00);
+//	m_draw_page.push_back(&RulePage::m_draw_Other01);
+//	m_draw_page.push_back(&RulePage::m_draw_Other02);
+//}

@@ -1,76 +1,76 @@
-#pragma once
-#include "MatchGameCommon.h"
-
-class GameAnime
-{
-public:
-	GameAnime();
-	~GameAnime() = default;
-
-	void init(bool _self, bool _mod, bool _set_anime_cut = false);
-	void addAnime(const int _command);
-	void addAnimeOption(MatchField _old, MatchField _new);
-	void addAnimeOption2(MatchField _old, int _hand_cmd);
-	bool update();
-	void draw() const;
-	bool isEndTime() const;
-
-private:
-	//—ñ‹“qƒnƒbƒN‚Å’è”‚ğéŒ¾
-	enum { COMMAND_MAX = 20 };
-
-	int m_counter = 0;		//ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒJƒEƒ“ƒ^
-	int m_command = 0;		//‚Ç‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğÄ¶‚·‚é‚©‚Ç‚¤‚©‚ÌƒRƒ}ƒ“ƒh‚ğŠi”[‚·‚é
-	int m_ANIME_END_TIMES[COMMAND_MAX] = {};	//ŠeƒAƒjƒ[ƒVƒ‡ƒ“‚²‚Æ‚ÌI—¹ŠÔ‚ğŠi”[‚·‚é
-
-	bool m_self_harm = false, m_mod_rule = false;
-	int m_hand_cmd = -1;
-	MatchField m_old, m_new;
-
-	//ƒAƒjƒ[ƒVƒ‡ƒ“‚ğƒJƒbƒg‚·‚éƒtƒ‰ƒO
-	bool m_anime_cut_flag = false;
-
-	//ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹
-	int m_font_32 = 0;
-
-	//‰æ‘œƒnƒ“ƒhƒ‹
-	int m_gr_hand[6] = {};
-
-	//ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-	int m_sound_attack = 0;
-	int m_sound_start = 0;
-
-	//ŠeíƒAƒjƒ[ƒVƒ‡ƒ“
-	void m_drawAnime00() const;
-	void m_drawAnime01() const;
-	void m_drawAnime02() const;
-	void m_drawAnime03() const;
-	void m_drawAnime04() const;
-	void m_drawAnime05() const;
-	void m_drawAnime06() const;
-	void m_drawAnime07() const;
-	void m_drawAnime08() const;
-
-	void m_drawAnimeAttackBack() const;
-	void m_drawAnimeAttackOldHand() const;
-	void m_drawAnimeAttackHitHand(int _start_cnt, int _end_cnt) const;
-	void m_drawAnimeSelfAttackHitHand(int _start_cnt, int _end_cnt) const;
-	void m_drawAnimeAttackChar() const;
-	void m_drawAnimeSelfAttackChar() const;
-};
-
-/*
-UŒ‚ or Ñ”z
-
-Ñ”z
-@1è
-
-UŒ‚
-@‚Ç‚Á‚¿‚Ìè‚©?
-@‚Ç‚±‚Ö‚ÌUŒ‚‚©?
-@ŒvZŒ‹‰Ê‚Ì•\¦
-@Å“K‰»(•À‚Ñ‘Ö‚¦)
-
-*/
-
-
+ï»¿//#pragma once
+//#include "MatchGameCommon.h"
+//
+//class GameAnime
+//{
+//public:
+//	GameAnime();
+//	~GameAnime() = default;
+//
+//	void init(bool _self, bool _mod, bool _set_anime_cut = false);
+//	void addAnime(const int _command);
+//	void addAnimeOption(MatchField _old, MatchField _new);
+//	void addAnimeOption2(MatchField _old, int _hand_cmd);
+//	bool update();
+//	void draw() const;
+//	bool isEndTime() const;
+//
+//private:
+//	//åˆ—æŒ™å­ãƒãƒƒã‚¯ã§å®šæ•°ã‚’å®£è¨€
+//	enum { COMMAND_MAX = 20 };
+//
+//	int m_counter = 0;		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚«ã‚¦ãƒ³ã‚¿
+//	int m_command = 0;		//ã©ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿã™ã‚‹ã‹ã©ã†ã‹ã®ã‚³ãƒãƒ³ãƒ‰ã‚’æ ¼ç´ã™ã‚‹
+//	int m_ANIME_END_TIMES[COMMAND_MAX] = {};	//å„ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã”ã¨ã®çµ‚äº†æ™‚é–“ã‚’æ ¼ç´ã™ã‚‹
+//
+//	bool m_self_harm = false, m_mod_rule = false;
+//	int m_hand_cmd = -1;
+//	MatchField m_old, m_new;
+//
+//	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ã‚«ãƒƒãƒˆã™ã‚‹ãƒ•ãƒ©ã‚°
+//	bool m_anime_cut_flag = false;
+//
+//	//ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«
+//	int m_font_32 = 0;
+//
+//	//ç”»åƒãƒãƒ³ãƒ‰ãƒ«
+//	int m_gr_hand[6] = {};
+//
+//	//ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+//	int m_sound_attack = 0;
+//	int m_sound_start = 0;
+//
+//	//å„ç¨®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
+//	void m_drawAnime00() const;
+//	void m_drawAnime01() const;
+//	void m_drawAnime02() const;
+//	void m_drawAnime03() const;
+//	void m_drawAnime04() const;
+//	void m_drawAnime05() const;
+//	void m_drawAnime06() const;
+//	void m_drawAnime07() const;
+//	void m_drawAnime08() const;
+//
+//	void m_drawAnimeAttackBack() const;
+//	void m_drawAnimeAttackOldHand() const;
+//	void m_drawAnimeAttackHitHand(int _start_cnt, int _end_cnt) const;
+//	void m_drawAnimeSelfAttackHitHand(int _start_cnt, int _end_cnt) const;
+//	void m_drawAnimeAttackChar() const;
+//	void m_drawAnimeSelfAttackChar() const;
+//};
+//
+///*
+//æ”»æ’ƒ or é‡‡é…
+//
+//é‡‡é…
+//ã€€1æ‰‹
+//
+//æ”»æ’ƒ
+//ã€€ã©ã£ã¡ã®æ‰‹ã‹?
+//ã€€ã©ã“ã¸ã®æ”»æ’ƒã‹?
+//ã€€è¨ˆç®—çµæœã®è¡¨ç¤º
+//ã€€æœ€é©åŒ–(ä¸¦ã³æ›¿ãˆ)
+//
+//*/
+//
+//

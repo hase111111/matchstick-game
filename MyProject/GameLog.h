@@ -1,37 +1,37 @@
-#pragma once
-#include<vector>
-#include<map>
-#include<string>
-#include"MatchGameCommon.h"
-
-class GameLog
-{
-public:
-	GameLog();
-	~GameLog() = default;
-
-	//‚±‚ÌŠÖ”‚ªfalse‚ğ•Ô‚·ˆø‚«•ª‚¯‚Æ‚È‚Á‚Ä‚¢‚é
-	bool update();
-	void getFieldList(std::vector<MatchField>& _field);
-	void draw(const MatchField _field, const int _turn, const bool _player_is_first, const bool _mod_rule, const bool _self_harm_rule, const int _enemy_level) const;
-	void pushLog(std::string _log);
-	void pushLogByField(const MatchField _field);
-
-private:
-	const int m_DISPLAY_LOG_MAX;
-
-	//ƒf[ƒ^
-	std::vector<std::pair<int, std::string>> m_log;
-	std::vector<MatchField> m_field_list;
-	std::map<MatchField, int> m_field_count;
-
-	//•\¦‚·‚é•¶š‚É‚Â‚¢‚Ä‚Ìƒf[ƒ^
-	const int DISPLAY_STR = 26;
-	int which_field_display = 0;
-
-	//ƒtƒHƒ“ƒg
-	int m_font_16;
-
-	//ŠÖ”
-	void m_drawLog() const;
-};
+ï»¿//#pragma once
+//#include<vector>
+//#include<map>
+//#include<string>
+//#include"MatchGameCommon.h"
+//
+//class GameLog
+//{
+//public:
+//	GameLog();
+//	~GameLog() = default;
+//
+//	//ã“ã®é–¢æ•°ãŒfalseã‚’è¿”ã™æ™‚å¼•ãåˆ†ã‘ã¨ãªã£ã¦ã„ã‚‹
+//	bool update();
+//	void getFieldList(std::vector<MatchField>& _field);
+//	void draw(const MatchField _field, const int _turn, const bool _player_is_first, const bool _mod_rule, const bool _self_harm_rule, const int _enemy_level) const;
+//	void pushLog(std::string _log);
+//	void pushLogByField(const MatchField _field);
+//
+//private:
+//	const int m_DISPLAY_LOG_MAX;
+//
+//	//ãƒ‡ãƒ¼ã‚¿
+//	std::vector<std::pair<int, std::string>> m_log;
+//	std::vector<MatchField> m_field_list;
+//	std::map<MatchField, int> m_field_count;
+//
+//	//è¡¨ç¤ºã™ã‚‹æ–‡å­—ã«ã¤ã„ã¦ã®ãƒ‡ãƒ¼ã‚¿
+//	const int DISPLAY_STR = 26;
+//	int which_field_display = 0;
+//
+//	//ãƒ•ã‚©ãƒ³ãƒˆ
+//	int m_font_16;
+//
+//	//é–¢æ•°
+//	void m_drawLog() const;
+//};

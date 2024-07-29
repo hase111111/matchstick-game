@@ -1,27 +1,27 @@
-#pragma once
-#include <vector>
-#include "MatchGameCommon.h"
-
-class ResultDrawHand
-{
-public:
-	ResultDrawHand();
-
-	void init(const std::vector<MatchField> _list);
-	void update(const int _select);
-	void draw() const;
-
-private:
-
-	//è‚ÌƒOƒ‰ƒtƒBƒbƒNƒnƒ“ƒhƒ‹
-	int m_gr_hand[7];
-
-	//ƒtƒB[ƒ‹ƒh‚ÌƒŠƒXƒg
-	std::vector<MatchField> m_field_list;
-
-	//•\¦‚µ‚Ä‚¢‚éƒtƒB[ƒ‹ƒh
-	int m_select_field = 0;
-
-	//‰Šú‰»‚µ‚½‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
-	bool m_init_flag = false;
-};
+ï»¿//#pragma once
+//#include <vector>
+//#include "MatchGameCommon.h"
+//
+//class ResultDrawHand
+//{
+//public:
+//	ResultDrawHand();
+//
+//	void init(const std::vector<MatchField> _list);
+//	void update(const int _select);
+//	void draw() const;
+//
+//private:
+//
+//	//æ‰‹ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒãƒ³ãƒ‰ãƒ«
+//	int m_gr_hand[7];
+//
+//	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®ãƒªã‚¹ãƒˆ
+//	std::vector<MatchField> m_field_list;
+//
+//	//è¡¨ç¤ºã—ã¦ã„ã‚‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰
+//	int m_select_field = 0;
+//
+//	//åˆæœŸåŒ–ã—ãŸã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
+//	bool m_init_flag = false;
+//};

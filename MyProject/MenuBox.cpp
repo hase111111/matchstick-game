@@ -1,827 +1,827 @@
-#include "MenuBox.h"
-#include"DxLib.h"
-#include"Define.h"
-#include"Keyboard.h"
-#include"Font.h"
-#include"Sound.h"
-#include"RuleParam.h"
-#include"GameParam.h"
-#include"Setting.h"
-
-MenuBox::MenuBox() : 
-	BOX_X(Define::WIN_SIZEX * 53 / 64), 
-	BOX_Y(Define::WIN_SIZEY * 3 / 32)
-{
-	//ƒtƒHƒ“ƒg‚Ìƒ[ƒh
-	m_font_32 = myLoadFont("data/font/PixelMplus10_size32.dft");
-	m_font_20 = myLoadFont("data/font/PixelMplus10_size20.dft");
-
-	//ƒTƒEƒ“ƒh‚Ìƒ[ƒh
-	m_sound_select = Sound::getIns()->myLoadSound("data/sound/selecting.mp3");
-	m_sound_select2 = Sound::getIns()->myLoadSound("data/sound/selecting2.mp3");
-	m_sound_cancel = Sound::getIns()->myLoadSound("data/sound/cancel.mp3");
-
-	//İ’è‚Ìƒ[ƒh
-	m_updateSetting();
-}
-
-bool MenuBox::update(enumScene& _scene, Parameter& _param)
-{
-	//ƒV[ƒ“Ø‚è‘Ö‚¦‚Ìˆ—
-	if (Keyboard::getIns()->getPressingCount(KEY_INPUT_DOWN) == 1 && (Keyboard::getIns()->getPressingCount(KEY_INPUT_LCONTROL) > 0 || Keyboard::getIns()->getPressingCount(KEY_INPUT_RCONTROL) > 0)) 
-	{
-		PlaySoundMem(m_sound_select, DX_PLAYTYPE_BACK);	//‘I‘ğ‰¹‚ğ–Â‚ç‚·
-		m_counter++;
-		m_command_counter = 0;
-
-		m_updateSetting();	//İ’è‚ğ“Ç‚İ‚İ‚È‚¨‚·
-		m_resetReplayFile();//ƒtƒ@ƒCƒ‹‚ğƒAƒ“ƒ[ƒh‚·‚é
-	}
-	else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_UP) == 1 && (Keyboard::getIns()->getPressingCount(KEY_INPUT_LCONTROL) > 0 || Keyboard::getIns()->getPressingCount(KEY_INPUT_RCONTROL) > 0)) 
-	{
-		PlaySoundMem(m_sound_select, DX_PLAYTYPE_BACK);	//‘I‘ğ‰¹‚ğ–Â‚ç‚·
-		m_counter += m_MENU_NUM - 1;
-		m_command_counter = 0;
-
-		m_updateSetting();	//İ’è‚ğ“Ç‚İ‚İ‚È‚¨‚·
-		m_resetReplayFile();//ƒtƒ@ƒCƒ‹‚ğƒAƒ“ƒ[ƒh‚·‚é
-	}
-	//‰ºƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚Æ‚«
-	else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_DOWN) == 1) 
-	{
-		PlaySoundMem(m_sound_select, DX_PLAYTYPE_BACK);	//‘I‘ğ‰¹‚ğ–Â‚ç‚·
-
-		m_command_counter += 1;	//€–Ú‚ğ•ÏX
-
-		//‘Îí‚Ì‰º‚ÉˆÚ“®
-		if (m_command_counter > 5) 
-		{
-			m_counter += 1;
-			m_command_counter = 0;
-
-			m_updateSetting();	//İ’è‚ğ“Ç‚İ‚İ‚È‚¨‚·
-			m_resetReplayFile();//ƒtƒ@ƒCƒ‹‚ğƒAƒ“ƒ[ƒh‚·‚é
-		}
-
-		//€–Ú‚Ì”‚ª­‚È‚¢ƒŠƒvƒŒƒC‚Ì‚½‚ß‚Ìˆ—
-		if (m_counter % m_MENU_NUM == 2 && m_command_counter % 6 >= 4) 
-		{
-			m_counter += 1;
-			m_command_counter = 0;
-
-			m_updateSetting();	//İ’è‚ğ“Ç‚İ‚İ‚È‚¨‚·
-			m_resetReplayFile();//ƒtƒ@ƒCƒ‹‚ğƒAƒ“ƒ[ƒh‚·‚é
-		}
-	}
-	//ãƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚Æ‚«
-	else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_UP) == 1) 
-	{
-		PlaySoundMem(m_sound_select, DX_PLAYTYPE_BACK);	//‘I‘ğ‰¹‚ğ–Â‚ç‚·
-
-		m_command_counter -= 1;	//€–Ú‚ğ•ÏX
-
-		//‘Îí‚Ìã‚ÉˆÚ“®
-		if (m_command_counter < 0) 
-		{
-			m_counter += m_MENU_NUM - 1;
-			m_command_counter = 5;
-
-			m_updateSetting();	//İ’è‚ğ“Ç‚İ‚İ‚È‚¨‚·
-			m_resetReplayFile();//ƒtƒ@ƒCƒ‹‚ğƒAƒ“ƒ[ƒh‚·‚é
-		}
-
-		//€–Ú‚Ì”‚ª­‚È‚¢ƒŠƒvƒŒƒC‚Ì‚½‚ß‚Ìˆ—
-		if (m_counter % m_MENU_NUM == 2 && m_command_counter % 6 >= 4)
-		{
-			m_command_counter = 3;
-		}
-	}
-
-	//¶‰EƒL[‚É‚æ‚éˆ—
-	if (Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) == 1) 
-	{
-		//€–ÚvsCPU‚ğ‘I‘ğ’†
-		if (m_counter % m_MENU_NUM == 0)
-		{
-			PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);	//‘I‘ğ‰¹‚ğ–Â‚ç‚·
-
-			if (m_command_counter % m_BATTLE_NUM == 1) { m_battle_first += 1; }					//æsƒvƒŒƒCƒ„[
-			else if (m_command_counter % m_BATTLE_NUM == 2) { m_battle_cpu += 1; }				//CPU
-			else if (m_command_counter % m_BATTLE_NUM == 3) { m_battle_saihai = !m_battle_saihai; }	//Ñ”z
-			else if (m_command_counter % m_BATTLE_NUM == 4) { m_battle_self = !m_battle_self; }	//©
-			else if (m_command_counter % m_BATTLE_NUM == 5) { m_battle_mod = !m_battle_mod; }	//MOD 5
-		}
-		//€–ÚƒŠƒvƒŒƒC‚ğ‘I‘ğ’†
-		else if (m_counter % m_MENU_NUM == 2) 
-		{
-			if (m_command_counter % 4 == 1 && m_file_load_flag == true)
-			{
-				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);	//‘I‘ğ‰¹‚ğ–Â‚ç‚·
-
-				m_file_select++;
-			}
-		}
-		//€–Úİ’è‚ğ‘I‘ğ’†
-		else if (m_counter % m_MENU_NUM == 3)
-		{
-			//‰¹—Ê
-			if (m_command_counter % m_BATTLE_NUM == 2)
-			{
-				m_setting_vol += 5;
-				m_setting_vol = (m_setting_vol > 100) ? 100 : m_setting_vol;
-
-				//‰¹—Ê‚ğ‰¼İ’è‚µ‚ÄÄ¶
-				Sound::getIns()->changeVolume(m_setting_vol);
-				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
-			}
-			//ƒEƒBƒ“ƒhƒEƒ‚[ƒh
-			else if (m_command_counter % m_BATTLE_NUM == 3)
-			{
-				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
-
-				m_setting_win_ful = !m_setting_win_ful;
-			}
-			//ƒAƒjƒ‚ğƒJƒbƒg
-			else if (m_command_counter % m_BATTLE_NUM == 4)
-			{
-				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
-
-				m_setting_anime_cut = !m_setting_anime_cut;
-			}
-		}
-	}
-	else if(Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) == 1) 
-	{
-		//€–ÚvsCPU‚ğ‘I‘ğ’†
-		if (m_counter % m_MENU_NUM == 0)
-		{
-			PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);	//‘I‘ğ‰¹‚ğ–Â‚ç‚·
-
-			if (m_command_counter % m_BATTLE_NUM == 1) { m_battle_first += 2; }					//æsƒvƒŒƒCƒ„[
-			else if (m_command_counter % m_BATTLE_NUM == 2) { m_battle_cpu += 3; }				//CPU
-			else if (m_command_counter % m_BATTLE_NUM == 3) { m_battle_saihai = !m_battle_saihai;  }	//Ñ”z
-			else if (m_command_counter % m_BATTLE_NUM == 4) { m_battle_self = !m_battle_self; }	//©
-			else if (m_command_counter % m_BATTLE_NUM == 5) { m_battle_mod = !m_battle_mod; }	//MOD 5
-		}
-		//€–ÚƒŠƒvƒŒƒC‚ğ‘I‘ğ’†
-		else if (m_counter % m_MENU_NUM == 2)
-		{
-			if (m_command_counter % 4 == 1 && m_file_load_flag == true)
-			{
-				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);	//‘I‘ğ‰¹‚ğ–Â‚ç‚·
-
-				m_file_select += (int)m_file_list.size() - 1;
-			}
-		}
-		//€–Úİ’è‚ğ‘I‘ğ’†
-		else if (m_counter % m_MENU_NUM == 3)
-		{
-			//‰¹—Ê
-			if (m_command_counter % m_BATTLE_NUM == 2) 
-			{
-				m_setting_vol -= 5;
-				m_setting_vol = (m_setting_vol < 0) ? 0 : m_setting_vol;
-
-				//‰¹—Ê‚ğ‰¼İ’è‚µ‚ÄÄ¶
-				Sound::getIns()->changeVolume(m_setting_vol);
-				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
-			}
-			//ƒEƒBƒ“ƒhƒEƒ‚[ƒh
-			else if (m_command_counter % m_BATTLE_NUM == 3)
-			{
-				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
-
-				m_setting_win_ful = !m_setting_win_ful;
-			}
-			//ƒAƒjƒ‚ğƒJƒbƒg
-			else if (m_command_counter % m_BATTLE_NUM == 4)
-			{
-				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
-
-				m_setting_anime_cut = !m_setting_anime_cut;
-			}
-		}
-	}
-
-	//EscƒL[‚É‚æ‚éˆ—
-	if (Keyboard::getIns()->getPressingCount(KEY_INPUT_ESCAPE) == 1) 
-	{
-		PlaySoundMem(m_sound_cancel, DX_PLAYTYPE_BACK);
-
-		_scene = enumScene::title;
-		_param.resetParam();
-		return true;
-	}
-
-	//ZƒL[‚É‚æ‚éŒˆ’è
-	if (Keyboard::getIns()->getPressingCount(KEY_INPUT_Z) == 1) 
-	{
-		//vs CPU€–Ú‚Ìí“¬ŠJn‚ğ‘I‘ğ
-		if (m_counter % m_MENU_NUM == 0) 
-		{
-			if (m_command_counter % 6 == 0) 
-			{
-				//ƒV[ƒ“‚Ìİ’è
-				_scene = enumScene::game;
-
-				//ƒpƒ‰ƒ[ƒ^‚Ìİ’è
-				_param.resetParam();
-
-				//æè‚ÌZo
-				if (m_battle_first % 3 == 1 || (m_battle_first % 3 == 0 && GetRand(1) == 0)) { _param.setParam(GameParam::PLAYER_IS_FIRST, GameParam::TRUE_STATE); }
-				else { _param.setParam(GameParam::PLAYER_IS_FIRST, GameParam::FALSE_STATE); }
-
-				//CPUƒŒƒxƒ‹
-				if (m_battle_cpu % 4 == 0) { _param.setParam(GameParam::ENEMY_LEVEL, GameParam::ENEMY_LEVEL_EASY); }
-				else if (m_battle_cpu % 4 == 1) { _param.setParam(GameParam::ENEMY_LEVEL, GameParam::ENEMY_LEVEL_NORMAL); }
-				else if (m_battle_cpu % 4 == 2) { _param.setParam(GameParam::ENEMY_LEVEL, GameParam::ENEMY_LEVEL_HARD); }
-				else { _param.setParam(GameParam::ENEMY_LEVEL, GameParam::ENEMY_LEVEL_IMPOSSIBLE); }
-
-				//MODƒ‹[ƒ‹‚Ìİ’è
-				if (m_battle_mod == true) { _param.setParam(GameParam::MOD_RULE, GameParam::TRUE_STATE); }
-				else { _param.setParam(GameParam::MOD_RULE, GameParam::FALSE_STATE); }
-
-				//©‚Ìİ’è
-				if (m_battle_self == true) { _param.setParam(GameParam::SELF_HARM_RULE, GameParam::TRUE_STATE); }
-				else { _param.setParam(GameParam::SELF_HARM_RULE, GameParam::FALSE_STATE); }
-
-				//Ñ”z‚Ìİ’è
-				if (m_battle_saihai == true) { _param.setParam(GameParam::SAIHAI_RULE, GameParam::TRUE_STATE); }
-				else { _param.setParam(GameParam::SAIHAI_RULE, GameParam::FALSE_STATE); }
-
-				return true;
-			}
-			else if (m_command_counter % m_BATTLE_NUM == 1) { m_battle_first += 1; }					//æsƒvƒŒƒCƒ„[
-			else if (m_command_counter % m_BATTLE_NUM == 2) { m_battle_cpu += 1; }				//CPU
-			else if (m_command_counter % m_BATTLE_NUM == 3) { m_battle_saihai = !m_battle_saihai; }	//Ñ”z
-			else if (m_command_counter % m_BATTLE_NUM == 4) { m_battle_self = !m_battle_self; }	//©
-			else if (m_command_counter % m_BATTLE_NUM == 5) { m_battle_mod = !m_battle_mod; }	//MOD 5
-
-			//‘I‘ğ‰¹‚ğ–Â‚ç‚·}
-			if (m_command_counter % m_BATTLE_NUM != 0) { PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK); }
-		}
-		//ƒ‹[ƒ‹Šm”F‚Ì€–Ú‚ğ‘I‘ğ’†
-		else if (m_counter % m_MENU_NUM == 1) 
-		{
-			//ƒV[ƒ“‚Ìİ’è
-			_scene = enumScene::rule;
-
-			//ƒpƒ‰ƒ[ƒ^‚Ìİ’è
-			_param.resetParam();
-			if (m_command_counter % 6 == 0) { _param.setParam(RuleParam::WHICH_RULE, RuleParam::STATE_BASIC); }
-			else if (m_command_counter % 6 == 1) { _param.setParam(RuleParam::WHICH_RULE, RuleParam::STATE_SLEF); }
-			else if (m_command_counter % 6 == 2) { _param.setParam(RuleParam::WHICH_RULE, RuleParam::STATE_SAIHAI); }
-			else if (m_command_counter % 6 == 3) { _param.setParam(RuleParam::WHICH_RULE, RuleParam::STATE_MOD_5); }
-			else if (m_command_counter % 6 == 4) { _param.setParam(RuleParam::WHICH_RULE, RuleParam::STATE_SENRYAKU); }
-			else if (m_command_counter % 6 == 5) { _param.setParam(RuleParam::WHICH_RULE, RuleParam::STATE_OTHER); }
-
-			return true;
-		}
-		//ƒŠƒvƒŒƒC‚Ì€–Ú‚ğ‘I‘ğ’†
-		else if (m_counter % m_MENU_NUM == 2)
-		{
-			//“Ç‚İ‚İ
-			if (m_command_counter % 4 == 0 && m_file_load_flag == false) 
-			{
-				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);	//‘I‘ğ‰¹‚ğ–Â‚ç‚·
-
-				//ƒtƒ‰ƒO‚ğ—§‚Ä‚é
-				m_file_load_flag = true;
-
-				//“Ç‚İ‚Ş
-				if (m_getReplayFileList() == false) {
-					m_file_error_log = "ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚ß‚Ü‚¹‚ñ‚Å‚µ‚½";
-				}
-				else {
-					m_file_error_log = "“Ç‚İ‚İ¬Œ÷ " + std::to_string(m_file_list.size()) + "ƒtƒ@ƒCƒ‹";
-				}
-
-			}
-			//ƒtƒ@ƒCƒ‹‘I‘ğ
-			else if (m_command_counter % 4 == 1 && m_file_load_flag == true) 
-			{
-				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);	//‘I‘ğ‰¹‚ğ–Â‚ç‚·
-
-				m_file_select++;
-			}
-			//ƒtƒ@ƒCƒ‹•ªÍ
-			else if (m_command_counter % 4 == 2 && m_file_load_flag == true && m_file_list.size() != 0)
-			{
-				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);	//‘I‘ğ‰¹‚ğ–Â‚ç‚·
-
-				//ƒŠƒvƒŒƒCƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
-				std::vector<MatchField> m_field_list_param;
-				bool m_mod_rule_param = false;
-				bool m_self_harm_param = false;
-				std::string m_file_path_param = "./replay/" + m_file_list.at(m_file_select % m_file_list.size());
-
-				if (VariousFunctionsForMatchGame::inputFieldList(m_file_path_param, m_field_list_param, m_mod_rule_param, m_self_harm_param) == false)
-				{
-					m_file_error_log = "ƒŠƒvƒŒƒCƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s";
-				}
-				else 
-				{
-					//“Ç‚İ‚İ‚É¬Œ÷‚µ‚½ê‡ƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚µ‚Ä“Ç‚İ‚±‚İ
-					_scene = enumScene::result;
-
-					_param.resetParam();
-					_param.setFieldParam(m_field_list_param);
-					_param.setParam(GameParam::MOD_RULE, (m_mod_rule_param == true) ? GameParam::TRUE_STATE : GameParam::FALSE_STATE);
-					_param.setParam(GameParam::SELF_HARM_RULE, (m_self_harm_param == true) ? GameParam::TRUE_STATE : GameParam::FALSE_STATE);
-					_param.setParam(GameParam::RESULT_BACK_NUM, 1);
-					return true;
-				}
-			}
-			//ƒtƒ@ƒCƒ‹Ä¶
-			else if (m_command_counter % 4 == 3 && m_file_load_flag == true && m_file_list.size() != 0)
-			{
-				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);	//‘I‘ğ‰¹‚ğ–Â‚ç‚·
-
-				//ƒŠƒvƒŒƒCƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ
-				std::vector<MatchField> m_field_list_param;
-				bool m_mod_rule_param = false;
-				bool m_self_harm_param = false;
-				std::string m_file_path_param = "./replay/" + m_file_list.at(m_file_select % m_file_list.size());
-
-				if (VariousFunctionsForMatchGame::inputFieldList(m_file_path_param, m_field_list_param, m_mod_rule_param, m_self_harm_param) == false)
-				{
-					m_file_error_log = "ƒŠƒvƒŒƒCƒtƒ@ƒCƒ‹‚Ì“Ç‚İ‚İ‚É¸”s";
-				}
-				else
-				{
-					//“Ç‚İ‚İ‚É¬Œ÷‚µ‚½ê‡ƒpƒ‰ƒ[ƒ^‚ğƒZƒbƒg‚µ‚Ä“Ç‚İ‚±‚İ
-					_scene = enumScene::replay;
-
-					_param.resetParam();
-					_param.setFieldParam(m_field_list_param);
-					_param.setParam(GameParam::MOD_RULE, (m_mod_rule_param == true) ? GameParam::TRUE_STATE : GameParam::FALSE_STATE);
-					_param.setParam(GameParam::SELF_HARM_RULE, (m_self_harm_param == true) ? GameParam::TRUE_STATE : GameParam::FALSE_STATE);
-					return true;
-				}
-			}
-		}
-		//İ’è‚Ì€–Ú‚ğ‘I‘ğ’†
-		else if (m_counter % m_MENU_NUM == 3) 
-		{
-			//İ’è‚ğ•Û‘¶‚·‚é
-			if (m_command_counter % 6 == 0) 
-			{
-				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);	//‰¹Šy‚ğÄ¶
-				Setting::getIns()->saveSettingFile(m_setting_vol, m_setting_win_ful, m_setting_anime_cut);	//İ’è‚ğ•Û‘¶‚·‚é
-				Sound::getIns()->changeVolume(Setting::getIns()->getSettingVol());	//‰¹—Êİ’è
-			}
-			//İ’è‚ğ‰Šú‰»‚·‚é
-			else if (m_command_counter % 6 == 1) 
-			{
-				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
-				//ƒfƒtƒH‚Ìİ’è‚É–ß‚·
-				m_setting_vol = Setting::getIns()->getSettingVol(true);
-				m_setting_win_ful = Setting::getIns()->getSettingFulWin(true);
-				m_setting_anime_cut = Setting::getIns()->getSettingAnime(true);
-			}
-			//‰¹—Ê
-			else if (m_command_counter % 6 == 2)
-			{
-				m_setting_vol += 10;
-				m_setting_vol = (m_setting_vol > 100) ? (m_setting_vol % 100) : m_setting_vol;
-
-				//‰¹—Ê‚ğ‰¼İ’è‚µ‚ÄÄ¶
-				Sound::getIns()->changeVolume(m_setting_vol);
-				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
-			}
-			//ƒtƒ‹ƒXƒNƒŠ[ƒ“
-			else if (m_command_counter % 6 == 3)
-			{
-				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
-				m_setting_win_ful = !m_setting_win_ful;
-			}
-			//ƒAƒjƒ
-			else if (m_command_counter % 6 == 4)
-			{
-				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
-				m_setting_anime_cut = !m_setting_anime_cut;
-			}
-			//ƒQ[ƒ€I—¹‚ğ‘I‘ğ‚·‚é
-			else if (m_command_counter % 6 == 5)
-			{
-				m_game_end_flag = true;
-			}
-		}
-	}
-
-	return false;
-}
-
-bool MenuBox::getGameEnd() const
-{
-	return m_game_end_flag;
-}
-
-void MenuBox::draw() const
-{
-	//”wŒi‚ÌlŠp‚ğ•`‰æ‚·‚é
-	m_drawBox();
-
-	//•¶š
-	m_drawString();
-}
-
-//ˆ—ŠÖŒW‚ÌŠÖ”
-void MenuBox::m_updateSetting()
-{
-	//İ’èƒtƒ@ƒCƒ‹‚Ìƒ[ƒh
-	m_setting_vol = Setting::getIns()->getSettingVol();
-	m_setting_win_ful = Setting::getIns()->getSettingFulWin();
-	m_setting_anime_cut = Setting::getIns()->getSettingAnime();
-
-	//İ’èƒtƒ@ƒCƒ‹‚©‚ç‚Ì‰¹—Êİ’è
-	Sound::getIns()->changeVolume(Setting::getIns()->getSettingVol());	
-}
-
-void MenuBox::m_resetReplayFile()
-{
-	//ƒtƒ@ƒCƒ‹ƒŠƒXƒg‚ğ‹ó‚É‚·‚é
-	m_file_list.clear();
-
-	//ƒtƒ‰ƒO‚ğ‚Ö‚µÜ‚é
-	m_file_load_flag = false;
-
-	//‘I‘ğ’†‚Ìƒtƒ@ƒCƒ‹‚ğ0‚É
-	m_file_select = 0;
-
-	//ƒƒO‚ğ‹ó‚É‚·‚é
-	m_file_error_log = "";
-}
-
-bool MenuBox::m_getReplayFileList()
-{
-	HANDLE hFind;
-	WIN32_FIND_DATA win32fd;
-	std::string search_name = "replay\\*.dat";
-
-	hFind = FindFirstFile(search_name.c_str(), &win32fd);
-
-	if (hFind == INVALID_HANDLE_VALUE) {
-		return false;
-	}
-
-	/* w’è‚ÌƒfƒBƒŒƒNƒgƒŠˆÈ‰º‚Ìƒtƒ@ƒCƒ‹–¼‚ğƒtƒ@ƒCƒ‹‚ª‚È‚­‚È‚é‚Ü‚Åæ“¾‚·‚é */
-	do {
-		if (win32fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
-			/* ƒfƒBƒŒƒNƒgƒŠ‚Ìê‡‚Í‰½‚à‚µ‚È‚¢ */
-			printf("directory\n");
-		}
-		else {
-			/* ƒtƒ@ƒCƒ‹‚ªŒ©‚Â‚©‚Á‚½‚çVector”z—ñ‚É•Û‘¶‚·‚é */
-			m_file_list.push_back(win32fd.cFileName);
-		}
-	} while (FindNextFile(hFind, &win32fd));
-
-	FindClose(hFind);
-
-	return true;
-}
-
-//•`‰æŠÖŒW‚ÌŠÖ”
-void MenuBox::m_drawString() const
-{
-	//Ÿ•‰
-	m_drawString_VS();
-
-	//ƒ‹[ƒ‹
-	m_drawString_Rule();
-
-	//ƒŠƒvƒŒƒC
-	m_drawString_Replay();
-
-	//İ’è
-	m_drawString_String();
-}
-
-void MenuBox::m_drawString_VS() const
-{
-	const int POSX = Define::WIN_SIZEX / 10;
-	const int HALF_X = Define::WIN_SIZEX / 2;
-	const int LEFT_MIDDLE = Define::WIN_SIZEX * 26 / 64;
-	const int RIGHT_MIDDLE = Define::WIN_SIZEX * 38 / 64;
-	std::string str;
-
-	//ƒ‰ƒxƒ‹ VS CPU
-	DrawStringToHandle(POSX, Define::WIN_SIZEY * 3 / 40, "vsCPU", GetColor(0xe5, 0xe5, 0xe5), m_font_32);
-
-	//‘I‘ğ’† ‘I‘ğˆ‚Ì•\¦
-	if (m_counter % m_MENU_NUM == 0)
-	{
-		//ZƒL[‚ÅŸ•‰ŠJn
-		str = "ZƒL[‚ÅŸ•‰ŠJn";
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 11 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-		//ŒÅ’è‚³‚ê‚é•¶š‚ğ•\¦‚·‚é
-		{
-			for (int i = 0; i < 5; i++)
-			{
-				// ’†‰›‚Ì :
-				str = ":";
-				DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * (15 + 4 * i) / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-				// ‰E‚Ì < >
-				str = "<            >";
-				DrawStringToHandle(RIGHT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * (15 + 4 * i) / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-			}
-
-			//¶‘¤‚Ì•¶š
-			str = "æsƒvƒŒƒCƒ„[";
-			DrawStringToHandle(LEFT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 15 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-			str = "CPU ‚ÌƒŒƒxƒ‹";
-			DrawStringToHandle(LEFT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 19 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-			str = "Ñ”zƒ‹[ƒ‹";
-			DrawStringToHandle(LEFT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 23 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-			str = "©ƒ‹[ƒ‹";
-			DrawStringToHandle(LEFT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 27 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-			str = "MOD 5 ƒ‹[ƒ‹";
-			DrawStringToHandle(LEFT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 31 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-		}
-
-		//‘I‘ğ‚É‚æ‚Á‚Ä•ÏX‚³‚ê‚é•¶š
-		{
-			//æsƒvƒŒƒCƒ„[
-			if (m_battle_first % 3 == 0) { str = "ƒ‰ƒ“ƒ_ƒ€"; }
-			else if (m_battle_first % 3 == 1) { str = "‚ ‚È‚½"; }
-			else { str = "“G"; }
-			DrawStringToHandle(RIGHT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 15 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-			//CPU‚ÌƒŒƒxƒ‹
-			if (m_battle_cpu % 4 == 0) { str = "EASY"; }
-			else if (m_battle_cpu % 4 == 1) { str = "NORMAL"; }
-			else if (m_battle_cpu % 4 == 2) { str = "HARD"; }
-			else { str = "IMPOSSIBLE"; }
-			DrawStringToHandle(RIGHT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 19 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-			//Ñ”zƒ‹[ƒ‹
-			if (m_battle_saihai == true) { str = "ON"; }
-			else { str = "OFF"; }
-			DrawStringToHandle(RIGHT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 23 / 64, str.c_str(), (m_battle_saihai == true) ? GetColor(0xff, 0x11, 0x11) : GetColor(0x11, 0x11, 0x11), m_font_20);
-
-			//©ƒ‹[ƒ‹
-			if (m_battle_self == true) { str = "ON"; }
-			else { str = "OFF"; }
-			DrawStringToHandle(RIGHT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 27 / 64, str.c_str(), (m_battle_self == true) ? GetColor(0xff, 0x11, 0x11) : GetColor(0x11, 0x11, 0x11), m_font_20);
-
-			//MOD 5ƒ‹[ƒ‹
-			if (m_battle_mod == true) { str = "ON"; }
-			else { str = "OFF"; }
-			DrawStringToHandle(RIGHT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 31 / 64, str.c_str(), (m_battle_mod == true) ? GetColor(0xff, 0x11, 0x11) : GetColor(0x11, 0x11, 0x11), m_font_20);
-		}
-	}
-}
-
-void MenuBox::m_drawString_Rule() const
-{
-	const int POSX = Define::WIN_SIZEX / 10;
-	const int HALF_X = Define::WIN_SIZEX / 2;
-	std::string str;
-
-	if (m_counter % m_MENU_NUM == 0) {
-		DrawStringToHandle(POSX, Define::WIN_SIZEY * 24 / 40, "ƒ‹[ƒ‹Šm”F", GetColor(0xe5, 0xe5, 0xe5), m_font_32);
-	}
-	else {
-		DrawStringToHandle(POSX, Define::WIN_SIZEY * 8 / 40, "ƒ‹[ƒ‹Šm”F", GetColor(0xe5, 0xe5, 0xe5), m_font_32);
-	}
-
-	if (m_counter % m_MENU_NUM == 1) {
-		str = "Šî–{ƒ‹[ƒ‹";
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 19 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-		str = "ƒ[ƒJƒ‹ƒ‹[ƒ‹ : @@Ñ”z@@ ";
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 23 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-		str = "ƒ[ƒJƒ‹ƒ‹[ƒ‹ : @@©@@ ";
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 27 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-		str = "ƒ[ƒJƒ‹ƒ‹[ƒ‹ : @@MOD 5@@";
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 31 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-		str = "í—ªw“ì";
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 35 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-		str = "‚±‚ÌƒQ[ƒ€‚ÅÌ—p‚³‚ê‚Ä‚¢‚È‚¢ƒ‹[ƒ‹‚Æ•â‘«";
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 39 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-	}
-}
-
-void MenuBox::m_drawString_Replay() const
-{
-	const int POSX = Define::WIN_SIZEX / 10;
-	const int HALF_X = Define::WIN_SIZEX / 2;
-	std::string str;
-	int color = 0;
-
-	if (m_counter % m_MENU_NUM == 0 || m_counter % m_MENU_NUM == 1) {
-		DrawStringToHandle(POSX, Define::WIN_SIZEY * 29 / 40, "ƒŠƒvƒŒƒC", GetColor(0xe5, 0xe5, 0xe5), m_font_32);
-	}
-	else {
-		DrawStringToHandle(POSX, Define::WIN_SIZEY * 13 / 40, "ƒŠƒvƒŒƒC", GetColor(0xe5, 0xe5, 0xe5), m_font_32);
-	}
-
-	if (m_counter % m_MENU_NUM == 2) 
-	{
-		//ƒ[ƒh‚Ì€–Ú
-		if (m_file_load_flag == false)
-		{ 
-			color = GetColor(0xff, 0, 0);
-			str = "ƒŠƒvƒŒƒCƒtƒ@ƒCƒ‹‚ğƒ[ƒh‚·‚é";
-		}
-		else 
-		{
-			color = GetColor(0x51, 0x51, 0x51);
-			str = "ƒŠƒvƒŒƒCƒtƒ@ƒCƒ‹‚Ìƒ[ƒh‚É¬Œ÷‚µ‚Ü‚µ‚½"; 
-		}
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 27 / 64, str.c_str(), color, m_font_20);
-
-		//ƒŠƒvƒŒƒCƒtƒ@ƒCƒ‹‚ğ‘I‘ğ‚·‚é€–Ú
-		if (m_file_load_flag == false) 
-		{ 
-			color = GetColor(0x51, 0x51, 0x51);
-			str = "ƒŠƒvƒŒƒCƒtƒ@ƒCƒ‹‚ğƒ[ƒh‚µ‚Ä‚­‚¾‚³‚¢";
-		}
-		else if(m_file_list.size() <= 0)
-		{ 
-			color = GetColor(0x11, 0x11, 0x11);
-			str = "ƒŠƒvƒŒƒCƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñ";
-		}
-		else {
-			color = GetColor(0x11, 0x11, 0x11);
-			str = "<@";
-			str += m_file_list.at(m_file_select % m_file_list.size());
-			str += "@>";
-		}
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 31 / 64, str.c_str(), color, m_font_20);
-
-		//‚ê‚´‚é‚Æ‚ğ•\¦‚·‚é€–Ú
-		str = "ƒŠƒvƒŒƒC‚ğ•ªÍ‚·‚é";
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 35 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-		str = "ƒŠƒvƒŒƒC‚ğÄ¶‚·‚é";
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 39 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-		str = "ƒtƒ@ƒCƒ‹“Ç‚İ‚İ‚ÌƒƒO";
-		str += (m_file_error_log.size() == 0) ? "" : ":" + m_file_error_log;
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 45 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-		/*
-		* 		str = "í—ªw“ì";
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 43 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-		str = "‚±‚ÌƒQ[ƒ€‚ÅÌ—p‚³‚ê‚Ä‚¢‚È‚¢ƒ‹[ƒ‹‚Æ•â‘«";
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 47 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-		*/
-	}
-}
-
-void MenuBox::m_drawString_String() const
-{
-	const int POSX = Define::WIN_SIZEX / 10;
-	const int HALF_X = Define::WIN_SIZEX / 2;
-	const int QUARTER_X = (HALF_X + BOX_X / 2) / 2;
-	std::string str;
-
-	if (m_counter % m_MENU_NUM == 3) {
-		DrawStringToHandle(POSX, Define::WIN_SIZEY * 18 / 40, "Šeíİ’è", GetColor(0xe5, 0xe5, 0xe5), m_font_32);
-	}
-	else {
-		DrawStringToHandle(POSX, Define::WIN_SIZEY * 34 / 40, "Šeíİ’è", GetColor(0xe5, 0xe5, 0xe5), m_font_32);
-	}
-
-	if (m_counter % m_MENU_NUM == 3) 
-	{
-		str = "İ’è‚ğ•Û‘¶E“K—p‚·‚é";
-		int color_code = GetColor(0x11, 0x11, 0x11);
-		//Œ»ó‚Ìƒf[ƒ^‚Æˆá‚¤‚È‚çF‚ğ•Ô‚é
-		if (m_setting_vol != Setting::getIns()->getSettingVol() || m_setting_win_ful != Setting::getIns()->getSettingFulWin() || m_setting_anime_cut != Setting::getIns()->getSettingAnime()) { color_code = GetColor(0xc0, 0x0, 0x0); }
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 35 / 64, str.c_str(), color_code, m_font_20);
-
-		str = "İ’è‚ğ‰Šú‰»‚·‚é";
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 39 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-		str = "@@@@ƒ{ƒŠƒ…[ƒ€İ’è@@@@";
-		str += ": ƒ@@@@@@@@@@@@„ ";
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 43 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-		str = std::to_string(m_setting_vol) + "%";
-		DrawStringToHandle(Define::WIN_SIZEX * 85 / 128 - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 43 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-		str = "ƒtƒ‹ƒXƒNƒŠ[ƒ“iÄ‹N“®‚Å“K—pj";
-		str += ": ƒ@@@@@@@@@@@@„ ";
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 47 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-		str = (m_setting_win_ful) ? "ƒtƒ‹ƒXƒNƒŠ[ƒ“‚Å‹N“®" : "ƒEƒBƒ“ƒhƒEƒ‚[ƒh‚Å‹N“®";
-		DrawStringToHandle(Define::WIN_SIZEX * 85 / 128 - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 47 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-		str = "@í“¬’†‚ÌƒAƒjƒ‚ğƒJƒbƒg‚·‚é@";
-		str += ": ƒ@@@@@@@@@@@@„ ";
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 51 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-		str = (m_setting_anime_cut) ? "ƒAƒjƒ‚ğƒJƒbƒg‚·‚é" : "ƒJƒbƒg‚µ‚È‚¢";
-		DrawStringToHandle(Define::WIN_SIZEX * 85 / 128 - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 51 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-
-		str = "ƒQ[ƒ€‚ğI—¹‚·‚é";
-		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 55 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
-	}
-}
-
-void MenuBox::m_drawBox() const
-{
-	const int HALFX = Define::WIN_SIZEX / 2;
-	const int MINI_BOX_X = BOX_X;
-	const int MINI_BOX_Y = (int)(BOX_Y / 1.6);
-
-	//Ÿ•‰
-	if (m_counter % m_MENU_NUM == 0) {
-		//‘I‘ğ’†
-		int POS1_Y = Define::WIN_SIZEY * 4 / 40;
-		int POS2_Y = Define::WIN_SIZEY * 20 / 40;
-		DrawBox(HALFX - BOX_X / 2, POS1_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS2_Y + BOX_Y / 2, GetColor(0xa2, 0xa2, 0xa2), TRUE);
-		DrawBox(HALFX - BOX_X / 2, POS1_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS1_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
-
-		//“_–Å‚·‚é”’‚¢” 
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)(255.0 * sin(GetNowCount() * 2.0 * Define::PI / 2000) * sin(GetNowCount() * 2.0 * Define::PI / 2000)));
-		int _miny = Define::WIN_SIZEY * 12 / 64 + (Define::WIN_SIZEY * 4 / 64 + Define::WIN_SIZEY / 512) * (m_command_counter % 6);
-		DrawBox(HALFX - MINI_BOX_X / 2, _miny - MINI_BOX_Y / 2, HALFX + MINI_BOX_X / 2, _miny + MINI_BOX_Y / 2, GetColor(0xff, 0xff, 0xff), TRUE);
-		SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
-	}
-	else {
-		int POS1_Y = Define::WIN_SIZEY * 4 / 40;
-		DrawBox(HALFX - BOX_X / 2, POS1_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS1_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
-	}
-
-	//ƒ‹[ƒ‹
-	if (m_counter % m_MENU_NUM == 0) {
-		int POS2_Y = Define::WIN_SIZEY * 25 / 40;
-		DrawBox(HALFX - BOX_X / 2, POS2_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS2_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
-	}
-	else if (m_counter % m_MENU_NUM == 1) {
-		//‘I‘ğ’†
-		const int POS2_Y = Define::WIN_SIZEY * 9 / 40;
-		const int POS3_Y = Define::WIN_SIZEY * 25 / 40;
-		DrawBox(HALFX - BOX_X / 2, POS2_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS3_Y + BOX_Y / 2, GetColor(0xa2, 0xa2, 0xa2), TRUE);
-		DrawBox(HALFX - BOX_X / 2, POS2_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS2_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
-
-		//“_–Å‚·‚é”’‚¢” 
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)(255.0 * sin(GetNowCount() * 2.0 * Define::PI / 2000) * sin(GetNowCount() * 2.0 * Define::PI / 2000)));
-		int _miny = Define::WIN_SIZEY * 20 / 64 + (Define::WIN_SIZEY * 4 / 64 + Define::WIN_SIZEY / 512) * (m_command_counter % 6);
-		DrawBox(HALFX - MINI_BOX_X / 2, _miny - MINI_BOX_Y / 2, HALFX + MINI_BOX_X / 2, _miny + MINI_BOX_Y / 2, GetColor(0xff, 0xff, 0xff), TRUE);
-		SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
-	}
-	else {
-		const int POS2_Y = Define::WIN_SIZEY * 9 / 40;
-		DrawBox(HALFX - BOX_X / 2, POS2_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS2_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
-	}
-
-
-	//ƒŠƒvƒŒƒC
-	if (m_counter % m_MENU_NUM == 3) 
-	{
-		const int POS3_Y = Define::WIN_SIZEY * 14 / 40;
-		DrawBox(HALFX - BOX_X / 2, POS3_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS3_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
-	}
-	else if (m_counter % m_MENU_NUM == 2) 
-	{
-		//‘I‘ğ’†
-		const int POS3_Y = Define::WIN_SIZEY * 14 / 40;
-		const int POS4_Y = Define::WIN_SIZEY * 30 / 40;
-		DrawBox(HALFX - BOX_X / 2, POS3_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS4_Y + BOX_Y / 2, GetColor(0xa2, 0xa2, 0xa2), TRUE);
-		DrawBox(HALFX - BOX_X / 2, POS3_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS3_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
-
-		//“_–Å‚·‚é”’‚¢” 
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)(255.0 * sin(GetNowCount() * 2.0 * Define::PI / 2000) * sin(GetNowCount() * 2.0 * Define::PI / 2000)));
-		int _miny = Define::WIN_SIZEY * 28 / 64 + (Define::WIN_SIZEY * 4 / 64 + Define::WIN_SIZEY / 512) * (m_command_counter % 6);
-		DrawBox(HALFX - MINI_BOX_X / 2, _miny - MINI_BOX_Y / 2, HALFX + MINI_BOX_X / 2, _miny + MINI_BOX_Y / 2, GetColor(0xff, 0xff, 0xff), TRUE);
-		SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
-	}
-	else {
-		const int POS3_Y = Define::WIN_SIZEY * 30 / 40;
-		DrawBox(HALFX - BOX_X / 2, POS3_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS3_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
-	}
-
-
-	//İ’è
-	if (m_counter % m_MENU_NUM == 3) 
-	{
-		//‘I‘ğ’†
-		const int POS3_Y = Define::WIN_SIZEY * 19 / 40;
-		const int POS4_Y = Define::WIN_SIZEY * 35 / 40;
-		DrawBox(HALFX - BOX_X / 2, POS3_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS4_Y + BOX_Y / 2, GetColor(0xa2, 0xa2, 0xa2), TRUE);
-		DrawBox(HALFX - BOX_X / 2, POS3_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS3_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
-
-		//“_–Å‚·‚é”’‚¢” 
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)(255.0 * sin(GetNowCount() * 2.0 * Define::PI / 2000) * sin(GetNowCount() * 2.0 * Define::PI / 2000)));
-		int _miny = Define::WIN_SIZEY * 36 / 64 + (Define::WIN_SIZEY * 4 / 64 + Define::WIN_SIZEY / 512) * (m_command_counter % 6);
-		DrawBox(HALFX - MINI_BOX_X / 2, _miny - MINI_BOX_Y / 2, HALFX + MINI_BOX_X / 2, _miny + MINI_BOX_Y / 2, GetColor(0xff, 0xff, 0xff), TRUE);
-		SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
-	}
-	else {
-		const int POS4_Y = Define::WIN_SIZEY * 35 / 40;
-		DrawBox(HALFX - BOX_X / 2, POS4_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS4_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
-	}
-}
+ï»¿//#include "MenuBox.h"
+//#include"DxLib.h"
+//#include"Define.h"
+//#include"Keyboard.h"
+//#include"Font.h"
+//#include"Sound.h"
+//#include"RuleParam.h"
+//#include"GameParam.h"
+//#include"Setting.h"
+//
+//MenuBox::MenuBox() : 
+//	BOX_X(Define::WIN_SIZEX * 53 / 64), 
+//	BOX_Y(Define::WIN_SIZEY * 3 / 32)
+//{
+//	//ãƒ•ã‚©ãƒ³ãƒˆã®ãƒ­ãƒ¼ãƒ‰
+//	m_font_32 = myLoadFont("data/font/PixelMplus10_size32.dft");
+//	m_font_20 = myLoadFont("data/font/PixelMplus10_size20.dft");
+//
+//	//ã‚µã‚¦ãƒ³ãƒ‰ã®ãƒ­ãƒ¼ãƒ‰
+//	m_sound_select = Sound::getIns()->myLoadSound("data/sound/selecting.mp3");
+//	m_sound_select2 = Sound::getIns()->myLoadSound("data/sound/selecting2.mp3");
+//	m_sound_cancel = Sound::getIns()->myLoadSound("data/sound/cancel.mp3");
+//
+//	//è¨­å®šã®ãƒ­ãƒ¼ãƒ‰
+//	m_updateSetting();
+//}
+//
+//bool MenuBox::update(enumScene& _scene, Parameter& _param)
+//{
+//	//ã‚·ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆã®å‡¦ç†
+//	if (Keyboard::getIns()->getPressingCount(KEY_INPUT_DOWN) == 1 && (Keyboard::getIns()->getPressingCount(KEY_INPUT_LCONTROL) > 0 || Keyboard::getIns()->getPressingCount(KEY_INPUT_RCONTROL) > 0)) 
+//	{
+//		PlaySoundMem(m_sound_select, DX_PLAYTYPE_BACK);	//é¸æŠéŸ³ã‚’é³´ã‚‰ã™
+//		m_counter++;
+//		m_command_counter = 0;
+//
+//		m_updateSetting();	//è¨­å®šã‚’èª­ã¿è¾¼ã¿ãªãŠã™
+//		m_resetReplayFile();//ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
+//	}
+//	else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_UP) == 1 && (Keyboard::getIns()->getPressingCount(KEY_INPUT_LCONTROL) > 0 || Keyboard::getIns()->getPressingCount(KEY_INPUT_RCONTROL) > 0)) 
+//	{
+//		PlaySoundMem(m_sound_select, DX_PLAYTYPE_BACK);	//é¸æŠéŸ³ã‚’é³´ã‚‰ã™
+//		m_counter += m_MENU_NUM - 1;
+//		m_command_counter = 0;
+//
+//		m_updateSetting();	//è¨­å®šã‚’èª­ã¿è¾¼ã¿ãªãŠã™
+//		m_resetReplayFile();//ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
+//	}
+//	//ä¸‹ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ã
+//	else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_DOWN) == 1) 
+//	{
+//		PlaySoundMem(m_sound_select, DX_PLAYTYPE_BACK);	//é¸æŠéŸ³ã‚’é³´ã‚‰ã™
+//
+//		m_command_counter += 1;	//é …ç›®ã‚’å¤‰æ›´
+//
+//		//å¯¾æˆ¦ã®ä¸‹ã«ç§»å‹•
+//		if (m_command_counter > 5) 
+//		{
+//			m_counter += 1;
+//			m_command_counter = 0;
+//
+//			m_updateSetting();	//è¨­å®šã‚’èª­ã¿è¾¼ã¿ãªãŠã™
+//			m_resetReplayFile();//ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
+//		}
+//
+//		//é …ç›®ã®æ•°ãŒå°‘ãªã„ãƒªãƒ—ãƒ¬ã‚¤ã®ãŸã‚ã®å‡¦ç†
+//		if (m_counter % m_MENU_NUM == 2 && m_command_counter % 6 >= 4) 
+//		{
+//			m_counter += 1;
+//			m_command_counter = 0;
+//
+//			m_updateSetting();	//è¨­å®šã‚’èª­ã¿è¾¼ã¿ãªãŠã™
+//			m_resetReplayFile();//ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
+//		}
+//	}
+//	//ä¸Šãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ã
+//	else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_UP) == 1) 
+//	{
+//		PlaySoundMem(m_sound_select, DX_PLAYTYPE_BACK);	//é¸æŠéŸ³ã‚’é³´ã‚‰ã™
+//
+//		m_command_counter -= 1;	//é …ç›®ã‚’å¤‰æ›´
+//
+//		//å¯¾æˆ¦ã®ä¸Šã«ç§»å‹•
+//		if (m_command_counter < 0) 
+//		{
+//			m_counter += m_MENU_NUM - 1;
+//			m_command_counter = 5;
+//
+//			m_updateSetting();	//è¨­å®šã‚’èª­ã¿è¾¼ã¿ãªãŠã™
+//			m_resetReplayFile();//ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚¢ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
+//		}
+//
+//		//é …ç›®ã®æ•°ãŒå°‘ãªã„ãƒªãƒ—ãƒ¬ã‚¤ã®ãŸã‚ã®å‡¦ç†
+//		if (m_counter % m_MENU_NUM == 2 && m_command_counter % 6 >= 4)
+//		{
+//			m_command_counter = 3;
+//		}
+//	}
+//
+//	//å·¦å³ã‚­ãƒ¼ã«ã‚ˆã‚‹å‡¦ç†
+//	if (Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) == 1) 
+//	{
+//		//é …ç›®vsCPUã‚’é¸æŠä¸­
+//		if (m_counter % m_MENU_NUM == 0)
+//		{
+//			PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);	//é¸æŠéŸ³ã‚’é³´ã‚‰ã™
+//
+//			if (m_command_counter % m_BATTLE_NUM == 1) { m_battle_first += 1; }					//å…ˆè¡Œãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+//			else if (m_command_counter % m_BATTLE_NUM == 2) { m_battle_cpu += 1; }				//CPU
+//			else if (m_command_counter % m_BATTLE_NUM == 3) { m_battle_saihai = !m_battle_saihai; }	//é‡‡é…
+//			else if (m_command_counter % m_BATTLE_NUM == 4) { m_battle_self = !m_battle_self; }	//è‡ªå‚·
+//			else if (m_command_counter % m_BATTLE_NUM == 5) { m_battle_mod = !m_battle_mod; }	//MOD 5
+//		}
+//		//é …ç›®ãƒªãƒ—ãƒ¬ã‚¤ã‚’é¸æŠä¸­
+//		else if (m_counter % m_MENU_NUM == 2) 
+//		{
+//			if (m_command_counter % 4 == 1 && m_file_load_flag == true)
+//			{
+//				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);	//é¸æŠéŸ³ã‚’é³´ã‚‰ã™
+//
+//				m_file_select++;
+//			}
+//		}
+//		//é …ç›®è¨­å®šã‚’é¸æŠä¸­
+//		else if (m_counter % m_MENU_NUM == 3)
+//		{
+//			//éŸ³é‡
+//			if (m_command_counter % m_BATTLE_NUM == 2)
+//			{
+//				m_setting_vol += 5;
+//				m_setting_vol = (m_setting_vol > 100) ? 100 : m_setting_vol;
+//
+//				//éŸ³é‡ã‚’ä»®è¨­å®šã—ã¦å†ç”Ÿ
+//				Sound::getIns()->changeVolume(m_setting_vol);
+//				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
+//			}
+//			//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰
+//			else if (m_command_counter % m_BATTLE_NUM == 3)
+//			{
+//				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
+//
+//				m_setting_win_ful = !m_setting_win_ful;
+//			}
+//			//ã‚¢ãƒ‹ãƒ¡ã‚’ã‚«ãƒƒãƒˆ
+//			else if (m_command_counter % m_BATTLE_NUM == 4)
+//			{
+//				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
+//
+//				m_setting_anime_cut = !m_setting_anime_cut;
+//			}
+//		}
+//	}
+//	else if(Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) == 1) 
+//	{
+//		//é …ç›®vsCPUã‚’é¸æŠä¸­
+//		if (m_counter % m_MENU_NUM == 0)
+//		{
+//			PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);	//é¸æŠéŸ³ã‚’é³´ã‚‰ã™
+//
+//			if (m_command_counter % m_BATTLE_NUM == 1) { m_battle_first += 2; }					//å…ˆè¡Œãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+//			else if (m_command_counter % m_BATTLE_NUM == 2) { m_battle_cpu += 3; }				//CPU
+//			else if (m_command_counter % m_BATTLE_NUM == 3) { m_battle_saihai = !m_battle_saihai;  }	//é‡‡é…
+//			else if (m_command_counter % m_BATTLE_NUM == 4) { m_battle_self = !m_battle_self; }	//è‡ªå‚·
+//			else if (m_command_counter % m_BATTLE_NUM == 5) { m_battle_mod = !m_battle_mod; }	//MOD 5
+//		}
+//		//é …ç›®ãƒªãƒ—ãƒ¬ã‚¤ã‚’é¸æŠä¸­
+//		else if (m_counter % m_MENU_NUM == 2)
+//		{
+//			if (m_command_counter % 4 == 1 && m_file_load_flag == true)
+//			{
+//				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);	//é¸æŠéŸ³ã‚’é³´ã‚‰ã™
+//
+//				m_file_select += (int)m_file_list.size() - 1;
+//			}
+//		}
+//		//é …ç›®è¨­å®šã‚’é¸æŠä¸­
+//		else if (m_counter % m_MENU_NUM == 3)
+//		{
+//			//éŸ³é‡
+//			if (m_command_counter % m_BATTLE_NUM == 2) 
+//			{
+//				m_setting_vol -= 5;
+//				m_setting_vol = (m_setting_vol < 0) ? 0 : m_setting_vol;
+//
+//				//éŸ³é‡ã‚’ä»®è¨­å®šã—ã¦å†ç”Ÿ
+//				Sound::getIns()->changeVolume(m_setting_vol);
+//				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
+//			}
+//			//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰
+//			else if (m_command_counter % m_BATTLE_NUM == 3)
+//			{
+//				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
+//
+//				m_setting_win_ful = !m_setting_win_ful;
+//			}
+//			//ã‚¢ãƒ‹ãƒ¡ã‚’ã‚«ãƒƒãƒˆ
+//			else if (m_command_counter % m_BATTLE_NUM == 4)
+//			{
+//				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
+//
+//				m_setting_anime_cut = !m_setting_anime_cut;
+//			}
+//		}
+//	}
+//
+//	//Escã‚­ãƒ¼ã«ã‚ˆã‚‹å‡¦ç†
+//	if (Keyboard::getIns()->getPressingCount(KEY_INPUT_ESCAPE) == 1) 
+//	{
+//		PlaySoundMem(m_sound_cancel, DX_PLAYTYPE_BACK);
+//
+//		_scene = enumScene::title;
+//		_param.resetParam();
+//		return true;
+//	}
+//
+//	//Zã‚­ãƒ¼ã«ã‚ˆã‚‹æ±ºå®š
+//	if (Keyboard::getIns()->getPressingCount(KEY_INPUT_Z) == 1) 
+//	{
+//		//vs CPUé …ç›®ã®æˆ¦é—˜é–‹å§‹ã‚’é¸æŠæ™‚
+//		if (m_counter % m_MENU_NUM == 0) 
+//		{
+//			if (m_command_counter % 6 == 0) 
+//			{
+//				//ã‚·ãƒ¼ãƒ³ã®è¨­å®š
+//				_scene = enumScene::game;
+//
+//				//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è¨­å®š
+//				_param.resetParam();
+//
+//				//å…ˆæ‰‹ã®ç®—å‡º
+//				if (m_battle_first % 3 == 1 || (m_battle_first % 3 == 0 && GetRand(1) == 0)) { _param.setParam(GameParam::PLAYER_IS_FIRST, GameParam::TRUE_STATE); }
+//				else { _param.setParam(GameParam::PLAYER_IS_FIRST, GameParam::FALSE_STATE); }
+//
+//				//CPUãƒ¬ãƒ™ãƒ«
+//				if (m_battle_cpu % 4 == 0) { _param.setParam(GameParam::ENEMY_LEVEL, GameParam::ENEMY_LEVEL_EASY); }
+//				else if (m_battle_cpu % 4 == 1) { _param.setParam(GameParam::ENEMY_LEVEL, GameParam::ENEMY_LEVEL_NORMAL); }
+//				else if (m_battle_cpu % 4 == 2) { _param.setParam(GameParam::ENEMY_LEVEL, GameParam::ENEMY_LEVEL_HARD); }
+//				else { _param.setParam(GameParam::ENEMY_LEVEL, GameParam::ENEMY_LEVEL_IMPOSSIBLE); }
+//
+//				//MODãƒ«ãƒ¼ãƒ«ã®è¨­å®š
+//				if (m_battle_mod == true) { _param.setParam(GameParam::MOD_RULE, GameParam::TRUE_STATE); }
+//				else { _param.setParam(GameParam::MOD_RULE, GameParam::FALSE_STATE); }
+//
+//				//è‡ªå‚·ã®è¨­å®š
+//				if (m_battle_self == true) { _param.setParam(GameParam::SELF_HARM_RULE, GameParam::TRUE_STATE); }
+//				else { _param.setParam(GameParam::SELF_HARM_RULE, GameParam::FALSE_STATE); }
+//
+//				//é‡‡é…ã®è¨­å®š
+//				if (m_battle_saihai == true) { _param.setParam(GameParam::SAIHAI_RULE, GameParam::TRUE_STATE); }
+//				else { _param.setParam(GameParam::SAIHAI_RULE, GameParam::FALSE_STATE); }
+//
+//				return true;
+//			}
+//			else if (m_command_counter % m_BATTLE_NUM == 1) { m_battle_first += 1; }					//å…ˆè¡Œãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+//			else if (m_command_counter % m_BATTLE_NUM == 2) { m_battle_cpu += 1; }				//CPU
+//			else if (m_command_counter % m_BATTLE_NUM == 3) { m_battle_saihai = !m_battle_saihai; }	//é‡‡é…
+//			else if (m_command_counter % m_BATTLE_NUM == 4) { m_battle_self = !m_battle_self; }	//è‡ªå‚·
+//			else if (m_command_counter % m_BATTLE_NUM == 5) { m_battle_mod = !m_battle_mod; }	//MOD 5
+//
+//			//é¸æŠéŸ³ã‚’é³´ã‚‰ã™}
+//			if (m_command_counter % m_BATTLE_NUM != 0) { PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK); }
+//		}
+//		//ãƒ«ãƒ¼ãƒ«ç¢ºèªã®é …ç›®ã‚’é¸æŠä¸­
+//		else if (m_counter % m_MENU_NUM == 1) 
+//		{
+//			//ã‚·ãƒ¼ãƒ³ã®è¨­å®š
+//			_scene = enumScene::rule;
+//
+//			//ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®è¨­å®š
+//			_param.resetParam();
+//			if (m_command_counter % 6 == 0) { _param.setParam(RuleParam::WHICH_RULE, RuleParam::STATE_BASIC); }
+//			else if (m_command_counter % 6 == 1) { _param.setParam(RuleParam::WHICH_RULE, RuleParam::STATE_SLEF); }
+//			else if (m_command_counter % 6 == 2) { _param.setParam(RuleParam::WHICH_RULE, RuleParam::STATE_SAIHAI); }
+//			else if (m_command_counter % 6 == 3) { _param.setParam(RuleParam::WHICH_RULE, RuleParam::STATE_MOD_5); }
+//			else if (m_command_counter % 6 == 4) { _param.setParam(RuleParam::WHICH_RULE, RuleParam::STATE_SENRYAKU); }
+//			else if (m_command_counter % 6 == 5) { _param.setParam(RuleParam::WHICH_RULE, RuleParam::STATE_OTHER); }
+//
+//			return true;
+//		}
+//		//ãƒªãƒ—ãƒ¬ã‚¤ã®é …ç›®ã‚’é¸æŠä¸­
+//		else if (m_counter % m_MENU_NUM == 2)
+//		{
+//			//èª­ã¿è¾¼ã¿
+//			if (m_command_counter % 4 == 0 && m_file_load_flag == false) 
+//			{
+//				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);	//é¸æŠéŸ³ã‚’é³´ã‚‰ã™
+//
+//				//ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
+//				m_file_load_flag = true;
+//
+//				//èª­ã¿è¾¼ã‚€
+//				if (m_getReplayFileList() == false) {
+//					m_file_error_log = "ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚ã¾ã›ã‚“ã§ã—ãŸ";
+//				}
+//				else {
+//					m_file_error_log = "èª­ã¿è¾¼ã¿æˆåŠŸ " + std::to_string(m_file_list.size()) + "ãƒ•ã‚¡ã‚¤ãƒ«";
+//				}
+//
+//			}
+//			//ãƒ•ã‚¡ã‚¤ãƒ«é¸æŠ
+//			else if (m_command_counter % 4 == 1 && m_file_load_flag == true) 
+//			{
+//				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);	//é¸æŠéŸ³ã‚’é³´ã‚‰ã™
+//
+//				m_file_select++;
+//			}
+//			//ãƒ•ã‚¡ã‚¤ãƒ«åˆ†æ
+//			else if (m_command_counter % 4 == 2 && m_file_load_flag == true && m_file_list.size() != 0)
+//			{
+//				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);	//é¸æŠéŸ³ã‚’é³´ã‚‰ã™
+//
+//				//ãƒªãƒ—ãƒ¬ã‚¤ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
+//				std::vector<MatchField> m_field_list_param;
+//				bool m_mod_rule_param = false;
+//				bool m_self_harm_param = false;
+//				std::string m_file_path_param = "./replay/" + m_file_list.at(m_file_select % m_file_list.size());
+//
+//				if (VariousFunctionsForMatchGame::inputFieldList(m_file_path_param, m_field_list_param, m_mod_rule_param, m_self_harm_param) == false)
+//				{
+//					m_file_error_log = "ãƒªãƒ—ãƒ¬ã‚¤ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—";
+//				}
+//				else 
+//				{
+//					//èª­ã¿è¾¼ã¿ã«æˆåŠŸã—ãŸå ´åˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã—ã¦èª­ã¿ã“ã¿
+//					_scene = enumScene::result;
+//
+//					_param.resetParam();
+//					_param.setFieldParam(m_field_list_param);
+//					_param.setParam(GameParam::MOD_RULE, (m_mod_rule_param == true) ? GameParam::TRUE_STATE : GameParam::FALSE_STATE);
+//					_param.setParam(GameParam::SELF_HARM_RULE, (m_self_harm_param == true) ? GameParam::TRUE_STATE : GameParam::FALSE_STATE);
+//					_param.setParam(GameParam::RESULT_BACK_NUM, 1);
+//					return true;
+//				}
+//			}
+//			//ãƒ•ã‚¡ã‚¤ãƒ«å†ç”Ÿ
+//			else if (m_command_counter % 4 == 3 && m_file_load_flag == true && m_file_list.size() != 0)
+//			{
+//				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);	//é¸æŠéŸ³ã‚’é³´ã‚‰ã™
+//
+//				//ãƒªãƒ—ãƒ¬ã‚¤ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
+//				std::vector<MatchField> m_field_list_param;
+//				bool m_mod_rule_param = false;
+//				bool m_self_harm_param = false;
+//				std::string m_file_path_param = "./replay/" + m_file_list.at(m_file_select % m_file_list.size());
+//
+//				if (VariousFunctionsForMatchGame::inputFieldList(m_file_path_param, m_field_list_param, m_mod_rule_param, m_self_harm_param) == false)
+//				{
+//					m_file_error_log = "ãƒªãƒ—ãƒ¬ã‚¤ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿ã«å¤±æ•—";
+//				}
+//				else
+//				{
+//					//èª­ã¿è¾¼ã¿ã«æˆåŠŸã—ãŸå ´åˆãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ã‚»ãƒƒãƒˆã—ã¦èª­ã¿ã“ã¿
+//					_scene = enumScene::replay;
+//
+//					_param.resetParam();
+//					_param.setFieldParam(m_field_list_param);
+//					_param.setParam(GameParam::MOD_RULE, (m_mod_rule_param == true) ? GameParam::TRUE_STATE : GameParam::FALSE_STATE);
+//					_param.setParam(GameParam::SELF_HARM_RULE, (m_self_harm_param == true) ? GameParam::TRUE_STATE : GameParam::FALSE_STATE);
+//					return true;
+//				}
+//			}
+//		}
+//		//è¨­å®šã®é …ç›®ã‚’é¸æŠä¸­
+//		else if (m_counter % m_MENU_NUM == 3) 
+//		{
+//			//è¨­å®šã‚’ä¿å­˜ã™ã‚‹
+//			if (m_command_counter % 6 == 0) 
+//			{
+//				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);	//éŸ³æ¥½ã‚’å†ç”Ÿ
+//				Setting::getIns()->saveSettingFile(m_setting_vol, m_setting_win_ful, m_setting_anime_cut);	//è¨­å®šã‚’ä¿å­˜ã™ã‚‹
+//				Sound::getIns()->changeVolume(Setting::getIns()->getSettingVol());	//éŸ³é‡è¨­å®š
+//			}
+//			//è¨­å®šã‚’åˆæœŸåŒ–ã™ã‚‹
+//			else if (m_command_counter % 6 == 1) 
+//			{
+//				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
+//				//ãƒ‡ãƒ•ã‚©ã®è¨­å®šã«æˆ»ã™
+//				m_setting_vol = Setting::getIns()->getSettingVol(true);
+//				m_setting_win_ful = Setting::getIns()->getSettingFulWin(true);
+//				m_setting_anime_cut = Setting::getIns()->getSettingAnime(true);
+//			}
+//			//éŸ³é‡
+//			else if (m_command_counter % 6 == 2)
+//			{
+//				m_setting_vol += 10;
+//				m_setting_vol = (m_setting_vol > 100) ? (m_setting_vol % 100) : m_setting_vol;
+//
+//				//éŸ³é‡ã‚’ä»®è¨­å®šã—ã¦å†ç”Ÿ
+//				Sound::getIns()->changeVolume(m_setting_vol);
+//				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
+//			}
+//			//ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³
+//			else if (m_command_counter % 6 == 3)
+//			{
+//				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
+//				m_setting_win_ful = !m_setting_win_ful;
+//			}
+//			//ã‚¢ãƒ‹ãƒ¡
+//			else if (m_command_counter % 6 == 4)
+//			{
+//				PlaySoundMem(m_sound_select2, DX_PLAYTYPE_BACK);
+//				m_setting_anime_cut = !m_setting_anime_cut;
+//			}
+//			//ã‚²ãƒ¼ãƒ çµ‚äº†ã‚’é¸æŠã™ã‚‹
+//			else if (m_command_counter % 6 == 5)
+//			{
+//				m_game_end_flag = true;
+//			}
+//		}
+//	}
+//
+//	return false;
+//}
+//
+//bool MenuBox::getGameEnd() const
+//{
+//	return m_game_end_flag;
+//}
+//
+//void MenuBox::draw() const
+//{
+//	//èƒŒæ™¯ã®å››è§’ã‚’æç”»ã™ã‚‹
+//	m_drawBox();
+//
+//	//æ–‡å­—
+//	m_drawString();
+//}
+//
+////å‡¦ç†é–¢ä¿‚ã®é–¢æ•°
+//void MenuBox::m_updateSetting()
+//{
+//	//è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ­ãƒ¼ãƒ‰
+//	m_setting_vol = Setting::getIns()->getSettingVol();
+//	m_setting_win_ful = Setting::getIns()->getSettingFulWin();
+//	m_setting_anime_cut = Setting::getIns()->getSettingAnime();
+//
+//	//è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®éŸ³é‡è¨­å®š
+//	Sound::getIns()->changeVolume(Setting::getIns()->getSettingVol());	
+//}
+//
+//void MenuBox::m_resetReplayFile()
+//{
+//	//ãƒ•ã‚¡ã‚¤ãƒ«ãƒªã‚¹ãƒˆã‚’ç©ºã«ã™ã‚‹
+//	m_file_list.clear();
+//
+//	//ãƒ•ãƒ©ã‚°ã‚’ã¸ã—æŠ˜ã‚‹
+//	m_file_load_flag = false;
+//
+//	//é¸æŠä¸­ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’0ã«
+//	m_file_select = 0;
+//
+//	//ãƒ­ã‚°ã‚’ç©ºã«ã™ã‚‹
+//	m_file_error_log = "";
+//}
+//
+//bool MenuBox::m_getReplayFileList()
+//{
+//	HANDLE hFind;
+//	WIN32_FIND_DATA win32fd;
+//	std::string search_name = "replay\\*.dat";
+//
+//	hFind = FindFirstFile(search_name.c_str(), &win32fd);
+//
+//	if (hFind == INVALID_HANDLE_VALUE) {
+//		return false;
+//	}
+//
+//	/* æŒ‡å®šã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªä»¥ä¸‹ã®ãƒ•ã‚¡ã‚¤ãƒ«åã‚’ãƒ•ã‚¡ã‚¤ãƒ«ãŒãªããªã‚‹ã¾ã§å–å¾—ã™ã‚‹ */
+//	do {
+//		if (win32fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+//			/* ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®å ´åˆã¯ä½•ã‚‚ã—ãªã„ */
+//			printf("directory\n");
+//		}
+//		else {
+//			/* ãƒ•ã‚¡ã‚¤ãƒ«ãŒè¦‹ã¤ã‹ã£ãŸã‚‰Vectoré…åˆ—ã«ä¿å­˜ã™ã‚‹ */
+//			m_file_list.push_back(win32fd.cFileName);
+//		}
+//	} while (FindNextFile(hFind, &win32fd));
+//
+//	FindClose(hFind);
+//
+//	return true;
+//}
+//
+////æç”»é–¢ä¿‚ã®é–¢æ•°
+//void MenuBox::m_drawString() const
+//{
+//	//å‹è² 
+//	m_drawString_VS();
+//
+//	//ãƒ«ãƒ¼ãƒ«
+//	m_drawString_Rule();
+//
+//	//ãƒªãƒ—ãƒ¬ã‚¤
+//	m_drawString_Replay();
+//
+//	//è¨­å®š
+//	m_drawString_String();
+//}
+//
+//void MenuBox::m_drawString_VS() const
+//{
+//	const int POSX = Define::WIN_SIZEX / 10;
+//	const int HALF_X = Define::WIN_SIZEX / 2;
+//	const int LEFT_MIDDLE = Define::WIN_SIZEX * 26 / 64;
+//	const int RIGHT_MIDDLE = Define::WIN_SIZEX * 38 / 64;
+//	std::string str;
+//
+//	//ãƒ©ãƒ™ãƒ« VS CPU
+//	DrawStringToHandle(POSX, Define::WIN_SIZEY * 3 / 40, "vsCPU", GetColor(0xe5, 0xe5, 0xe5), m_font_32);
+//
+//	//é¸æŠä¸­ é¸æŠè‚¢ã®è¡¨ç¤º
+//	if (m_counter % m_MENU_NUM == 0)
+//	{
+//		//Zã‚­ãƒ¼ã§å‹è² é–‹å§‹
+//		str = "Zã‚­ãƒ¼ã§å‹è² é–‹å§‹";
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 11 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//		//å›ºå®šã•ã‚Œã‚‹æ–‡å­—ã‚’è¡¨ç¤ºã™ã‚‹
+//		{
+//			for (int i = 0; i < 5; i++)
+//			{
+//				// ä¸­å¤®ã® :
+//				str = ":";
+//				DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * (15 + 4 * i) / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//				// å³ã® < >
+//				str = "<            >";
+//				DrawStringToHandle(RIGHT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * (15 + 4 * i) / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//			}
+//
+//			//å·¦å´ã®æ–‡å­—
+//			str = "å…ˆè¡Œãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼";
+//			DrawStringToHandle(LEFT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 15 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//			str = "CPU ã®ãƒ¬ãƒ™ãƒ«";
+//			DrawStringToHandle(LEFT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 19 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//			str = "é‡‡é…ãƒ«ãƒ¼ãƒ«";
+//			DrawStringToHandle(LEFT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 23 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//			str = "è‡ªå‚·ãƒ«ãƒ¼ãƒ«";
+//			DrawStringToHandle(LEFT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 27 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//			str = "MOD 5 ãƒ«ãƒ¼ãƒ«";
+//			DrawStringToHandle(LEFT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 31 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//		}
+//
+//		//é¸æŠã«ã‚ˆã£ã¦å¤‰æ›´ã•ã‚Œã‚‹æ–‡å­—
+//		{
+//			//å…ˆè¡Œãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+//			if (m_battle_first % 3 == 0) { str = "ãƒ©ãƒ³ãƒ€ãƒ "; }
+//			else if (m_battle_first % 3 == 1) { str = "ã‚ãªãŸ"; }
+//			else { str = "æ•µ"; }
+//			DrawStringToHandle(RIGHT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 15 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//			//CPUã®ãƒ¬ãƒ™ãƒ«
+//			if (m_battle_cpu % 4 == 0) { str = "EASY"; }
+//			else if (m_battle_cpu % 4 == 1) { str = "NORMAL"; }
+//			else if (m_battle_cpu % 4 == 2) { str = "HARD"; }
+//			else { str = "IMPOSSIBLE"; }
+//			DrawStringToHandle(RIGHT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 19 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//			//é‡‡é…ãƒ«ãƒ¼ãƒ«
+//			if (m_battle_saihai == true) { str = "ON"; }
+//			else { str = "OFF"; }
+//			DrawStringToHandle(RIGHT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 23 / 64, str.c_str(), (m_battle_saihai == true) ? GetColor(0xff, 0x11, 0x11) : GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//			//è‡ªå‚·ãƒ«ãƒ¼ãƒ«
+//			if (m_battle_self == true) { str = "ON"; }
+//			else { str = "OFF"; }
+//			DrawStringToHandle(RIGHT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 27 / 64, str.c_str(), (m_battle_self == true) ? GetColor(0xff, 0x11, 0x11) : GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//			//MOD 5ãƒ«ãƒ¼ãƒ«
+//			if (m_battle_mod == true) { str = "ON"; }
+//			else { str = "OFF"; }
+//			DrawStringToHandle(RIGHT_MIDDLE - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 31 / 64, str.c_str(), (m_battle_mod == true) ? GetColor(0xff, 0x11, 0x11) : GetColor(0x11, 0x11, 0x11), m_font_20);
+//		}
+//	}
+//}
+//
+//void MenuBox::m_drawString_Rule() const
+//{
+//	const int POSX = Define::WIN_SIZEX / 10;
+//	const int HALF_X = Define::WIN_SIZEX / 2;
+//	std::string str;
+//
+//	if (m_counter % m_MENU_NUM == 0) {
+//		DrawStringToHandle(POSX, Define::WIN_SIZEY * 24 / 40, "ãƒ«ãƒ¼ãƒ«ç¢ºèª", GetColor(0xe5, 0xe5, 0xe5), m_font_32);
+//	}
+//	else {
+//		DrawStringToHandle(POSX, Define::WIN_SIZEY * 8 / 40, "ãƒ«ãƒ¼ãƒ«ç¢ºèª", GetColor(0xe5, 0xe5, 0xe5), m_font_32);
+//	}
+//
+//	if (m_counter % m_MENU_NUM == 1) {
+//		str = "åŸºæœ¬ãƒ«ãƒ¼ãƒ«";
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 19 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//		str = "ãƒ­ãƒ¼ã‚«ãƒ«ãƒ«ãƒ¼ãƒ« : ã€€ã€€é‡‡é…ã€€ã€€ ";
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 23 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//		str = "ãƒ­ãƒ¼ã‚«ãƒ«ãƒ«ãƒ¼ãƒ« : ã€€ã€€è‡ªå‚·ã€€ã€€ ";
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 27 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//		str = "ãƒ­ãƒ¼ã‚«ãƒ«ãƒ«ãƒ¼ãƒ« : ã€€ã€€MOD 5ã€€ã€€";
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 31 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//		str = "æˆ¦ç•¥æŒ‡å—";
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 35 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//		str = "ã“ã®ã‚²ãƒ¼ãƒ ã§æ¡ç”¨ã•ã‚Œã¦ã„ãªã„ãƒ«ãƒ¼ãƒ«ã¨è£œè¶³";
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 39 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//	}
+//}
+//
+//void MenuBox::m_drawString_Replay() const
+//{
+//	const int POSX = Define::WIN_SIZEX / 10;
+//	const int HALF_X = Define::WIN_SIZEX / 2;
+//	std::string str;
+//	int color = 0;
+//
+//	if (m_counter % m_MENU_NUM == 0 || m_counter % m_MENU_NUM == 1) {
+//		DrawStringToHandle(POSX, Define::WIN_SIZEY * 29 / 40, "ãƒªãƒ—ãƒ¬ã‚¤", GetColor(0xe5, 0xe5, 0xe5), m_font_32);
+//	}
+//	else {
+//		DrawStringToHandle(POSX, Define::WIN_SIZEY * 13 / 40, "ãƒªãƒ—ãƒ¬ã‚¤", GetColor(0xe5, 0xe5, 0xe5), m_font_32);
+//	}
+//
+//	if (m_counter % m_MENU_NUM == 2) 
+//	{
+//		//ãƒ­ãƒ¼ãƒ‰ã®é …ç›®
+//		if (m_file_load_flag == false)
+//		{ 
+//			color = GetColor(0xff, 0, 0);
+//			str = "ãƒªãƒ—ãƒ¬ã‚¤ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹";
+//		}
+//		else 
+//		{
+//			color = GetColor(0x51, 0x51, 0x51);
+//			str = "ãƒªãƒ—ãƒ¬ã‚¤ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ­ãƒ¼ãƒ‰ã«æˆåŠŸã—ã¾ã—ãŸ"; 
+//		}
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 27 / 64, str.c_str(), color, m_font_20);
+//
+//		//ãƒªãƒ—ãƒ¬ã‚¤ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é¸æŠã™ã‚‹é …ç›®
+//		if (m_file_load_flag == false) 
+//		{ 
+//			color = GetColor(0x51, 0x51, 0x51);
+//			str = "ãƒªãƒ—ãƒ¬ã‚¤ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ­ãƒ¼ãƒ‰ã—ã¦ãã ã•ã„";
+//		}
+//		else if(m_file_list.size() <= 0)
+//		{ 
+//			color = GetColor(0x11, 0x11, 0x11);
+//			str = "ãƒªãƒ—ãƒ¬ã‚¤ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ã¾ã›ã‚“";
+//		}
+//		else {
+//			color = GetColor(0x11, 0x11, 0x11);
+//			str = "<ã€€";
+//			str += m_file_list.at(m_file_select % m_file_list.size());
+//			str += "ã€€>";
+//		}
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 31 / 64, str.c_str(), color, m_font_20);
+//
+//		//ã‚Œã–ã‚‹ã¨ã‚’è¡¨ç¤ºã™ã‚‹é …ç›®
+//		str = "ãƒªãƒ—ãƒ¬ã‚¤ã‚’åˆ†æã™ã‚‹";
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 35 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//		str = "ãƒªãƒ—ãƒ¬ã‚¤ã‚’å†ç”Ÿã™ã‚‹";
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 39 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//		str = "ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿ã®ãƒ­ã‚°";
+//		str += (m_file_error_log.size() == 0) ? "" : ":" + m_file_error_log;
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 45 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//		/*
+//		* 		str = "æˆ¦ç•¥æŒ‡å—";
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 43 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//		str = "ã“ã®ã‚²ãƒ¼ãƒ ã§æ¡ç”¨ã•ã‚Œã¦ã„ãªã„ãƒ«ãƒ¼ãƒ«ã¨è£œè¶³";
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 47 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//		*/
+//	}
+//}
+//
+//void MenuBox::m_drawString_String() const
+//{
+//	const int POSX = Define::WIN_SIZEX / 10;
+//	const int HALF_X = Define::WIN_SIZEX / 2;
+//	const int QUARTER_X = (HALF_X + BOX_X / 2) / 2;
+//	std::string str;
+//
+//	if (m_counter % m_MENU_NUM == 3) {
+//		DrawStringToHandle(POSX, Define::WIN_SIZEY * 18 / 40, "å„ç¨®è¨­å®š", GetColor(0xe5, 0xe5, 0xe5), m_font_32);
+//	}
+//	else {
+//		DrawStringToHandle(POSX, Define::WIN_SIZEY * 34 / 40, "å„ç¨®è¨­å®š", GetColor(0xe5, 0xe5, 0xe5), m_font_32);
+//	}
+//
+//	if (m_counter % m_MENU_NUM == 3) 
+//	{
+//		str = "è¨­å®šã‚’ä¿å­˜ãƒ»é©ç”¨ã™ã‚‹";
+//		int color_code = GetColor(0x11, 0x11, 0x11);
+//		//ç¾çŠ¶ã®ãƒ‡ãƒ¼ã‚¿ã¨é•ã†ãªã‚‰è‰²ã‚’è¿”ã‚‹
+//		if (m_setting_vol != Setting::getIns()->getSettingVol() || m_setting_win_ful != Setting::getIns()->getSettingFulWin() || m_setting_anime_cut != Setting::getIns()->getSettingAnime()) { color_code = GetColor(0xc0, 0x0, 0x0); }
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 35 / 64, str.c_str(), color_code, m_font_20);
+//
+//		str = "è¨­å®šã‚’åˆæœŸåŒ–ã™ã‚‹";
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 39 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//		str = "ã€€ã€€ã€€ã€€ãƒœãƒªãƒ¥ãƒ¼ãƒ è¨­å®šã€€ã€€ã€€ã€€";
+//		str += ": ï¼œã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ï¼ ";
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 43 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//		str = std::to_string(m_setting_vol) + "%";
+//		DrawStringToHandle(Define::WIN_SIZEX * 85 / 128 - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 43 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//		str = "ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ï¼ˆå†èµ·å‹•ã§é©ç”¨ï¼‰";
+//		str += ": ï¼œã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ï¼ ";
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 47 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//		str = (m_setting_win_ful) ? "ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã§èµ·å‹•" : "ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã§èµ·å‹•";
+//		DrawStringToHandle(Define::WIN_SIZEX * 85 / 128 - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 47 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//		str = "ã€€æˆ¦é—˜ä¸­ã®ã‚¢ãƒ‹ãƒ¡ã‚’ã‚«ãƒƒãƒˆã™ã‚‹ã€€";
+//		str += ": ï¼œã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ã€€ï¼ ";
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 51 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//		str = (m_setting_anime_cut) ? "ã‚¢ãƒ‹ãƒ¡ã‚’ã‚«ãƒƒãƒˆã™ã‚‹" : "ã‚«ãƒƒãƒˆã—ãªã„";
+//		DrawStringToHandle(Define::WIN_SIZEX * 85 / 128 - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 51 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//
+//		str = "ã‚²ãƒ¼ãƒ ã‚’çµ‚äº†ã™ã‚‹";
+//		DrawStringToHandle(HALF_X - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_20) / 2, Define::WIN_SIZEY * 55 / 64, str.c_str(), GetColor(0x11, 0x11, 0x11), m_font_20);
+//	}
+//}
+//
+//void MenuBox::m_drawBox() const
+//{
+//	const int HALFX = Define::WIN_SIZEX / 2;
+//	const int MINI_BOX_X = BOX_X;
+//	const int MINI_BOX_Y = (int)(BOX_Y / 1.6);
+//
+//	//å‹è² 
+//	if (m_counter % m_MENU_NUM == 0) {
+//		//é¸æŠä¸­
+//		int POS1_Y = Define::WIN_SIZEY * 4 / 40;
+//		int POS2_Y = Define::WIN_SIZEY * 20 / 40;
+//		DrawBox(HALFX - BOX_X / 2, POS1_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS2_Y + BOX_Y / 2, GetColor(0xa2, 0xa2, 0xa2), TRUE);
+//		DrawBox(HALFX - BOX_X / 2, POS1_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS1_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
+//
+//		//ç‚¹æ»…ã™ã‚‹ç™½ã„ç®±
+//		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)(255.0 * sin(GetNowCount() * 2.0 * Define::PI / 2000) * sin(GetNowCount() * 2.0 * Define::PI / 2000)));
+//		int _miny = Define::WIN_SIZEY * 12 / 64 + (Define::WIN_SIZEY * 4 / 64 + Define::WIN_SIZEY / 512) * (m_command_counter % 6);
+//		DrawBox(HALFX - MINI_BOX_X / 2, _miny - MINI_BOX_Y / 2, HALFX + MINI_BOX_X / 2, _miny + MINI_BOX_Y / 2, GetColor(0xff, 0xff, 0xff), TRUE);
+//		SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
+//	}
+//	else {
+//		int POS1_Y = Define::WIN_SIZEY * 4 / 40;
+//		DrawBox(HALFX - BOX_X / 2, POS1_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS1_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
+//	}
+//
+//	//ãƒ«ãƒ¼ãƒ«
+//	if (m_counter % m_MENU_NUM == 0) {
+//		int POS2_Y = Define::WIN_SIZEY * 25 / 40;
+//		DrawBox(HALFX - BOX_X / 2, POS2_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS2_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
+//	}
+//	else if (m_counter % m_MENU_NUM == 1) {
+//		//é¸æŠä¸­
+//		const int POS2_Y = Define::WIN_SIZEY * 9 / 40;
+//		const int POS3_Y = Define::WIN_SIZEY * 25 / 40;
+//		DrawBox(HALFX - BOX_X / 2, POS2_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS3_Y + BOX_Y / 2, GetColor(0xa2, 0xa2, 0xa2), TRUE);
+//		DrawBox(HALFX - BOX_X / 2, POS2_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS2_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
+//
+//		//ç‚¹æ»…ã™ã‚‹ç™½ã„ç®±
+//		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)(255.0 * sin(GetNowCount() * 2.0 * Define::PI / 2000) * sin(GetNowCount() * 2.0 * Define::PI / 2000)));
+//		int _miny = Define::WIN_SIZEY * 20 / 64 + (Define::WIN_SIZEY * 4 / 64 + Define::WIN_SIZEY / 512) * (m_command_counter % 6);
+//		DrawBox(HALFX - MINI_BOX_X / 2, _miny - MINI_BOX_Y / 2, HALFX + MINI_BOX_X / 2, _miny + MINI_BOX_Y / 2, GetColor(0xff, 0xff, 0xff), TRUE);
+//		SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
+//	}
+//	else {
+//		const int POS2_Y = Define::WIN_SIZEY * 9 / 40;
+//		DrawBox(HALFX - BOX_X / 2, POS2_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS2_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
+//	}
+//
+//
+//	//ãƒªãƒ—ãƒ¬ã‚¤
+//	if (m_counter % m_MENU_NUM == 3) 
+//	{
+//		const int POS3_Y = Define::WIN_SIZEY * 14 / 40;
+//		DrawBox(HALFX - BOX_X / 2, POS3_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS3_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
+//	}
+//	else if (m_counter % m_MENU_NUM == 2) 
+//	{
+//		//é¸æŠä¸­
+//		const int POS3_Y = Define::WIN_SIZEY * 14 / 40;
+//		const int POS4_Y = Define::WIN_SIZEY * 30 / 40;
+//		DrawBox(HALFX - BOX_X / 2, POS3_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS4_Y + BOX_Y / 2, GetColor(0xa2, 0xa2, 0xa2), TRUE);
+//		DrawBox(HALFX - BOX_X / 2, POS3_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS3_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
+//
+//		//ç‚¹æ»…ã™ã‚‹ç™½ã„ç®±
+//		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)(255.0 * sin(GetNowCount() * 2.0 * Define::PI / 2000) * sin(GetNowCount() * 2.0 * Define::PI / 2000)));
+//		int _miny = Define::WIN_SIZEY * 28 / 64 + (Define::WIN_SIZEY * 4 / 64 + Define::WIN_SIZEY / 512) * (m_command_counter % 6);
+//		DrawBox(HALFX - MINI_BOX_X / 2, _miny - MINI_BOX_Y / 2, HALFX + MINI_BOX_X / 2, _miny + MINI_BOX_Y / 2, GetColor(0xff, 0xff, 0xff), TRUE);
+//		SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
+//	}
+//	else {
+//		const int POS3_Y = Define::WIN_SIZEY * 30 / 40;
+//		DrawBox(HALFX - BOX_X / 2, POS3_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS3_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
+//	}
+//
+//
+//	//è¨­å®š
+//	if (m_counter % m_MENU_NUM == 3) 
+//	{
+//		//é¸æŠä¸­
+//		const int POS3_Y = Define::WIN_SIZEY * 19 / 40;
+//		const int POS4_Y = Define::WIN_SIZEY * 35 / 40;
+//		DrawBox(HALFX - BOX_X / 2, POS3_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS4_Y + BOX_Y / 2, GetColor(0xa2, 0xa2, 0xa2), TRUE);
+//		DrawBox(HALFX - BOX_X / 2, POS3_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS3_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
+//
+//		//ç‚¹æ»…ã™ã‚‹ç™½ã„ç®±
+//		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)(255.0 * sin(GetNowCount() * 2.0 * Define::PI / 2000) * sin(GetNowCount() * 2.0 * Define::PI / 2000)));
+//		int _miny = Define::WIN_SIZEY * 36 / 64 + (Define::WIN_SIZEY * 4 / 64 + Define::WIN_SIZEY / 512) * (m_command_counter % 6);
+//		DrawBox(HALFX - MINI_BOX_X / 2, _miny - MINI_BOX_Y / 2, HALFX + MINI_BOX_X / 2, _miny + MINI_BOX_Y / 2, GetColor(0xff, 0xff, 0xff), TRUE);
+//		SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
+//	}
+//	else {
+//		const int POS4_Y = Define::WIN_SIZEY * 35 / 40;
+//		DrawBox(HALFX - BOX_X / 2, POS4_Y - BOX_Y / 2, HALFX + BOX_X / 2, POS4_Y + BOX_Y / 2, GetColor(0x3a, 0x3a, 0x3a), TRUE);
+//	}
+//}

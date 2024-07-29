@@ -1,62 +1,62 @@
-#pragma once
-#include"AbstractScene.h"
-#include"MatchGameCommon.h"
-#include"SceneChangeEffect.h"
-#include"GameHand.h"
-#include"GameLog.h"
-#include"GameAnime.h"
-
-class GameScene : public AbstractScene 
-{
-public:
-	GameScene(SceneChangeListenerInterface* pScli, const Parameter& parameter);
-
-	bool update() override;
-	void draw() const override;
-	void receiveParameterInCaseOfDeleteScene(const Parameter& parameter) override;
-
-private:
-	SceneChangeEffect m_sceneChange;
-	GameHand m_handDraw;
-	GameLog m_logDraw;
-	GameAnime m_anime;
-
-	//ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-	int m_sound_hand_select = 0;
-	int m_sound_hand_cancel = 0;
-
-	//ƒ}ƒbƒ`ƒQ[ƒ€‚Ì”Õ–Ê
-	MatchField m_field;
-	int m_turn = 1;
-	bool m_player_is_first;
-	bool m_mod_rule;
-	bool m_self_harm_rule;
-
-	//s“®‘I‘ğ’†‚Ég—p‚·‚é•Ï”‹y‚Ñƒtƒ‰ƒO
-	bool m_is_selecting_now = false;
-	int m_which_player = 0;
-	int m_which_one_player1 = 0;
-	int m_which_one_player2 = 0;
-	bool m_use_self_hurm = false;
-	int m_use_saihai = 0;
-
-	//“GCPU‚ÌƒŒƒxƒ‹
-	int m_enemy_level = 0;
-
-	//ŠÖ”
-	void m_initField(const Parameter& _pram);
-	void m_selectMove();
-	void m_selectEnenmy();
-
-	//ƒAƒjƒ[ƒVƒ‡ƒ“Ä¶’†‚É”Õ–Ê‚ğ“ü‚ê‘Ö‚¦‚é
-	void m_pushNewField(MatchField& _new);
-	void m_pushNewFieldbyCommand(int _cmd);
-	void m_pushNewFieldExecute();
-	int m_newfield_type = 0;
-	MatchField m_newfield_data;
-	int m_newfield_cmd = 0;
-
-	//ƒV[ƒ“ƒ`ƒFƒ“ƒW—p‚Ìƒtƒ‰ƒO
-	bool m_changescene_flag = false;
-	int m_changescene_which = 0;
-};
+ï»¿//#pragma once
+//#include"AbstractScene.h"
+//#include"MatchGameCommon.h"
+//#include"SceneChangeEffect.h"
+//#include"GameHand.h"
+//#include"GameLog.h"
+//#include"GameAnime.h"
+//
+//class GameScene : public AbstractScene 
+//{
+//public:
+//	GameScene(SceneChangeListenerInterface* pScli, const Parameter& parameter);
+//
+//	bool update() override;
+//	void draw() const override;
+//	void receiveParameterInCaseOfDeleteScene(const Parameter& parameter) override;
+//
+//private:
+//	SceneChangeEffect m_sceneChange;
+//	GameHand m_handDraw;
+//	GameLog m_logDraw;
+//	GameAnime m_anime;
+//
+//	//ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+//	int m_sound_hand_select = 0;
+//	int m_sound_hand_cancel = 0;
+//
+//	//ãƒãƒƒãƒã‚²ãƒ¼ãƒ ã®ç›¤é¢
+//	MatchField m_field;
+//	int m_turn = 1;
+//	bool m_player_is_first;
+//	bool m_mod_rule;
+//	bool m_self_harm_rule;
+//
+//	//è¡Œå‹•é¸æŠä¸­ã«ä½¿ç”¨ã™ã‚‹å¤‰æ•°åŠã³ãƒ•ãƒ©ã‚°
+//	bool m_is_selecting_now = false;
+//	int m_which_player = 0;
+//	int m_which_one_player1 = 0;
+//	int m_which_one_player2 = 0;
+//	bool m_use_self_hurm = false;
+//	int m_use_saihai = 0;
+//
+//	//æ•µCPUã®ãƒ¬ãƒ™ãƒ«
+//	int m_enemy_level = 0;
+//
+//	//é–¢æ•°
+//	void m_initField(const Parameter& _pram);
+//	void m_selectMove();
+//	void m_selectEnenmy();
+//
+//	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å†ç”Ÿä¸­ã«ç›¤é¢ã‚’å…¥ã‚Œæ›¿ãˆã‚‹
+//	void m_pushNewField(MatchField& _new);
+//	void m_pushNewFieldbyCommand(int _cmd);
+//	void m_pushNewFieldExecute();
+//	int m_newfield_type = 0;
+//	MatchField m_newfield_data;
+//	int m_newfield_cmd = 0;
+//
+//	//ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ç”¨ã®ãƒ•ãƒ©ã‚°
+//	bool m_changescene_flag = false;
+//	int m_changescene_which = 0;
+//};

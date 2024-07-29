@@ -1,25 +1,25 @@
-#pragma once
-#include"MatchGameCommon.h"
-
-class GameHand
-{
-public:
-	GameHand();
-	~GameHand() = default;
-
-	void draw(MatchField _field, const bool _select_now, const int _which_player, const int _which_hand_pl1, const int _which_hand_pl2, const bool _self, const int _saihai) const;
-	
-private:
-
-	//‰æ‘œƒnƒ“ƒhƒ‹
-	int m_gr_hand[6] = {};
-	int m_gr_arrow = 0;
-
-	//ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹
-	int m_font_32 = 0;
-	int m_font_20 = 0;
-
-	//ŠÖ”
-	void m_drawString() const;
-	void m_drawArrow(const int _which, const int _pl1, const int _pl2, const bool _self, const bool _saihai) const;
-};
+ï»¿//#pragma once
+//#include"MatchGameCommon.h"
+//
+//class GameHand
+//{
+//public:
+//	GameHand();
+//	~GameHand() = default;
+//
+//	void draw(MatchField _field, const bool _select_now, const int _which_player, const int _which_hand_pl1, const int _which_hand_pl2, const bool _self, const int _saihai) const;
+//	
+//private:
+//
+//	//ç”»åƒãƒãƒ³ãƒ‰ãƒ«
+//	int m_gr_hand[6] = {};
+//	int m_gr_arrow = 0;
+//
+//	//ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«
+//	int m_font_32 = 0;
+//	int m_font_20 = 0;
+//
+//	//é–¢æ•°
+//	void m_drawString() const;
+//	void m_drawArrow(const int _which, const int _pl1, const int _pl2, const bool _self, const bool _saihai) const;
+//};

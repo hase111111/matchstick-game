@@ -1,68 +1,68 @@
-#pragma once
-#include "Parameter.h"
-#include "SceneEnum.h"
-#include <string>
-#include <vector>
-
-class MenuBox
-{
-public:
-	MenuBox();
-
-	bool update(enumScene& _scene, Parameter& _param);
-	bool getGameEnd() const;
-	void draw() const;
-
-private:
-	//ˆ—‚ğ‚·‚é‚½‚ß‚ÌƒJƒEƒ“ƒ^
-	int m_counter = 0;
-	const int m_MENU_NUM = 4;
-
-	int m_command_counter = 0;
-	const int m_BATTLE_NUM = 6;
-
-	//í“¬‚Ìİ’è‚ğ‹L˜^‚·‚é•Ï”Eƒtƒ‰ƒO
-	int m_battle_first = 0;
-	int m_battle_cpu = 3;
-	bool m_battle_mod = true;
-	bool m_battle_self = true;
-	bool m_battle_saihai = true;
-
-	//ƒŠƒvƒŒƒC‚Ìˆ—‚Ì‚½‚ß‚Ì•Ï”Eƒtƒ‰ƒO
-	bool m_file_load_flag = false;
-	std::vector<std::string> m_file_list;
-	int m_file_select = 0;
-	std::string m_file_error_log = "";
-
-	//İ’èƒV[ƒ“‚Ì•Ï”Eƒtƒ‰ƒO
-	int m_setting_vol = 0;
-	bool m_setting_win_ful = false;
-	bool m_setting_anime_cut = false;
-	bool m_game_end_flag = false;
-
-	//lŠpŒ`‚Ì‘å‚«‚³
-	const int BOX_X;
-	const int BOX_Y;
-
-	//ƒtƒHƒ“ƒgƒnƒ“ƒhƒ‹
-	int m_font_32 = 0;
-	int m_font_20 = 0;
-
-	//ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-	int m_sound_select = 0;
-	int m_sound_select2 = 0;
-	int m_sound_cancel = 0;
-
-	//ˆ—ŠÖ”
-	void m_updateSetting();
-	void m_resetReplayFile();
-	bool m_getReplayFileList();
-
-	//•`‰æŠÖ”
-	void m_drawBox() const;
-	void m_drawString() const;
-	void m_drawString_VS() const;
-	void m_drawString_Rule() const;
-	void m_drawString_Replay() const;
-	void m_drawString_String() const;
-};
+ï»¿//#pragma once
+//#include "Parameter.h"
+//#include "SceneEnum.h"
+//#include <string>
+//#include <vector>
+//
+//class MenuBox
+//{
+//public:
+//	MenuBox();
+//
+//	bool update(enumScene& _scene, Parameter& _param);
+//	bool getGameEnd() const;
+//	void draw() const;
+//
+//private:
+//	//å‡¦ç†ã‚’ã™ã‚‹ãŸã‚ã®ã‚«ã‚¦ãƒ³ã‚¿
+//	int m_counter = 0;
+//	const int m_MENU_NUM = 4;
+//
+//	int m_command_counter = 0;
+//	const int m_BATTLE_NUM = 6;
+//
+//	//æˆ¦é—˜ã®è¨­å®šã‚’è¨˜éŒ²ã™ã‚‹å¤‰æ•°ãƒ»ãƒ•ãƒ©ã‚°
+//	int m_battle_first = 0;
+//	int m_battle_cpu = 3;
+//	bool m_battle_mod = true;
+//	bool m_battle_self = true;
+//	bool m_battle_saihai = true;
+//
+//	//ãƒªãƒ—ãƒ¬ã‚¤ã®å‡¦ç†ã®ãŸã‚ã®å¤‰æ•°ãƒ»ãƒ•ãƒ©ã‚°
+//	bool m_file_load_flag = false;
+//	std::vector<std::string> m_file_list;
+//	int m_file_select = 0;
+//	std::string m_file_error_log = "";
+//
+//	//è¨­å®šã‚·ãƒ¼ãƒ³ã®å¤‰æ•°ãƒ»ãƒ•ãƒ©ã‚°
+//	int m_setting_vol = 0;
+//	bool m_setting_win_ful = false;
+//	bool m_setting_anime_cut = false;
+//	bool m_game_end_flag = false;
+//
+//	//å››è§’å½¢ã®å¤§ãã•
+//	const int BOX_X;
+//	const int BOX_Y;
+//
+//	//ãƒ•ã‚©ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«
+//	int m_font_32 = 0;
+//	int m_font_20 = 0;
+//
+//	//ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+//	int m_sound_select = 0;
+//	int m_sound_select2 = 0;
+//	int m_sound_cancel = 0;
+//
+//	//å‡¦ç†é–¢æ•°
+//	void m_updateSetting();
+//	void m_resetReplayFile();
+//	bool m_getReplayFileList();
+//
+//	//æç”»é–¢æ•°
+//	void m_drawBox() const;
+//	void m_drawString() const;
+//	void m_drawString_VS() const;
+//	void m_drawString_Rule() const;
+//	void m_drawString_Replay() const;
+//	void m_drawString_String() const;
+//};

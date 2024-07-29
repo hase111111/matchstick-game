@@ -1,24 +1,24 @@
-#pragma once
-
-class SceneChangeEffect
-{
-public:
-	SceneChangeEffect();
-	~SceneChangeEffect() = default;
-
-	void init(const int _mode);
-	bool update();
-	void draw() const;
-
-private:
-	int m_counter = 0;	//ƒAƒjƒ[ƒVƒ‡ƒ“‚ğ“®‚©‚·ƒJƒEƒ“ƒ^
-	int m_mode = 0;		//‚Ç‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğ“®‚©‚·‚©‚Ìƒtƒ‰ƒO
-
-	//ƒTƒEƒ“ƒhƒnƒ“ƒhƒ‹
-	int m_sound_fade_in = 0;
-	int m_sound_fade_out = 0;
-
-	const int m_WIN_DIV = 6;	//‰æ–Ê‚ğ6“™•ª‚·‚é
-	const int m_END_TIME = 50;	//ƒAƒjƒ[ƒVƒ‡ƒ“‚ğs‚¤ŠÔ
-	const int m_COLOR;
-};
+ï»¿//#pragma once
+//
+//class SceneChangeEffect
+//{
+//public:
+//	SceneChangeEffect();
+//	~SceneChangeEffect() = default;
+//
+//	void init(const int _mode);
+//	bool update();
+//	void draw() const;
+//
+//private:
+//	int m_counter = 0;	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å‹•ã‹ã™ã‚«ã‚¦ãƒ³ã‚¿
+//	int m_mode = 0;		//ã©ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å‹•ã‹ã™ã‹ã®ãƒ•ãƒ©ã‚°
+//
+//	//ã‚µã‚¦ãƒ³ãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+//	int m_sound_fade_in = 0;
+//	int m_sound_fade_out = 0;
+//
+//	const int m_WIN_DIV = 6;	//ç”»é¢ã‚’6ç­‰åˆ†ã™ã‚‹
+//	const int m_END_TIME = 50;	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’è¡Œã†æ™‚é–“
+//	const int m_COLOR;
+//};
