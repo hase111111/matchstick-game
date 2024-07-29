@@ -174,6 +174,7 @@
     <ClCompile Include="dxlib_assert.cpp" />
     <ClCompile Include="dxlib_keyboard.cpp" />
     <ClCompile Include="dxlib_mouse.cpp" />
+    <ClCompile Include="dxlib_renderer.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="font_loader.cpp" />
     <ClCompile Include="fps_controller.cpp" />
@@ -220,6 +221,7 @@
     <ClCompile Include="system_main.cpp" />
     <ClCompile Include="TitleAnime.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="title_back_ground_base.cpp" />
     <ClCompile Include="title_scene.cpp" />
     <ClCompile Include="toml_serialize_macro.cpp" />
   </ItemGroup>
@@ -231,6 +233,7 @@
     <ClInclude Include="dxlib_assert.h" />
     <ClInclude Include="dxlib_keyboard.h" />
     <ClInclude Include="dxlib_mouse.h" />
+    <ClInclude Include="dxlib_renderer.h" />
     <ClInclude Include="error_message_box.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="font_loader.h" />
@@ -245,6 +248,7 @@
     <ClInclude Include="Image.h" />
     <ClInclude Include="image_loader.h" />
     <ClInclude Include="implicit_metafunction_for_toml11.h" />
+    <ClInclude Include="i_dxlib_renderable.h" />
     <ClInclude Include="i_scene.h" />
     <ClInclude Include="Keyboard.h" />
     <ClInclude Include="language_record.h" />
@@ -280,6 +284,7 @@
     <ClInclude Include="system_main.h" />
     <ClInclude Include="TitleAnime.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="title_back_ground_base.h" />
     <ClInclude Include="title_scene.h" />
     <ClInclude Include="toml11_define.h" />
     <ClInclude Include="toml_serialize_macro.h" />

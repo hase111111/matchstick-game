@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "dxlib_keyboard.h"
+#include "dxlib_renderer.h"
 #include "font_loader.h"
 #include "i_scene.h"
 #include "image_loader.h"
@@ -20,9 +21,9 @@ public:
         std::shared_ptr<SceneChangeListener> scene_change_listener_ptr,
         std::shared_ptr<const LanguageRecord> language_record_ptr,
         std::shared_ptr<const DxLibKeyboard> keyboard_ptr,
-        std::shared_ptr<const FontLoader> font_loader_ptr,
-        std::shared_ptr<const ImageLoader> img_loader_ptr,
-        std::shared_ptr<const SoundEffectLoader> sound_effect_loader_ptr);
+        std::shared_ptr<FontLoader> font_loader_ptr,
+        std::shared_ptr<ImageLoader> img_loader_ptr,
+        std::shared_ptr<SoundEffectLoader> sound_effect_loader_ptr);
 
     ~TitleScene() = default;
 
@@ -38,9 +39,11 @@ private:
     std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
     std::shared_ptr<const LanguageRecord> language_record_ptr_;
     std::shared_ptr<const DxLibKeyboard> keyboard_ptr_;
-    std::shared_ptr<const FontLoader> font_loader_ptr_;
-    std::shared_ptr<const ImageLoader> img_loader_ptr_;
-    std::shared_ptr<const SoundEffectLoader> sound_effect_loader_ptr_;
+    std::shared_ptr<FontLoader> font_loader_ptr_;
+    std::shared_ptr<ImageLoader> img_loader_ptr_;
+    std::shared_ptr<SoundEffectLoader> sound_effect_loader_ptr_;
+
+    std::unique_ptr<DxLibRenderer> dxlib_renderer_ptr_;
 };
 
 }  // namespace match_stick

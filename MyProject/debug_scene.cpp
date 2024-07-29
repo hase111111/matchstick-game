@@ -1,6 +1,8 @@
 ﻿
 #include "debug_scene.h"
 
+#include <DxLib.h>
+
 namespace match_stick {
 
 bool DebugScene::update() {
@@ -8,6 +10,7 @@ bool DebugScene::update() {
 }
 
 void DebugScene::draw() const {
+    DrawString(0, 0, "Debug Scene", GetColor(255, 255, 255));
 }
 
 void DebugScene::onStart(const SceneChangeParameter& parameter) {

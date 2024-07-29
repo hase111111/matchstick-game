@@ -76,6 +76,9 @@
     <Filter Include="ソース ファイル\Resource">
       <UniqueIdentifier>{f7603a56-e309-4a8f-bf75-c71e2272fdcf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Render">
+      <UniqueIdentifier>{5987ee12-6e70-4702-948c-b0452ba47941}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -180,9 +183,6 @@
     <ClCompile Include="dxlib_mouse.cpp">
       <Filter>ソース ファイル\Common\Input</Filter>
     </ClCompile>
-    <ClCompile Include="dxlib_assert.cpp">
-      <Filter>ソース ファイル\Common\Input</Filter>
-    </ClCompile>
     <ClCompile Include="dxlib_keyboard.cpp">
       <Filter>ソース ファイル\Common\Input</Filter>
     </ClCompile>
@@ -242,6 +242,15 @@
     </ClCompile>
     <ClCompile Include="title_scene.cpp">
       <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="title_back_ground_base.cpp">
+      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="dxlib_renderer.cpp">
+      <Filter>ソース ファイル\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="dxlib_assert.cpp">
+      <Filter>ソース ファイル\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -341,9 +350,6 @@
     <ClInclude Include="error_message_box.h">
       <Filter>ソース ファイル\Systems</Filter>
     </ClInclude>
-    <ClInclude Include="dxlib_assert.h">
-      <Filter>ソース ファイル\Common\Input</Filter>
-    </ClInclude>
     <ClInclude Include="dxlib_keyboard.h">
       <Filter>ソース ファイル\Common\Input</Filter>
     </ClInclude>
@@ -421,6 +427,18 @@
     </ClInclude>
     <ClInclude Include="title_scene.h">
       <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="i_dxlib_renderable.h">
+      <Filter>ソース ファイル\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="title_back_ground_base.h">
+      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_renderer.h">
+      <Filter>ソース ファイル\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_assert.h">
+      <Filter>ソース ファイル\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
