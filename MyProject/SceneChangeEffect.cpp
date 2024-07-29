@@ -1,84 +1,84 @@
-#include "SceneChangeEffect.h"
+ï»¿#include "SceneChangeEffect.h"
 #include "Define.h"
 #include "DxLib.h"
 #include "Sound.h"
 
 SceneChangeEffect::SceneChangeEffect() : m_COLOR(GetColor(0x55, 0x55, 0x55))
 {
-	m_sound_fade_in = Sound::getIns()->myLoadSound("data/sound/fade_in.mp3");
-	m_sound_fade_out = Sound::getIns()->myLoadSound("data/sound/fade_out.mp3");
+    m_sound_fade_in = Sound::getIns()->myLoadSound("data/sound/fade_in.mp3");
+    m_sound_fade_out = Sound::getIns()->myLoadSound("data/sound/fade_out.mp3");
 }
 
-void SceneChangeEffect::init(const int _mode) 
+void SceneChangeEffect::init(const int _mode)
 {
-	m_counter = 0;	//ƒJƒEƒ“ƒ^‚Ì‰Šú‰»
-	m_mode = _mode;	//ƒ‚[ƒh‚ğİ’è
+    m_counter = 0;	//ã‚«ã‚¦ãƒ³ã‚¿ã®åˆæœŸåŒ–
+    m_mode = _mode;	//ãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®š
 }
 
 bool SceneChangeEffect::update()
 {
-	++m_counter;
+    ++m_counter;
 
-	//Šù‚ÉƒAƒjƒ[ƒVƒ‡ƒ“‚ªI—¹‚µ‚Ä‚¢‚½‚È‚çfalse‚ğ•Ô‚·
-	if (m_END_TIME < m_counter)return false;
+    //æ—¢ã«ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒçµ‚äº†ã—ã¦ã„ãŸãªã‚‰falseã‚’è¿”ã™
+    if (m_END_TIME < m_counter)return false;
 
-	//ƒ}ƒCƒiƒXƒ‚[ƒh‚Ì‚Ífalse‚ğ•Ô‚·
-	if (m_mode < 0) return false;
+    //ãƒã‚¤ãƒŠã‚¹ãƒ¢ãƒ¼ãƒ‰ã®æ™‚ã¯falseã‚’è¿”ã™
+    if (m_mode < 0) return false;
 
-	return true;
+    return true;
 }
 
 void SceneChangeEffect::draw() const
 {
-	int temp_y = 0;
+    int temp_y = 0;
 
-	switch (m_mode)
-	{
-	//ƒtƒF[ƒhƒAƒEƒg‚ÌƒGƒtƒFƒNƒg
-	case 0:	
-		//ƒTƒEƒ“ƒh‚ğ–Â‚ç‚·
-		if(m_counter == 1)PlaySoundMem(m_sound_fade_out,DX_PLAYTYPE_BACK);
+    switch (m_mode)
+    {
+        //ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+        case 0:
+            //ã‚µã‚¦ãƒ³ãƒ‰ã‚’é³´ã‚‰ã™
+            if (m_counter == 1)PlaySoundMem(m_sound_fade_out, DX_PLAYTYPE_BACK);
 
-		//‘Ñ‚Ì•`‰æ
-		for (int i = 0; i < m_WIN_DIV; i++)
-		{
-			temp_y = Define::WIN_SIZEY * (m_counter - m_END_TIME * i / m_WIN_DIV) / (m_END_TIME / m_WIN_DIV);
-			DrawBox(Define::WIN_SIZEX / m_WIN_DIV * i, 0, Define::WIN_SIZEX * (i + 1) / m_WIN_DIV, temp_y, m_COLOR, TRUE);
-		}
+            //å¸¯ã®æç”»
+            for (int i = 0; i < m_WIN_DIV; i++)
+            {
+                temp_y = Define::WIN_SIZEY * (m_counter - m_END_TIME * i / m_WIN_DIV) / (m_END_TIME / m_WIN_DIV);
+                DrawBox(Define::WIN_SIZEX / m_WIN_DIV * i, 0, Define::WIN_SIZEX * (i + 1) / m_WIN_DIV, temp_y, m_COLOR, TRUE);
+            }
 
-		break;
+            break;
 
-	//ƒtƒF[ƒhƒCƒ“‚ÌƒGƒtƒFƒNƒg
-	case 1:
-		//ƒTƒEƒ“ƒh‚ğ–Â‚ç‚·
-		if (m_counter == 1)PlaySoundMem(m_sound_fade_in, DX_PLAYTYPE_BACK);
+            //ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+        case 1:
+            //ã‚µã‚¦ãƒ³ãƒ‰ã‚’é³´ã‚‰ã™
+            if (m_counter == 1)PlaySoundMem(m_sound_fade_in, DX_PLAYTYPE_BACK);
 
-		//‘Ñ‚Ì•`‰æ
-		for (int i = 0; i < m_WIN_DIV; i++)
-		{
-			temp_y = Define::WIN_SIZEY * (m_counter - m_END_TIME * (m_WIN_DIV - 1 - i) / m_WIN_DIV) / (m_END_TIME / m_WIN_DIV);
-			DrawBox(Define::WIN_SIZEX / m_WIN_DIV * (m_WIN_DIV - 1 - i), temp_y, Define::WIN_SIZEX * (m_WIN_DIV - i) / m_WIN_DIV, Define::WIN_SIZEY, m_COLOR, TRUE);
-		}
+            //å¸¯ã®æç”»
+            for (int i = 0; i < m_WIN_DIV; i++)
+            {
+                temp_y = Define::WIN_SIZEY * (m_counter - m_END_TIME * (m_WIN_DIV - 1 - i) / m_WIN_DIV) / (m_END_TIME / m_WIN_DIV);
+                DrawBox(Define::WIN_SIZEX / m_WIN_DIV * (m_WIN_DIV - 1 - i), temp_y, Define::WIN_SIZEX * (m_WIN_DIV - i) / m_WIN_DIV, Define::WIN_SIZEY, m_COLOR, TRUE);
+            }
 
-		break;
+            break;
 
-	//ƒtƒF[ƒhƒAƒEƒg
-	case 2:
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255 * m_counter / m_END_TIME);
-		DrawBox(0, 0, Define::WIN_SIZEX, Define::WIN_SIZEY, GetColor(0, 0, 0), TRUE);
-		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-		break;
+            //ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+        case 2:
+            SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255 * m_counter / m_END_TIME);
+            DrawBox(0, 0, Define::WIN_SIZEX, Define::WIN_SIZEY, GetColor(0, 0, 0), TRUE);
+            SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+            break;
 
-	//ƒtƒF[ƒhƒAƒEƒg
-	case 3:
-		SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255 * (m_END_TIME - m_counter) / m_END_TIME);
-		DrawBox(0, 0, Define::WIN_SIZEX, Define::WIN_SIZEY, GetColor(0, 0, 0), TRUE);
-		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-		break;
+            //ãƒ•ã‚§ãƒ¼ãƒ‰ã‚¢ã‚¦ãƒˆ
+        case 3:
+            SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255 * (m_END_TIME - m_counter) / m_END_TIME);
+            DrawBox(0, 0, Define::WIN_SIZEX, Define::WIN_SIZEY, GetColor(0, 0, 0), TRUE);
+            SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+            break;
 
-	default:
+        default:
 
-		break;
-	}
+            break;
+    }
 
 }

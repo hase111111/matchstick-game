@@ -17,7 +17,7 @@ public:
     ~TitleLogo() = default;
 
     inline int getLayer() const override {
-        return constants::kBackGroundLayer;
+        return constants::kUIFrontLayer;
     }
 
     void update() override;

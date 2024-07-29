@@ -1,4 +1,4 @@
-#include "DxLib.h"
+ï»¿#include "DxLib.h"
 #include "TitleScene.h"
 #include "Keyboard.h"
 #include "Define.h"
@@ -6,59 +6,59 @@
 #include "Sound.h"
 #include "GameParam.h"
 
-TitleScene::TitleScene(SceneChangeListenerInterface* pScli, const Parameter& parameter) : 
-	AbstractScene(pScli, parameter),
-	m_scene_change(false),
-	m_sound(Sound::getIns()->myLoadSound("data/sound/op.mp3"))
+TitleScene::TitleScene(SceneChangeListenerInterface* pScli, const Parameter& parameter) :
+    AbstractScene(pScli, parameter),
+    m_scene_change(false),
+    m_sound(Sound::getIns()->myLoadSound("data/sound/op.mp3"))
 {
-	m_change.init(-1);
+    m_change.init(-1);
 }
 
 bool TitleScene::update()
 {
-	m_anime.update();
+    m_anime.update();
 
-	if (m_change.update() == false) {
+    if (m_change.update() == false) {
 
-		if (m_scene_change == true) {
-			//ƒV[ƒ“ƒ`ƒFƒ“ƒW‚ÌƒGƒtƒFƒNƒg‚ªI—¹‚µ‚½’iŠK‚ÅƒV[ƒ“‚ğ•ÏX‚·‚é
-			Parameter _p;
-			mp_listenerInterface->addNewScene(enumScene::menu, _p);
-		}
+        if (m_scene_change == true) {
+            //ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒçµ‚äº†ã—ãŸæ®µéšã§ã‚·ãƒ¼ãƒ³ã‚’å¤‰æ›´ã™ã‚‹
+            Parameter _p;
+            mp_listenerInterface->addNewScene(enumScene::menu, _p);
+        }
 
-		//ZƒL[‚ª‰Ÿ‚³‚ê‚½‚çƒV[ƒ“Ø‚è‘Ö‚¦
-		if (Keyboard::getIns()->getPressingCount(KEY_INPUT_Z) == 1) 
-		{
-			m_scene_change = true;	//ƒV[ƒ“•ÏXƒtƒ‰ƒO‚ğ—§‚Ä‚é
-			m_change.init(2);		//ƒV[ƒ“ƒ`ƒFƒ“ƒWƒGƒtƒFƒNƒg‚ğÄ¶
-			PlaySoundMem(m_sound, DX_PLAYTYPE_BACK);	//ƒTƒEƒ“ƒh‚ğÄ¶
-		}
+        //Zã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‚‰ã‚·ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆ
+        if (Keyboard::getIns()->getPressingCount(KEY_INPUT_Z) == 1)
+        {
+            m_scene_change = true;	//ã‚·ãƒ¼ãƒ³å¤‰æ›´ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
+            m_change.init(2);		//ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å†ç”Ÿ
+            PlaySoundMem(m_sound, DX_PLAYTYPE_BACK);	//ã‚µã‚¦ãƒ³ãƒ‰ã‚’å†ç”Ÿ
+        }
 
-		//ESCƒL[‚ª‰Ÿ‚³‚ê‚½‚çƒQ[ƒ€I—¹
-		if (Keyboard::getIns()->getPressingCount(KEY_INPUT_ESCAPE) == 1)
-		{
-			return false;
-		}
-	}
+        //ESCã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‚‰ã‚²ãƒ¼ãƒ çµ‚äº†
+        if (Keyboard::getIns()->getPressingCount(KEY_INPUT_ESCAPE) == 1)
+        {
+            return false;
+        }
+    }
 
-	return true;
+    return true;
 }
 
 void TitleScene::draw() const
 {
-	//”wŒi
-	DrawBox(0, 0, Define::WIN_SIZEX, Define::WIN_SIZEY, GetColor(255, 255, 255), TRUE);
+    //èƒŒæ™¯
+    DrawBox(0, 0, Define::WIN_SIZEX, Define::WIN_SIZEY, GetColor(255, 255, 255), TRUE);
 
-	//ƒRƒs[ƒ‰ƒCƒg•”wŒi‚ÌƒAƒjƒ[ƒVƒ‡ƒ“
-	m_anime.draw();
+    //ã‚³ãƒ”ãƒ¼ãƒ©ã‚¤ãƒˆï¼†èƒŒæ™¯ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³
+    m_anime.draw();
 
-	//ƒV[ƒ“ƒ`ƒFƒ“ƒW‚ÌƒGƒtƒFƒNƒg
-	m_change.draw();
+    //ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+    m_change.draw();
 }
 
 void TitleScene::receiveParameterInCaseOfDeleteScene(const Parameter& parameter)
 {
-	//ƒV[ƒ“ƒ`ƒFƒ“ƒW—p‚ÌƒNƒ‰ƒX‚Æƒtƒ‰ƒO‚ğƒŠƒZƒbƒg‚·‚é
-	m_scene_change = false;
-	m_change.init(3);
+    //ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ç”¨ã®ã‚¯ãƒ©ã‚¹ã¨ãƒ•ãƒ©ã‚°ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
+    m_scene_change = false;
+    m_change.init(3);
 }

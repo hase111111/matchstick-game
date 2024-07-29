@@ -227,6 +227,7 @@
     <ClCompile Include="TitleAnime.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="title_back_ground_base.cpp" />
+    <ClCompile Include="title_hand_animation.cpp" />
     <ClCompile Include="title_logo.cpp" />
     <ClCompile Include="title_scene.cpp" />
     <ClCompile Include="toml_serialize_macro.cpp" />
@@ -292,6 +293,7 @@
     <ClInclude Include="TitleAnime.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="title_back_ground_base.h" />
+    <ClInclude Include="title_hand_animation.h" />
     <ClInclude Include="title_logo.h" />
     <ClInclude Include="title_scene.h" />
     <ClInclude Include="toml11_define.h" />
