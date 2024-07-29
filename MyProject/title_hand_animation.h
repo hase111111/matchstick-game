@@ -5,13 +5,12 @@
 #include <memory>
 #include <vector>
 
-#include "i_dxlib_renderable.h"
-#include "i_updatable_entity.h"
+#include "i_entity.h"
 #include "image_loader.h"
 
 namespace match_stick {
 
-class TitleHandAnimation final : public IDxLibRenderable, public IUpdatableEntity {
+class TitleHandAnimation final : public IEntity {
 public:
     TitleHandAnimation(const std::shared_ptr<ImageLoader>& image_loader);
     ~TitleHandAnimation() = default;
@@ -22,7 +21,7 @@ public:
         return constants::kUIBottomLayer;
     }
 
-    void update() override;
+    bool update() override;
 
     void draw() const override;
 

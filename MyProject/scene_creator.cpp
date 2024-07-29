@@ -38,7 +38,7 @@ SceneCreator::SceneCreator(
 std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) const {
     switch (scene_name) {
         case SceneName::kDebug: {
-            return std::make_unique<DebugScene>();
+            return std::make_unique<DebugScene>(scene_change_listener_ptr_, keyboard_ptr_);
         }
         case SceneName::kTitle: {
             return std::make_unique<TitleScene>(

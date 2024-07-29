@@ -3,18 +3,22 @@
 
 #include <memory>
 
-#include "i_dxlib_renderable.h"
+#include "i_entity.h"
 #include "image_loader.h"
 
 namespace match_stick {
 
-class TitleBackGroundBase final : public IDxLibRenderable {
+class TitleBackGroundBase final : public IEntity {
 public:
     TitleBackGroundBase(const std::shared_ptr<ImageLoader>& image_loader);
     ~TitleBackGroundBase() = default;
 
     inline int getLayer() const override {
         return constants::kBackGroundLayer;
+    }
+
+    bool update() override {
+        return true;
     }
 
     void draw() const override;

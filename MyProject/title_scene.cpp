@@ -19,18 +19,16 @@ TitleScene::TitleScene(
     std::shared_ptr<SoundEffectLoader> sound_effect_loader_ptr) :
     scene_change_listener_ptr_(scene_change_listener_ptr),
     keyboard_ptr_(keyboard_ptr),
-    dxlib_renderer_ptr_(std::make_unique<DxLibRenderer>()),
     entity_updater_ptr_(std::make_unique<EntityUpdater>()) {
-
-    dxlib_renderer_ptr_->registerRenderable(std::make_shared<TitleBackGroundBase>(img_loader_ptr));
+    entity_updater_ptr_->registerEntity(std::make_shared<TitleBackGroundBase>(img_loader_ptr));
 
     auto title_logo_ptr_ = std::make_shared<TitleLogo>(language_record_ptr, font_loader_ptr);
-    dxlib_renderer_ptr_->registerRenderable(title_logo_ptr_);
     entity_updater_ptr_->registerEntity(title_logo_ptr_);
 
     auto title_hand_animation_ptr_ = std::make_shared<TitleHandAnimation>(img_loader_ptr);
-    dxlib_renderer_ptr_->registerRenderable(title_hand_animation_ptr_);
     entity_updater_ptr_->registerEntity(title_hand_animation_ptr_);
+
+    scene_change_sound_handle_ = sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/op.mp3");
 }
 
 bool TitleScene::update() {
@@ -45,9 +43,11 @@ bool TitleScene::update() {
         auto fade_effect_ptr = std::make_shared<FadeEffect>(60, FadeEffect::FadeType::kFadeOut, scene_change_func);
 
         entity_updater_ptr_->registerEntity(fade_effect_ptr);
-        dxlib_renderer_ptr_->registerRenderable(fade_effect_ptr);
 
         is_scene_change_requested_ = true;
+
+        // シーン遷移時の効果音を再生
+        PlaySoundMem(scene_change_sound_handle_, DX_PLAYTYPE_BACK);
     }
 
     entity_updater_ptr_->update();
@@ -56,10 +56,7 @@ bool TitleScene::update() {
 }
 
 void TitleScene::draw() const {
-    dxlib_renderer_ptr_->draw();
-}
-
-void TitleScene::onStart(const SceneChangeParameter&) {
+    entity_updater_ptr_->draw();
 }
 
 void TitleScene::onReturnFromOtherScene(const SceneChangeParameter&) {
@@ -68,7 +65,6 @@ void TitleScene::onReturnFromOtherScene(const SceneChangeParameter&) {
     // フェードイン演出を追加
     auto fade_effect_ptr = std::make_shared<FadeEffect>(60, FadeEffect::FadeType::kFadeIn, []() {});
     entity_updater_ptr_->registerEntity(fade_effect_ptr);
-    dxlib_renderer_ptr_->registerRenderable(fade_effect_ptr);
 }
 
 }  // namespace match_stick

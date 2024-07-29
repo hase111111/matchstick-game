@@ -5,22 +5,22 @@
 #include <string>
 
 #include "font_loader.h"
-#include "i_dxlib_renderable.h"
-#include "i_updatable_entity.h"
+#include "i_entity.h"
 #include "language_record.h"
 
 namespace match_stick {
 
-class TitleLogo final : public IDxLibRenderable, public IUpdatableEntity {
+class TitleLogo final : public IEntity {
 public:
-    TitleLogo(const std::shared_ptr<const LanguageRecord>& language_record_ptr, const std::shared_ptr<FontLoader>& font_loader);
-    ~TitleLogo() = default;
+    TitleLogo(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+              const std::shared_ptr<FontLoader>& font_loader);
+    ~TitleLogo();
 
     inline int getLayer() const override {
         return constants::kUIFrontLayer;
     }
 
-    void update() override;
+    bool update() override;
 
     void draw() const override;
 

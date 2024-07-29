@@ -64,9 +64,6 @@
     <Filter Include="ソース ファイル\entity">
       <UniqueIdentifier>{2fa5bfcf-e71c-4168-af5b-e780e96d83a8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\entity\renderable">
-      <UniqueIdentifier>{5987ee12-6e70-4702-948c-b0452ba47941}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\entity\updatable">
       <UniqueIdentifier>{7bdf37b9-162d-4ffd-a269-da92cf887456}</UniqueIdentifier>
     </Filter>
@@ -210,9 +207,6 @@
     <ClCompile Include="title_scene.cpp">
       <Filter>ソース ファイル\scenes\title_scene</Filter>
     </ClCompile>
-    <ClCompile Include="dxlib_renderer.cpp">
-      <Filter>ソース ファイル\entity\renderable</Filter>
-    </ClCompile>
     <ClCompile Include="dxlib_assert.cpp">
       <Filter>ソース ファイル\common</Filter>
     </ClCompile>
@@ -228,9 +222,6 @@
     <ClCompile Include="title_logo.cpp">
       <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
     </ClCompile>
-    <ClCompile Include="scene_switcher_title.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="SceneChangeEffect.cpp">
       <Filter>ソース ファイル\scenes\_old</Filter>
     </ClCompile>
@@ -239,6 +230,9 @@
     </ClCompile>
     <ClCompile Include="fade_effect.cpp">
       <Filter>ソース ファイル\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="dxlib_debug_print.cpp">
+      <Filter>ソース ファイル\common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -371,16 +365,10 @@
     <ClInclude Include="title_scene.h">
       <Filter>ソース ファイル\scenes\title_scene</Filter>
     </ClInclude>
-    <ClInclude Include="i_dxlib_renderable.h">
-      <Filter>ソース ファイル\entity\renderable</Filter>
-    </ClInclude>
-    <ClInclude Include="dxlib_renderer.h">
-      <Filter>ソース ファイル\entity\renderable</Filter>
-    </ClInclude>
     <ClInclude Include="dxlib_assert.h">
       <Filter>ソース ファイル\common</Filter>
     </ClInclude>
-    <ClInclude Include="i_updatable_entity.h">
+    <ClInclude Include="i_entity.h">
       <Filter>ソース ファイル\entity\updatable</Filter>
     </ClInclude>
     <ClInclude Include="entity_updater.h">
@@ -395,9 +383,6 @@
     <ClInclude Include="title_hand_animation.h">
       <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
     </ClInclude>
-    <ClInclude Include="scene_switcher_title.h">
-      <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
-    </ClInclude>
     <ClInclude Include="SceneChangeEffect.h">
       <Filter>ソース ファイル\scenes\_old</Filter>
     </ClInclude>
@@ -406,6 +391,9 @@
     </ClInclude>
     <ClInclude Include="fade_effect.h">
       <Filter>ソース ファイル\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_debug_print.h">
+      <Filter>ソース ファイル\common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

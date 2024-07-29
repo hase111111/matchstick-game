@@ -4,12 +4,11 @@
 #include <functional>
 #include <vector>
 
-#include "i_dxlib_renderable.h"
-#include "i_updatable_entity.h"
+#include "i_entity.h"
 
 namespace match_stick {
 
-class FadeEffect final : public IDxLibRenderable, public IUpdatableEntity {
+class FadeEffect final : public IEntity {
 public:
     enum class FadeType {
         kFadeIn,
@@ -17,13 +16,13 @@ public:
     };
 
     FadeEffect(int fade_time, FadeType fade_type, std::function<void()> callback);
-    ~FadeEffect() = default;
+    ~FadeEffect();
 
     inline int getLayer() const override {
         return constants::kFrontLayer;
     }
 
-    void update() override;
+    bool update() override;
 
     void draw() const override;
 

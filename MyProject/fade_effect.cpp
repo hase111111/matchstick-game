@@ -4,6 +4,7 @@
 #include <DxLib.h>
 
 #include "define.h"
+#include "dxlib_debug_print.h"
 
 namespace match_stick {
 
@@ -12,11 +13,16 @@ FadeEffect::FadeEffect(
     fade_time_(fade_time),
     fade_type_(fade_type),
     callback_(callback) {
+    DEBUG_PRINT("FadeEffect Constructor called");
 }
 
-void FadeEffect::update() {
+FadeEffect::~FadeEffect() {
+    DEBUG_PRINT("FadeEffect Destructor called");
+}
+
+bool FadeEffect::update() {
     if (counter_ == fade_time_) {
-        return;
+        return false;
     }
 
     counter_++;
@@ -24,13 +30,14 @@ void FadeEffect::update() {
     if (counter_ == fade_time_) {
         callback_();
     }
+
+    return true;
 }
 
 void FadeEffect::draw() const {
     if (fade_type_ == FadeType::kFadeOut) {
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, counter_ * 255 / fade_time_);
-    }
-    else {
+    } else {
         const int blend = 255 * (fade_time_ - counter_) / fade_time_;
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, blend);
     }

@@ -4,39 +4,58 @@
 #include <DxLib.h>
 
 #include "define.h"
+#include "dxlib_debug_print.h"
 
 namespace match_stick {
 
-TitleLogo::TitleLogo(const std::shared_ptr<const LanguageRecord>& language_record_ptr, const std::shared_ptr<FontLoader>& font_loader) :
+TitleLogo::TitleLogo(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+                     const std::shared_ptr<FontLoader>& font_loader) :
     big_font_handle_(font_loader->loadAndGetFontHandle("data/font/PixelMplus10_size64.dft")),
     middle_font_handle_(font_loader->loadAndGetFontHandle("data/font/PixelMplus10_size32.dft")),
     small_font_handle_(font_loader->loadAndGetFontHandle("data/font/PixelMplus10_size20.dft")),
     game_title_(language_record_ptr->get("game_title", LanguageRecord::Country::kJapan)),
     announce_(language_record_ptr->get("press_any_key_to_start", LanguageRecord::Country::kJapan)),
     copy_right_(language_record_ptr->get("copy_right", LanguageRecord::Country::kJapan)) {
+    DEBUG_PRINT("TitleLogo Constructor called");
 }
 
-void TitleLogo::update() {
+TitleLogo::~TitleLogo() {
+    DEBUG_PRINT("TitleLogo Destructor called");
+}
+
+bool TitleLogo::update() {
     ++counter_;
+
+    return true;
 }
 
 void TitleLogo::draw() const {
     const unsigned int color = GetColor(0, 0, 0);
 
-    //タイトル
-    const int game_title_len = GetDrawStringWidthToHandle(game_title_.c_str(), (int)game_title_.size(), big_font_handle_);
-    DrawFormatStringToHandle((Define::WIN_SIZEX - game_title_len) / 2, Define::WIN_SIZEY / 8, color, big_font_handle_, game_title_.c_str());
+    // タイトル
+    const int game_title_size = static_cast<int>(game_title_.size());
+    const int game_title_len = GetDrawStringWidthToHandle(game_title_.c_str(), game_title_size, big_font_handle_);
+    const int title_x = (Define::WIN_SIZEX - game_title_len) / 2;
+    const int title_y = Define::WIN_SIZEY / 8;
+    DrawFormatStringToHandle(title_x, title_y, color, big_font_handle_, game_title_.c_str());
 
-    //アナウンス
-    const int announce_len = GetDrawStringWidthToHandle(announce_.c_str(), (int)announce_.size(), middle_font_handle_);
+    // アナウンス
+    const int announce_size = static_cast<int>(announce_.size());
+    const int announce_len = GetDrawStringWidthToHandle(announce_.c_str(), announce_size, middle_font_handle_);
+    const int announce_x = (Define::WIN_SIZEX - announce_len) / 2;
+    const int announce_y = Define::WIN_SIZEY * 3 / 4;
 
     SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(255.0 * abs(cos(counter_ / blink_period_))));
-    DrawFormatStringToHandle((Define::WIN_SIZEX - announce_len) / 2, Define::WIN_SIZEY * 3 / 4, color, middle_font_handle_, announce_.c_str());
+    DrawFormatStringToHandle(announce_x, announce_y, color, middle_font_handle_, announce_.c_str());
     SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
 
-    //コピーライト
-    const int copy_right_len = GetDrawStringWidthToHandle(copy_right_.c_str(), (int)copy_right_.size(), small_font_handle_);
-    DrawFormatStringToHandle(Define::WIN_SIZEX - copy_right_len - 10, Define::WIN_SIZEY - 30, color, small_font_handle_, copy_right_.c_str());
+    // コピーライト
+    const int copy_right_size = static_cast<int>(copy_right_.size());
+    const int copy_right_len = GetDrawStringWidthToHandle(copy_right_.c_str(), copy_right_size, small_font_handle_);
+    const int copy_right_x = Define::WIN_SIZEX - copy_right_len - 10;
+    const int copy_right_y = Define::WIN_SIZEY - 30;
+
+    DrawFormatStringToHandle(copy_right_x, copy_right_y, color, small_font_handle_, copy_right_.c_str());
 }
 
 }  // namespace match_stick
