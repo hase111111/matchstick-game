@@ -1,7 +1,7 @@
 ﻿//#include "ResultDrawHand.h"
 //#include "Image.h"
 //#include "DxLib.h"
-//#include "Define.h"
+//#include "define.h"
 //
 //ResultDrawHand::ResultDrawHand()
 //{

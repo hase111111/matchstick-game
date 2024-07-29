@@ -1,7 +1,7 @@
 ﻿//#include "RulePage.h"
 //#include"Font.h"
 //#include"DxLib.h"
-//#include "Define.h"
+//#include "define.h"
 //
 //RulePage::RulePage()
 //{

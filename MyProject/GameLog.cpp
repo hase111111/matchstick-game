@@ -1,7 +1,7 @@
 ﻿//#include "GameLog.h"
 //#include "Font.h"
 //#include "DxLib.h"
-//#include "Define.h"
+//#include "define.h"
 //#include "Keyboard.h"
 //
 //GameLog::GameLog() : m_DISPLAY_LOG_MAX(5)

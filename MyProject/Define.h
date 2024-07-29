@@ -1,19 +1,19 @@
 ﻿
 #pragma once
 
-#include<string>
+#include <string>
 
 namespace match_stick {
 
 class Define {
 public:
-    const static int WIN_SIZEX;
-    const static int WIN_SIZEY;
-    const static std::string WIN_TITLE;
+    static const int WIN_SIZEX;
+    static const int WIN_SIZEY;
+    static const std::string WIN_TITLE;
 
-    const static double WIN_EXRATE;
+    static const double WIN_EXRATE;
 
-    const static double PI;
+    static const double PI;
 private:
     Define() = delete;
 };

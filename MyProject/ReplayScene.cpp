@@ -2,7 +2,7 @@
 //#include "GameParam.h"
 //#include "DxLib.h"
 //#include "Keyboard.h"
-//#include "Define.h"
+//#include "define.h"
 //
 //ReplayScene::ReplayScene(SceneChangeListenerInterface* pScli, const Parameter& parameter) : AbstractScene(pScli, parameter)
 //{

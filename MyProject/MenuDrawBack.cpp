@@ -1,6 +1,6 @@
 ﻿//#include "MenuDrawBack.h"
 //#include"DxLib.h"
-//#include"Define.h"
+//#include"define.h"
 //#include"Font.h"
 //
 //MenuDrawBack::MenuDrawBack()

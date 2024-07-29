@@ -6,7 +6,7 @@
 
 #include <Dxlib.h>
 
-#include "Define.h"
+#include "define.h"
 
 
 namespace match_stick {

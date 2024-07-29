@@ -1,7 +1,7 @@
 ﻿//#include "RuleScene.h"
 //#include "RuleParam.h"
 //#include"Keyboard.h"
-//#include"Define.h"
+//#include"define.h"
 //#include"DxLib.h"
 //#include "Font.h"
 //#include "Image.h"

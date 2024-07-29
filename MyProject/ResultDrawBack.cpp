@@ -1,6 +1,6 @@
 ﻿//#include "ResultDrawBack.h"
 //#include "DxLib.h"
-//#include "Define.h"
+//#include "define.h"
 //
 //ResultDrawBack::ResultDrawBack()
 //{

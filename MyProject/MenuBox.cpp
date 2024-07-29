@@ -1,6 +1,6 @@
 ﻿//#include "MenuBox.h"
 //#include"DxLib.h"
-//#include"Define.h"
+//#include"define.h"
 //#include"Keyboard.h"
 //#include"Font.h"
 //#include"Sound.h"

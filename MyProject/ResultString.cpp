@@ -1,6 +1,6 @@
 ﻿//#include "ResultString.h"
 //#include "Font.h"
-//#include "Define.h"
+//#include "define.h"
 //#include "DxLib.h"
 //
 //ResultString::ResultString()

@@ -1,6 +1,6 @@
 ﻿//#include "GameScene.h"
 //#include "DxLib.h"
-//#include "Define.h"
+//#include "define.h"
 //#include "Image.h"
 //#include "Keyboard.h"
 //#include "Font.h"

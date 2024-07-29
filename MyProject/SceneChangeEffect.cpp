@@ -1,5 +1,5 @@
 ﻿//#include "SceneChangeEffect.h"
-//#include "Define.h"
+//#include "define.h"
 //#include "DxLib.h"
 //#include "Sound.h"
 //
