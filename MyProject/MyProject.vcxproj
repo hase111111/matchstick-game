@@ -184,7 +184,6 @@
     <ClCompile Include="dxlib_renderer.cpp" />
     <ClCompile Include="entity_updater.cpp" />
     <ClCompile Include="fade_effect.cpp" />
-    <ClCompile Include="Font.cpp" />
     <ClCompile Include="font_loader.cpp" />
     <ClCompile Include="fps_controller.cpp" />
     <ClCompile Include="GameAnime.cpp" />
@@ -192,9 +191,7 @@
     <ClCompile Include="GameLog.cpp" />
     <ClCompile Include="GameParam.cpp" />
     <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="Image.cpp" />
     <ClCompile Include="image_loader.cpp" />
-    <ClCompile Include="Keyboard.cpp" />
     <ClCompile Include="game_main_loop.cpp" />
     <ClCompile Include="language_record.cpp" />
     <ClCompile Include="language_record_initializer.cpp" />
@@ -207,7 +204,6 @@
     <ClCompile Include="MenuBox.cpp" />
     <ClCompile Include="MenuDrawBack.cpp" />
     <ClCompile Include="MenuScene.cpp" />
-    <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="ReplayScene.cpp" />
     <ClCompile Include="ResultDrawBack.cpp" />
     <ClCompile Include="ResultDrawHand.cpp" />
@@ -224,8 +220,6 @@
     <ClCompile Include="scene_creator.cpp" />
     <ClCompile Include="scene_stack.cpp" />
     <ClCompile Include="scene_switcher_title.cpp" />
-    <ClCompile Include="setting.cpp" />
-    <ClCompile Include="sound.cpp" />
     <ClCompile Include="sound_effect_loader.cpp" />
     <ClCompile Include="system_main.cpp" />
     <ClCompile Include="title_back_ground_base.cpp" />
@@ -245,7 +239,6 @@
     <ClInclude Include="entity_updater.h" />
     <ClInclude Include="error_message_box.h" />
     <ClInclude Include="fade_effect.h" />
-    <ClInclude Include="Font.h" />
     <ClInclude Include="font_loader.h" />
     <ClInclude Include="fps_controller.h" />
     <ClInclude Include="GameAnime.h" />
@@ -255,19 +248,16 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameSelectingHand.h" />
     <ClInclude Include="game_main_loop.h" />
-    <ClInclude Include="Image.h" />
     <ClInclude Include="image_loader.h" />
     <ClInclude Include="implicit_metafunction_for_toml11.h" />
     <ClInclude Include="i_dxlib_renderable.h" />
     <ClInclude Include="i_scene.h" />
-    <ClInclude Include="Keyboard.h" />
     <ClInclude Include="language_record.h" />
     <ClInclude Include="language_record_initializer.h" />
     <ClInclude Include="MatchGameCommon.h" />
     <ClInclude Include="MenuBox.h" />
     <ClInclude Include="MenuDrawBack.h" />
     <ClInclude Include="MenuScene.h" />
-    <ClInclude Include="Mouse.h" />
     <ClInclude Include="ReplayScene.h" />
     <ClInclude Include="ResultDrawBack.h" />
     <ClInclude Include="ResultDrawHand.h" />
@@ -286,9 +276,6 @@
     <ClInclude Include="scene_name.h" />
     <ClInclude Include="scene_stack.h" />
     <ClInclude Include="scene_switcher_title.h" />
-    <ClInclude Include="setting.h" />
-    <ClInclude Include="singleton.h" />
-    <ClInclude Include="sound.h" />
     <ClInclude Include="sound_effect_loader.h" />
     <ClInclude Include="system_main.h" />
     <ClInclude Include="title_back_ground_base.h" />

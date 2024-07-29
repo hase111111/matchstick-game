@@ -3,7 +3,6 @@
 
 #include <DxLib.h>
 
-#include "keyboard.h"
 #include "language_record_initializer.h"
 
 

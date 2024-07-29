@@ -6,7 +6,6 @@
 
 #include <Dxlib.h>
 
-#include "font.h"
 #include "Define.h"
 
 

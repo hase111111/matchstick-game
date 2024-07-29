@@ -5,8 +5,6 @@
 
 #include "define.h"
 #include "game_main_loop.h"
-#include "setting.h"
-#include "sound.h"
 
 namespace match_stick {
 
@@ -21,13 +19,8 @@ bool SystemMain::initialize() const {
     // ゲーム画面の解像度を設定する
     SetGraphMode(Define::WIN_SIZEX, Define::WIN_SIZEY, COLOR_BIT);
 
-    Setting::getIns()->loadSettingFile();  // セーブファイルを読み込む
-
-    // 音量を設定ファイル空設定する
-    Sound::getIns()->changeVolume(Setting::getIns()->getSettingVol());
-
     // フルスクリーン設定
-    if (!Setting::getIns()->getSettingFulWin()) {
+    if (true) {
         // ウィンドウモードで起動する場合
         ChangeWindowMode(TRUE);
 
