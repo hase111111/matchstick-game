@@ -13,10 +13,10 @@ void DebugScene::draw() const {
     DrawString(0, 0, "Debug Scene", GetColor(255, 255, 255));
 }
 
-void DebugScene::onStart(const SceneChangeParameter& parameter) {
+void DebugScene::onStart(const SceneChangeParameter&) {
 }
 
-void match_stick::DebugScene::onReturnFromOtherScene(const SceneChangeParameter& parameter) {
+void match_stick::DebugScene::onReturnFromOtherScene(const SceneChangeParameter&) {
 }
 
 }  // namespace match_stick

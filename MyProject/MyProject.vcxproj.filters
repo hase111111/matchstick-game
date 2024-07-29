@@ -245,9 +245,6 @@
     <ClInclude Include="define.h">
       <Filter>ソース ファイル\common</Filter>
     </ClInclude>
-    <ClInclude Include="SceneEnum.h">
-      <Filter>ソース ファイル\scenes</Filter>
-    </ClInclude>
     <ClInclude Include="MatchGameCommon.h">
       <Filter>ソース ファイル\scenes\_old\match game</Filter>
     </ClInclude>

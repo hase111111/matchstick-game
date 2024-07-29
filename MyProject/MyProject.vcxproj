@@ -268,7 +268,6 @@
     <ClInclude Include="RuleScene.h" />
     <ClInclude Include="RulePage.h" />
     <ClInclude Include="SceneChangeEffect.h" />
-    <ClInclude Include="SceneEnum.h" />
     <ClInclude Include="scene_change_executer.h" />
     <ClInclude Include="scene_change_listener.h" />
     <ClInclude Include="scene_change_parameter.h" />

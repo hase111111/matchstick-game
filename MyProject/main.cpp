@@ -7,7 +7,7 @@
 #include "error_message_box.h"
 #include "system_main.h"
 
-int WINAPI WinMain(HINSTANCE h, HINSTANCE h_prev, LPSTR cmd, int cmd_show) {
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
     using match_stick::ErrorMessageBox;
     using match_stick::SystemMain;
