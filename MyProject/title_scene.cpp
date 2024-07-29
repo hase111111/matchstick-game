@@ -4,6 +4,7 @@
 #include <DxLib.h>
 
 #include "title_back_ground_base.h"
+#include "title_hand_animation.h"
 #include "title_logo.h"
 
 namespace match_stick {
@@ -25,6 +26,10 @@ TitleScene::TitleScene(
     auto title_logo_ptr_ = std::make_shared<TitleLogo>(language_record_ptr, font_loader_ptr);
     dxlib_renderer_ptr_->registerRenderable(title_logo_ptr_);
     entity_updater_ptr_->registerEntity(title_logo_ptr_);
+
+    auto title_hand_animation_ptr_ = std::make_shared<TitleHandAnimation>(img_loader_ptr);
+    dxlib_renderer_ptr_->registerRenderable(title_hand_animation_ptr_);
+    entity_updater_ptr_->registerEntity(title_hand_animation_ptr_);
 }
 
 bool TitleScene::update() {

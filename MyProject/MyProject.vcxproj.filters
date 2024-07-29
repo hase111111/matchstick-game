@@ -262,7 +262,7 @@
       <Filter>ソース ファイル\Updatable</Filter>
     </ClCompile>
     <ClCompile Include="title_hand_animation.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
