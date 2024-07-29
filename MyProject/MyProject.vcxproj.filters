@@ -19,47 +19,11 @@
     <Filter Include="ソース ファイル\SceneController">
       <UniqueIdentifier>{223e1ced-1b86-437f-8a66-23f5986bdfdb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\ConcreteScene">
-      <UniqueIdentifier>{dc8261a6-02db-48e2-936a-87fa6180e624}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Singleton">
       <UniqueIdentifier>{31088077-db6a-45c3-9bd5-f528e3242b21}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\match game">
       <UniqueIdentifier>{5ed7f2a4-5183-478c-8e04-3961fac60061}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\ConcreteScene\TitleScene">
-      <UniqueIdentifier>{5ca945e6-d8ff-4814-9283-e2289ba5fa76}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\ConcreteScene\GameScene">
-      <UniqueIdentifier>{9059677a-6910-4eed-b7f4-591d69d5cba6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\ConcreteScene\MenuScene">
-      <UniqueIdentifier>{aacf0788-ffce-462c-9d96-f8c07fedbf3c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\ConcreteScene\GameScene\draw">
-      <UniqueIdentifier>{6cdbd00e-c51e-4e47-ba03-6605d69a91d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\ConcreteScene\ResultScene">
-      <UniqueIdentifier>{07b68408-6706-491e-99cf-2b8c5999451b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\ConcreteScene\GameScene\progress">
-      <UniqueIdentifier>{1e5ef222-d4b9-447a-9053-26cc20577e77}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\ConcreteScene\RuleScene">
-      <UniqueIdentifier>{11c72331-3063-4d5f-a74a-fcf711cb95de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\ConcreteScene\DebugScene">
-      <UniqueIdentifier>{ed66a868-ebc3-4331-b665-ad1239b2f582}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\ConcreteScene\ResultScene\Draw">
-      <UniqueIdentifier>{6c3e3030-7301-4673-a563-e02c6edd3b16}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\ConcreteScene\ReplayScene">
-      <UniqueIdentifier>{6d689bb1-38dd-46dd-8137-06ff5a0bdf37}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\ConcreteScene\ReplayScene\Draw">
-      <UniqueIdentifier>{90730051-02e8-40a7-a7c2-42efa4ce6a3d}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\Systems">
       <UniqueIdentifier>{cd406cf8-0c3d-4f77-8926-cfe6fe8e77f1}</UniqueIdentifier>
@@ -81,6 +45,48 @@
     </Filter>
     <Filter Include="ソース ファイル\Updatable">
       <UniqueIdentifier>{7bdf37b9-162d-4ffd-a269-da92cf887456}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes">
+      <UniqueIdentifier>{dc8261a6-02db-48e2-936a-87fa6180e624}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\title_scene">
+      <UniqueIdentifier>{5ca945e6-d8ff-4814-9283-e2289ba5fa76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\title_scene\entity">
+      <UniqueIdentifier>{16700c1f-3448-45ff-b362-71079bfc61c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\GameScene">
+      <UniqueIdentifier>{9059677a-6910-4eed-b7f4-591d69d5cba6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\GameScene\draw">
+      <UniqueIdentifier>{6cdbd00e-c51e-4e47-ba03-6605d69a91d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\GameScene\progress">
+      <UniqueIdentifier>{1e5ef222-d4b9-447a-9053-26cc20577e77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\MenuScene">
+      <UniqueIdentifier>{aacf0788-ffce-462c-9d96-f8c07fedbf3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\ResultScene">
+      <UniqueIdentifier>{07b68408-6706-491e-99cf-2b8c5999451b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\ResultScene\Draw">
+      <UniqueIdentifier>{6c3e3030-7301-4673-a563-e02c6edd3b16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\RuleScene">
+      <UniqueIdentifier>{11c72331-3063-4d5f-a74a-fcf711cb95de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\DebugScene">
+      <UniqueIdentifier>{ed66a868-ebc3-4331-b665-ad1239b2f582}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\ReplayScene">
+      <UniqueIdentifier>{6d689bb1-38dd-46dd-8137-06ff5a0bdf37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\ReplayScene\Draw">
+      <UniqueIdentifier>{90730051-02e8-40a7-a7c2-42efa4ce6a3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\all_scene_entity">
+      <UniqueIdentifier>{2d319d02-0f4b-4bfc-8a4d-730616d5b03f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -109,34 +115,34 @@
       <Filter>ソース ファイル\match game</Filter>
     </ClCompile>
     <ClCompile Include="GameScene.cpp">
-      <Filter>ソース ファイル\ConcreteScene\GameScene</Filter>
+      <Filter>ソース ファイル\scenes\GameScene</Filter>
     </ClCompile>
     <ClCompile Include="MenuScene.cpp">
-      <Filter>ソース ファイル\ConcreteScene\MenuScene</Filter>
+      <Filter>ソース ファイル\scenes\MenuScene</Filter>
     </ClCompile>
     <ClCompile Include="SceneChangeEffect.cpp">
-      <Filter>ソース ファイル\ConcreteScene</Filter>
+      <Filter>ソース ファイル\scenes</Filter>
     </ClCompile>
     <ClCompile Include="GameHand.cpp">
-      <Filter>ソース ファイル\ConcreteScene\GameScene\draw</Filter>
+      <Filter>ソース ファイル\scenes\GameScene\draw</Filter>
     </ClCompile>
     <ClCompile Include="GameLog.cpp">
-      <Filter>ソース ファイル\ConcreteScene\GameScene\draw</Filter>
+      <Filter>ソース ファイル\scenes\GameScene\draw</Filter>
     </ClCompile>
     <ClCompile Include="GameParam.cpp">
-      <Filter>ソース ファイル\ConcreteScene\GameScene</Filter>
+      <Filter>ソース ファイル\scenes\GameScene</Filter>
     </ClCompile>
     <ClCompile Include="GameAnime.cpp">
-      <Filter>ソース ファイル\ConcreteScene\GameScene\draw</Filter>
+      <Filter>ソース ファイル\scenes\GameScene\draw</Filter>
     </ClCompile>
     <ClCompile Include="ResultScene.cpp">
-      <Filter>ソース ファイル\ConcreteScene\ResultScene</Filter>
+      <Filter>ソース ファイル\scenes\ResultScene</Filter>
     </ClCompile>
     <ClCompile Include="MenuDrawBack.cpp">
-      <Filter>ソース ファイル\ConcreteScene\MenuScene</Filter>
+      <Filter>ソース ファイル\scenes\MenuScene</Filter>
     </ClCompile>
     <ClCompile Include="MenuBox.cpp">
-      <Filter>ソース ファイル\ConcreteScene\MenuScene</Filter>
+      <Filter>ソース ファイル\scenes\MenuScene</Filter>
     </ClCompile>
     <ClCompile Include="MatchGameCPU.cpp">
       <Filter>ソース ファイル\match game</Filter>
@@ -148,34 +154,34 @@
       <Filter>ソース ファイル\match game</Filter>
     </ClCompile>
     <ClCompile Include="RuleScene.cpp">
-      <Filter>ソース ファイル\ConcreteScene\RuleScene</Filter>
+      <Filter>ソース ファイル\scenes\RuleScene</Filter>
     </ClCompile>
     <ClCompile Include="RuleParam.cpp">
-      <Filter>ソース ファイル\ConcreteScene\RuleScene</Filter>
+      <Filter>ソース ファイル\scenes\RuleScene</Filter>
     </ClCompile>
     <ClCompile Include="RulePage.cpp">
-      <Filter>ソース ファイル\ConcreteScene\RuleScene</Filter>
+      <Filter>ソース ファイル\scenes\RuleScene</Filter>
     </ClCompile>
     <ClCompile Include="MatchGameList2.cpp">
       <Filter>ソース ファイル\match game</Filter>
     </ClCompile>
     <ClCompile Include="ResultDrawBack.cpp">
-      <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
+      <Filter>ソース ファイル\scenes\ResultScene\Draw</Filter>
     </ClCompile>
     <ClCompile Include="ResultDrawHand.cpp">
-      <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
+      <Filter>ソース ファイル\scenes\ResultScene\Draw</Filter>
     </ClCompile>
     <ClCompile Include="ResultString.cpp">
-      <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
+      <Filter>ソース ファイル\scenes\ResultScene\Draw</Filter>
     </ClCompile>
     <ClCompile Include="ResultKey.cpp">
-      <Filter>ソース ファイル\ConcreteScene\ResultScene</Filter>
+      <Filter>ソース ファイル\scenes\ResultScene</Filter>
     </ClCompile>
     <ClCompile Include="setting.cpp">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
     <ClCompile Include="ReplayScene.cpp">
-      <Filter>ソース ファイル\ConcreteScene\ReplayScene</Filter>
+      <Filter>ソース ファイル\scenes\ReplayScene</Filter>
     </ClCompile>
     <ClCompile Include="dxlib_mouse.cpp">
       <Filter>ソース ファイル\Common\Input</Filter>
@@ -235,13 +241,10 @@
       <Filter>ソース ファイル\Resource</Filter>
     </ClCompile>
     <ClCompile Include="debug_scene.cpp">
-      <Filter>ソース ファイル\ConcreteScene\DebugScene</Filter>
+      <Filter>ソース ファイル\scenes\DebugScene</Filter>
     </ClCompile>
     <ClCompile Include="title_scene.cpp">
-      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
-    </ClCompile>
-    <ClCompile Include="title_back_ground_base.cpp">
-      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
+      <Filter>ソース ファイル\scenes\title_scene</Filter>
     </ClCompile>
     <ClCompile Include="dxlib_renderer.cpp">
       <Filter>ソース ファイル\Render</Filter>
@@ -249,14 +252,23 @@
     <ClCompile Include="dxlib_assert.cpp">
       <Filter>ソース ファイル\Common</Filter>
     </ClCompile>
-    <ClCompile Include="title_logo.cpp">
-      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
-    </ClCompile>
     <ClCompile Include="entity_updater.cpp">
       <Filter>ソース ファイル\Updatable</Filter>
     </ClCompile>
+    <ClCompile Include="title_back_ground_base.cpp">
+      <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
+    </ClCompile>
     <ClCompile Include="title_hand_animation.cpp">
-      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
+      <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="title_logo.cpp">
+      <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="fade_effect.cpp">
+      <Filter>ソース ファイル\scenes\all_scene_entity</Filter>
+    </ClCompile>
+    <ClCompile Include="scene_switcher_title.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -264,7 +276,7 @@
       <Filter>ソース ファイル\Common</Filter>
     </ClInclude>
     <ClInclude Include="SceneEnum.h">
-      <Filter>ソース ファイル\ConcreteScene</Filter>
+      <Filter>ソース ファイル\scenes</Filter>
     </ClInclude>
     <ClInclude Include="Image.h">
       <Filter>ソース ファイル\Singleton</Filter>
@@ -288,64 +300,64 @@
       <Filter>ソース ファイル\match game</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
-      <Filter>ソース ファイル\ConcreteScene\GameScene</Filter>
+      <Filter>ソース ファイル\scenes\GameScene</Filter>
     </ClInclude>
     <ClInclude Include="MenuScene.h">
-      <Filter>ソース ファイル\ConcreteScene\MenuScene</Filter>
+      <Filter>ソース ファイル\scenes\MenuScene</Filter>
     </ClInclude>
     <ClInclude Include="SceneChangeEffect.h">
-      <Filter>ソース ファイル\ConcreteScene</Filter>
+      <Filter>ソース ファイル\scenes</Filter>
     </ClInclude>
     <ClInclude Include="GameParam.h">
-      <Filter>ソース ファイル\ConcreteScene\GameScene</Filter>
+      <Filter>ソース ファイル\scenes\GameScene</Filter>
     </ClInclude>
     <ClInclude Include="GameHand.h">
-      <Filter>ソース ファイル\ConcreteScene\GameScene\draw</Filter>
+      <Filter>ソース ファイル\scenes\GameScene\draw</Filter>
     </ClInclude>
     <ClInclude Include="GameLog.h">
-      <Filter>ソース ファイル\ConcreteScene\GameScene\draw</Filter>
+      <Filter>ソース ファイル\scenes\GameScene\draw</Filter>
     </ClInclude>
     <ClInclude Include="GameAnime.h">
-      <Filter>ソース ファイル\ConcreteScene\GameScene\draw</Filter>
+      <Filter>ソース ファイル\scenes\GameScene\draw</Filter>
     </ClInclude>
     <ClInclude Include="ResultScene.h">
-      <Filter>ソース ファイル\ConcreteScene\ResultScene</Filter>
+      <Filter>ソース ファイル\scenes\ResultScene</Filter>
     </ClInclude>
     <ClInclude Include="GameSelectingHand.h">
-      <Filter>ソース ファイル\ConcreteScene\GameScene\progress</Filter>
+      <Filter>ソース ファイル\scenes\GameScene\progress</Filter>
     </ClInclude>
     <ClInclude Include="MenuDrawBack.h">
-      <Filter>ソース ファイル\ConcreteScene\MenuScene</Filter>
+      <Filter>ソース ファイル\scenes\MenuScene</Filter>
     </ClInclude>
     <ClInclude Include="MenuBox.h">
-      <Filter>ソース ファイル\ConcreteScene\MenuScene</Filter>
+      <Filter>ソース ファイル\scenes\MenuScene</Filter>
     </ClInclude>
     <ClInclude Include="RuleScene.h">
-      <Filter>ソース ファイル\ConcreteScene\RuleScene</Filter>
+      <Filter>ソース ファイル\scenes\RuleScene</Filter>
     </ClInclude>
     <ClInclude Include="RuleParam.h">
-      <Filter>ソース ファイル\ConcreteScene\RuleScene</Filter>
+      <Filter>ソース ファイル\scenes\RuleScene</Filter>
     </ClInclude>
     <ClInclude Include="RulePage.h">
-      <Filter>ソース ファイル\ConcreteScene\RuleScene</Filter>
+      <Filter>ソース ファイル\scenes\RuleScene</Filter>
     </ClInclude>
     <ClInclude Include="ResultDrawBack.h">
-      <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
+      <Filter>ソース ファイル\scenes\ResultScene\Draw</Filter>
     </ClInclude>
     <ClInclude Include="ResultDrawHand.h">
-      <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
+      <Filter>ソース ファイル\scenes\ResultScene\Draw</Filter>
     </ClInclude>
     <ClInclude Include="ResultString.h">
-      <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
+      <Filter>ソース ファイル\scenes\ResultScene\Draw</Filter>
     </ClInclude>
     <ClInclude Include="ResultKey.h">
-      <Filter>ソース ファイル\ConcreteScene\ResultScene</Filter>
+      <Filter>ソース ファイル\scenes\ResultScene</Filter>
     </ClInclude>
     <ClInclude Include="setting.h">
       <Filter>ソース ファイル\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="ReplayScene.h">
-      <Filter>ソース ファイル\ConcreteScene\ReplayScene</Filter>
+      <Filter>ソース ファイル\scenes\ReplayScene</Filter>
     </ClInclude>
     <ClInclude Include="error_message_box.h">
       <Filter>ソース ファイル\Systems</Filter>
@@ -423,16 +435,13 @@
       <Filter>ソース ファイル\Resource</Filter>
     </ClInclude>
     <ClInclude Include="debug_scene.h">
-      <Filter>ソース ファイル\ConcreteScene\DebugScene</Filter>
+      <Filter>ソース ファイル\scenes\DebugScene</Filter>
     </ClInclude>
     <ClInclude Include="title_scene.h">
-      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
+      <Filter>ソース ファイル\scenes\title_scene</Filter>
     </ClInclude>
     <ClInclude Include="i_dxlib_renderable.h">
       <Filter>ソース ファイル\Render</Filter>
-    </ClInclude>
-    <ClInclude Include="title_back_ground_base.h">
-      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
     </ClInclude>
     <ClInclude Include="dxlib_renderer.h">
       <Filter>ソース ファイル\Render</Filter>
@@ -440,17 +449,26 @@
     <ClInclude Include="dxlib_assert.h">
       <Filter>ソース ファイル\Common</Filter>
     </ClInclude>
-    <ClInclude Include="title_logo.h">
-      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
-    </ClInclude>
     <ClInclude Include="i_updatable_entity.h">
       <Filter>ソース ファイル\Updatable</Filter>
     </ClInclude>
     <ClInclude Include="entity_updater.h">
       <Filter>ソース ファイル\Updatable</Filter>
     </ClInclude>
+    <ClInclude Include="title_logo.h">
+      <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="title_back_ground_base.h">
+      <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
+    </ClInclude>
     <ClInclude Include="title_hand_animation.h">
-      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
+      <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="fade_effect.h">
+      <Filter>ソース ファイル\scenes\all_scene_entity</Filter>
+    </ClInclude>
+    <ClInclude Include="scene_switcher_title.h">
+      <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

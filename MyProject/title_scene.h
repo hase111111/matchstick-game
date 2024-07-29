@@ -42,6 +42,8 @@ private:
     std::unique_ptr<DxLibRenderer> dxlib_renderer_ptr_;
     std::unique_ptr<EntityUpdater> entity_updater_ptr_;
 
+    bool is_scene_change_requested_{ false };
+
 };
 
 }  // namespace match_stick

@@ -3,6 +3,7 @@
 
 #include <DxLib.h>
 
+#include "fade_effect.h"
 #include "title_back_ground_base.h"
 #include "title_hand_animation.h"
 #include "title_logo.h"
@@ -37,6 +38,18 @@ bool TitleScene::update() {
         return false;
     }
 
+    if (keyboard_ptr_->isAnyKeyPressed() && !is_scene_change_requested_) {
+        auto scene_change_func = [this]() {
+            scene_change_listener_ptr_->requestAddScene(SceneName::kDebug, SceneChangeParameter{});
+            };
+        auto fade_effect_ptr = std::make_shared<FadeEffect>(60, FadeEffect::FadeType::kFadeOut, scene_change_func);
+
+        entity_updater_ptr_->registerEntity(fade_effect_ptr);
+        dxlib_renderer_ptr_->registerRenderable(fade_effect_ptr);
+
+        is_scene_change_requested_ = true;
+    }
+
     entity_updater_ptr_->update();
 
     return true;
@@ -46,12 +59,16 @@ void TitleScene::draw() const {
     dxlib_renderer_ptr_->draw();
 }
 
-void TitleScene::onStart(const SceneChangeParameter& parameter) {
-
+void TitleScene::onStart(const SceneChangeParameter&) {
 }
 
-void TitleScene::onReturnFromOtherScene(const SceneChangeParameter& parameter) {
+void TitleScene::onReturnFromOtherScene(const SceneChangeParameter&) {
+    is_scene_change_requested_ = false;
 
+    // フェードイン演出を追加
+    auto fade_effect_ptr = std::make_shared<FadeEffect>(60, FadeEffect::FadeType::kFadeIn, []() {});
+    entity_updater_ptr_->registerEntity(fade_effect_ptr);
+    dxlib_renderer_ptr_->registerRenderable(fade_effect_ptr);
 }
 
 }  // namespace match_stick

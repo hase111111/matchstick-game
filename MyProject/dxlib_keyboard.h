@@ -6,8 +6,7 @@
 namespace match_stick {
 
 //! @brief DxLibのキーボード入力を取得するクラス．
-class DxLibKeyboard final
-{
+class DxLibKeyboard final {
 public:
     DxLibKeyboard();
 
@@ -26,6 +25,11 @@ public:
     //! 例えばZキーだったら，KEY_INPUT_Z となる．
     //! @return 離されているフレーム数．異常な key_code が渡された場合は-1を返す．
     int getReleasingCount(const int key_code) const;
+
+    //! @brief どれかのキーが押されているか返す．
+    //! @retval true どれかのキーが押されている．
+    //! @retval false どれも押されていない．
+    bool isAnyKeyPressed() const;
 
 private:
     static const int kKeyNum = 256;  //!< DxLibにおけるキー総数．

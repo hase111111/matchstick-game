@@ -184,6 +184,7 @@
     <ClCompile Include="dxlib_mouse.cpp" />
     <ClCompile Include="dxlib_renderer.cpp" />
     <ClCompile Include="entity_updater.cpp" />
+    <ClCompile Include="fade_effect.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="font_loader.cpp" />
     <ClCompile Include="fps_controller.cpp" />
@@ -224,6 +225,7 @@
     <ClCompile Include="scene_change_parameter.cpp" />
     <ClCompile Include="scene_creator.cpp" />
     <ClCompile Include="scene_stack.cpp" />
+    <ClCompile Include="scene_switcher_title.cpp" />
     <ClCompile Include="setting.cpp" />
     <ClCompile Include="sound.cpp" />
     <ClCompile Include="sound_effect_loader.cpp" />
@@ -245,6 +247,7 @@
     <ClInclude Include="dxlib_renderer.h" />
     <ClInclude Include="entity_updater.h" />
     <ClInclude Include="error_message_box.h" />
+    <ClInclude Include="fade_effect.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="font_loader.h" />
     <ClInclude Include="fps_controller.h" />
@@ -287,6 +290,7 @@
     <ClInclude Include="scene_creator.h" />
     <ClInclude Include="scene_name.h" />
     <ClInclude Include="scene_stack.h" />
+    <ClInclude Include="scene_switcher_title.h" />
     <ClInclude Include="setting.h" />
     <ClInclude Include="singleton.h" />
     <ClInclude Include="sound.h" />

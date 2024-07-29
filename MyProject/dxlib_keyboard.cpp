@@ -30,8 +30,7 @@ void DxLibKeyboard::update() {
             }
 
             key_pressing_counter_[i]++;  // 押されカウンタを増やす．
-        }
-        else {
+        } else {
             // i番のキーが離されていたら．
             if (key_pressing_counter_[i] > 0) {
                 // 押されカウンタが0より大きければ．
@@ -59,6 +58,17 @@ int DxLibKeyboard::getReleasingCount(const int key_code) const {
     }
 
     return key_releasing_counter_[key_code];
+}
+
+bool DxLibKeyboard::isAnyKeyPressed() const
+{
+    for (int i = 0; i < kKeyNum; i++) {
+        if (key_pressing_counter_[i] > 0) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 bool DxLibKeyboard::isAvailableCode(const int key_code) const {
