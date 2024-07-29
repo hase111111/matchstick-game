@@ -191,6 +191,9 @@
     <ClCompile Include="GameLog.cpp" />
     <ClCompile Include="GameParam.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="game_back_ground_base.cpp" />
+    <ClCompile Include="game_log.cpp" />
+    <ClCompile Include="game_scene.cpp" />
     <ClCompile Include="image_loader.cpp" />
     <ClCompile Include="game_main_loop.cpp" />
     <ClCompile Include="language_record.cpp" />
@@ -246,7 +249,10 @@
     <ClInclude Include="GameParam.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameSelectingHand.h" />
+    <ClInclude Include="game_back_ground_base.h" />
+    <ClInclude Include="game_log.h" />
     <ClInclude Include="game_main_loop.h" />
+    <ClInclude Include="game_scene.h" />
     <ClInclude Include="image_loader.h" />
     <ClInclude Include="implicit_metafunction_for_toml11.h" />
     <ClInclude Include="i_scene.h" />

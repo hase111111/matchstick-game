@@ -3,6 +3,7 @@
 
 #include "debug_scene.h"
 #include "dxlib_assert.h"
+#include "game_scene.h"
 #include "title_scene.h"
 
 namespace match_stick {
@@ -39,6 +40,15 @@ std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) co
     switch (scene_name) {
         case SceneName::kDebug: {
             return std::make_unique<DebugScene>(scene_change_listener_ptr_, keyboard_ptr_);
+        }
+        case SceneName::kGame: {
+            return std::make_unique<GameScene>(
+                scene_change_listener_ptr_,
+                language_record_ptr_,
+                keyboard_ptr_,
+                font_loader_ptr_,
+                image_loader_ptr_,
+                sound_effect_loader_ptr_);
         }
         case SceneName::kTitle: {
             return std::make_unique<TitleScene>(

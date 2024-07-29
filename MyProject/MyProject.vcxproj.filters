@@ -79,6 +79,12 @@
     <Filter Include="ソース ファイル\resource">
       <UniqueIdentifier>{f7603a56-e309-4a8f-bf75-c71e2272fdcf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\scenes\game_scene">
+      <UniqueIdentifier>{c62f7ccc-97cd-4758-9c1c-b86e087c05fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\game_scene\entity">
+      <UniqueIdentifier>{1b54c982-3b78-42b0-9a69-9b4c09844042}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -233,6 +239,15 @@
     </ClCompile>
     <ClCompile Include="dxlib_debug_print.cpp">
       <Filter>ソース ファイル\common</Filter>
+    </ClCompile>
+    <ClCompile Include="game_scene.cpp">
+      <Filter>ソース ファイル\scenes\game_scene</Filter>
+    </ClCompile>
+    <ClCompile Include="game_back_ground_base.cpp">
+      <Filter>ソース ファイル\scenes\game_scene\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="game_log.cpp">
+      <Filter>ソース ファイル\scenes\game_scene\entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -394,6 +409,15 @@
     </ClInclude>
     <ClInclude Include="dxlib_debug_print.h">
       <Filter>ソース ファイル\common</Filter>
+    </ClInclude>
+    <ClInclude Include="game_scene.h">
+      <Filter>ソース ファイル\scenes\game_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="game_back_ground_base.h">
+      <Filter>ソース ファイル\scenes\game_scene\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="game_log.h">
+      <Filter>ソース ファイル\scenes\game_scene\entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

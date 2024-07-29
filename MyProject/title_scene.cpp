@@ -38,7 +38,7 @@ bool TitleScene::update() {
 
     if (keyboard_ptr_->isAnyKeyPressed() && !is_scene_change_requested_) {
         auto scene_change_func = [this]() {
-            scene_change_listener_ptr_->requestAddScene(SceneName::kDebug, SceneChangeParameter{});
+            scene_change_listener_ptr_->requestAddScene(SceneName::kGame, SceneChangeParameter{});
             };
         auto fade_effect_ptr = std::make_shared<FadeEffect>(60, FadeEffect::FadeType::kFadeOut, scene_change_func);
 
