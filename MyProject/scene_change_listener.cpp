@@ -4,11 +4,9 @@
 #include "dxlib_assert.h"
 
 
-namespace match_stick
-{
+namespace match_stick {
 
-void SceneChangeListener::requestAddScene(const SceneName scene_name, const SceneChangeParameter& parameter)
-{
+void SceneChangeListener::requestAddScene(const SceneName scene_name, const SceneChangeParameter& parameter) {
     // リクエストを設定する．
     has_request_ = true;
     request_type_ = RequestType::kAddScene;
@@ -18,8 +16,7 @@ void SceneChangeListener::requestAddScene(const SceneName scene_name, const Scen
     parameter_ = parameter;
 }
 
-void SceneChangeListener::requestDeleteScene(const int delete_num, const SceneChangeParameter& parameter)
-{
+void SceneChangeListener::requestDeleteScene(const int delete_num, const SceneChangeParameter& parameter) {
     // リクエストを設定する．
     has_request_ = true;
     request_type_ = RequestType::kDeleteScene;
@@ -29,28 +26,25 @@ void SceneChangeListener::requestDeleteScene(const int delete_num, const SceneCh
     delete_num_ = delete_num;
 }
 
-void SceneChangeListener::requestDeleteAllScene()
-{
+void SceneChangeListener::requestDeleteAllScene() {
     // リクエストを設定する．
     has_request_ = true;
     request_type_ = RequestType::kDeleteAllScene;
 }
 
-bool SceneChangeListener::hasRequest() const
-{
+bool SceneChangeListener::hasRequest() const {
     return has_request_;
 }
 
-SceneChangeListener::RequestType SceneChangeListener::receiveRequest(SceneName* scene_name, SceneChangeParameter* parameter, int* delete_num)
-{
+SceneChangeListener::RequestType SceneChangeListener::receiveRequest(
+    SceneName* scene_name, SceneChangeParameter* parameter, int* delete_num) {
     // 引数が nullでないかチェックする．
     ASSERT_NOT_NULL_PTR(scene_name);
     ASSERT_NOT_NULL_PTR(parameter);
     ASSERT_NOT_NULL_PTR(delete_num);
 
     // リクエストがない場合は何もしない．
-    if (!has_request_)
-    {
+    if (!has_request_) {
         return RequestType::kNone;
     }
 

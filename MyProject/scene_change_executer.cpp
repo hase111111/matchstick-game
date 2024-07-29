@@ -17,8 +17,7 @@ SceneChangeExecuter::SceneChangeExecuter(
 
 void SceneChangeExecuter::execute() {
     // リクエストがない場合は何もしない．
-    if (!scene_change_listener_ptr_->hasRequest())
-    {
+    if (!scene_change_listener_ptr_->hasRequest()) {
         return;
     }
 
@@ -29,25 +28,20 @@ void SceneChangeExecuter::execute() {
     const auto request_type = scene_change_listener_ptr_->receiveRequest(&scene_name, &parameter, &delete_num);
 
     // リクエストに応じて処理を行う．
-    switch (request_type)
-    {
-        case SceneChangeListener::RequestType::kAddScene:
-        {
+    switch (request_type) {
+        case SceneChangeListener::RequestType::kAddScene: {
             scene_stack_ptr_->addNewScene(scene_name, parameter);
             break;
         }
-        case SceneChangeListener::RequestType::kDeleteScene:
-        {
+        case SceneChangeListener::RequestType::kDeleteScene: {
             scene_stack_ptr_->deleteNowScene(delete_num, parameter);
             break;
         }
-        case SceneChangeListener::RequestType::kDeleteAllScene:
-        {
+        case SceneChangeListener::RequestType::kDeleteAllScene: {
             scene_stack_ptr_->deleteAllScene();
             break;
         }
-        default:
-        {
+        default: {
             ASSERT_MUST_NOT_REACH_HERE();
             break;
         }

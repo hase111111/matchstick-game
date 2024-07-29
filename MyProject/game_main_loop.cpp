@@ -1,6 +1,8 @@
 ﻿
 #include "game_main_loop.h"
 
+#include <utility>
+
 #include <DxLib.h>
 
 #include "language_record_initializer.h"

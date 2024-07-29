@@ -3,12 +3,10 @@
 
 #include "scene_change_parameter.h"
 
-namespace match_stick
-{
+namespace match_stick {
 
 //! @brief シーンのインターフェース．
-class IScene
-{
+class IScene {
 public:
     virtual ~IScene() = default;
 

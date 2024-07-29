@@ -10,11 +10,9 @@
 #include "scene_creator.h"
 #include "scene_name.h"
 
-namespace match_stick
-{
+namespace match_stick {
 
-class SceneStack final
-{
+class SceneStack final {
 public:
     SceneStack(std::unique_ptr<SceneCreator>&& scene_creator_ptr);
 
@@ -28,9 +26,11 @@ public:
 private:
     void initializeScene();
 
-    std::stack<std::unique_ptr<IScene>> scene_ptr_stack_;  //!< シーンを格納する配列．スタック．
+    //! シーンを格納する配列．スタック．
+    std::stack<std::unique_ptr<IScene>> scene_ptr_stack_;
 
-    const std::unique_ptr<SceneCreator> scene_creator_ptr_;  //!< シーンを生成するクラス．
+    //!< シーンを生成するクラス．
+    const std::unique_ptr<SceneCreator> scene_creator_ptr_;
 };
 
 }  // namespace match_stick

@@ -24,7 +24,6 @@ SceneCreator::SceneCreator(
     font_loader_ptr_(font_loader_ptr),
     image_loader_ptr_(image_loader_ptr),
     sound_effect_loader_ptr_(sound_loader_ptr) {
-
     ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
 
     ASSERT_NOT_NULL_PTR(keyboard_ptr_);

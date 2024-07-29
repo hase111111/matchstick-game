@@ -16,8 +16,7 @@
 
 namespace match_stick {
 
-class SceneCreator final
-{
+class SceneCreator final {
 public:
     SceneCreator(
         const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,

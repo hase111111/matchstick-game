@@ -1,11 +1,9 @@
 ﻿
 #pragma once
 
-namespace match_stick
-{
+namespace match_stick {
 
-enum class SceneName
-{
+enum class SceneName {
     kDebug,
     kTitle,
     kGame,

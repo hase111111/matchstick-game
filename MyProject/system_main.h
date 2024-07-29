@@ -3,8 +3,7 @@
 
 namespace match_stick {
 
-class SystemMain final
-{
+class SystemMain final {
 public:
     SystemMain() = default;
     ~SystemMain() = default;

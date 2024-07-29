@@ -8,8 +8,7 @@ namespace match_stick {
 
 class SceneChangeListener final {
 public:
-    enum class RequestType
-    {
+    enum class RequestType {
         kNone,
         kAddScene,
         kDeleteScene,

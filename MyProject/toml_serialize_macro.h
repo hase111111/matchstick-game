@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <strconv2.h>
+
 #include <iostream>
 #include <map>
 #include <sstream>
@@ -12,7 +14,6 @@
 
 #include <magic_enum.hpp>
 
-#include <strconv2.h>
 
 #include "implicit_metafunction_for_toml11.h"
 #include "toml11_define.h"
@@ -32,7 +33,6 @@ namespace match_stick::toml_func {
 //! @struct Toml11Description
 //! @brief tomlファイルに追加する変数の説明を追加するための構造体．
 struct Toml11Description final {
-
     //! テーブルがない場合に指定する文字列．
     static const char kNoTable[];
 
@@ -97,7 +97,6 @@ typename std::enable_if<!impl::is_toml11_available_type<T>::value&&
     impl::is_vector_of_has_output_operator<T>::value>::type
     SetTomlValue(::toml::basic_value<toml::preserve_comments, std::map>* v,
         const std::string& str, const T& value) {
-
     std::vector<std::string> str_vec(value.size());
 
     for (int i = 0; i < value.size(); ++i) {
@@ -142,8 +141,7 @@ struct GetTomlValueImpl<T,
     //! @param[in] var_str 取得する変数の名前．
     //! @return T 取得した値．
     static T Get(::toml::basic_value<toml::preserve_comments, std::map>* v,
-        const std::string& var_str)
-    {
+        const std::string& var_str) {
         std::string str = toml::find<std::string>(*v, var_str);
         return magic_enum::enum_cast<T>(str).value();
     }
@@ -163,8 +161,7 @@ struct GetTomlValueImpl<T,
     //! @param[in] var_str 取得する変数の名前．
     //! @return T 取得した値．
     static T Get(::toml::basic_value<toml::preserve_comments, std::map>* v,
-        const std::string& var_str)
-    {
+        const std::string& var_str) {
         std::string str = toml::find<std::string>(*v, var_str);
         std::stringstream ss;
         ss << str;

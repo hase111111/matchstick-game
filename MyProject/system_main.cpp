@@ -55,7 +55,6 @@ void SystemMain::finalize() const {
 }
 
 void SystemMain::main() const {
-
     GameMainLoop game_main_loop;
 
     // メインループ
