@@ -79,6 +79,9 @@
     <Filter Include="ソース ファイル\Render">
       <UniqueIdentifier>{5987ee12-6e70-4702-948c-b0452ba47941}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Updatable">
+      <UniqueIdentifier>{7bdf37b9-162d-4ffd-a269-da92cf887456}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -251,6 +254,12 @@
     </ClCompile>
     <ClCompile Include="dxlib_assert.cpp">
       <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="title_logo.cpp">
+      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="entity_updater.cpp">
+      <Filter>ソース ファイル\Updatable</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -439,6 +448,15 @@
     </ClInclude>
     <ClInclude Include="dxlib_assert.h">
       <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="title_logo.h">
+      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="i_updatable_entity.h">
+      <Filter>ソース ファイル\Updatable</Filter>
+    </ClInclude>
+    <ClInclude Include="entity_updater.h">
+      <Filter>ソース ファイル\Updatable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

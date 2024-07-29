@@ -8,20 +8,18 @@ LanguageRecord LanguageRecordInitializer::Initialize()
 {
     LanguageRecord record;
 
+    using enum LanguageRecord::Country;
+
     //! @todo テキストの初期化をファイルから行うようにする．
 
-    record.Set("title_button_to_game", LanguageRecord::Country::kJapan, "ゲームへ");
-    record.Set("title_button_to_game", LanguageRecord::Country::kEnglish, "Start");
+    record.set("game_title", kJapan, "マッチ棒ゲーム");
+    record.set("game_title", kEnglish, "Match Stick Game");
 
-    record.Set("title_button_to_setting", LanguageRecord::Country::kJapan, "設定へ");
-    record.Set("title_button_to_setting", LanguageRecord::Country::kEnglish, "Setting");
+    record.set("press_any_key_to_start", kJapan, "何かキーを押してスタート");
+    record.set("press_any_key_to_start", kEnglish, "Press any key to start");
 
-
-    record.Set("setting_button_to_title", LanguageRecord::Country::kJapan, "タイトルへ");
-    record.Set("setting_button_to_title", LanguageRecord::Country::kEnglish, "Title");
-
-    record.Set("setting_button_to_game_end", LanguageRecord::Country::kJapan, "ゲーム終了");
-    record.Set("setting_button_to_game_end", LanguageRecord::Country::kEnglish, "Exit");
+    record.set("copy_right", kJapan, "(C) 2021 Saidai Game Production");
+    record.set("copy_right", kEnglish, "(C) 2021 Saidai Game Production");
 
     return record;
 }

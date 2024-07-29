@@ -17,7 +17,7 @@ public:
         return constants::kBackGroundLayer;
     }
 
-    void Draw() const override;
+    void draw() const override;
 
 private:
     int image_handle_;  //<! 背景画像のハンドル

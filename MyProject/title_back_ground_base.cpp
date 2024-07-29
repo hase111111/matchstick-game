@@ -11,7 +11,7 @@ TitleBackGroundBase::TitleBackGroundBase(const std::shared_ptr<ImageLoader>& ima
     image_handle_(image_loader->LoadAndGetImageHandle("data/img/title_back.png")) {
 }
 
-void TitleBackGroundBase::Draw() const {
+void TitleBackGroundBase::draw() const {
     DrawRotaGraph(Define::WIN_SIZEX / 2, Define::WIN_SIZEY / 2, 1.0, 0.0, image_handle_, TRUE);
 }
 

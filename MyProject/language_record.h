@@ -16,9 +16,9 @@ public:
         kEnglish,
     };
 
-    std::string Get(const std::string& key, Country country) const;
+    std::string get(const std::string& key, Country country) const;
 
-    void Set(const std::string& key, Country country, const std::string& value);
+    void set(const std::string& key, Country country, const std::string& value);
 
 private:
     std::map<std::string, std::map<Country, std::string>> records_;

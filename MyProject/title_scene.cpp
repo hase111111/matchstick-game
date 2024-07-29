@@ -4,6 +4,7 @@
 #include <DxLib.h>
 
 #include "title_back_ground_base.h"
+#include "title_logo.h"
 
 namespace match_stick {
 
@@ -15,14 +16,15 @@ TitleScene::TitleScene(
     std::shared_ptr<ImageLoader> img_loader_ptr,
     std::shared_ptr<SoundEffectLoader> sound_effect_loader_ptr) :
     scene_change_listener_ptr_(scene_change_listener_ptr),
-    language_record_ptr_(language_record_ptr),
     keyboard_ptr_(keyboard_ptr),
-    font_loader_ptr_(font_loader_ptr),
-    img_loader_ptr_(img_loader_ptr),
-    sound_effect_loader_ptr_(sound_effect_loader_ptr),
-    dxlib_renderer_ptr_(std::make_unique<DxLibRenderer>()) {
+    dxlib_renderer_ptr_(std::make_unique<DxLibRenderer>()),
+    entity_updater_ptr_(std::make_unique<EntityUpdater>()) {
 
-    dxlib_renderer_ptr_->Register(std::make_shared<TitleBackGroundBase>(img_loader_ptr_));
+    dxlib_renderer_ptr_->registerRenderable(std::make_shared<TitleBackGroundBase>(img_loader_ptr));
+
+    auto title_logo_ptr_ = std::make_shared<TitleLogo>(language_record_ptr, font_loader_ptr);
+    dxlib_renderer_ptr_->registerRenderable(title_logo_ptr_);
+    entity_updater_ptr_->registerEntity(title_logo_ptr_);
 }
 
 bool TitleScene::update() {
@@ -30,14 +32,13 @@ bool TitleScene::update() {
         return false;
     }
 
+    entity_updater_ptr_->update();
+
     return true;
 }
 
 void TitleScene::draw() const {
-    DrawString(0, 0, "Title Scene", GetColor(255, 255, 255));
-
-    dxlib_renderer_ptr_->Draw();
-
+    dxlib_renderer_ptr_->draw();
 }
 
 void TitleScene::onStart(const SceneChangeParameter& parameter) {

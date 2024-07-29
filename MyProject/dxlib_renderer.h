@@ -13,9 +13,9 @@ public:
     DxLibRenderer() = default;
     ~DxLibRenderer() = default;
 
-    void Register(const std::shared_ptr<const IDxLibRenderable>& renderable_ptr);
+    void registerRenderable(const std::shared_ptr<const IDxLibRenderable>& renderable_ptr);
 
-    void Draw() const;
+    void draw() const;
 
 private:
     std::vector<std::shared_ptr<const IDxLibRenderable>> renderables_;

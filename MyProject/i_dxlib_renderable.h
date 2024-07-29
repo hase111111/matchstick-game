@@ -9,7 +9,7 @@ public:
 
     virtual int getLayer() const = 0;
 
-    virtual void Draw() const = 0;
+    virtual void draw() const = 0;
 };
 
 namespace constants {
