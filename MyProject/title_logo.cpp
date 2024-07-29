@@ -8,9 +8,9 @@
 namespace match_stick {
 
 TitleLogo::TitleLogo(const std::shared_ptr<const LanguageRecord>& language_record_ptr, const std::shared_ptr<FontLoader>& font_loader) :
-    big_font_handle_(font_loader->LoadAndGetFontHandle("data/font/PixelMplus10_size64.dft")),
-    middle_font_handle_(font_loader->LoadAndGetFontHandle("data/font/PixelMplus10_size32.dft")),
-    small_font_handle_(font_loader->LoadAndGetFontHandle("data/font/PixelMplus10_size20.dft")),
+    big_font_handle_(font_loader->loadAndGetFontHandle("data/font/PixelMplus10_size64.dft")),
+    middle_font_handle_(font_loader->loadAndGetFontHandle("data/font/PixelMplus10_size32.dft")),
+    small_font_handle_(font_loader->loadAndGetFontHandle("data/font/PixelMplus10_size20.dft")),
     game_title_(language_record_ptr->get("game_title", LanguageRecord::Country::kJapan)),
     announce_(language_record_ptr->get("press_any_key_to_start", LanguageRecord::Country::kJapan)),
     copy_right_(language_record_ptr->get("copy_right", LanguageRecord::Country::kJapan)) {

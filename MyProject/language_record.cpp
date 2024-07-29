@@ -5,10 +5,10 @@
 namespace match_stick {
 
 std::string LanguageRecord::get(const std::string& key, Country country) const {
-
     ASSERT(records_.find(key) != records_.end(), "LanguageRecord::Get: key not found: " + key);
     ASSERT(records_.at(key).find(country) != records_.at(key).end(),
-        "LanguageRecord::Get: country not found. key is " + key + "country code is " + std::to_string(static_cast<int>(country)));
+           "LanguageRecord::Get: country not found. key is " + key +
+           "country code is " + std::to_string(static_cast<int>(country)));
 
     return records_.at(key).at(country);
 }
@@ -17,4 +17,4 @@ void LanguageRecord::set(const std::string& key, Country country, const std::str
     records_[key][country] = value;
 }
 
-} // namespace match_stick
+}  // namespace match_stick

@@ -8,7 +8,7 @@
 
 namespace match_stick {
 
-void BgmPlayer::Load(const std::string& bgm_file) {
+void BgmPlayer::load(const std::string& bgm_file) {
     if (bgm_handle_.count(bgm_file) != 0) {
         return;
     }
@@ -23,7 +23,7 @@ void BgmPlayer::Load(const std::string& bgm_file) {
     ChangeVolumeSoundMem(255 * volume_percent_ / 100, bgm_handle_[bgm_file]);
 }
 
-void BgmPlayer::Play(const std::string& bgm_file) {
+void BgmPlayer::play(const std::string& bgm_file) {
     if (current_bgm_.has_value()) {
         if (current_bgm_.value() == bgm_file) {
             // すでに再生中のBGMと同じBGMを再生しようとした場合は何もしない．
@@ -31,19 +31,19 @@ void BgmPlayer::Play(const std::string& bgm_file) {
         }
 
         // すでに再生中のBGMを停止する．
-        Stop();
+        stop();
     }
 
     PlaySoundMem(bgm_handle_[bgm_file], DX_PLAYTYPE_LOOP);
     current_bgm_ = bgm_file;
 }
 
-void BgmPlayer::LoadAndPlay(const std::string& bgm_file) {
-    Load(bgm_file);
-    Play(bgm_file);
+void BgmPlayer::loadAndPlay(const std::string& bgm_file) {
+    load(bgm_file);
+    play(bgm_file);
 }
 
-void BgmPlayer::Stop() {
+void BgmPlayer::stop() {
     if (current_bgm_.has_value()) {
         StopSoundMem(bgm_handle_[current_bgm_.value()]);
 
@@ -51,7 +51,7 @@ void BgmPlayer::Stop() {
     }
 }
 
-void BgmPlayer::ChangeVolume(const int volume) {
+void BgmPlayer::changeVolume(const int volume) {
     ASSERT(volume >= 0 && volume <= 100, "Volume must be in the range of 0 to 100.");
 
     volume_percent_ = volume;

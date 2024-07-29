@@ -1,4 +1,4 @@
-
+ï»¿
 #include "sound_effect_loader.h"
 
 #include <DxLib.h>
@@ -6,13 +6,10 @@
 #include "dxlib_assert.h"
 
 
-namespace match_stick
-{
+namespace match_stick {
 
-int SoundEffectLoader::LoadAndGetSoundHandle(const std::string& file_path)
-{
-    if (sound_handle_.count(file_path) != 0)
-    {
+int SoundEffectLoader::loadAndGetSoundHandle(const std::string& file_path) {
+    if (sound_handle_.count(file_path) != 0) {
         return sound_handle_[file_path];
     }
 
@@ -22,20 +19,18 @@ int SoundEffectLoader::LoadAndGetSoundHandle(const std::string& file_path)
 
     sound_handle_[file_path] = sound_handle;
 
-    // ‰¹—Ê‚ð•ÏX‚·‚éD
+    // éŸ³é‡ã‚’å¤‰æ›´ã™ã‚‹ï¼Ž
     ChangeVolumeSoundMem(255 * volume_percent_ / 100, sound_handle_[file_path]);
 
     return sound_handle_[file_path];
 }
 
-void SoundEffectLoader::ChangeAllSoundVolume(const int volume)
-{
+void SoundEffectLoader::changeAllSoundVolume(const int volume) {
     ASSERT(volume >= 0 && volume <= 100, "Volume must be between 0 and 100. Volume : " + std::to_string(volume));
 
     volume_percent_ = volume;
 
-    for (auto& sound : sound_handle_)
-    {
+    for (auto& sound : sound_handle_) {
         ChangeVolumeSoundMem(255 * volume_percent_ / 100, sound.second);
     }
 }

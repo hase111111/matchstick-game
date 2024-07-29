@@ -3,11 +3,9 @@
 
 #include "language_record.h"
 
-namespace match_stick
-{
+namespace match_stick {
 
-class LanguageRecordInitializer final
-{
+class LanguageRecordInitializer final {
 public:
     LanguageRecord Initialize();
 };

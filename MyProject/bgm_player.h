@@ -9,11 +9,11 @@ namespace match_stick {
 
 class BgmPlayer final {
 public:
-    void Load(const std::string& bgm_file);
-    void Play(const std::string& bgm_file);
-    void LoadAndPlay(const std::string& bgm_file);
-    void Stop();
-    void ChangeVolume(int volume);
+    void load(const std::string& bgm_file);
+    void play(const std::string& bgm_file);
+    void loadAndPlay(const std::string& bgm_file);
+    void stop();
+    void changeVolume(int volume);
 
 private:
     std::map<std::string, int> bgm_handle_;

@@ -1,11 +1,9 @@
 ﻿
 #include "language_record_initializer.h"
 
-namespace match_stick
-{
+namespace match_stick {
 
-LanguageRecord LanguageRecordInitializer::Initialize()
-{
+LanguageRecord LanguageRecordInitializer::Initialize() {
     LanguageRecord record;
 
     using enum LanguageRecord::Country;
@@ -24,4 +22,4 @@ LanguageRecord LanguageRecordInitializer::Initialize()
     return record;
 }
 
-} // namespace match_stick
+}  // namespace match_stick

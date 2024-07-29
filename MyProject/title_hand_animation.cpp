@@ -61,7 +61,7 @@ std::array<int, TitleHandAnimation::kImageNum> TitleHandAnimation::loadImages(co
     std::array<int, kImageNum> image_handle = {};
 
     for (unsigned int i = 0; i < kImageNum; ++i) {
-        image_handle[i] = image_loader->LoadAndGetImageHandle("data/img/hand/" + std::to_string(i) + "_hand.png");
+        image_handle[i] = image_loader->loadAndGetImageHandle("data/img/hand/" + std::to_string(i) + "_hand.png");
     }
 
     return image_handle;

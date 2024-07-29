@@ -8,7 +8,7 @@
 namespace match_stick {
 
 TitleBackGroundBase::TitleBackGroundBase(const std::shared_ptr<ImageLoader>& image_loader) :
-    image_handle_(image_loader->LoadAndGetImageHandle("data/img/title_back.png")) {
+    image_handle_(image_loader->loadAndGetImageHandle("data/img/title_back.png")) {
 }
 
 void TitleBackGroundBase::draw() const {

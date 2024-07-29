@@ -4,14 +4,11 @@
 #include <map>
 #include <string>
 
-namespace match_stick
-{
+namespace match_stick {
 
-class LanguageRecord final
-{
+class LanguageRecord final {
 public:
-    enum class Country
-    {
+    enum class Country {
         kJapan,
         kEnglish,
     };

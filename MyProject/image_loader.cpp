@@ -8,8 +8,7 @@
 
 namespace match_stick {
 
-int ImageLoader::LoadAndGetImageHandle(const std::string& file_path) {
-
+int ImageLoader::loadAndGetImageHandle(const std::string& file_path) {
     // 既に読み込み済みならば，そのハンドルを返す．
     if (image_handle_.count(file_path) != 0) {
         return image_handle_[file_path];

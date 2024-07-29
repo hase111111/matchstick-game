@@ -8,7 +8,7 @@ namespace match_stick {
 
 class FontLoader final {
 public:
-    int LoadAndGetFontHandle(const std::string& file_path, int edge = 0);
+    int loadAndGetFontHandle(const std::string& file_path, int edge = 0);
 
 private:
     static constexpr int kMaxFontHandleNum = 10;  //! フォントの読み込みの最大数を設定する．
