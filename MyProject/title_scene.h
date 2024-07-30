@@ -17,12 +17,12 @@ namespace match_stick {
 class TitleScene final : public IScene {
 public:
     TitleScene(
-        std::shared_ptr<SceneChangeListener> scene_change_listener_ptr,
-        std::shared_ptr<const LanguageRecord> language_record_ptr,
-        std::shared_ptr<const DxLibKeyboard> keyboard_ptr,
-        std::shared_ptr<FontLoader> font_loader_ptr,
-        std::shared_ptr<ImageLoader> img_loader_ptr,
-        std::shared_ptr<SoundEffectLoader> sound_effect_loader_ptr);
+        const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
+        const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+        const std::shared_ptr<const DxLibKeyboard>& keyboard_ptr,
+        const std::shared_ptr<FontLoader>& font_loader_ptr,
+        const std::shared_ptr<ImageLoader>& img_loader_ptr,
+        const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr);
 
     ~TitleScene() = default;
 

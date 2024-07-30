@@ -16,8 +16,8 @@ LanguageRecord LanguageRecordInitializer::initialize() {
     record.set("press_any_key_to_start", kJapan, "何かキーを押してスタート");
     record.set("press_any_key_to_start", kEnglish, "Press any key to start");
 
-    record.set("copy_right", kJapan, "(C) 2021 Saidai Game Production");
-    record.set("copy_right", kEnglish, "(C) 2021 Saidai Game Production");
+    record.set("copy_right", kJapan, "Copy right 2021 Saidai Game Production");
+    record.set("copy_right", kEnglish, "Copy right 2021 Saidai Game Production");
 
     return record;
 }
