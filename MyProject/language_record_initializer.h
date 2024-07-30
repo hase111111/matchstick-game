@@ -6,8 +6,8 @@
 namespace match_stick {
 
 class LanguageRecordInitializer final {
-public:
-    LanguageRecord Initialize();
+    public:
+    LanguageRecord initialize();
 };
 
 }  // namespace match_stick

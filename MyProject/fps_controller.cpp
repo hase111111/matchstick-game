@@ -7,6 +7,7 @@
 #include <Dxlib.h>
 
 #include "define.h"
+#include "dxlib_debug_print.h"
 
 
 namespace match_stick {
@@ -33,8 +34,7 @@ void FpsController::wait() {
         // Sleep(wait_time);    // windows API版．
 
         registerTime(GetNowCount());  // 現在の時刻を記録する．
-    }
-    else {
+    } else {
         // 時間オーバーしているので，コマ落ちの処理をする．
 
         // このフレームは理想的な処理をしたものとして，記録する．
@@ -42,6 +42,11 @@ void FpsController::wait() {
 
         need_skip_draw_screen_ = true;  // 描画を飛ばすフラグを立てる．
     }
+
+    //// 現在のFPSを Debug で表示する．
+    //const int duration = (time_list_.back() - time_list_.front()) / static_cast<int>(time_list_.size() + 1);
+
+    //DEBUG_PRINT("FPS: " + std::to_string(1000.0 / duration));
 }
 
 
@@ -94,8 +99,7 @@ bool FpsController::checkNeedSkipDrawScreen(int* time) const {
 
         (*time) = wait_time;
         return true;
-    }
-    else {
+    } else {
         // 待ち時間が負の値であるとき．
 
         if (static_cast<int>(abs(wait_time)) < one_frame_time_) {

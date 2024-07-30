@@ -4,10 +4,14 @@
 
 #include <DxLib.h>
 
+#include "dxlib_debug_print.h"
 #include "error_message_box.h"
 #include "system_main.h"
 
+
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
+
+    PREPAER_DEBUG_PRINT();
 
     using match_stick::ErrorMessageBox;
     using match_stick::SystemMain;
@@ -16,8 +20,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
     if (system_main.initialize()) {
         system_main.main();
-    }
-    else {
+    } else {
         ErrorMessageBox::show("初期化に失敗しました。");
     }
 

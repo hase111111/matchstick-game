@@ -7,7 +7,9 @@ namespace match_stick {
 
 namespace debug_print_internal {
 
-void debug_print(const std::string& str);
+void createConsole();
+
+void debugPrint(const std::string& str);
 
 }  // namespace debug_print_internal
 
@@ -15,9 +17,13 @@ void debug_print(const std::string& str);
 
 #ifdef _DEBUG
 
-#define DEBUG_PRINT(str) ::match_stick::debug_print_internal::debug_print(str)
+#define PREPAER_DEBUG_PRINT() ::match_stick::debug_print_internal::createConsole()
+
+#define DEBUG_PRINT(str) ::match_stick::debug_print_internal::debugPrint(str)
 
 #else
+
+#define PREPAER_DEBUG_PRINT() ((void)0)
 
 #define DEBUG_PRINT(str) ((void)0)
 

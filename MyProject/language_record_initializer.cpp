@@ -3,7 +3,7 @@
 
 namespace match_stick {
 
-LanguageRecord LanguageRecordInitializer::Initialize() {
+LanguageRecord LanguageRecordInitializer::initialize() {
     LanguageRecord record;
 
     using enum LanguageRecord::Country;

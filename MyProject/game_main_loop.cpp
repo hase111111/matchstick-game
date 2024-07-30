@@ -60,7 +60,7 @@ std::shared_ptr<SceneStack> GameMainLoop::initializeSceneStack() const {
     ASSERT_NOT_NULL_PTR(mouse_ptr_);
 
     LanguageRecordInitializer language_record_initializer;
-    const std::shared_ptr<const LanguageRecord> language_record_ptr = std::make_shared<const LanguageRecord>(language_record_initializer.Initialize());
+    const auto language_record_ptr = std::make_shared<const LanguageRecord>(language_record_initializer.initialize());
 
     auto scene_creator_ptr = std::make_unique<SceneCreator>(
         scene_change_listener_ptr_,
