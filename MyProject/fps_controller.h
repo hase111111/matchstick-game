@@ -30,6 +30,10 @@ public:
     //!  true を返す．その後フラグを false にする．
     bool skipDrawScene();
 
+    //! @brief 現在のFPSを返す関数．
+    //! @return 現在のFPS．
+    double getCurrentFps() const;
+
 private:
     //! @brief 現在の時刻を記録する関数．
     //! @param[in] now_time 現在の時刻(ミリ秒)

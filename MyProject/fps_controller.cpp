@@ -7,7 +7,6 @@
 #include <Dxlib.h>
 
 #include "define.h"
-#include "dxlib_debug_print.h"
 
 
 namespace match_stick {
@@ -42,11 +41,6 @@ void FpsController::wait() {
 
         need_skip_draw_screen_ = true;  // 描画を飛ばすフラグを立てる．
     }
-
-    //// 現在のFPSを Debug で表示する．
-    //const int duration = (time_list_.back() - time_list_.front()) / static_cast<int>(time_list_.size() + 1);
-
-    //DEBUG_PRINT("FPS: " + std::to_string(1000.0 / duration));
 }
 
 
@@ -63,6 +57,22 @@ bool FpsController::skipDrawScene() {
     }
 
     return false;
+}
+
+double FpsController::getCurrentFps() const {
+
+    if (!targetFpsIsValid()) {
+        return -1.0;
+    }
+
+    // 現在のFPSを求める．
+    if (time_list_.size() < 2) {
+        return -1.0;
+    }
+
+    const int duration = (time_list_.back() - time_list_.front()) / static_cast<int>(time_list_.size() + 1);
+
+    return 1000.0 / duration;
 }
 
 void FpsController::registerTime(const int now_time) {

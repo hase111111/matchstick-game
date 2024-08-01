@@ -8,15 +8,14 @@
 
 namespace match_stick {
 
-SceneCreator::SceneCreator(
-    const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
-    const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-    const std::shared_ptr<const DxLibKeyboard>& keyboard_ptr,
-    const std::shared_ptr<const DxLibMouse>& mouse_ptr,
-    const std::shared_ptr<BgmPlayer>& bgm_player_ptr,
-    const std::shared_ptr<FontLoader>& font_loader_ptr,
-    const std::shared_ptr<ImageLoader>& image_loader_ptr,
-    const std::shared_ptr<SoundEffectLoader>& sound_loader_ptr) :
+SceneCreator::SceneCreator(const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
+                           const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+                           const std::shared_ptr<const DxLibKeyboard>& keyboard_ptr,
+                           const std::shared_ptr<const DxLibMouse>& mouse_ptr,
+                           const std::shared_ptr<BgmPlayer>& bgm_player_ptr,
+                           const std::shared_ptr<FontLoader>& font_loader_ptr,
+                           const std::shared_ptr<ImageLoader>& image_loader_ptr,
+                           const std::shared_ptr<SoundEffectLoader>& sound_loader_ptr) :
     scene_change_listener_ptr_(scene_change_listener_ptr),
     language_record_ptr_(language_record_ptr),
     keyboard_ptr_(keyboard_ptr),
@@ -25,6 +24,7 @@ SceneCreator::SceneCreator(
     font_loader_ptr_(font_loader_ptr),
     image_loader_ptr_(image_loader_ptr),
     sound_effect_loader_ptr_(sound_loader_ptr) {
+    // ポインタが nullptr でないことを確認
     ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
 
     ASSERT_NOT_NULL_PTR(keyboard_ptr_);
@@ -38,31 +38,31 @@ SceneCreator::SceneCreator(
 
 std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) const {
     switch (scene_name) {
-        case SceneName::kDebug: {
-            return std::make_unique<DebugScene>(scene_change_listener_ptr_, keyboard_ptr_);
-        }
-        case SceneName::kGame: {
-            return std::make_unique<GameScene>(
-                scene_change_listener_ptr_,
-                language_record_ptr_,
-                keyboard_ptr_,
-                font_loader_ptr_,
-                image_loader_ptr_,
-                sound_effect_loader_ptr_);
-        }
-        case SceneName::kTitle: {
-            return std::make_unique<TitleScene>(
-                scene_change_listener_ptr_,
-                language_record_ptr_,
-                keyboard_ptr_,
-                font_loader_ptr_,
-                image_loader_ptr_,
-                sound_effect_loader_ptr_);
-        }
-        default: {
-            ASSERT_MUST_NOT_REACH_HERE();
-            return nullptr;
-        }
+    case SceneName::kDebug: {
+        return std::make_unique<DebugScene>(scene_change_listener_ptr_, keyboard_ptr_);
+    }
+    case SceneName::kGame: {
+        return std::make_unique<GameScene>(
+            scene_change_listener_ptr_,
+            language_record_ptr_,
+            keyboard_ptr_,
+            font_loader_ptr_,
+            image_loader_ptr_,
+            sound_effect_loader_ptr_);
+    }
+    case SceneName::kTitle: {
+        return std::make_unique<TitleScene>(
+            scene_change_listener_ptr_,
+            language_record_ptr_,
+            keyboard_ptr_,
+            font_loader_ptr_,
+            image_loader_ptr_,
+            sound_effect_loader_ptr_);
+    }
+    default: {
+        ASSERT_MUST_NOT_REACH_HERE();
+        return nullptr;
+    }
     }  // switch
 }
 

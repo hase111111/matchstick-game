@@ -85,6 +85,9 @@
     <Filter Include="ソース ファイル\scenes\game_scene\entity">
       <UniqueIdentifier>{1b54c982-3b78-42b0-9a69-9b4c09844042}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\scenes\rule_scene">
+      <UniqueIdentifier>{afff030a-61a9-445a-8c34-440f6497911a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

@@ -13,12 +13,18 @@ public:
         kEnglish,
     };
 
-    std::string get(const std::string& key, Country country) const;
+    std::string get(const std::string& key) const;
 
     void set(const std::string& key, Country country, const std::string& value);
 
+    void setCurrentCountry(Country country) {
+        current_country_ = country;
+    }
+
 private:
     std::map<std::string, std::map<Country, std::string>> records_;
+
+    Country current_country_{ Country::kJapan };
 };
 
 }  // namespace match_stick

@@ -13,9 +13,9 @@ TitleLogo::TitleLogo(const std::shared_ptr<const LanguageRecord>& language_recor
     big_font_handle_(font_loader->loadAndGetFontHandle("data/font/azuki_font64.dft")),
     middle_font_handle_(font_loader->loadAndGetFontHandle("data/font/azuki_font32.dft")),
     small_font_handle_(font_loader->loadAndGetFontHandle("data/font/azuki_font20.dft")),
-    game_title_(language_record_ptr->get("game_title", LanguageRecord::Country::kEnglish)),
-    announce_(language_record_ptr->get("press_any_key_to_start", LanguageRecord::Country::kEnglish)),
-    copy_right_(language_record_ptr->get("copy_right", LanguageRecord::Country::kEnglish)) {
+    game_title_(language_record_ptr->get("game_title")),
+    announce_(language_record_ptr->get("press_any_key_to_start")),
+    copy_right_(language_record_ptr->get("copy_right")) {
     DEBUG_PRINT("TitleLogo Constructor called");
 }
 

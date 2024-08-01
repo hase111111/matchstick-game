@@ -19,6 +19,7 @@ TitleScene::TitleScene(const std::shared_ptr<SceneChangeListener>& scene_change_
     scene_change_listener_ptr_(scene_change_listener_ptr),
     keyboard_ptr_(keyboard_ptr),
     entity_updater_ptr_(std::make_unique<EntityUpdater>()) {
+    // タイトルのエンティティを登録
     entity_updater_ptr_->registerEntity(std::make_shared<TitleBackGroundBase>(img_loader_ptr));
 
     auto title_logo_ptr_ = std::make_shared<TitleLogo>(language_record_ptr, font_loader_ptr);

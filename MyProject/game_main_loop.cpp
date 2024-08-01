@@ -1,4 +1,18 @@
 ﻿
+//! @file game_main_loop.cpp
+//! @copyright 2024 Taisei Hasegawa
+//! @brief
+//!  ----------------------------------------------------------------------------
+//! | ##   ##   ##   ######   ####  ##   ##   #####  ###### ####   ####  ###  ## |
+//! | ### ###  ####  # ## #  ##  ## ##   ##  ##   ## # ## #  ##   ##  ##  ##  ## |
+//! | ####### ##  ##   ##   ##      ##   ##  #         ##    ##  ##       ## ##  |
+//! | ####### ##  ##   ##   ##      #######   #####    ##    ##  ##       ####   |
+//! | ## # ## ######   ##   ##      ##   ##       ##   ##    ##  ##       ## ##  |
+//! | ##   ## ##  ##   ##    ##  ## ##   ##  ##   ##   ##    ##   ##  ##  ##  ## |
+//! | ##   ## ##  ##  ####    ####  ##   ##   #####   ####  ####   ####  ###  ## |
+//!  ----------------------------------------------------------------------------
+
+
 #include "game_main_loop.h"
 
 #include <utility>
@@ -16,8 +30,7 @@ GameMainLoop::GameMainLoop() :
     fps_controller_{ 60 },
     scene_change_listener_ptr_(std::make_shared<SceneChangeListener>()),
     scene_stack_ptr_(initializeSceneStack()),
-    scene_change_executer_{ scene_change_listener_ptr_, scene_stack_ptr_ } {
-}
+    scene_change_executer_{ scene_change_listener_ptr_, scene_stack_ptr_ } {}
 
 bool GameMainLoop::loop() {
     // 入力を取得
