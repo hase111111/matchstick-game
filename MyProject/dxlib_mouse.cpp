@@ -85,12 +85,7 @@ double DxLibMouse::getDiffPos() const {
 }
 
 bool DxLibMouse::isAnyButtonPressed() const {
-    constexpr int kKeyCodes[] = {
-        MOUSE_INPUT_RIGHT,
-        MOUSE_INPUT_LEFT,
-        MOUSE_INPUT_MIDDLE };
-
-    for (const auto& i : kKeyCodes) {
+    for (const auto& i : kMouseKeyCodes) {
         if (getPressingCount(i) > 0) {
             return true;
         }

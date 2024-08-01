@@ -1,28 +1,53 @@
 ﻿
 #include "language_record_initializer.h"
 
+#include <fstream>
+
+#include "dxlib_assert.h"
+
 namespace match_stick {
 
-LanguageRecord LanguageRecordInitializer::initialize() {
+LanguageRecord LanguageRecordInitializer::initialize(const LanguageRecord::Country country) {
     LanguageRecord record;
 
-    using enum LanguageRecord::Country;
+    const std::string file_path = getLanguageFilePath(country);
 
-    //! @todo テキストの初期化をファイルから行うようにする．
+    std::ifstream ifs(file_path);
+    ASSERT(ifs.is_open(), "Failed to open file: " + file_path);
 
-    record.set("game_title", kJapan, "マッチ棒ゲーム");
-    record.set("game_title", kEnglish, "Match Stick Game");
+    std::string line;
 
-    record.set("press_z_key_to_start", kJapan, "Zキーを押してスタート");
-    record.set("press_z_key_to_start", kEnglish, "Press z key to start");
+    while (std::getline(ifs, line)) {
+        // 空白行，#で始まるコメント行は無視
+        if (line.empty() || line[0] == '#') {
+            continue;
+        }
 
-    record.set("click_left_to_start", kJapan, "左クリックでスタート");
-    record.set("click_left_to_start", kEnglish, "Click left to start");
+        const size_t comma_pos = line.find(",");
+        ASSERT(comma_pos != std::string::npos, "Invalid format: " + line);
 
-    record.set("copy_right", kJapan, "Copy right 2021 Saidai Game Production");
-    record.set("copy_right", kEnglish, "Copy right 2021 Saidai Game Production");
+        const std::string key = line.substr(0, comma_pos);
+        const std::string value = line.substr(comma_pos + 1);
+
+        record.set(key, country, value);
+    }
 
     return record;
+}
+
+std::string LanguageRecordInitializer::getLanguageFilePath(LanguageRecord::Country country) const {
+    switch (country) {
+    case LanguageRecord::Country::kJapan: {
+        return "data/language/jp.csv";
+    }
+    case LanguageRecord::Country::kEnglish: {
+        return "data/language/en.csv";
+    }
+    default: {
+        ASSERT_MUST_NOT_REACH_HERE();
+        return "";
+    }
+    }
 }
 
 }  // namespace match_stick

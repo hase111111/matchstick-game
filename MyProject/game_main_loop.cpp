@@ -71,7 +71,8 @@ std::shared_ptr<SceneStack> GameMainLoop::initializeSceneStack() const {
     ASSERT_NOT_NULL_PTR(input_ptr_);
 
     LanguageRecordInitializer language_record_initializer;
-    const auto language_record_ptr = std::make_shared<const LanguageRecord>(language_record_initializer.initialize());
+    const auto language_record_ptr =
+        std::make_shared<const LanguageRecord>(language_record_initializer.initialize(LanguageRecord::Country::kJapan));
 
     auto scene_creator_ptr = std::make_unique<SceneCreator>(
         scene_change_listener_ptr_,
