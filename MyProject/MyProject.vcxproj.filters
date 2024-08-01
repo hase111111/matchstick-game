@@ -252,6 +252,9 @@
     <ClCompile Include="game_log.cpp">
       <Filter>ソース ファイル\scenes\game_scene\entity</Filter>
     </ClCompile>
+    <ClCompile Include="fps_displayer.cpp">
+      <Filter>ソース ファイル\entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -421,6 +424,9 @@
     </ClInclude>
     <ClInclude Include="game_log.h">
       <Filter>ソース ファイル\scenes\game_scene\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="fps_displayer.h">
+      <Filter>ソース ファイル\entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

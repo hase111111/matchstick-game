@@ -27,7 +27,7 @@ namespace match_stick {
 GameMainLoop::GameMainLoop() :
     keyboard_ptr_(std::make_shared<DxLibKeyboard>()),
     mouse_ptr_(std::make_shared<DxLibMouse>()),
-    fps_controller_{ 60 },
+    fps_controller_(std::make_shared<FpsController>(60)),
     scene_change_listener_ptr_(std::make_shared<SceneChangeListener>()),
     scene_stack_ptr_(initializeSceneStack()),
     scene_change_executer_{ scene_change_listener_ptr_, scene_stack_ptr_ } {}
@@ -43,7 +43,7 @@ bool GameMainLoop::loop() {
     }
 
     // 処理が重い場合はここでコマ落ちさせる．
-    if (!fps_controller_.skipDrawScene()) {
+    if (!fps_controller_->skipDrawScene()) {
         // スクリーンを消す．
         if (ClearDrawScreen() != 0) {
             return false;
@@ -59,7 +59,7 @@ bool GameMainLoop::loop() {
     }
 
     // FPSを調整するための処理．
-    fps_controller_.wait();
+    fps_controller_->wait();
 
     // シーンの変更を実行する．
     scene_change_executer_.execute();
@@ -77,6 +77,7 @@ std::shared_ptr<SceneStack> GameMainLoop::initializeSceneStack() const {
 
     auto scene_creator_ptr = std::make_unique<SceneCreator>(
         scene_change_listener_ptr_,
+        fps_controller_,
         language_record_ptr,
         keyboard_ptr_, mouse_ptr_,
         std::make_shared<BgmPlayer>(), std::make_shared<FontLoader>(),

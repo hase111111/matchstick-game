@@ -9,6 +9,7 @@
 namespace match_stick {
 
 SceneCreator::SceneCreator(const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
+                           const std::shared_ptr<const FpsController>& fps_controller_ptr,
                            const std::shared_ptr<const LanguageRecord>& language_record_ptr,
                            const std::shared_ptr<const DxLibKeyboard>& keyboard_ptr,
                            const std::shared_ptr<const DxLibMouse>& mouse_ptr,
@@ -17,6 +18,7 @@ SceneCreator::SceneCreator(const std::shared_ptr<SceneChangeListener>& scene_cha
                            const std::shared_ptr<ImageLoader>& image_loader_ptr,
                            const std::shared_ptr<SoundEffectLoader>& sound_loader_ptr) :
     scene_change_listener_ptr_(scene_change_listener_ptr),
+    fps_controller_ptr_(fps_controller_ptr),
     language_record_ptr_(language_record_ptr),
     keyboard_ptr_(keyboard_ptr),
     mouse_ptr_(mouse_ptr),
@@ -26,6 +28,8 @@ SceneCreator::SceneCreator(const std::shared_ptr<SceneChangeListener>& scene_cha
     sound_effect_loader_ptr_(sound_loader_ptr) {
     // ポインタが nullptr でないことを確認
     ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
+
+    ASSERT_NOT_NULL_PTR(fps_controller_ptr_);
 
     ASSERT_NOT_NULL_PTR(keyboard_ptr_);
     ASSERT_NOT_NULL_PTR(mouse_ptr_);
@@ -53,6 +57,7 @@ std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) co
     case SceneName::kTitle: {
         return std::make_unique<TitleScene>(
             scene_change_listener_ptr_,
+            fps_controller_ptr_,
             language_record_ptr_,
             keyboard_ptr_,
             font_loader_ptr_,

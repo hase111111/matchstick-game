@@ -7,6 +7,7 @@
 #include "dxlib_keyboard.h"
 #include "dxlib_mouse.h"
 #include "font_loader.h"
+#include "fps_controller.h"
 #include "i_scene.h"
 #include "image_loader.h"
 #include "language_record.h"
@@ -20,6 +21,7 @@ class SceneCreator final {
 public:
     SceneCreator(
         const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
+        const std::shared_ptr<const FpsController>& fps_controller_ptr,
         const std::shared_ptr<const LanguageRecord>& language_record_ptr,
         const std::shared_ptr<const DxLibKeyboard>& keyboard_ptr,
         const std::shared_ptr<const DxLibMouse>& mouse_ptr,
@@ -33,6 +35,8 @@ public:
 
 private:
     const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
+
+    const std::shared_ptr<const FpsController> fps_controller_ptr_;
 
     const std::shared_ptr<const LanguageRecord> language_record_ptr_;
 

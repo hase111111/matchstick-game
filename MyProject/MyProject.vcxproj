@@ -186,6 +186,7 @@
     <ClCompile Include="fade_effect.cpp" />
     <ClCompile Include="font_loader.cpp" />
     <ClCompile Include="fps_controller.cpp" />
+    <ClCompile Include="fps_displayer.cpp" />
     <ClCompile Include="GameAnime.cpp" />
     <ClCompile Include="GameHand.cpp" />
     <ClCompile Include="GameLog.cpp" />
@@ -243,6 +244,7 @@
     <ClInclude Include="fade_effect.h" />
     <ClInclude Include="font_loader.h" />
     <ClInclude Include="fps_controller.h" />
+    <ClInclude Include="fps_displayer.h" />
     <ClInclude Include="GameAnime.h" />
     <ClInclude Include="GameHand.h" />
     <ClInclude Include="GameLog.h" />

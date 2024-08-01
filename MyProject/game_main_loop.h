@@ -25,7 +25,7 @@ private:
     std::shared_ptr<DxLibKeyboard> keyboard_ptr_;
     std::shared_ptr<DxLibMouse> mouse_ptr_;
 
-    FpsController fps_controller_;
+    std::shared_ptr<FpsController> fps_controller_;
 
     const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
     const std::shared_ptr<SceneStack> scene_stack_ptr_;

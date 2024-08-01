@@ -4,6 +4,7 @@
 #include <DxLib.h>
 
 #include "fade_effect.h"
+#include "fps_displayer.h"
 #include "title_back_ground_base.h"
 #include "title_hand_animation.h"
 #include "title_logo.h"
@@ -11,6 +12,7 @@
 namespace match_stick {
 
 TitleScene::TitleScene(const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
+                       const std::shared_ptr<const FpsController>& fps_controller_ptr,
                        const std::shared_ptr<const LanguageRecord>& language_record_ptr,
                        const std::shared_ptr<const DxLibKeyboard>& keyboard_ptr,
                        const std::shared_ptr<FontLoader>& font_loader_ptr,
@@ -27,6 +29,9 @@ TitleScene::TitleScene(const std::shared_ptr<SceneChangeListener>& scene_change_
 
     auto title_hand_animation_ptr_ = std::make_shared<TitleHandAnimation>(img_loader_ptr);
     entity_updater_ptr_->registerEntity(title_hand_animation_ptr_);
+
+    auto fps_displayer_ptr = std::make_shared<FpsDisplayer>(fps_controller_ptr, font_loader_ptr);
+    entity_updater_ptr_->registerEntity(fps_displayer_ptr);
 
     scene_change_sound_handle_ = sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/op.mp3");
 }
