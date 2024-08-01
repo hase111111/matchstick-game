@@ -17,14 +17,13 @@ namespace match_stick {
 
 class TitleScene final : public IScene {
 public:
-    TitleScene(
-        const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
-        const std::shared_ptr<const FpsController>& entity_updater_ptr,
-        const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-        const std::shared_ptr<const DxLibInput>& input_ptr,
-        const std::shared_ptr<FontLoader>& font_loader_ptr,
-        const std::shared_ptr<ImageLoader>& img_loader_ptr,
-        const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr);
+    TitleScene(const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
+               const std::shared_ptr<const FpsController>& entity_updater_ptr,
+               const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+               const std::shared_ptr<const DxLibInput>& input_ptr,
+               const std::shared_ptr<FontLoader>& font_loader_ptr,
+               const std::shared_ptr<ImageLoader>& img_loader_ptr,
+               const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr);
 
     ~TitleScene() = default;
 
@@ -39,11 +38,11 @@ public:
 private:
     const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
     const std::shared_ptr<const DxLibInput> input_ptr_;
+    const std::shared_ptr<SoundEffectLoader> sound_effect_loader_ptr_;
 
     std::unique_ptr<EntityUpdater> entity_updater_ptr_;
 
-    bool is_scene_change_requested_{ false };
-    int scene_change_sound_handle_{ -1 };
+    void callbackForSceneChange();
 };
 
 }  // namespace match_stick

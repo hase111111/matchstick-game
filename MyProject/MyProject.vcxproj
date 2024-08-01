@@ -232,6 +232,7 @@
     <ClCompile Include="title_hand_animation.cpp" />
     <ClCompile Include="title_logo.cpp" />
     <ClCompile Include="title_scene.cpp" />
+    <ClCompile Include="title_scene_switcher.cpp" />
     <ClCompile Include="toml_serialize_macro.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -292,6 +293,7 @@
     <ClInclude Include="title_hand_animation.h" />
     <ClInclude Include="title_logo.h" />
     <ClInclude Include="title_scene.h" />
+    <ClInclude Include="title_scene_switcher.h" />
     <ClInclude Include="toml11_define.h" />
     <ClInclude Include="toml_serialize_macro.h" />
     <ClInclude Include="i_entity.h" />

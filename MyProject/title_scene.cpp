@@ -9,6 +9,7 @@
 #include "title_back_ground_base.h"
 #include "title_hand_animation.h"
 #include "title_logo.h"
+#include "title_scene_switcher.h"
 
 namespace match_stick {
 
@@ -21,6 +22,7 @@ TitleScene::TitleScene(const std::shared_ptr<SceneChangeListener>& scene_change_
                        const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr) :
     scene_change_listener_ptr_(scene_change_listener_ptr),
     input_ptr_(input_ptr),
+    sound_effect_loader_ptr_(sound_effect_loader_ptr),
     entity_updater_ptr_(std::make_unique<EntityUpdater>()) {
     // タイトルのエンティティを登録
     entity_updater_ptr_->registerEntity(std::make_shared<TitleBackGroundBase>(img_loader_ptr));
@@ -31,27 +33,14 @@ TitleScene::TitleScene(const std::shared_ptr<SceneChangeListener>& scene_change_
 
     entity_updater_ptr_->registerEntity(std::make_shared<InputSchemeDisplayer>(input_ptr, img_loader_ptr));
 
-    scene_change_sound_handle_ = sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/op.mp3");
+    // シーン遷移用のエンティティを登録
+    entity_updater_ptr_->registerEntity(std::make_shared<TitleSceneSwitcher>(input_ptr, sound_effect_loader_ptr,
+        std::bind(&TitleScene::callbackForSceneChange, this)));
 }
 
 bool TitleScene::update() {
     if (input_ptr_->getKeyboardPressingCount(KEY_INPUT_ESCAPE) == 1) {
         return false;
-    }
-
-    if ((input_ptr_->getMousePressingCount(MOUSE_INPUT_LEFT) || input_ptr_->isAnyKeyboardPressed()) &&
-        !is_scene_change_requested_) {
-        auto scene_change_func = [this]() {
-            scene_change_listener_ptr_->requestAddScene(SceneName::kGame, SceneChangeParameter{});
-            };
-        auto fade_effect_ptr = std::make_shared<FadeEffect>(60, FadeEffect::FadeType::kFadeOut, scene_change_func);
-
-        entity_updater_ptr_->registerEntity(fade_effect_ptr);
-
-        is_scene_change_requested_ = true;
-
-        // シーン遷移時の効果音を再生
-        PlaySoundMem(scene_change_sound_handle_, DX_PLAYTYPE_BACK);
     }
 
     entity_updater_ptr_->update();
@@ -64,10 +53,21 @@ void TitleScene::draw() const {
 }
 
 void TitleScene::onReturnFromOtherScene(const SceneChangeParameter&) {
-    is_scene_change_requested_ = false;
-
     // フェードイン演出を追加
     auto fade_effect_ptr = std::make_shared<FadeEffect>(60, FadeEffect::FadeType::kFadeIn, []() {});
+    entity_updater_ptr_->registerEntity(fade_effect_ptr);
+
+    // シーン遷移用のエンティティを登録
+    entity_updater_ptr_->registerEntity(std::make_shared<TitleSceneSwitcher>(input_ptr_, sound_effect_loader_ptr_,
+        std::bind(&TitleScene::callbackForSceneChange, this)));
+}
+
+void TitleScene::callbackForSceneChange() {
+    auto scene_change_func = [this]() {
+        scene_change_listener_ptr_->requestAddScene(SceneName::kDebug, SceneChangeParameter{});
+        };
+    auto fade_effect_ptr = std::make_shared<FadeEffect>(60, FadeEffect::FadeType::kFadeOut, scene_change_func);
+
     entity_updater_ptr_->registerEntity(fade_effect_ptr);
 }
 

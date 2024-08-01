@@ -264,6 +264,9 @@
     <ClCompile Include="input_scheme_displayer.cpp">
       <Filter>ソース ファイル\entity</Filter>
     </ClCompile>
+    <ClCompile Include="title_scene_switcher.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -445,6 +448,9 @@
     </ClInclude>
     <ClInclude Include="input_scheme_displayer.h">
       <Filter>ソース ファイル\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="title_scene_switcher.h">
+      <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
