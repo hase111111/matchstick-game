@@ -261,6 +261,9 @@
     <ClCompile Include="dxlib_input.cpp">
       <Filter>ソース ファイル\common\input</Filter>
     </ClCompile>
+    <ClCompile Include="input_scheme_displayer.cpp">
+      <Filter>ソース ファイル\entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -439,6 +442,9 @@
     </ClInclude>
     <ClInclude Include="dxlib_input.h">
       <Filter>ソース ファイル\common\input</Filter>
+    </ClInclude>
+    <ClInclude Include="input_scheme_displayer.h">
+      <Filter>ソース ファイル\entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

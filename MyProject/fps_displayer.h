@@ -12,7 +12,7 @@ namespace match_stick {
 class FpsDisplayer final : public IEntity {
 public:
     FpsDisplayer(const std::shared_ptr<const FpsController>& fps_controller_ptr,
-    const std::shared_ptr<FontLoader>& font_loader_ptr);
+                 const std::shared_ptr<FontLoader>& font_loader_ptr);
 
     ~FpsDisplayer() = default;
 

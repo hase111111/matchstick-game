@@ -24,8 +24,7 @@ DxLibMouse::DxLibMouse() :
         cursor_past_pos_y_(0),
         pushing_counter_({}),
         releasing_counter_({}),
-        wheel_rot_(0) {
-}
+        wheel_rot_(0) {}
 
 void DxLibMouse::update() {
 
@@ -86,7 +85,12 @@ double DxLibMouse::getDiffPos() const {
 }
 
 bool DxLibMouse::isAnyButtonPressed() const {
-    for (const auto& i : kMouseKeyCodes) {
+    constexpr int kKeyCodes[] = {
+        MOUSE_INPUT_RIGHT,
+        MOUSE_INPUT_LEFT,
+        MOUSE_INPUT_MIDDLE };
+
+    for (const auto& i : kKeyCodes) {
         if (getPressingCount(i) > 0) {
             return true;
         }

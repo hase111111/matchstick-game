@@ -5,6 +5,7 @@
 
 #include "fade_effect.h"
 #include "fps_displayer.h"
+#include "input_scheme_displayer.h"
 #include "title_back_ground_base.h"
 #include "title_hand_animation.h"
 #include "title_logo.h"
@@ -32,6 +33,9 @@ TitleScene::TitleScene(const std::shared_ptr<SceneChangeListener>& scene_change_
 
     auto fps_displayer_ptr = std::make_shared<FpsDisplayer>(fps_controller_ptr, font_loader_ptr);
     entity_updater_ptr_->registerEntity(fps_displayer_ptr);
+
+    auto input_scheme_displayer_ptr = std::make_shared<InputSchemeDisplayer>(input_ptr, img_loader_ptr);
+    entity_updater_ptr_->registerEntity(input_scheme_displayer_ptr);
 
     scene_change_sound_handle_ = sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/op.mp3");
 }

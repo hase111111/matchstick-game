@@ -4,6 +4,7 @@
 #include "fade_effect.h"
 #include "game_back_ground_base.h"
 #include "game_log.h"
+#include "input_scheme_displayer.h"
 
 namespace match_stick {
 
@@ -21,6 +22,8 @@ GameScene::GameScene(std::shared_ptr<SceneChangeListener> scene_change_listener_
     entity_updater_ptr_->registerEntity(std::make_shared<GameLog>(language_record_ptr, font_loader_ptr));
 
     entity_updater_ptr_->registerEntity(std::make_shared<FadeEffect>(60, FadeEffect::FadeType::kFadeIn, []() {}));
+
+    entity_updater_ptr_->registerEntity(std::make_shared<InputSchemeDisplayer>(input_ptr, img_loader_ptr));
 }
 
 bool GameScene::update() {
