@@ -9,12 +9,12 @@ namespace match_stick {
 
 GameScene::GameScene(std::shared_ptr<SceneChangeListener> scene_change_listener_ptr,
                      std::shared_ptr<const LanguageRecord> language_record_ptr,
-                     std::shared_ptr<const DxLibKeyboard> keyboard_ptr,
+                     std::shared_ptr<const DxLibInput> input_ptr,
                      std::shared_ptr<FontLoader> font_loader_ptr,
                      std::shared_ptr<ImageLoader> img_loader_ptr,
                      std::shared_ptr<SoundEffectLoader> sound_effect_loader_ptr) :
     scene_change_listener_ptr_(scene_change_listener_ptr),
-    keyboard_ptr_(keyboard_ptr),
+    input_ptr_(input_ptr),
     entity_updater_ptr_(std::make_unique<EntityUpdater>()) {
     // 表示する entity を登録
     entity_updater_ptr_->registerEntity(std::make_shared<GameBackGroundBase>());
@@ -32,10 +32,8 @@ void GameScene::draw() const {
     entity_updater_ptr_->draw();
 }
 
-void GameScene::onStart(const SceneChangeParameter&) {
-}
+void GameScene::onStart(const SceneChangeParameter&) {}
 
-void GameScene::onReturnFromOtherScene(const SceneChangeParameter&) {
-}
+void GameScene::onReturnFromOtherScene(const SceneChangeParameter&) {}
 
 }  // namespace match_stick

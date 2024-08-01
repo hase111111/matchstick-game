@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "dxlib_keyboard.h"
+#include "dxlib_input.h"
 #include "entity_updater.h"
 #include "font_loader.h"
 #include "i_scene.h"
@@ -16,13 +16,12 @@ namespace match_stick {
 
 class GameScene final : public IScene {
 public:
-    GameScene(
-        std::shared_ptr<SceneChangeListener> scene_change_listener_ptr,
-        std::shared_ptr<const LanguageRecord> language_record_ptr,
-        std::shared_ptr<const DxLibKeyboard> keyboard_ptr,
-        std::shared_ptr<FontLoader> font_loader_ptr,
-        std::shared_ptr<ImageLoader> img_loader_ptr,
-        std::shared_ptr<SoundEffectLoader> sound_effect_loader_ptr);
+    GameScene(std::shared_ptr<SceneChangeListener> scene_change_listener_ptr,
+              std::shared_ptr<const LanguageRecord> language_record_ptr,
+              std::shared_ptr<const DxLibInput> input_ptr,
+              std::shared_ptr<FontLoader> font_loader_ptr,
+              std::shared_ptr<ImageLoader> img_loader_ptr,
+              std::shared_ptr<SoundEffectLoader> sound_effect_loader_ptr);
 
     ~GameScene() = default;
 
@@ -36,7 +35,7 @@ public:
 
 private:
     std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
-    std::shared_ptr<const DxLibKeyboard> keyboard_ptr_;
+    std::shared_ptr<const DxLibInput> input_ptr_;
 
     std::unique_ptr<EntityUpdater> entity_updater_ptr_;
 

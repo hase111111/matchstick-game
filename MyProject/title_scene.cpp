@@ -14,14 +14,12 @@ namespace match_stick {
 TitleScene::TitleScene(const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
                        const std::shared_ptr<const FpsController>& fps_controller_ptr,
                        const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-                       const std::shared_ptr<const DxLibKeyboard>& keyboard_ptr,
-                       const std::shared_ptr<const DxLibMouse>& mouse_ptr,
+                       const std::shared_ptr<const DxLibInput>& input_ptr,
                        const std::shared_ptr<FontLoader>& font_loader_ptr,
                        const std::shared_ptr<ImageLoader>& img_loader_ptr,
                        const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr) :
     scene_change_listener_ptr_(scene_change_listener_ptr),
-    keyboard_ptr_(keyboard_ptr),
-    mouse_ptr_(mouse_ptr),
+    input_ptr_(input_ptr),
     entity_updater_ptr_(std::make_unique<EntityUpdater>()) {
     // タイトルのエンティティを登録
     entity_updater_ptr_->registerEntity(std::make_shared<TitleBackGroundBase>(img_loader_ptr));
@@ -39,11 +37,11 @@ TitleScene::TitleScene(const std::shared_ptr<SceneChangeListener>& scene_change_
 }
 
 bool TitleScene::update() {
-    if (keyboard_ptr_->getPressingCount(KEY_INPUT_ESCAPE) == 1) {
+    if (input_ptr_->getKeyboardPressingCount(KEY_INPUT_ESCAPE) == 1) {
         return false;
     }
 
-    if ((mouse_ptr_->getPressingCount(MOUSE_INPUT_LEFT) || keyboard_ptr_->isAnyKeyPressed()) && !is_scene_change_requested_) {
+    if ((input_ptr_->getMousePressingCount(MOUSE_INPUT_LEFT) || input_ptr_->isAnyKeyboardPressed()) && !is_scene_change_requested_) {
         auto scene_change_func = [this]() {
             scene_change_listener_ptr_->requestAddScene(SceneName::kGame, SceneChangeParameter{});
             };

@@ -258,6 +258,9 @@
     <ClCompile Include="rule_scene.cpp">
       <Filter>ソース ファイル\scenes\rule_scene</Filter>
     </ClCompile>
+    <ClCompile Include="dxlib_input.cpp">
+      <Filter>ソース ファイル\common\input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -433,6 +436,9 @@
     </ClInclude>
     <ClInclude Include="rule_scene.h">
       <Filter>ソース ファイル\scenes\rule_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_input.h">
+      <Filter>ソース ファイル\common\input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

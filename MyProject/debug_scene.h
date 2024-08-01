@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "dxlib_keyboard.h"
+#include "dxlib_input.h"
 #include "i_scene.h"
 #include "scene_change_listener.h"
 
@@ -12,7 +12,7 @@ namespace match_stick {
 class DebugScene final : public IScene {
 public:
     DebugScene(const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
-               const std::shared_ptr<const DxLibKeyboard>& dxlib_keyboard_ptr);
+               const std::shared_ptr<const DxLibInput>& input_ptr);
     ~DebugScene() = default;
 
     bool update() override;
@@ -25,7 +25,7 @@ public:
 
 private:
     std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
-    std::shared_ptr<const DxLibKeyboard> dxlib_keyboard_ptr_;
+    std::shared_ptr<const DxLibInput> input_ptr_;
 };
 
 }  // namespace match_stick

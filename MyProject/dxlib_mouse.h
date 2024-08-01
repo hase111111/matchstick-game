@@ -4,8 +4,7 @@
 #include <array>
 #include <map>
 
-namespace match_stick
-{
+namespace match_stick {
 
 class DxLibMouse final {
 
@@ -70,6 +69,8 @@ public:
     [[nodiscard]] constexpr int getWheelRot() const noexcept {
         return wheel_rot_;
     };
+
+    bool isAnyButtonPressed() const;
 
 private:
     //! マウスのボタンの数．右・左・中央 + 5つのボタン．

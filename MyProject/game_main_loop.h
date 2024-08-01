@@ -3,8 +3,7 @@
 
 #include <memory>
 
-#include "dxlib_keyboard.h"
-#include "dxlib_mouse.h"
+#include "dxlib_input.h"
 #include "fps_controller.h"
 #include "scene_change_executer.h"
 #include "scene_change_listener.h"
@@ -22,8 +21,7 @@ public:
 private:
     std::shared_ptr<SceneStack> initializeSceneStack() const;
 
-    std::shared_ptr<DxLibKeyboard> keyboard_ptr_;
-    std::shared_ptr<DxLibMouse> mouse_ptr_;
+    std::shared_ptr<DxLibInput> input_ptr_;
 
     std::shared_ptr<FpsController> fps_controller_;
 

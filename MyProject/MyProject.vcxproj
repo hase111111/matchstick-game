@@ -180,6 +180,7 @@
     <ClCompile Include="define.cpp" />
     <ClCompile Include="dxlib_assert.cpp" />
     <ClCompile Include="dxlib_debug_print.cpp" />
+    <ClCompile Include="dxlib_input.cpp" />
     <ClCompile Include="dxlib_keyboard.cpp" />
     <ClCompile Include="dxlib_mouse.cpp" />
     <ClCompile Include="entity_updater.cpp" />
@@ -238,6 +239,7 @@
     <ClInclude Include="define.h" />
     <ClInclude Include="dxlib_assert.h" />
     <ClInclude Include="dxlib_debug_print.h" />
+    <ClInclude Include="dxlib_input.h" />
     <ClInclude Include="dxlib_keyboard.h" />
     <ClInclude Include="dxlib_mouse.h" />
     <ClInclude Include="entity_updater.h" />

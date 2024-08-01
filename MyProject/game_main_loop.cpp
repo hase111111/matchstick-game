@@ -2,6 +2,7 @@
 //! @file game_main_loop.cpp
 //! @copyright 2024 Taisei Hasegawa
 //! @brief
+//! 
 //!  ----------------------------------------------------------------------------
 //! | ##   ##   ##   ######   ####  ##   ##   #####  ###### ####   ####  ###  ## |
 //! | ### ###  ####  # ## #  ##  ## ##   ##  ##   ## # ## #  ##   ##  ##  ##  ## |
@@ -11,7 +12,7 @@
 //! | ##   ## ##  ##   ##    ##  ## ##   ##  ##   ##   ##    ##   ##  ##  ##  ## |
 //! | ##   ## ##  ##  ####    ####  ##   ##   #####   ####  ####   ####  ###  ## |
 //!  ----------------------------------------------------------------------------
-
+//!
 
 #include "game_main_loop.h"
 
@@ -25,8 +26,7 @@
 namespace match_stick {
 
 GameMainLoop::GameMainLoop() :
-    keyboard_ptr_(std::make_shared<DxLibKeyboard>()),
-    mouse_ptr_(std::make_shared<DxLibMouse>()),
+    input_ptr_(std::make_shared<DxLibInput>()),
     fps_controller_(std::make_shared<FpsController>(60)),
     scene_change_listener_ptr_(std::make_shared<SceneChangeListener>()),
     scene_stack_ptr_(initializeSceneStack()),
@@ -34,8 +34,7 @@ GameMainLoop::GameMainLoop() :
 
 bool GameMainLoop::loop() {
     // 入力を取得
-    keyboard_ptr_->update();
-    mouse_ptr_->update();
+    input_ptr_->update();
 
     // シーンのスタックの一番上を実行する．
     if (!scene_stack_ptr_->updateTopScene()) {
@@ -69,8 +68,7 @@ bool GameMainLoop::loop() {
 
 std::shared_ptr<SceneStack> GameMainLoop::initializeSceneStack() const {
     ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
-    ASSERT_NOT_NULL_PTR(keyboard_ptr_);
-    ASSERT_NOT_NULL_PTR(mouse_ptr_);
+    ASSERT_NOT_NULL_PTR(input_ptr_);
 
     LanguageRecordInitializer language_record_initializer;
     const auto language_record_ptr = std::make_shared<const LanguageRecord>(language_record_initializer.initialize());
@@ -79,9 +77,11 @@ std::shared_ptr<SceneStack> GameMainLoop::initializeSceneStack() const {
         scene_change_listener_ptr_,
         fps_controller_,
         language_record_ptr,
-        keyboard_ptr_, mouse_ptr_,
-        std::make_shared<BgmPlayer>(), std::make_shared<FontLoader>(),
-        std::make_shared<ImageLoader>(), std::make_shared<SoundEffectLoader>());
+        input_ptr_,
+        std::make_shared<BgmPlayer>(),
+        std::make_shared<FontLoader>(),
+        std::make_shared<ImageLoader>(),
+        std::make_shared<SoundEffectLoader>());
 
     auto scene_stack_ptr = std::make_shared<SceneStack>(std::move(scene_creator_ptr));
 

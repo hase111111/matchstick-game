@@ -24,7 +24,8 @@ DxLibMouse::DxLibMouse() :
         cursor_past_pos_y_(0),
         pushing_counter_({}),
         releasing_counter_({}),
-        wheel_rot_(0) {}
+        wheel_rot_(0) {
+}
 
 void DxLibMouse::update() {
 
@@ -41,8 +42,7 @@ void DxLibMouse::update() {
             // 押されているなら．
             pushing_counter_[i]++;
             releasing_counter_[i] = 0;
-        }
-        else {
+        } else {
             // 離されているなら．
             pushing_counter_[i] = 0;
             releasing_counter_[i]++;
@@ -83,6 +83,16 @@ int DxLibMouse::getDiffPosY() const {
 
 double DxLibMouse::getDiffPos() const {
     return sqrt(static_cast<double>(getDiffPosY() * getDiffPosY() + getDiffPosX() * getDiffPosX()));
+}
+
+bool DxLibMouse::isAnyButtonPressed() const {
+    for (const auto& i : kMouseKeyCodes) {
+        if (getPressingCount(i) > 0) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 }  // namespace match_stick
