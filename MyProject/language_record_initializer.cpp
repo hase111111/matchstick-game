@@ -13,8 +13,11 @@ LanguageRecord LanguageRecordInitializer::initialize() {
     record.set("game_title", kJapan, "マッチ棒ゲーム");
     record.set("game_title", kEnglish, "Match Stick Game");
 
-    record.set("press_any_key_to_start", kJapan, "何かキーを押してスタート");
-    record.set("press_any_key_to_start", kEnglish, "Press any key to start");
+    record.set("press_z_key_to_start", kJapan, "Zキーを押してスタート");
+    record.set("press_z_key_to_start", kEnglish, "Press z key to start");
+
+    record.set("click_left_to_start", kJapan, "左クリックでスタート");
+    record.set("click_left_to_start", kEnglish, "Click left to start");
 
     record.set("copy_right", kJapan, "Copy right 2021 Saidai Game Production");
     record.set("copy_right", kEnglish, "Copy right 2021 Saidai Game Production");

@@ -24,18 +24,12 @@ TitleScene::TitleScene(const std::shared_ptr<SceneChangeListener>& scene_change_
     entity_updater_ptr_(std::make_unique<EntityUpdater>()) {
     // タイトルのエンティティを登録
     entity_updater_ptr_->registerEntity(std::make_shared<TitleBackGroundBase>(img_loader_ptr));
+    entity_updater_ptr_->registerEntity(std::make_shared<TitleLogo>(input_ptr, language_record_ptr, font_loader_ptr));
+    entity_updater_ptr_->registerEntity(std::make_shared<TitleHandAnimation>(img_loader_ptr));
 
-    auto title_logo_ptr_ = std::make_shared<TitleLogo>(language_record_ptr, font_loader_ptr);
-    entity_updater_ptr_->registerEntity(title_logo_ptr_);
+    entity_updater_ptr_->registerEntity(std::make_shared<FpsDisplayer>(fps_controller_ptr, font_loader_ptr));
 
-    auto title_hand_animation_ptr_ = std::make_shared<TitleHandAnimation>(img_loader_ptr);
-    entity_updater_ptr_->registerEntity(title_hand_animation_ptr_);
-
-    auto fps_displayer_ptr = std::make_shared<FpsDisplayer>(fps_controller_ptr, font_loader_ptr);
-    entity_updater_ptr_->registerEntity(fps_displayer_ptr);
-
-    auto input_scheme_displayer_ptr = std::make_shared<InputSchemeDisplayer>(input_ptr, img_loader_ptr);
-    entity_updater_ptr_->registerEntity(input_scheme_displayer_ptr);
+    entity_updater_ptr_->registerEntity(std::make_shared<InputSchemeDisplayer>(input_ptr, img_loader_ptr));
 
     scene_change_sound_handle_ = sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/op.mp3");
 }
@@ -45,7 +39,8 @@ bool TitleScene::update() {
         return false;
     }
 
-    if ((input_ptr_->getMousePressingCount(MOUSE_INPUT_LEFT) || input_ptr_->isAnyKeyboardPressed()) && !is_scene_change_requested_) {
+    if ((input_ptr_->getMousePressingCount(MOUSE_INPUT_LEFT) || input_ptr_->isAnyKeyboardPressed()) &&
+        !is_scene_change_requested_) {
         auto scene_change_func = [this]() {
             scene_change_listener_ptr_->requestAddScene(SceneName::kGame, SceneChangeParameter{});
             };
