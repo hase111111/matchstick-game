@@ -15,11 +15,13 @@ TitleScene::TitleScene(const std::shared_ptr<SceneChangeListener>& scene_change_
                        const std::shared_ptr<const FpsController>& fps_controller_ptr,
                        const std::shared_ptr<const LanguageRecord>& language_record_ptr,
                        const std::shared_ptr<const DxLibKeyboard>& keyboard_ptr,
+                       const std::shared_ptr<const DxLibMouse>& mouse_ptr,
                        const std::shared_ptr<FontLoader>& font_loader_ptr,
                        const std::shared_ptr<ImageLoader>& img_loader_ptr,
                        const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr) :
     scene_change_listener_ptr_(scene_change_listener_ptr),
     keyboard_ptr_(keyboard_ptr),
+    mouse_ptr_(mouse_ptr),
     entity_updater_ptr_(std::make_unique<EntityUpdater>()) {
     // タイトルのエンティティを登録
     entity_updater_ptr_->registerEntity(std::make_shared<TitleBackGroundBase>(img_loader_ptr));
@@ -41,7 +43,7 @@ bool TitleScene::update() {
         return false;
     }
 
-    if (keyboard_ptr_->isAnyKeyPressed() && !is_scene_change_requested_) {
+    if ((mouse_ptr_->getPressingCount(MOUSE_INPUT_LEFT) || keyboard_ptr_->isAnyKeyPressed()) && !is_scene_change_requested_) {
         auto scene_change_func = [this]() {
             scene_change_listener_ptr_->requestAddScene(SceneName::kGame, SceneChangeParameter{});
             };

@@ -64,9 +64,6 @@
     <Filter Include="ソース ファイル\entity">
       <UniqueIdentifier>{2fa5bfcf-e71c-4168-af5b-e780e96d83a8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\entity\updatable">
-      <UniqueIdentifier>{7bdf37b9-162d-4ffd-a269-da92cf887456}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\systems">
       <UniqueIdentifier>{cd406cf8-0c3d-4f77-8926-cfe6fe8e77f1}</UniqueIdentifier>
     </Filter>
@@ -87,6 +84,9 @@
     </Filter>
     <Filter Include="ソース ファイル\scenes\rule_scene">
       <UniqueIdentifier>{afff030a-61a9-445a-8c34-440f6497911a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\entity\interface">
+      <UniqueIdentifier>{7bdf37b9-162d-4ffd-a269-da92cf887456}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -220,7 +220,7 @@
       <Filter>ソース ファイル\common</Filter>
     </ClCompile>
     <ClCompile Include="entity_updater.cpp">
-      <Filter>ソース ファイル\entity\updatable</Filter>
+      <Filter>ソース ファイル\entity\interface</Filter>
     </ClCompile>
     <ClCompile Include="title_back_ground_base.cpp">
       <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
@@ -254,6 +254,9 @@
     </ClCompile>
     <ClCompile Include="fps_displayer.cpp">
       <Filter>ソース ファイル\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="rule_scene.cpp">
+      <Filter>ソース ファイル\scenes\rule_scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -390,10 +393,10 @@
       <Filter>ソース ファイル\common</Filter>
     </ClInclude>
     <ClInclude Include="i_entity.h">
-      <Filter>ソース ファイル\entity\updatable</Filter>
+      <Filter>ソース ファイル\entity\interface</Filter>
     </ClInclude>
     <ClInclude Include="entity_updater.h">
-      <Filter>ソース ファイル\entity\updatable</Filter>
+      <Filter>ソース ファイル\entity\interface</Filter>
     </ClInclude>
     <ClInclude Include="title_logo.h">
       <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
@@ -427,6 +430,9 @@
     </ClInclude>
     <ClInclude Include="fps_displayer.h">
       <Filter>ソース ファイル\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="rule_scene.h">
+      <Filter>ソース ファイル\scenes\rule_scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
