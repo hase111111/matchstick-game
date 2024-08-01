@@ -15,7 +15,7 @@ FpsDisplayer::FpsDisplayer(const std::shared_ptr<const FpsController>& fps_contr
 void FpsDisplayer::draw() const {
     const double fps = fps_controller_ptr_->getCurrentFps();
 
-    const int x_pos = 0;
+    const int x_pos = 10;
     const int y_pos = Define::WIN_SIZEY - 20;
 
     if (fps < 0) {

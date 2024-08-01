@@ -13,11 +13,11 @@ FadeEffect::FadeEffect(
     fade_time_(fade_time),
     fade_type_(fade_type),
     callback_(callback) {
-    DEBUG_PRINT("FadeEffect Constructor called");
+    DEBUG_PRINT("FadeEffect::FadeEffect() called");
 }
 
 FadeEffect::~FadeEffect() {
-    DEBUG_PRINT("FadeEffect Destructor called");
+    DEBUG_PRINT("FadeEffect::~FadeEffect() called");
 }
 
 bool FadeEffect::update() {

@@ -12,12 +12,12 @@ void DxLibInput::update() {
     // 現在の入力方法を更新
     if (input_type_ == InputType::kKeyboard) {
         if (mouse_.isAnyButtonPressed()) {
-            DEBUG_PRINT("Mouse is pressed.");
+            DEBUG_PRINT("DxLibInput::update() Mouse is pressed");
             input_type_ = InputType::kMouse;
         }
     } else if (input_type_ == InputType::kMouse) {
         if (keyboard_.isAnyKeyPressed()) {
-            DEBUG_PRINT("Keyboard is pressed.");
+            DEBUG_PRINT("DxLibInput::update() Keyboard is pressed");
             input_type_ = InputType::kKeyboard;
         }
     }
