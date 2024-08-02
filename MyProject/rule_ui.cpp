@@ -11,6 +11,7 @@
 namespace match_stick {
 
 RuleUI::RuleUI(std::function<void()> on_button_pressed,
+               const std::shared_ptr<const LanguageRecord>& language_record_ptr,
                const std::shared_ptr<const DxLibInput>& input_ptr,
                const std::shared_ptr<FontLoader>& font_loader,
                const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr) :
@@ -19,7 +20,8 @@ RuleUI::RuleUI(std::function<void()> on_button_pressed,
     rule_ui_hexagon_(input_ptr, font_loader, sound_effect_loader_ptr),
     font_handle_(font_loader->loadAndGetFontHandle("data/font/azuki_font24.dft")),
     sound_effect1_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/selecting1.mp3")),
-    sound_effect2_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/hand_cancel.mp3")) {}
+    sound_effect2_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/hand_cancel.mp3")),
+    button_text_(language_record_ptr->get("rule_back_scene")) {}
 
 bool RuleUI::update() {
     if (already_button_pressed_) {
@@ -44,14 +46,16 @@ void RuleUI::drawButton() const {
     const int button_height = Define::WIN_SIZEY / 12;
     const int button_x = Define::WIN_SIZEX - button_width - 5;
     const int button_y = Define::WIN_SIZEY - button_height - 5;
+    const int button_text_width =
+        GetDrawStringWidthToHandle(button_text_.c_str(), static_cast<int>(button_text_.size()), font_handle_);
 
     if (is_button_hovered_) {
         DrawBox(button_x, button_y, button_x + button_width, button_y + button_height, GetColor(50, 50, 50), TRUE);
-        DrawStringToHandle(button_x + 5, button_y + button_height / 2 - 10,
-                           "前画面に戻る", GetColor(255, 255, 255), font_handle_);
+        DrawStringToHandle(button_x + (button_width - button_text_width) / 2 - 5, button_y + button_height / 2 - 10,
+                           button_text_.c_str(), GetColor(255, 255, 255), font_handle_);
     } else {
-        DrawStringToHandle(button_x + 5, button_y + button_height / 2 - 10,
-                           "前画面に戻る", GetColor(0, 0, 0), font_handle_);
+        DrawStringToHandle(button_x + (button_width - button_text_width) / 2 - 5, button_y + button_height / 2 - 10,
+                           button_text_.c_str(), GetColor(0, 0, 0), font_handle_);
     }
 
     DrawBoxAA(static_cast<float>(button_x), static_cast<float>(button_y),

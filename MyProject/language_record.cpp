@@ -8,7 +8,7 @@ std::string LanguageRecord::get(const std::string& key) const {
     ASSERT(records_.find(key) != records_.end(), "LanguageRecord::Get: key not found: " + key);
     ASSERT(records_.at(key).find(current_country_) != records_.at(key).end(),
            "LanguageRecord::Get: country not found. key is " + key +
-           "country code is " + std::to_string(static_cast<int>(current_country_)));
+           ", country code is " + std::to_string(static_cast<int>(current_country_)));
 
     return records_.at(key).at(current_country_);
 }

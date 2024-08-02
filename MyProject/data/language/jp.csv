@@ -1,8 +1,14 @@
 # Lines beginning with a sharp are comments.
 # Type the key on the left and the text on the right.
 # Separate keys and sentences with commas.
+#
+# シャープから始まる行はコメントです．
+# 以下に，左側にキー，右側にテキストを入力してください．
+# キーとテキストはカンマで区切ってください．
+#
 
 game_title, マッチ棒ゲーム
 press_z_key_to_start, Zキーを押してスタート
 click_left_to_start, 左クリックでスタート
 copy_right, Copy right 2021 Saidai Game Production
+rule_back_scene, 前画面に戻る

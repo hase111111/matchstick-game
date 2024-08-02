@@ -32,6 +32,8 @@ LanguageRecord LanguageRecordInitializer::initialize(const LanguageRecord::Count
         record.set(key, country, value);
     }
 
+    record.setCurrentCountry(country);
+
     return record;
 }
 
