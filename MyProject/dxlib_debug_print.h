@@ -21,10 +21,14 @@ void debugPrint(const std::string& str);
 
 #define DEBUG_PRINT(str) ::match_stick::debug_print_internal::debugPrint(str)
 
+#define DEBUG_PRINT_LINE() DEBUG_PRINT("----------------------------------------")
+
 #else
 
 #define PREPAER_DEBUG_PRINT() ((void)0)
 
 #define DEBUG_PRINT(str) ((void)0)
+
+#define DEBUG_PRINT_LINE() ((void)0)
 
 #endif  // _DEBUG

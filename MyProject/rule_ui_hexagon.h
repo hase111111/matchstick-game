@@ -18,7 +18,7 @@ public:
                   const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr);
     ~RuleUIHexagon() = default;
 
-    void update();
+    void update(bool hexagon_is_hovered);
 
     void draw() const;
 
@@ -45,6 +45,9 @@ private:
     int current_hover_{ -1 };
 
     int counter_{ 0 };
+    int hover_counter_{ 0 };
+
+    bool hexagon_is_hovered_{ false };
 };
 
 }  // namespace match_stick

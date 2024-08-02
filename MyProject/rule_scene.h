@@ -36,6 +36,10 @@ public:
     void onReturnFromOtherScene(const SceneChangeParameter&) override {};
 
 private:
+    void backScene();
+
+    const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
+
     std::unique_ptr<EntityUpdater> entity_updater_ptr_;
 };
 

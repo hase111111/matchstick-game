@@ -23,19 +23,25 @@ RuleUIHexagon::RuleUIHexagon(const std::shared_ptr<const DxLibInput>& input_ptr,
     ASSERT_NOT_NULL_PTR(input_ptr_);
 }
 
-void RuleUIHexagon::update() {
+void RuleUIHexagon::update(const bool hexagon_is_hovered) {
     ++counter_;
+    hover_counter_ = hover_counter_ > 0 ? hover_counter_ - 1 : 0;
+
+    hexagon_is_hovered_ = hexagon_is_hovered;
+
+    if (!hexagon_is_hovered_) { return; }
 
     const int hover_index = getHoverIndex(input_ptr_->getCursorPosX(), input_ptr_->getCursorPosY());
 
-    // マウスによる操作
     if (input_ptr_->getInputType() == DxLibInput::InputType::kMouse) {
+        // マウスによる操作
         if (current_hover_ != hover_index) {
             current_hover_ = hover_index;
             DEBUG_PRINT(std::format("RuleUIHexagon::update() hover_index: {}", current_hover_ + 1));
 
-            if (current_hover_ != -1) {
+            if (current_hover_ != -1 && hover_counter_ == 0) {
                 PlaySoundMem(sound_effect1_handle_, DX_PLAYTYPE_BACK);
+                hover_counter_ = 3;
             }
         }
 
@@ -47,6 +53,8 @@ void RuleUIHexagon::update() {
         }
     } else {
         // キーボードによる操作
+        current_hover_ = current_hover_ == -1 ? current_pointing_ : current_hover_;
+
         const int up_count = input_ptr_->getKeyboardPressingCount(KEY_INPUT_UP);
         if (up_count == 1 || (up_count % 8 == 4 && up_count > 20)) {
             current_hover_ = (current_hover_ - 1 + hexagon_num_) % hexagon_num_;
@@ -85,7 +93,7 @@ void RuleUIHexagon::draw() const {
 
         const int x1 = hexagon_center_x_;
         const int y1 = hexagon_center_y_ + static_cast<int>(i * radius_ * cos(30 * MathConst<double>::kPi / 180) * 2);
-        if (first_index == current_hover_ + 1 && current_hover_ != current_pointing_) {
+        if (first_index == current_hover_ + 1 && hexagon_is_hovered_) {
             drawHexagon(x1, y1, radius_, true, edge_color, hover_color);
         } else {
             drawHexagon(x1, y1, radius_, (first_index == current_pointing_ + 1), edge_color, fill_color);
@@ -93,7 +101,7 @@ void RuleUIHexagon::draw() const {
 
         // 番号を描画
         const int dif1 = first_index > 9 ? 7 : 0;
-        if (first_index == current_hover_ + 1 && current_hover_ != current_pointing_) {
+        if (first_index == current_hover_ + 1 && hexagon_is_hovered_) {
             DrawFormatStringToHandle(x1 - 10 - dif1, y1 - 15, text_color, font_handle_, "%d", first_index);
         } else {
             DrawFormatStringToHandle(x1 - 10 - dif1, y1 - 15, edge_color, font_handle_, "%d", first_index);
@@ -103,7 +111,7 @@ void RuleUIHexagon::draw() const {
 
         const int x2 = x1 + radius_ * 3 / 2;
         const int y2 = y1 + static_cast<int>(radius_ * cos(30 * MathConst<double>::kPi / 180));
-        if (second_index == current_hover_ + 1 && current_hover_ != current_pointing_) {
+        if (second_index == current_hover_ + 1 && hexagon_is_hovered_) {
             drawHexagon(x2, y2, radius_, true, edge_color, hover_color);
         } else {
             drawHexagon(x2, y2, radius_, (second_index == current_pointing_ + 1), edge_color, fill_color);
@@ -111,7 +119,7 @@ void RuleUIHexagon::draw() const {
 
         // 番号を描画
         const int dif2 = second_index > 9 ? 7 : 0;
-        if (second_index == current_hover_ + 1 && current_hover_ != current_pointing_) {
+        if (second_index == current_hover_ + 1 && hexagon_is_hovered_) {
             DrawFormatStringToHandle(x2 - 10 - dif2, y2 - 15, text_color, font_handle_, "%d", second_index);
         } else {
             DrawFormatStringToHandle(x2 - 10 - dif2, y2 - 15, edge_color, font_handle_, "%d", second_index);
