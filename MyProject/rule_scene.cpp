@@ -6,6 +6,7 @@
 #include "fps_displayer.h"
 #include "input_scheme_displayer.h"
 #include "rule_back_ground_base.h"
+#include "rule_ui.h"
 
 namespace match_stick {
 
@@ -23,6 +24,7 @@ RuleScene::RuleScene(const std::shared_ptr<SceneChangeListener>& scene_change_li
     entity_updater_ptr_->registerEntity(std::make_shared<RuleBackGroundBase>());
     entity_updater_ptr_->registerEntity(std::make_shared<FpsDisplayer>(entity_updater_ptr, font_loader_ptr));
     entity_updater_ptr_->registerEntity(std::make_shared<InputSchemeDisplayer>(input_ptr, img_loader_ptr));
+    entity_updater_ptr_->registerEntity(std::make_shared<RuleUI>(input_ptr, font_loader_ptr, sound_effect_loader_ptr));
 
     // フェードイン演出を追加
     const auto fade_effect_ptr = std::make_shared<FadeEffect>(60, FadeEffect::FadeType::kFadeIn, []() {});

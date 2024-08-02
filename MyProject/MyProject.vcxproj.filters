@@ -273,6 +273,12 @@
     <ClCompile Include="title_scene_switcher.cpp">
       <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
     </ClCompile>
+    <ClCompile Include="rule_ui.cpp">
+      <Filter>ソース ファイル\scenes\rule_scene\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="rule_ui_hexagon.cpp">
+      <Filter>ソース ファイル\scenes\rule_scene\entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -462,6 +468,12 @@
       <Filter>ソース ファイル\scenes\rule_scene\entity</Filter>
     </ClInclude>
     <ClInclude Include="rule_ui.h">
+      <Filter>ソース ファイル\scenes\rule_scene\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="math_const.h">
+      <Filter>ソース ファイル\common</Filter>
+    </ClInclude>
+    <ClInclude Include="rule_ui_hexagon.h">
       <Filter>ソース ファイル\scenes\rule_scene\entity</Filter>
     </ClInclude>
   </ItemGroup>

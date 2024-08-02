@@ -15,6 +15,11 @@ void DxLibInput::update() {
             DEBUG_PRINT("DxLibInput::update() Mouse is pressed");
             input_type_ = InputType::kMouse;
         }
+
+        if (mouse_.getDiffPos() > 0) {
+            DEBUG_PRINT("DxLibInput::update() Mouse is moved");
+            input_type_ = InputType::kMouse;
+        }
     } else if (input_type_ == InputType::kMouse) {
         if (keyboard_.isAnyKeyPressed()) {
             DEBUG_PRINT("DxLibInput::update() Keyboard is pressed");
