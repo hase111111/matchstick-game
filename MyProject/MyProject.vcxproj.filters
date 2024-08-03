@@ -285,6 +285,9 @@
     <ClCompile Include="string_util.cpp">
       <Filter>ソース ファイル\common</Filter>
     </ClCompile>
+    <ClCompile Include="rule_text.cpp">
+      <Filter>ソース ファイル\scenes\rule_scene\entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -502,6 +505,9 @@
     </ClInclude>
     <ClInclude Include="string_util.h">
       <Filter>ソース ファイル\common</Filter>
+    </ClInclude>
+    <ClInclude Include="rule_text.h">
+      <Filter>ソース ファイル\scenes\rule_scene\entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

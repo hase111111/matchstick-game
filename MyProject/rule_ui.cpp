@@ -18,6 +18,7 @@ RuleUI::RuleUI(std::function<void()> on_button_pressed,
     on_button_pressed_(on_button_pressed),
     input_ptr_(input_ptr),
     rule_ui_hexagon_(input_ptr, font_loader, sound_effect_loader_ptr),
+    rule_text_(font_loader),
     font_handle_(font_loader->loadAndGetFontHandle("data/font/azuki_font24.dft")),
     sound_effect1_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/selecting1.mp3")),
     sound_effect2_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/hand_cancel.mp3")),
@@ -28,7 +29,9 @@ bool RuleUI::update() {
         return true;
     }
 
-    rule_ui_hexagon_.update(!is_button_hovered_);
+    const int pointing_numer = rule_ui_hexagon_.update(!is_button_hovered_);
+
+    rule_text_.update(pointing_numer);
 
     updateButton();
 
@@ -37,6 +40,8 @@ bool RuleUI::update() {
 
 void RuleUI::draw() const {
     rule_ui_hexagon_.draw();
+
+    rule_text_.draw();
 
     drawButton();
 }

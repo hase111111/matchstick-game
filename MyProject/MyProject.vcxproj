@@ -222,6 +222,7 @@
     <ClCompile Include="RuleScene.cpp" />
     <ClCompile Include="rule_back_ground_base.cpp" />
     <ClCompile Include="rule_scene.cpp" />
+    <ClCompile Include="rule_text.cpp" />
     <ClCompile Include="rule_ui.cpp" />
     <ClCompile Include="rule_ui_hexagon.cpp" />
     <ClCompile Include="SceneChangeEffect.cpp" />
@@ -290,6 +291,7 @@
     <ClInclude Include="RulePage.h" />
     <ClInclude Include="rule_back_ground_base.h" />
     <ClInclude Include="rule_scene.h" />
+    <ClInclude Include="rule_text.h" />
     <ClInclude Include="rule_ui.h" />
     <ClInclude Include="rule_ui_hexagon.h" />
     <ClInclude Include="SceneChangeEffect.h" />

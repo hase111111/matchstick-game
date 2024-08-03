@@ -18,7 +18,7 @@ public:
                   const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr);
     ~RuleUIHexagon() = default;
 
-    void update(bool hexagon_is_hovered);
+    int update(bool hexagon_is_hovered);
 
     void draw() const;
 

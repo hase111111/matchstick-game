@@ -23,13 +23,13 @@ RuleUIHexagon::RuleUIHexagon(const std::shared_ptr<const DxLibInput>& input_ptr,
     ASSERT_NOT_NULL_PTR(input_ptr_);
 }
 
-void RuleUIHexagon::update(const bool hexagon_is_hovered) {
+int RuleUIHexagon::update(const bool hexagon_is_hovered) {
     ++counter_;
     hover_counter_ = hover_counter_ > 0 ? hover_counter_ - 1 : 0;
 
     hexagon_is_hovered_ = hexagon_is_hovered;
 
-    if (!hexagon_is_hovered_) { return; }
+    if (!hexagon_is_hovered_) { return current_pointing_; }
 
     const int hover_index = getHoverIndex(input_ptr_->getCursorPosX(), input_ptr_->getCursorPosY());
 
@@ -78,6 +78,8 @@ void RuleUIHexagon::update(const bool hexagon_is_hovered) {
             PlaySoundMem(sound_effect2_handle_, DX_PLAYTYPE_BACK);
         }
     }
+
+    return current_pointing_;
 }
 
 void RuleUIHexagon::draw() const {

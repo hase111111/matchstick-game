@@ -9,6 +9,7 @@
 #include "font_loader.h"
 #include "i_entity.h"
 #include "language_record.h"
+#include "rule_text.h"
 #include "rule_ui_hexagon.h"
 #include "sound_effect_loader.h"
 
@@ -40,6 +41,7 @@ private:
 
     const std::shared_ptr<const DxLibInput> input_ptr_;
     RuleUIHexagon rule_ui_hexagon_;
+    RuleText rule_text_;
 
     const int font_handle_;
     const int sound_effect1_handle_;
