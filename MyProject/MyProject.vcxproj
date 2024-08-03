@@ -196,6 +196,7 @@
     <ClCompile Include="game_back_ground_base.cpp" />
     <ClCompile Include="game_log.cpp" />
     <ClCompile Include="game_scene.cpp" />
+    <ClCompile Include="game_setting_importer.cpp" />
     <ClCompile Include="image_loader.cpp" />
     <ClCompile Include="game_main_loop.cpp" />
     <ClCompile Include="input_scheme_displayer.cpp" />
@@ -230,6 +231,7 @@
     <ClCompile Include="scene_creator.cpp" />
     <ClCompile Include="scene_stack.cpp" />
     <ClCompile Include="sound_effect_loader.cpp" />
+    <ClCompile Include="string_util.cpp" />
     <ClCompile Include="system_main.cpp" />
     <ClCompile Include="title_back_ground_base.cpp" />
     <ClCompile Include="title_hand_animation.cpp" />
@@ -263,9 +265,12 @@
     <ClInclude Include="game_log.h" />
     <ClInclude Include="game_main_loop.h" />
     <ClInclude Include="game_scene.h" />
+    <ClInclude Include="game_setting_importer.h" />
+    <ClInclude Include="game_setting_record.h" />
     <ClInclude Include="image_loader.h" />
     <ClInclude Include="implicit_metafunction_for_toml11.h" />
     <ClInclude Include="input_scheme_displayer.h" />
+    <ClInclude Include="interface_toml_data_validator.h" />
     <ClInclude Include="i_scene.h" />
     <ClInclude Include="language_record.h" />
     <ClInclude Include="language_record_initializer.h" />
@@ -295,6 +300,7 @@
     <ClInclude Include="scene_name.h" />
     <ClInclude Include="scene_stack.h" />
     <ClInclude Include="sound_effect_loader.h" />
+    <ClInclude Include="string_util.h" />
     <ClInclude Include="system_main.h" />
     <ClInclude Include="title_back_ground_base.h" />
     <ClInclude Include="title_hand_animation.h" />
@@ -302,6 +308,9 @@
     <ClInclude Include="title_scene.h" />
     <ClInclude Include="title_scene_switcher.h" />
     <ClInclude Include="toml11_define.h" />
+    <ClInclude Include="toml_data_validator_always_true.h" />
+    <ClInclude Include="toml_file_exporter.h" />
+    <ClInclude Include="toml_file_importer.h" />
     <ClInclude Include="toml_serialize_macro.h" />
     <ClInclude Include="i_entity.h" />
   </ItemGroup>

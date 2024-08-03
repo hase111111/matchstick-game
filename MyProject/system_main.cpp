@@ -5,10 +5,15 @@
 
 #include "define.h"
 #include "game_main_loop.h"
+#include "game_setting_importer.h"
 
 namespace match_stick {
 
-bool SystemMain::initialize() const {
+bool SystemMain::initialize() {
+    // 設定ファイルを読み込む
+    const GameSettingImporter game_setting_importer{};
+    game_setting_record_ptr_ = game_setting_importer.import("game_setting.toml");
+
     // icon.rcで設定したアイコンファイルをセットする
     SetWindowIconID(333);
 
@@ -55,7 +60,7 @@ void SystemMain::finalize() const {
 }
 
 void SystemMain::main() const {
-    GameMainLoop game_main_loop;
+    GameMainLoop game_main_loop(game_setting_record_ptr_);
 
     // メインループ
     while (!ProcessMessage()) {

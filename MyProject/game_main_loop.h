@@ -5,6 +5,7 @@
 
 #include "dxlib_input.h"
 #include "fps_controller.h"
+#include "game_setting_record.h"
 #include "scene_change_executer.h"
 #include "scene_change_listener.h"
 #include "scene_stack.h"
@@ -13,7 +14,7 @@ namespace match_stick {
 
 class GameMainLoop {
 public:
-    GameMainLoop();
+    GameMainLoop(const std::shared_ptr<const GameSettingRecord>& game_setting_record);
     ~GameMainLoop() = default;
 
     bool loop();
@@ -21,9 +22,11 @@ public:
 private:
     std::shared_ptr<SceneStack> initializeSceneStack() const;
 
-    std::shared_ptr<DxLibInput> input_ptr_;
+    const std::shared_ptr<DxLibInput> input_ptr_;
 
-    std::shared_ptr<FpsController> fps_controller_;
+    const std::shared_ptr<FpsController> fps_controller_;
+
+    const std::shared_ptr<const GameSettingRecord> game_setting_record_ptr_;
 
     const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
     const std::shared_ptr<SceneStack> scene_stack_ptr_;

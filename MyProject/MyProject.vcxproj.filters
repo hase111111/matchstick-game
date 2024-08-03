@@ -279,6 +279,12 @@
     <ClCompile Include="rule_ui_hexagon.cpp">
       <Filter>ソース ファイル\scenes\rule_scene\entity</Filter>
     </ClCompile>
+    <ClCompile Include="game_setting_importer.cpp">
+      <Filter>ソース ファイル\resource</Filter>
+    </ClCompile>
+    <ClCompile Include="string_util.cpp">
+      <Filter>ソース ファイル\common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -475,6 +481,27 @@
     </ClInclude>
     <ClInclude Include="rule_ui_hexagon.h">
       <Filter>ソース ファイル\scenes\rule_scene\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="game_setting_record.h">
+      <Filter>ソース ファイル\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="game_setting_importer.h">
+      <Filter>ソース ファイル\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="toml_file_importer.h">
+      <Filter>ソース ファイル\common\toml11</Filter>
+    </ClInclude>
+    <ClInclude Include="toml_file_exporter.h">
+      <Filter>ソース ファイル\common\toml11</Filter>
+    </ClInclude>
+    <ClInclude Include="interface_toml_data_validator.h">
+      <Filter>ソース ファイル\common\toml11</Filter>
+    </ClInclude>
+    <ClInclude Include="toml_data_validator_always_true.h">
+      <Filter>ソース ファイル\common\toml11</Filter>
+    </ClInclude>
+    <ClInclude Include="string_util.h">
+      <Filter>ソース ファイル\common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -25,9 +25,10 @@
 
 namespace match_stick {
 
-GameMainLoop::GameMainLoop() :
+GameMainLoop::GameMainLoop(const std::shared_ptr<const GameSettingRecord>& game_setting_record) :
     input_ptr_(std::make_shared<DxLibInput>()),
     fps_controller_(std::make_shared<FpsController>(60)),
+    game_setting_record_ptr_(game_setting_record),
     scene_change_listener_ptr_(std::make_shared<SceneChangeListener>()),
     scene_stack_ptr_(initializeSceneStack()),
     scene_change_executer_{ scene_change_listener_ptr_, scene_stack_ptr_ } {}
@@ -72,7 +73,7 @@ std::shared_ptr<SceneStack> GameMainLoop::initializeSceneStack() const {
 
     LanguageRecordInitializer language_record_initializer;
     const auto language_record_ptr =
-        std::make_shared<const LanguageRecord>(language_record_initializer.initialize(LanguageRecord::Country::kEnglish));
+        std::make_shared<const LanguageRecord>(language_record_initializer.initialize(game_setting_record_ptr_->language_country));
 
     auto scene_creator_ptr = std::make_unique<SceneCreator>(
         scene_change_listener_ptr_,
