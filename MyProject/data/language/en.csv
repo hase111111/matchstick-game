@@ -1,14 +1,19 @@
-# Lines beginning with a sharp are comments.
-# Type the key on the left and the text on the right.
-# Separate keys and sentences with commas.
-#
-# シャープから始まる行はコメントです．
-# 以下に，左側にキー，右側にテキストを入力してください．
-# キーとテキストはカンマで区切ってください．
-#
-
+# Lines beginning with a sharp are comments.,
+# Type the key on the left and the text on the right.,
+# Separate keys and sentences with commas.,
+#,
+# シャープから始まる行はコメントです．,
+# 以下に，左側にキー，右側にテキストを入力してください．,
+# キーとテキストはカンマで区切ってください．,
+#,
+,
 game_title, Match Stick Game
 press_z_key_to_start, Press z key to start
 click_left_to_start, Click left to start
 copy_right, Copy right 2021 Saidai Game Production
 rule_back_scene, Return
+rule_text_0_0,How to use this screen
+rule_text_0_1,Select an item from the menu on the left to review the rules.
+rule_text_0_2,You can return to the previous screen by clicking the button in the lower right corner.
+rule_text_0_3,When using the keyboard, the up/down keyboard operation can be used to change items, and the left/right keyboard operation can be used to switch between buttons and menus.
+rule_text_0_4,If you are using a mouse, click on each item.

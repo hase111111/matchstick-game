@@ -1,14 +1,30 @@
-# Lines beginning with a sharp are comments.
-# Type the key on the left and the text on the right.
-# Separate keys and sentences with commas.
-#
-# シャープから始まる行はコメントです．
-# 以下に，左側にキー，右側にテキストを入力してください．
-# キーとテキストはカンマで区切ってください．
-#
-
+# Lines beginning with a sharp are comments.,
+# Type the key on the left and the text on the right.,
+# Separate keys and sentences with commas.,
+#,
+# シャープから始まる行はコメントです．,
+# 以下に，左側にキー，右側にテキストを入力してください．,
+# キーとテキストはカンマで区切ってください．,
+#,
+,
 game_title, マッチ棒ゲーム
 press_z_key_to_start, Zキーを押してスタート
 click_left_to_start, 左クリックでスタート
 copy_right, Copy right 2021 Saidai Game Production
 rule_back_scene, 前画面に戻る
+rule_text_0_0,この画面の使い方
+rule_text_0_1,左側のメニューの項目を選択して，ルールを確認してください．
+rule_text_0_2,右下のボタンから，前の画面に戻ることができます．
+rule_text_0_3,キーボードの操作の場合，上下入力で項目の変更，左右入力でボタンとメニューの切り替えが可能です．
+rule_text_0_4,マウス操作の場合は，各項目をクリックして下さい．
+rule_text_1_0,基本ルール 1 / 2
+rule_text_1_1,まず，先手・後手を決める．
+rule_text_1_2,次に，両プレイヤーは両手の人差し指を立てる．
+rule_text_1_3,先手から相手の手のいずれか１つを選択して攻撃する．攻撃された手は攻撃したした手の指本数分，追加で指を立てる．
+rule_text_1_4,（例えば３本指が立った手で，相手の指が１本立っている手を攻撃した時，相手は指は４本になる．)
+rule_text_1_5,指が立っていない手は攻撃することができず，また攻撃対象に選択することができない．攻撃によって，立てた指の数がちょうど5本となる時その手は消滅する．
+rule_text_2_0,基本ルール 2 / 2
+rule_text_2_1,相手の手をすべて消滅させた時，勝利となる．
+rule_text_2_2,同一盤面が４回以上現れたとき，千日手として引き分けとなる．
+rule_text_2_3,同一の盤面が現れたときは，画面左に存在するログの色が変化するため，それを用いて判断するとよい．
+rule_text_2_4,なお，指の本数が6本を超える場合，その本数を5で割ったあまりの本数指を立てる．
