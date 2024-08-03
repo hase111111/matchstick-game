@@ -8,6 +8,8 @@
 #include "error_message_box.h"
 #include "system_main.h"
 
+#include "match_game_sample.h"
+
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
@@ -19,6 +21,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
     SystemMain system_main;
 
     if (system_main.initialize()) {
+        match_stick::MatchGameSample sample;
+        sample.run();
         system_main.main();
     } else {
         ErrorMessageBox::show("初期化に失敗しました。");

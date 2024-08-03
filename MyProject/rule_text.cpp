@@ -158,7 +158,7 @@ void RuleText::drawText() const {
                        title.c_str(), GetColor(0, 0, 0), big_font_handle_);
 
     // ルールのテキストを表示
-    for (size_t i = 1; i < draw_text_.size(); ++i) {
+    for (int i = 1; i < draw_text_.size(); ++i) {
         const std::string text = draw_text_[i];
 
         DrawStringToHandle(box_left_ + 40, box_top_ + 75 + 35 * i,

@@ -91,6 +91,9 @@
     <Filter Include="ソース ファイル\scenes\rule_scene\entity">
       <UniqueIdentifier>{fa3e000e-4298-4dcc-aaa4-6f8d0712367b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\match_gane">
+      <UniqueIdentifier>{8286e797-654b-4ca4-8ae3-843f09ec12a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -287,6 +290,12 @@
     </ClCompile>
     <ClCompile Include="rule_text.cpp">
       <Filter>ソース ファイル\scenes\rule_scene\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="match_game_field.cpp">
+      <Filter>ソース ファイル\match_gane</Filter>
+    </ClCompile>
+    <ClCompile Include="match_game_sample.cpp">
+      <Filter>ソース ファイル\match_gane</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -508,6 +517,18 @@
     </ClInclude>
     <ClInclude Include="rule_text.h">
       <Filter>ソース ファイル\scenes\rule_scene\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="match_game_field.h">
+      <Filter>ソース ファイル\match_gane</Filter>
+    </ClInclude>
+    <ClInclude Include="match_game_rule.h">
+      <Filter>ソース ファイル\match_gane</Filter>
+    </ClInclude>
+    <ClInclude Include="match_game_sample.h">
+      <Filter>ソース ファイル\match_gane</Filter>
+    </ClInclude>
+    <ClInclude Include="game_hand_renderer.h">
+      <Filter>ソース ファイル\scenes\game_scene\entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

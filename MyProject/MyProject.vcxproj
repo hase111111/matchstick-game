@@ -208,6 +208,8 @@
     <ClCompile Include="MatchGameList.cpp" />
     <ClCompile Include="MatchGameList2.cpp" />
     <ClCompile Include="MatchGameOut.cpp" />
+    <ClCompile Include="match_game_field.cpp" />
+    <ClCompile Include="match_game_sample.cpp" />
     <ClCompile Include="MenuBox.cpp" />
     <ClCompile Include="MenuDrawBack.cpp" />
     <ClCompile Include="MenuScene.cpp" />
@@ -263,6 +265,7 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameSelectingHand.h" />
     <ClInclude Include="game_back_ground_base.h" />
+    <ClInclude Include="game_hand_renderer.h" />
     <ClInclude Include="game_log.h" />
     <ClInclude Include="game_main_loop.h" />
     <ClInclude Include="game_scene.h" />
@@ -276,6 +279,9 @@
     <ClInclude Include="language_record.h" />
     <ClInclude Include="language_record_initializer.h" />
     <ClInclude Include="MatchGameCommon.h" />
+    <ClInclude Include="match_game_field.h" />
+    <ClInclude Include="match_game_rule.h" />
+    <ClInclude Include="match_game_sample.h" />
     <ClInclude Include="math_const.h" />
     <ClInclude Include="MenuBox.h" />
     <ClInclude Include="MenuDrawBack.h" />
