@@ -45,10 +45,12 @@ std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) co
     switch (scene_name) {
     case SceneName::kDebug: {
         DEBUG_PRINT("SceneCreator::createScene() SceneName::kDebug");
+        DEBUG_PRINT_LINE();
         return std::make_unique<DebugScene>(scene_change_listener_ptr_, input_ptr_);
     }
     case SceneName::kGame: {
         DEBUG_PRINT("SceneCreator::createScene() SceneName::kGame");
+        DEBUG_PRINT_LINE();
         return std::make_unique<GameScene>(
             scene_change_listener_ptr_,
             language_record_ptr_,
@@ -59,6 +61,7 @@ std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) co
     }
     case SceneName::kRule: {
         DEBUG_PRINT("SceneCreator::createScene() SceneName::kRule");
+        DEBUG_PRINT_LINE();
         return std::make_unique<RuleScene>(
             scene_change_listener_ptr_,
             fps_controller_ptr_,
@@ -70,6 +73,7 @@ std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) co
     }
     case SceneName::kTitle: {
         DEBUG_PRINT("SceneCreator::createScene() SceneName::kTitle");
+        DEBUG_PRINT_LINE();
         return std::make_unique<TitleScene>(
             scene_change_listener_ptr_,
             fps_controller_ptr_,

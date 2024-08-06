@@ -15,8 +15,7 @@ FpsController::FpsController(const int target_fps) :
     target_fps_value_(target_fps),
     one_frame_time_(static_cast<int>(1000.0 / target_fps)),
     list_max_(target_fps * 2),
-    need_skip_draw_screen_(false) {
-}
+    need_skip_draw_screen_(false) {}
 
 
 void FpsController::wait() {
@@ -70,7 +69,7 @@ double FpsController::getCurrentFps() const {
         return -1.0;
     }
 
-    const int duration = (time_list_.back() - time_list_.front()) / static_cast<int>(time_list_.size() + 1);
+    const double duration = (time_list_.back() - time_list_.front()) / static_cast<double>(list_max_ - 1);
 
     return 1000.0 / duration;
 }
