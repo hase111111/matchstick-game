@@ -64,31 +64,31 @@
 //
 //void ResultString::m_drawLog(const bool _replay, const bool _replay_fail) const
 //{
-//	int Log_HalfX = Define::WIN_SIZEX * 17 / 128;
+//	int Log_HalfX = Define::kWindowSizeX * 17 / 128;
 //	std::string str = "";
 //	
 //	//画面上部のアナウンス
 //	str = "ログ";
-//	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * 7 / 128, str.c_str(), GetColor(0, 0, 0), m_font_16);
+//	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * 7 / 128, str.c_str(), GetColor(0, 0, 0), m_font_16);
 //
 //	//画面下部のアナウンス
-//	const int MOJIKAN_ANA = Define::WIN_SIZEY / 33;
+//	const int MOJIKAN_ANA = Define::kWindowSizeY / 33;
 //	str = "ＭＯＤ:";
 //	str += (m_mod_rule == true) ? "あり" : "なし";
 //	str += " 自傷:";
 //	str += (m_self_rule == true) ? "あり " : "なし ";
-//	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * 106 / 128, str.c_str(), GetColor(0, 0, 0), m_font_16);
+//	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * 106 / 128, str.c_str(), GetColor(0, 0, 0), m_font_16);
 //	str = "上下キーで選択　　　　\n";
-//	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * 106 / 128 + MOJIKAN_ANA, str.c_str(), GetColor(0, 0, 0), m_font_16);
+//	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * 106 / 128 + MOJIKAN_ANA, str.c_str(), GetColor(0, 0, 0), m_font_16);
 //	str = (_replay == true) ? "リプレイ保存済み　　　\n" : "Ｚキーでリプレイ保存　\n";
 //	if (_replay_fail == true) { str = "リプレイ保存失敗　　　\n"; }
-//	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * 106 / 128 + MOJIKAN_ANA * 2, str.c_str(), GetColor(0, 0, 0), m_font_16);
+//	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * 106 / 128 + MOJIKAN_ANA * 2, str.c_str(), GetColor(0, 0, 0), m_font_16);
 //	str = "ESCキーで戻る　　　　 \n";
-//	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * 106 / 128 + MOJIKAN_ANA * 3, str.c_str(), GetColor(0, 0, 0), m_font_16);
+//	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * 106 / 128 + MOJIKAN_ANA * 3, str.c_str(), GetColor(0, 0, 0), m_font_16);
 //
 //	//盤面リスト
 //	const int HYOUJIDEKIRU_SAIDAISUU = 25;
-//	const int MOJIKAN = Define::WIN_SIZEY / 34;
+//	const int MOJIKAN = Define::kWindowSizeY / 34;
 //	int y = 0, color = 0;
 //	for (int i = 0; i < m_field_list.size(); i++)
 //	{
@@ -101,7 +101,7 @@
 //			str += "―";
 //		}
 //
-//		y = Define::WIN_SIZEY * 13 / 128 + MOJIKAN * (i % HYOUJIDEKIRU_SAIDAISUU);
+//		y = Define::kWindowSizeY * 13 / 128 + MOJIKAN * (i % HYOUJIDEKIRU_SAIDAISUU);
 //		color = GetColor(0, 0, 0);
 //		if (m_field_sennitite_list.at(i) == VariousFunctionsForMatchGame::SENNICHITE - 2) { color = GetColor(0xff, 0xa5, 0x00); }
 //		else if (m_field_sennitite_list.at(i) == VariousFunctionsForMatchGame::SENNICHITE - 1) { color = GetColor(0x80, 0x00, 0x00); }
@@ -114,9 +114,9 @@
 //	}
 //
 //	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)(pow(sin(2 * Define::PI * GetNowCount() / 1500), 2) * 128.0));
-//	const int BOX_X = Define::WIN_SIZEX * 26 / 128;
-//	y = Define::WIN_SIZEY * 27 / 256 + MOJIKAN * (m_select_field % HYOUJIDEKIRU_SAIDAISUU);
-//	DrawBox(Log_HalfX - BOX_X / 2, y, Log_HalfX + BOX_X / 2, y + Define::WIN_SIZEY / 43, GetColor(0, 0, 0), TRUE);
+//	const int BOX_X = Define::kWindowSizeX * 26 / 128;
+//	y = Define::kWindowSizeY * 27 / 256 + MOJIKAN * (m_select_field % HYOUJIDEKIRU_SAIDAISUU);
+//	DrawBox(Log_HalfX - BOX_X / 2, y, Log_HalfX + BOX_X / 2, y + Define::kWindowSizeY / 43, GetColor(0, 0, 0), TRUE);
 //	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 //}
 //
@@ -124,7 +124,7 @@
 //{
 //	std::string str = "";
 //	int color = 0;
-//	int Field_HalfX = Define::WIN_SIZEX * 79 / 128;
+//	int Field_HalfX = Define::kWindowSizeX * 79 / 128;
 //
 //	//勝敗を書く
 //	if (m_field_list.back().doesWinFirstPlayer() == true)
@@ -142,29 +142,29 @@
 //		color = GetColor(0, 0, 0);
 //		str = "同一盤面が4回現れたので引き分け"; 
 //	}
-//	DrawStringToHandle(Field_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY / 16, str.c_str(), color, m_font_32);
+//	DrawStringToHandle(Field_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::kWindowSizeY / 16, str.c_str(), color, m_font_32);
 //
 //	//表示しているフィールドの状況を表示する
 //	if (m_select_field >= 0 && m_select_field < m_field_list.size()) 
 //	{
 //		str = " " + std::to_string(m_select_field + 1) + "ターン目  ";
 //		str += (m_field_list.at(m_select_field).turn == true) ? "あなたの番" : "敵の番";
-//		DrawStringToHandle(Define::WIN_SIZEX * 34 / 128, Define::WIN_SIZEY * 93 / 128, str.c_str(), GetColor(0, 0, 0), m_font_16);
+//		DrawStringToHandle(Define::kWindowSizeX * 34 / 128, Define::kWindowSizeY * 93 / 128, str.c_str(), GetColor(0, 0, 0), m_font_16);
 //	}
 //
 //	//フィールドの文字
 //	str = "あなた";
-//	DrawStringToHandle(Field_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * 87 / 128, str.c_str(), GetColor(0,0,0), m_font_16);
+//	DrawStringToHandle(Field_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * 87 / 128, str.c_str(), GetColor(0,0,0), m_font_16);
 //	str = "敵";
-//	DrawStringToHandle(Field_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * 21 / 128, str.c_str(), GetColor(0,0,0), m_font_16);
+//	DrawStringToHandle(Field_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * 21 / 128, str.c_str(), GetColor(0,0,0), m_font_16);
 //}
 //
 //void ResultString::m_drawEvaluation() const
 //{
 //	std::string str = "";
 //	int _tempx = 0;
-//	int Result_HalfX = Define::WIN_SIZEX * 34 / 128;
-//	int Result_HalfY = Define::WIN_SIZEY * 103 / 128;
+//	int Result_HalfX = Define::kWindowSizeX * 34 / 128;
+//	int Result_HalfY = Define::kWindowSizeY * 103 / 128;
 //
 //	//選択している盤面が範囲外ならば何もしない
 //	if (m_select_field >= 0 && m_select_field < m_field_list.size())
@@ -220,7 +220,7 @@
 //					str += " (勝率 あなた" + std::to_string(m_hyouka_percent) + "% 敵" + std::to_string(100 - m_hyouka_percent) + "%)";
 //				}
 //
-//				DrawStringToHandle(Result_HalfX, Result_HalfY + Define::WIN_SIZEY / 20, str.c_str(), GetColor(0x60, 0x60, 0x60), m_font_16);
+//				DrawStringToHandle(Result_HalfX, Result_HalfY + Define::kWindowSizeY / 20, str.c_str(), GetColor(0x60, 0x60, 0x60), m_font_16);
 //			}
 //		}
 //
@@ -247,7 +247,7 @@
 //				str += " 最善手の得点/" + std::to_string(m_hyouka_saizente_point) + "点";
 //			}
 //
-//			DrawStringToHandle(Result_HalfX, Result_HalfY + Define::WIN_SIZEY / 10, str.c_str(), GetColor(0x60, 0x60, 0x60), m_font_16);
+//			DrawStringToHandle(Result_HalfX, Result_HalfY + Define::kWindowSizeY / 10, str.c_str(), GetColor(0x60, 0x60, 0x60), m_font_16);
 //		}
 //	}
 //}

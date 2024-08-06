@@ -42,8 +42,8 @@
 //            //帯の描画
 //            for (int i = 0; i < m_WIN_DIV; i++)
 //            {
-//                temp_y = Define::WIN_SIZEY * (m_counter - m_END_TIME * i / m_WIN_DIV) / (m_END_TIME / m_WIN_DIV);
-//                DrawBox(Define::WIN_SIZEX / m_WIN_DIV * i, 0, Define::WIN_SIZEX * (i + 1) / m_WIN_DIV, temp_y, m_COLOR, TRUE);
+//                temp_y = Define::kWindowSizeY * (m_counter - m_END_TIME * i / m_WIN_DIV) / (m_END_TIME / m_WIN_DIV);
+//                DrawBox(Define::kWindowSizeX / m_WIN_DIV * i, 0, Define::kWindowSizeX * (i + 1) / m_WIN_DIV, temp_y, m_COLOR, TRUE);
 //            }
 //
 //            break;
@@ -56,8 +56,8 @@
 //            //帯の描画
 //            for (int i = 0; i < m_WIN_DIV; i++)
 //            {
-//                temp_y = Define::WIN_SIZEY * (m_counter - m_END_TIME * (m_WIN_DIV - 1 - i) / m_WIN_DIV) / (m_END_TIME / m_WIN_DIV);
-//                DrawBox(Define::WIN_SIZEX / m_WIN_DIV * (m_WIN_DIV - 1 - i), temp_y, Define::WIN_SIZEX * (m_WIN_DIV - i) / m_WIN_DIV, Define::WIN_SIZEY, m_COLOR, TRUE);
+//                temp_y = Define::kWindowSizeY * (m_counter - m_END_TIME * (m_WIN_DIV - 1 - i) / m_WIN_DIV) / (m_END_TIME / m_WIN_DIV);
+//                DrawBox(Define::kWindowSizeX / m_WIN_DIV * (m_WIN_DIV - 1 - i), temp_y, Define::kWindowSizeX * (m_WIN_DIV - i) / m_WIN_DIV, Define::kWindowSizeY, m_COLOR, TRUE);
 //            }
 //
 //            break;
@@ -65,14 +65,14 @@
 //            //フェードアウト
 //        case 2:
 //            SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255 * m_counter / m_END_TIME);
-//            DrawBox(0, 0, Define::WIN_SIZEX, Define::WIN_SIZEY, GetColor(0, 0, 0), TRUE);
+//            DrawBox(0, 0, Define::kWindowSizeX, Define::kWindowSizeY, GetColor(0, 0, 0), TRUE);
 //            SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 //            break;
 //
 //            //フェードアウト
 //        case 3:
 //            SetDrawBlendMode(DX_BLENDMODE_ALPHA, 255 * (m_END_TIME - m_counter) / m_END_TIME);
-//            DrawBox(0, 0, Define::WIN_SIZEX, Define::WIN_SIZEY, GetColor(0, 0, 0), TRUE);
+//            DrawBox(0, 0, Define::kWindowSizeX, Define::kWindowSizeY, GetColor(0, 0, 0), TRUE);
 //            SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 //            break;
 //

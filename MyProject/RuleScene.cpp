@@ -95,31 +95,31 @@
 //
 //void RuleScene::m_drawArrow() const
 //{
-//    const int HALFY = Define::WIN_SIZEY / 2;
+//    const int HALFY = Define::kWindowSizeY / 2;
 //    const double EX_RATE = 1.0 + 0.2 * sin((double)GetNowCount() / 1000 * 2 * Define::PI);
 //    const double EX_RATE_BIG = 1.4;
 //
-//    if(m_page != 0)DrawRotaGraph(Define::WIN_SIZEX / 24, HALFY, (Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) == 1) ? EX_RATE_BIG : EX_RATE, 0.0, m_image, TRUE);
-//    if (m_page != m_page_MAX - 1)DrawRotaGraph(Define::WIN_SIZEX * 23 / 24, HALFY, (Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) == 1) ? EX_RATE_BIG : EX_RATE, 0.0, m_image, TRUE, true);
+//    if(m_page != 0)DrawRotaGraph(Define::kWindowSizeX / 24, HALFY, (Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) == 1) ? EX_RATE_BIG : EX_RATE, 0.0, m_image, TRUE);
+//    if (m_page != m_page_MAX - 1)DrawRotaGraph(Define::kWindowSizeX * 23 / 24, HALFY, (Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) == 1) ? EX_RATE_BIG : EX_RATE, 0.0, m_image, TRUE, true);
 //}
 //
 //void RuleScene::m_drawBack() const
 //{
 //    //下地
-//    DrawBox(0, 0, Define::WIN_SIZEX, Define::WIN_SIZEY, GetColor(0xda, 0xda, 0xda), TRUE);
+//    DrawBox(0, 0, Define::kWindowSizeX, Define::kWindowSizeY, GetColor(0xda, 0xda, 0xda), TRUE);
 //
 //    //ボックス
-//    int _sizex = Define::WIN_SIZEX * 45 / 50;
-//    int _sizey = Define::WIN_SIZEY * 43 / 50;
-//    int _y_dz = -Define::WIN_SIZEY / 16;
-//    int _d = -Define::WIN_SIZEY / 64;
-//    DrawBox((Define::WIN_SIZEX - _sizex) / 2, (Define::WIN_SIZEY + _y_dz - _sizey) / 2, (Define::WIN_SIZEX + _sizex) / 2, (Define::WIN_SIZEY + _y_dz + _sizey) / 2, GetColor(0x21, 0x21, 0x21), TRUE);
-//    DrawBox((Define::WIN_SIZEX - _sizex) / 2 - _d, (Define::WIN_SIZEY + _y_dz - _sizey) / 2 - _d, (Define::WIN_SIZEX + _sizex) / 2 + _d, (Define::WIN_SIZEY + _y_dz + _sizey) / 2 + _d, GetColor(0xda, 0xda, 0xda), TRUE);
+//    int _sizex = Define::kWindowSizeX * 45 / 50;
+//    int _sizey = Define::kWindowSizeY * 43 / 50;
+//    int _y_dz = -Define::kWindowSizeY / 16;
+//    int _d = -Define::kWindowSizeY / 64;
+//    DrawBox((Define::kWindowSizeX - _sizex) / 2, (Define::kWindowSizeY + _y_dz - _sizey) / 2, (Define::kWindowSizeX + _sizex) / 2, (Define::kWindowSizeY + _y_dz + _sizey) / 2, GetColor(0x21, 0x21, 0x21), TRUE);
+//    DrawBox((Define::kWindowSizeX - _sizex) / 2 - _d, (Define::kWindowSizeY + _y_dz - _sizey) / 2 - _d, (Define::kWindowSizeX + _sizex) / 2 + _d, (Define::kWindowSizeY + _y_dz + _sizey) / 2 + _d, GetColor(0xda, 0xda, 0xda), TRUE);
 //
 //    //文字を描画
 //    std::string str = std::to_string(m_page + 1) + " / " + std::to_string(m_page_MAX);
-//    DrawFormatStringToHandle((Define::WIN_SIZEX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font)) / 2, Define::WIN_SIZEY * 53 / 64, GetColor(0, 0, 0), m_font, str.c_str());
+//    DrawFormatStringToHandle((Define::kWindowSizeX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font)) / 2, Define::kWindowSizeY * 53 / 64, GetColor(0, 0, 0), m_font, str.c_str());
 //
 //    str = "左右キーでページ切り替え　　ESCで戻る";
-//    DrawFormatStringToHandle(Define::WIN_SIZEX * 5 / 8 - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font) / 2, Define::WIN_SIZEY * 15 / 16, GetColor(0, 0, 0), m_font, str.c_str());
+//    DrawFormatStringToHandle(Define::kWindowSizeX * 5 / 8 - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font) / 2, Define::kWindowSizeY * 15 / 16, GetColor(0, 0, 0), m_font, str.c_str());
 //}

@@ -36,10 +36,10 @@
 //{
 //	if (m_init_flag == false) { return; }
 //
-//	int Field_HalfX = Define::WIN_SIZEX * 79 / 128;
-//	int Field_HandX = Define::WIN_SIZEX * 19 / 128;
-//	int Field_HalfY = Define::WIN_SIZEY * 54 / 128;
-//	int Field_HandY = Define::WIN_SIZEY * 19 / 128;
+//	int Field_HalfX = Define::kWindowSizeX * 79 / 128;
+//	int Field_HandX = Define::kWindowSizeX * 19 / 128;
+//	int Field_HalfY = Define::kWindowSizeY * 54 / 128;
+//	int Field_HandY = Define::kWindowSizeY * 19 / 128;
 //
 //	if (0 <= m_select_field && m_select_field < (int)m_field_list.size())
 //	{

@@ -1,19 +1,16 @@
 ﻿
 #pragma once
 
-#include <string>
-
 namespace match_stick {
 
 class Define {
 public:
-    static const int WIN_SIZEX;
-    static const int WIN_SIZEY;
-    static const std::string WIN_TITLE;
+    static constexpr int kWindowSizeX = 16 * 60;
+    static constexpr int kWindowSizeY = 9 * 60;
 
-    static const double WIN_EXRATE;
+    static constexpr char kWindowTitle[] = "Match Stick Game";
 
-    static const double PI;
+    static constexpr double kWindowExRate = 0.625;
 private:
     Define() = delete;
 };

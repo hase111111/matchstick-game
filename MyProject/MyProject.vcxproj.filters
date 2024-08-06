@@ -99,9 +99,6 @@
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="define.cpp">
-      <Filter>ソース ファイル\common</Filter>
-    </ClCompile>
     <ClCompile Include="MatchGameCommon.cpp">
       <Filter>ソース ファイル\scenes\_old\match game</Filter>
     </ClCompile>

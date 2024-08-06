@@ -122,7 +122,7 @@
 //void GameScene::draw() const
 //{
 //	//背景は白い色
-//	DrawBox(0, 0, Define::WIN_SIZEX, Define::WIN_SIZEY, GetColor(255, 255, 255), TRUE);
+//	DrawBox(0, 0, Define::kWindowSizeX, Define::kWindowSizeY, GetColor(255, 255, 255), TRUE);
 //
 //	//腕を描画する
 //	m_handDraw.draw(m_field, m_is_selecting_now, m_which_player, m_which_one_player1, m_which_one_player2, m_use_self_hurm, m_use_saihai);

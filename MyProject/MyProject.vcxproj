@@ -177,7 +177,6 @@
   <ItemGroup>
     <ClCompile Include="bgm_player.cpp" />
     <ClCompile Include="debug_scene.cpp" />
-    <ClCompile Include="define.cpp" />
     <ClCompile Include="dxlib_assert.cpp" />
     <ClCompile Include="dxlib_debug_print.cpp" />
     <ClCompile Include="dxlib_input.cpp" />

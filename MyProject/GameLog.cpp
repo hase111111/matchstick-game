@@ -40,17 +40,17 @@
 //void GameLog::draw(const MatchField _field, const int _turn, const bool _player_is_first, const bool _mod_rule, const bool _self_harm_rule, const int _enemy_level) const
 //{
 //	//背景
-//	DrawBox(Define::WIN_SIZEX * 9 / 32, 0, 0, Define::WIN_SIZEY, GetColor(0xc3, 0xc3, 0xc3), TRUE);
-//	DrawBox(Define::WIN_SIZEX * 23 / 32, 0, Define::WIN_SIZEX, Define::WIN_SIZEY, GetColor(0xc3, 0xc3, 0xc3), TRUE);
+//	DrawBox(Define::kWindowSizeX * 9 / 32, 0, 0, Define::kWindowSizeY, GetColor(0xc3, 0xc3, 0xc3), TRUE);
+//	DrawBox(Define::kWindowSizeX * 23 / 32, 0, Define::kWindowSizeX, Define::kWindowSizeY, GetColor(0xc3, 0xc3, 0xc3), TRUE);
 //
-//	int _centerx = (Define::WIN_SIZEX * 23 / 32 + Define::WIN_SIZEX) / 2;
+//	int _centerx = (Define::kWindowSizeX * 23 / 32 + Define::kWindowSizeX) / 2;
 //	int temp = 0;
 //	std::string temp_str = "";
 //
 //	//盤面状況のアナウンス
 //	{
 //		temp = GetDrawStringWidthToHandle("=現在の盤面=", 13, m_font_16);
-//		DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 3 / 64, GetColor(0, 0, 0), m_font_16, "=現在の盤面=");
+//		DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 3 / 64, GetColor(0, 0, 0), m_font_16, "=現在の盤面=");
 //	}
 //
 //	//ターン
@@ -59,7 +59,7 @@
 //		if (_field.turn) { temp_str += " あなたの番です"; }
 //		else { temp_str += " あいての番です"; }
 //		temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_16);
-//		DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 7 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
+//		DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 7 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
 //	}
 //
 //	//盤面状況
@@ -68,13 +68,13 @@
 //		else { temp_str = "あなた(後手)[" + std::to_string(_field.player1.first) + "," + std::to_string(_field.player1.second) + "]"; }
 //		if (_field.player1_avatar_num > 0) { temp_str += ",采配残り" + std::to_string(_field.player1_avatar_num); }
 //		temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_16);
-//		DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 12 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
+//		DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 12 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
 //
 //		if (_player_is_first) { temp_str = "あいて(後手) [" + std::to_string(_field.player2.first) + "," + std::to_string(_field.player2.second) + "]"; }
 //		else { temp_str = "あいて(先手) [" + std::to_string(_field.player2.first) + "," + std::to_string(_field.player2.second) + "]"; }
 //		if (_field.player2_avatar_num > 0) { temp_str += ",采配残り" + std::to_string(_field.player2_avatar_num); }
 //		temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_16);
-//		DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 15 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
+//		DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 15 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
 //	}
 //
 //	//特殊ルール
@@ -83,13 +83,13 @@
 //		if (_mod_rule) { temp_str += "あり"; }
 //		else { temp_str += "なし"; }
 //		temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_16);
-//		DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 21 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
+//		DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 21 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
 //
 //		temp_str = "自傷 ルール...";
 //		if (_self_harm_rule) { temp_str += "あり"; }
 //		else { temp_str += "なし"; }
 //		temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_16);
-//		DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 24 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
+//		DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 24 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
 //	}
 //
 //	//CPUレベル
@@ -101,7 +101,7 @@
 //		else if (_enemy_level % 4 == 2) { temp_str += "HARD"; }
 //		else { temp_str += "IMPOSSIBLE"; }
 //		temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_16);
-//		DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 30 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
+//		DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 30 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
 //	}
 //
 //	//操作方法
@@ -110,19 +110,19 @@
 //		std::string str = "";
 //
 //		str = "=操作方法=";
-//		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * posy / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
+//		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * posy / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
 //
 //		str = "・左右キーで選択    ";
-//		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * (posy + 4) / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
+//		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * (posy + 4) / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
 //
 //		str = "・Ｚキーで決定      ";
-//		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * (posy + 7) / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
+//		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * (posy + 7) / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
 //
 //		str = "・Ｘキーでキャンセル";
-//		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * (posy + 10) / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
+//		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * (posy + 10) / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
 //
 //		str = "・Ｃキーで采配　　　";
-//		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * (posy + 13) / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
+//		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * (posy + 13) / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
 //	}
 //
 //	//ログ
@@ -130,12 +130,12 @@
 //
 //	//ログの切り替えアナウンス
 //	if (m_log.size() > DISPLAY_STR) {
-//		DrawBox(Define::WIN_SIZEX * 9 / 32, Define::WIN_SIZEY * 123 / 128, 0, Define::WIN_SIZEY, GetColor(0xa3, 0xa3, 0xa3), TRUE);
+//		DrawBox(Define::kWindowSizeX * 9 / 32, Define::kWindowSizeY * 123 / 128, 0, Define::kWindowSizeY, GetColor(0xa3, 0xa3, 0xa3), TRUE);
 //
 //		std::string str = "上下キーで切り替え" + std::to_string(which_field_display % 2 + 1) + "/2";
 //
 //		const int CHAR_SIZE = 18;
-//		DrawFormatStringToHandle(Define::WIN_SIZEX * 9 / 64 - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * 4 / 64 + CHAR_SIZE * 27, GetColor(0, 0, 0), m_font_16, str.c_str());
+//		DrawFormatStringToHandle(Define::kWindowSizeX * 9 / 64 - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * 4 / 64 + CHAR_SIZE * 27, GetColor(0, 0, 0), m_font_16, str.c_str());
 //	}
 //}
 //
@@ -190,11 +190,11 @@
 //
 //void GameLog::m_drawLog() const
 //{
-//	int _centerx = Define::WIN_SIZEX * 9 / 32 / 2;
+//	int _centerx = Define::kWindowSizeX * 9 / 32 / 2;
 //	int temp = 0;
 //
 //	temp = GetDrawStringWidthToHandle("=ログ=", 7, m_font_16);
-//	DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 3 / 64, GetColor(0, 0, 0), m_font_16, "=ログ=");
+//	DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 3 / 64, GetColor(0, 0, 0), m_font_16, "=ログ=");
 //
 //	const int CHAR_SIZE = 18;//新しいもののみ表示したい
 //
@@ -212,7 +212,7 @@
 //				else if (m_log.at(i).first == VariousFunctionsForMatchGame::SENNICHITE - 1) { color = GetColor(0x80, 0x00, 0x00); }
 //				else if (m_log.at(i).first >= VariousFunctionsForMatchGame::SENNICHITE) { color = GetColor(0x00, 0x00, 0x8b); }
 //
-//				DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 4 / 64 + CHAR_SIZE * (i + 1 - DISPLAY_STR), color, m_font_16, m_log.at(i).second.c_str());
+//				DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 4 / 64 + CHAR_SIZE * (i + 1 - DISPLAY_STR), color, m_font_16, m_log.at(i).second.c_str());
 //			}
 //		}
 //		else if (i < DISPLAY_STR)
@@ -224,7 +224,7 @@
 //			else if (m_log.at(i).first == VariousFunctionsForMatchGame::SENNICHITE - 1) { color = GetColor(0x80, 0x00, 0x00); }
 //			else if (m_log.at(i).first >= VariousFunctionsForMatchGame::SENNICHITE) { color = GetColor(0x00, 0x00, 0x8b); }
 //
-//			DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 4 / 64 + CHAR_SIZE * (i + 1), color, m_font_16, m_log.at(i).second.c_str());
+//			DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 4 / 64 + CHAR_SIZE * (i + 1), color, m_font_16, m_log.at(i).second.c_str());
 //		}
 //	}
 //}

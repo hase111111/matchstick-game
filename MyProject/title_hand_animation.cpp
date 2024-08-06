@@ -27,7 +27,7 @@ bool TitleHandAnimation::update() {
             i.x = i.base_x + static_cast<double>(GetRand(random_range)) - random_range / 2.0;
 
             // 画面外に設置（0～腕2分程度ずらす）
-            i.y = static_cast<double>(Define::WIN_SIZEY) + hand_size_y_ / 2.0;
+            i.y = static_cast<double>(Define::kWindowSizeY) + hand_size_y_ / 2.0;
 
             // イラストはランダムに設定する
             i.graphic_index = static_cast<unsigned int>(GetRand(kImageNum - 1));
@@ -44,7 +44,7 @@ bool TitleHandAnimation::update() {
 void TitleHandAnimation::draw() const {
     for (const auto& i : hand_) {
         // 画面上部に行くほど透明になる
-        const int blend = 150 - static_cast<int>(128 * (Define::WIN_SIZEY - i.y) / Define::WIN_SIZEY);
+        const int blend = 150 - static_cast<int>(128 * (Define::kWindowSizeY - i.y) / Define::kWindowSizeY);
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, blend);
 
         // 描画
@@ -76,10 +76,10 @@ void TitleHandAnimation::initHandPos() {
         Hand add;
 
         // 画面を十等分した座標を起点の座標として登録する
-        add.x = add.base_x = static_cast<double>(Define::WIN_SIZEX) / hand_num * i + (hand_size_x_ / 2.0) + 10;
+        add.x = add.base_x = static_cast<double>(Define::kWindowSizeX) / hand_num * i + (hand_size_x_ / 2.0) + 10;
 
         // 画面外に設置（0～腕6分程度ずらす）
-        add.y = static_cast<double>(Define::WIN_SIZEY) + hand_size_y_ / 2.0 +
+        add.y = static_cast<double>(Define::kWindowSizeY) + hand_size_y_ / 2.0 +
             static_cast<double>(GetRand(hand_size_y_ * 6));
 
         // イラストはランダムに設定する

@@ -52,6 +52,17 @@ struct MatchGameField final {
 
     std::string toString() const;
 
+    constexpr int getAliveHandNum(const bool player1) const {
+        int num = 0;
+        for (int i = 0; i < kMaxHand; ++i) {
+            if ((player1 && player1_hand[i] > 0) || (!player1 && player2_hand[i] > 0)) {
+                ++num;
+            }
+        }
+
+        return num;
+    }
+
     //! @brief 現在の盤面が終了状態かどうかを返す．
     constexpr State getState(const MatchGameRule& rule) const {
         if (player1_hand[0] == 0 && player1_hand[1] == 0 && player1_hand[2] == 0) {
@@ -104,6 +115,10 @@ struct MatchGameField final {
 
     //! @brief 自傷を行う．
     void selfHarm(const MatchGameRule& rule, int attack_hand_index, int attacked_hand_index);
+
+    //! @brief 采配を行った後の盤面を生成する．
+    std::vector<MatchGameField> createFreeSortFieldList(const MatchGameRule& rule) const;
+
 };
 
 }  // namespace match_stick

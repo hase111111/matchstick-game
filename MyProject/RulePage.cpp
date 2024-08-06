@@ -26,13 +26,13 @@
 //void RulePage::m_draw_BaseRule00() const
 //{
 //	std::string str;
-//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//	const int POSX_HALF = Define::kWindowSizeX / 2;
 //	const int STR_Y = 24;
-//	const int STR_X = Define::WIN_SIZEY * 17 / 80;
+//	const int STR_X = Define::kWindowSizeY * 17 / 80;
 //
 //	//タイトル表示
 //	str ="基本ルール 1 / 2";
-//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::kWindowSizeY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
 //
 //	//文章
 //	str = "";
@@ -55,13 +55,13 @@
 //void RulePage::m_draw_BaseRule01() const
 //{
 //	std::string str;
-//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//	const int POSX_HALF = Define::kWindowSizeX / 2;
 //	const int STR_Y = 24;
-//	const int STR_X = Define::WIN_SIZEY * 17 / 80;
+//	const int STR_X = Define::kWindowSizeY * 17 / 80;
 //
 //	//タイトル表示
 //	str = "基本ルール 2 / 2";
-//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::kWindowSizeY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
 //
 //	//文章
 //	str = "";
@@ -76,11 +76,11 @@
 //void RulePage::m_draw_Saihai() const
 //{
 //	std::string str;
-//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//	const int POSX_HALF = Define::kWindowSizeX / 2;
 //
 //	//タイトル表示
 //	str = "ローカルルール：采配";
-//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::kWindowSizeY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
 //
 //	//文章
 //	str = "";
@@ -90,35 +90,35 @@
 //	str += "2、2 や 0、4 に変更することができる。)\n\n";
 //	str += "なお、采配は試合中に一度しか行うことができない。\n";
 //	str += "また左右の数字を入れ替えるだけの采配はできない。\n";
-//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 17 / 80, GetColor(0, 0, 0), m_font_32, str.c_str());
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::kWindowSizeY * 17 / 80, GetColor(0, 0, 0), m_font_32, str.c_str());
 //}
 //
 //void RulePage::m_draw_Self() const
 //{
 //	std::string str;
-//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//	const int POSX_HALF = Define::kWindowSizeX / 2;
 //
 //	//タイトル表示
 //	str = "ローカルルール：自傷";
-//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::kWindowSizeY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
 //
 //	//文章
 //	str = "";
 //	str += "攻撃の際に、自分の手を選択して攻撃することができ\n";
 //	str += "るルール。\n";
-//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 17 / 80, GetColor(0, 0, 0), m_font_32, str.c_str());
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::kWindowSizeY * 17 / 80, GetColor(0, 0, 0), m_font_32, str.c_str());
 //}
 //
 //void RulePage::m_draw_Mod5() const
 //{
 //	std::string str;
-//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//	const int POSX_HALF = Define::kWindowSizeX / 2;
 //	const int STR_Y = 24;
-//	const int STR_X = Define::WIN_SIZEY * 17 / 80;
+//	const int STR_X = Define::kWindowSizeY * 17 / 80;
 //
 //	//タイトル表示
 //	str = "ローカルルール：MOD 5";
-//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::kWindowSizeY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
 //
 //	//文章
 //	str = "";
@@ -133,13 +133,13 @@
 //void RulePage::m_draw_Senryaku00() const
 //{
 //	std::string str;
-//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//	const int POSX_HALF = Define::kWindowSizeX / 2;
 //	const int STR_Y = 24;
-//	const int STR_X = Define::WIN_SIZEY * 17 / 80;
+//	const int STR_X = Define::kWindowSizeY * 17 / 80;
 //
 //	//タイトル表示
 //	str = "戦略指南 1 / 2";
-//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::kWindowSizeY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
 //
 //	//文章
 //	str = "";
@@ -161,13 +161,13 @@
 //void RulePage::m_draw_Senryaku01() const
 //{
 //	std::string str;
-//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//	const int POSX_HALF = Define::kWindowSizeX / 2;
 //	const int STR_Y = 24;
-//	const int STR_X = Define::WIN_SIZEY * 17 / 80;
+//	const int STR_X = Define::kWindowSizeY * 17 / 80;
 //
 //	//タイトル表示
 //	str = "戦略指南 2 / 2";
-//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::kWindowSizeY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
 //
 //	//文章
 //	str = "";
@@ -189,13 +189,13 @@
 //void RulePage::m_draw_Other00() const
 //{
 //	std::string str;
-//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//	const int POSX_HALF = Define::kWindowSizeX / 2;
 //	const int STR_Y = 24;
-//	const int STR_X = Define::WIN_SIZEY * 17 / 80;
+//	const int STR_X = Define::kWindowSizeY * 17 / 80;
 //
 //	//タイトル表示
 //	str = "採用されていないルールと補足 1 / 3";
-//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::kWindowSizeY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
 //
 //	//文章
 //	str = "";
@@ -216,13 +216,13 @@
 //void RulePage::m_draw_Other01() const
 //{
 //	std::string str;
-//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//	const int POSX_HALF = Define::kWindowSizeX / 2;
 //	const int STR_Y = 24;
-//	const int STR_X = Define::WIN_SIZEY * 17 / 80;
+//	const int STR_X = Define::kWindowSizeY * 17 / 80;
 //
 //	//タイトル表示
 //	str = "採用されていないルールと補足 2 / 3";
-//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::kWindowSizeY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
 //
 //	//文章
 //	str = "";
@@ -245,13 +245,13 @@
 //void RulePage::m_draw_Other02() const
 //{
 //	std::string str;
-//	const int POSX_HALF = Define::WIN_SIZEX / 2;
+//	const int POSX_HALF = Define::kWindowSizeX / 2;
 //	const int STR_Y = 24;
-//	const int STR_X = Define::WIN_SIZEY * 17 / 80;
+//	const int STR_X = Define::kWindowSizeY * 17 / 80;
 //
 //	//タイトル表示
 //	str = "採用されていないルールと補足 3 / 3";
-//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
+//	DrawFormatStringToHandle(POSX_HALF - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::kWindowSizeY * 3 / 32, GetColor(0, 0, 0), m_font_32, str.c_str());
 //
 //	//文章
 //	str = "";

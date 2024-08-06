@@ -37,8 +37,8 @@ private:
     const int sound_effect2_handle_;
 
     const int radius_{ 30 };
-    const int hexagon_center_x_{ Define::WIN_SIZEX / 24 };
-    const int hexagon_center_y_{ Define::WIN_SIZEY / 6 };
+    const int hexagon_center_x_{ Define::kWindowSizeX / 24 };
+    const int hexagon_center_y_{ Define::kWindowSizeY / 6 };
     const int hexagon_num_{ 16 };
 
     int current_pointing_{ 0 };

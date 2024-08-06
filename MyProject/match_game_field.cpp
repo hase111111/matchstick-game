@@ -94,7 +94,7 @@ std::vector<MatchGameField> MatchGameField::createNextFieldList(const MatchGameR
 }
 
 void MatchGameField::attack(const MatchGameRule& rule,
-                            const int attack_index, const int attacked_index) {
+    const int attack_index, const int attacked_index) {
     ASSERT(0 <= attack_index && attack_index < kMaxHand, "The index is invalid.");
     ASSERT(0 <= attacked_index && attacked_index < kMaxHand, "The index is invalid.");
 
@@ -178,6 +178,18 @@ void MatchGameField::selfHarm(const MatchGameRule& rule, const int attack_hand_i
     }
 
     player1_turn = !player1_turn;
+}
+
+std::vector<MatchGameField> MatchGameField::createFreeSortFieldList(const MatchGameRule& rule) const {
+    ASSERT(rule.free_sort_valid, "The free sort is invalid.");
+    ASSERT(getAliveHandNum(player1_turn) == 1, "The hand num is invalid.");
+    ASSERT(getAliveHandNum(player1_turn) == 0, "The hand num is invalid.");
+
+    std::vector<MatchGameField> next_field_list;
+
+    // 合計値を取得する．
+
+    return next_field_list;
 }
 
 }  // namespace match_stick

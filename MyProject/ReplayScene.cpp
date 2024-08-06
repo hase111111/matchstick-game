@@ -103,7 +103,7 @@
 //void ReplayScene::draw() const
 //{
 //	//背景は白い色
-//	DrawBox(0, 0, Define::WIN_SIZEX, Define::WIN_SIZEY, GetColor(255, 255, 255), TRUE);
+//	DrawBox(0, 0, Define::kWindowSizeX, Define::kWindowSizeY, GetColor(255, 255, 255), TRUE);
 //
 //	//腕を描画する
 //	m_gameHand.draw(m_field, false, 0, 0, 0, false, false);
