@@ -25,21 +25,83 @@ MenuScene::MenuScene(const std::shared_ptr<SceneChangeListener>& scene_change_li
     entity_updater_ptr_->registerEntity(std::make_shared<FpsDisplayer>(entity_updater_ptr, font_loader_ptr));
     entity_updater_ptr_->registerEntity(std::make_shared<InputSchemeDisplayer>(input_ptr, img_loader_ptr));
     entity_updater_ptr_->registerEntity(std::make_shared<MenuBackGroundBase>());
-    entity_updater_ptr_->registerEntity(std::make_shared<MenuUI>(language_record_ptr, input_ptr, font_loader_ptr, img_loader_ptr));
+
+    const auto game_end_callback = [this]() { game_end_ = true; };
+    const auto scene_back_callback = [this]() { sceneBackCallback(); };
+    const auto scene_change_callback = [this](const SceneName scene_name) { sceneChangeCallback(scene_name); };
+
+    entity_updater_ptr_->registerEntity(std::make_shared<MenuUI>(language_record_ptr, input_ptr, font_loader_ptr,
+        img_loader_ptr, sound_effect_loader_ptr, game_end_callback, scene_back_callback, scene_change_callback));
 
     // フェードイン演出を追加
     const auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeIn, []() {});
     entity_updater_ptr_->registerEntity(fade_effect_ptr);
 }
 
+MenuScene::~MenuScene() {
+    DEBUG_PRINT("MenuScene Destructor called");
+}
+
 bool MenuScene::update() {
     entity_updater_ptr_->update();
+
+    // ゲーム終了フラグが立っていたら，ゲームを終了する．
+    if (game_end_) {
+        return false;
+    }
 
     return true;
 }
 
 void MenuScene::draw() const {
     entity_updater_ptr_->draw();
+}
+
+void MenuScene::onReturnFromOtherScene(const SceneChangeParameter&) {
+    DEBUG_PRINT_LINE();
+    DEBUG_PRINT("MenuScene::onReturnFromOtherScene called");
+    DEBUG_PRINT_LINE();
+
+    // フェードイン演出を追加
+    const auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeIn, []() {});
+    entity_updater_ptr_->registerEntity(fade_effect_ptr);
+
+    // フラグをリセット
+    now_scene_change_ = false;
+}
+
+void MenuScene::sceneBackCallback() {
+    if (now_scene_change_) {
+        return;
+    }
+
+    DEBUG_PRINT("MenuScene::sceneBackCallback called");
+
+    now_scene_change_ = true;
+
+    // フェードアウト演出を追加
+    const auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeOut, [this]() {
+        scene_change_listener_ptr_->requestDeleteScene(1, SceneChangeParameter{});
+    });
+
+    entity_updater_ptr_->registerEntity(fade_effect_ptr);
+}
+
+void MenuScene::sceneChangeCallback(const SceneName scene_name) {
+    if (now_scene_change_) {
+        return;
+    }
+
+    DEBUG_PRINT("MenuScene::sceneChangeCallback called");
+
+    now_scene_change_ = true;
+
+    // フェードアウト演出を追加
+    const auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeOut, [this, scene_name]() {
+        scene_change_listener_ptr_->requestAddScene(scene_name, SceneChangeParameter{});
+    });
+
+    entity_updater_ptr_->registerEntity(fade_effect_ptr);
 }
 
 }  // namespace match_stick

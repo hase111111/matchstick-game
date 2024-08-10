@@ -25,7 +25,7 @@ public:
               const std::shared_ptr<ImageLoader>& img_loader_ptr,
               const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr);
 
-    ~MenuScene() = default;
+    ~MenuScene();
 
     bool update() override;
 
@@ -33,12 +33,20 @@ public:
 
     void onStart(const SceneChangeParameter&) override {};
 
-    void onReturnFromOtherScene(const SceneChangeParameter&) override {};
+    void onReturnFromOtherScene(const SceneChangeParameter&) override;
 
 private:
     const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
 
     std::unique_ptr<EntityUpdater> entity_updater_ptr_;
+
+    void sceneBackCallback();
+
+    void sceneChangeCallback(SceneName scene_name);
+
+    bool now_scene_change_{ false };
+
+    bool game_end_{ false };
 };
 
 }  // namespace match_stick

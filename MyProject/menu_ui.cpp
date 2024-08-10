@@ -14,10 +14,21 @@ namespace match_stick {
 MenuUI::MenuUI(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
                const std::shared_ptr<const DxLibInput>& input_ptr,
                const std::shared_ptr<FontLoader>& font_loader_ptr,
-               const std::shared_ptr<ImageLoader>& img_loader_ptr) :
+               const std::shared_ptr<ImageLoader>& img_loader_ptr,
+               const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr,
+               const std::function<void()>& game_end_callback,
+               const std::function<void()>& scene_back_callback,
+               const std::function<void(SceneName)>& scene_change_callback) :
     input_ptr_(input_ptr),
     font_handle_(font_loader_ptr->loadAndGetFontHandle("data/font/azuki_font32.dft")),
-    big_font_handle_(font_loader_ptr->loadAndGetFontHandle("data/font/azuki_font48.dft")) {
+    big_font_handle_(font_loader_ptr->loadAndGetFontHandle("data/font/azuki_font48.dft")),
+    small_font_handle_(font_loader_ptr->loadAndGetFontHandle("data/font/azuki_font24.dft")),
+    sound_effect_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/selecting3.mp3")),
+    button0_text_(language_record_ptr->get("menu_back")),
+    button1_text_(language_record_ptr->get("menu_end")),
+    game_end_callback_(game_end_callback),
+    scene_back_callback_(scene_back_callback),
+    scene_change_callback_(scene_change_callback) {
     // 画像を読み込む
     bar_image_handle_map_[BarType::kGameStart] = img_loader_ptr->loadAndGetImageHandle("data/img/icon_game.png");
     bar_image_handle_map_[BarType::kRule] = img_loader_ptr->loadAndGetImageHandle("data/img/icon_rule.png");
@@ -48,8 +59,33 @@ bool MenuUI::update() {
     if (selected_bar_type_ != getBarTypeFromIndex()) {
         selected_bar_type_ = getBarTypeFromIndex();
         bar_rotation_map_[selected_bar_type_] = 6.28;
+
+        PlaySoundMem(sound_effect_handle_, DX_PLAYTYPE_BACK);
+
         DEBUG_PRINT(std::format("index_x:={}, index_y:={}",
             selected_bar_index_x_ % kIndexMaxX, selected_bar_index_y_ % kIndexMaxY));
+    }
+
+    if (input_ptr_->getMousePressingCount(MOUSE_INPUT_LEFT) == 1 ||
+        input_ptr_->getKeyboardPressingCount(KEY_INPUT_Z) == 1) {
+        const int index_x = selected_bar_index_x_ % kIndexMaxX;
+        const int index_y = selected_bar_index_y_ % kIndexMaxY;
+
+        if (index_y == 0 && (index_x == 0 || index_x == 1)) {
+            scene_change_callback_(SceneName::kGame);
+        } else if (index_x == 2 && index_y == 0) {
+            scene_change_callback_(SceneName::kRule);
+        } else if (index_x == 0 && index_y == 1) {
+            scene_change_callback_(SceneName::kDebug);
+        } else if (index_x == 1 && index_y == 1) {
+            scene_change_callback_(SceneName::kDebug);
+        } else if (index_x == 2 && index_y == 1) {
+            scene_change_callback_(SceneName::kDebug);
+        } else if (index_y == 2 && (index_x == 0 || index_x == 1)) {
+            scene_back_callback_();
+        } else if (index_y == 2 && index_x == 2) {
+            game_end_callback_();
+        }
     }
 
     ++counter_;
@@ -155,9 +191,11 @@ MenuUI::BarType MenuUI::getBarTypeFromIndex() const {
         return BarType::kReplay;
     } else if (index_x == 2 && index_y == 1) {
         return BarType::kLanguage;
+    } else if ((index_x == 0 && index_y == 2) || (index_x == 1 && index_y == 2)) {
+        return BarType::kButton0;
+    } else if (index_x == 2 && index_y == 2) {
+        return BarType::kButton1;
     }
-
-    return BarType::kNone;
 }
 
 void MenuUI::drawBar() const {
@@ -257,6 +295,15 @@ void MenuUI::drawButton() const {
             Define::kWindowSizeX - kButtonWidth * 2 + i * (kButtonWidth + kBarThickness) - kButtonRight + kBarThickness,
             Define::kWindowSizeY - kButtonBottom - kButtonHeight + kBarThickness,
             color, TRUE);
+
+        // テキストを描画
+        const std::string text = (i == 0) ? button0_text_ : button1_text_;
+        const int text_width = GetDrawStringWidthToHandle(text.c_str(), static_cast<int>(text.size()), small_font_handle_);
+
+        DrawStringToHandle(Define::kWindowSizeX - kButtonWidth * 2 + i * (kButtonWidth + kBarThickness)
+                                - kButtonRight + kButtonWidth / 2 - text_width / 2,
+                           Define::kWindowSizeY - kButtonBottom - kButtonHeight / 2 - 12,
+                           text.c_str(), GetColor(0x00, 0x00, 0x00), small_font_handle_);
     }
 }
 

@@ -1,6 +1,7 @@
 ﻿
 #pragma once
 
+#include <functional>
 #include <map>
 #include <memory>
 #include <string>
@@ -10,6 +11,8 @@
 #include "i_entity.h"
 #include "image_loader.h"
 #include "language_record.h"
+#include "scene_name.h"
+#include "sound_effect_loader.h"
 
 namespace match_stick {
 
@@ -18,7 +21,11 @@ public:
     MenuUI(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
            const std::shared_ptr<const DxLibInput>& input_ptr,
            const std::shared_ptr<FontLoader>& font_loader_ptr,
-           const std::shared_ptr<ImageLoader>& img_loader_ptr);
+           const std::shared_ptr<ImageLoader>& img_loader_ptr,
+           const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr,
+           const std::function<void()>& game_end_callback,
+           const std::function<void()>& scene_back_callback,
+           const std::function<void(SceneName)>& scene_change_callback);
     ~MenuUI() = default;
 
     inline int getLayer() const override {
@@ -36,7 +43,8 @@ private:
         kSetting,
         kReplay,
         kLanguage,
-        kNone
+        kButton0,
+        kButton1,
     };
 
     static constexpr int kBarWidth = 260;
@@ -71,13 +79,23 @@ private:
     std::map<BarType, double> bar_rotation_map_;
     std::map<BarType, std::string> bar_text_map_;
 
+    const std::string button0_text_;
+    const std::string button1_text_;
+
     BarType selected_bar_type_{ BarType::kGameStart };
     int selected_bar_index_x_{ 0 }, selected_bar_index_y_{ 0 };
 
     const int font_handle_{ 0 };
     const int big_font_handle_{ 0 };
+    const int small_font_handle_{ 0 };
+
+    const int sound_effect_handle_{ 0 };
 
     int counter_{ 0 };
+
+    const std::function<void()> game_end_callback_;
+    const std::function<void()> scene_back_callback_;
+    const std::function<void(SceneName)> scene_change_callback_;
 };
 
 }  // namespace match_stick
