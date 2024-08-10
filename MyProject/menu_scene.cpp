@@ -25,7 +25,7 @@ MenuScene::MenuScene(const std::shared_ptr<SceneChangeListener>& scene_change_li
     entity_updater_ptr_->registerEntity(std::make_shared<FpsDisplayer>(entity_updater_ptr, font_loader_ptr));
     entity_updater_ptr_->registerEntity(std::make_shared<InputSchemeDisplayer>(input_ptr, img_loader_ptr));
     entity_updater_ptr_->registerEntity(std::make_shared<MenuBackGroundBase>());
-    entity_updater_ptr_->registerEntity(std::make_shared<MenuUI>());
+    entity_updater_ptr_->registerEntity(std::make_shared<MenuUI>(language_record_ptr, input_ptr, font_loader_ptr, img_loader_ptr));
 
     // フェードイン演出を追加
     const auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeIn, []() {});

@@ -11,6 +11,11 @@ game_title, マッチ棒ゲーム
 press_z_key_to_start, Zキーを押してスタート
 click_left_to_start, 左クリックでスタート
 copy_right, Copy right 2021 Saidai Game Production
+menu_game,ゲーム開始
+menu_rule,ルール確認
+menu_setting,設定
+menu_replay,リプレイ
+menu_language,言語設定
 rule_back_scene, 前画面に戻る
 rule_text_0_0,この画面の使い方
 rule_text_0_1,左側のメニューの項目を選択して，ルールを確認してください．
