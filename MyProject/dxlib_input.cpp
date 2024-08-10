@@ -10,7 +10,7 @@ void DxLibInput::update() {
     mouse_.update();
 
     // 現在の入力方法を更新
-    if (input_type_ == InputType::kKeyboard) {
+    if (input_type_ == InputType::kKeyboard && !keyboard_.isAnyKeyPressed()) {
         if (mouse_.isAnyButtonPressed()) {
             DEBUG_PRINT("DxLibInput::update() Mouse is pressed");
             input_type_ = InputType::kMouse;
