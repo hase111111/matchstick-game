@@ -11,6 +11,13 @@ game_title, Match Stick Game
 press_z_key_to_start, Press z key to start
 click_left_to_start, Click left to start
 copy_right, Copy right 2021 Saidai Game Production
+menu_game,Game Start
+menu_rule,Rule Check
+menu_setting,Setting
+menu_replay,Replay
+menu_language,Language
+menu_back,Back to Title
+menu_end,Exit Game
 rule_back_scene, Return
 rule_text_0_0,How to use this screen
 rule_text_0_1,Select an item from the menu on the left to review the rules.
