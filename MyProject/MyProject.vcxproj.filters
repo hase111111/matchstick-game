@@ -94,6 +94,12 @@
     <Filter Include="ソース ファイル\match_gane">
       <UniqueIdentifier>{8286e797-654b-4ca4-8ae3-843f09ec12a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\scenes\menu_scene">
+      <UniqueIdentifier>{c880f14d-3dcd-4a79-b01e-6e012a53f1f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\menu_scene\entity">
+      <UniqueIdentifier>{4b2f0063-18f1-4a04-9d77-cf76983374d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -293,6 +299,15 @@
     </ClCompile>
     <ClCompile Include="match_game_sample.cpp">
       <Filter>ソース ファイル\match_gane</Filter>
+    </ClCompile>
+    <ClCompile Include="menu_ui.cpp">
+      <Filter>ソース ファイル\scenes\menu_scene\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="menu_back_ground_base.cpp">
+      <Filter>ソース ファイル\scenes\menu_scene\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="menu_scene.cpp">
+      <Filter>ソース ファイル\scenes\menu_scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -526,6 +541,15 @@
     </ClInclude>
     <ClInclude Include="game_hand_renderer.h">
       <Filter>ソース ファイル\scenes\game_scene\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="menu_ui.h">
+      <Filter>ソース ファイル\scenes\menu_scene\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="menu_back_ground_base.h">
+      <Filter>ソース ファイル\scenes\menu_scene\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="menu_scene.h">
+      <Filter>ソース ファイル\scenes\menu_scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
