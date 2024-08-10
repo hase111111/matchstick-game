@@ -54,7 +54,7 @@ void TitleScene::draw() const {
 
 void TitleScene::onReturnFromOtherScene(const SceneChangeParameter&) {
     // フェードイン演出を追加
-    auto fade_effect_ptr = std::make_shared<FadeEffect>(60, FadeEffect::FadeType::kFadeIn, []() {});
+    auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeIn, []() {});
     entity_updater_ptr_->registerEntity(fade_effect_ptr);
 
     // シーン遷移用のエンティティを登録
@@ -67,7 +67,7 @@ void TitleScene::callbackForSceneChange() {
         scene_change_listener_ptr_->requestAddScene(SceneName::kMenu, SceneChangeParameter{});
         };
 
-    auto fade_effect_ptr = std::make_shared<FadeEffect>(60, FadeEffect::FadeType::kFadeOut, scene_change_func);
+    auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeOut, scene_change_func);
 
     entity_updater_ptr_->registerEntity(fade_effect_ptr);
 }

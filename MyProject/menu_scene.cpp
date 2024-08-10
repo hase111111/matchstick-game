@@ -2,8 +2,11 @@
 #include "menu_scene.h"
 
 #include "dxlib_debug_print.h"
+#include "fade_effect.h"
 #include "fps_displayer.h"
 #include "input_scheme_displayer.h"
+#include "menu_back_ground_base.h"
+#include "menu_ui.h"
 
 namespace match_stick {
 
@@ -21,6 +24,12 @@ MenuScene::MenuScene(const std::shared_ptr<SceneChangeListener>& scene_change_li
     // ルール画面のエンティティを登録
     entity_updater_ptr_->registerEntity(std::make_shared<FpsDisplayer>(entity_updater_ptr, font_loader_ptr));
     entity_updater_ptr_->registerEntity(std::make_shared<InputSchemeDisplayer>(input_ptr, img_loader_ptr));
+    entity_updater_ptr_->registerEntity(std::make_shared<MenuBackGroundBase>());
+    entity_updater_ptr_->registerEntity(std::make_shared<MenuUI>());
+
+    // フェードイン演出を追加
+    const auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeIn, []() {});
+    entity_updater_ptr_->registerEntity(fade_effect_ptr);
 }
 
 bool MenuScene::update() {

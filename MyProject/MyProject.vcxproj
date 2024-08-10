@@ -212,7 +212,9 @@
     <ClCompile Include="MenuBox.cpp" />
     <ClCompile Include="MenuDrawBack.cpp" />
     <ClCompile Include="MenuScene.cpp" />
+    <ClCompile Include="menu_back_ground_base.cpp" />
     <ClCompile Include="menu_scene.cpp" />
+    <ClCompile Include="menu_ui.cpp" />
     <ClCompile Include="ReplayScene.cpp" />
     <ClCompile Include="ResultDrawBack.cpp" />
     <ClCompile Include="ResultDrawHand.cpp" />
@@ -286,7 +288,9 @@
     <ClInclude Include="MenuBox.h" />
     <ClInclude Include="MenuDrawBack.h" />
     <ClInclude Include="MenuScene.h" />
+    <ClInclude Include="menu_back_ground_base.h" />
     <ClInclude Include="menu_scene.h" />
+    <ClInclude Include="menu_ui.h" />
     <ClInclude Include="ReplayScene.h" />
     <ClInclude Include="ResultDrawBack.h" />
     <ClInclude Include="ResultDrawHand.h" />
