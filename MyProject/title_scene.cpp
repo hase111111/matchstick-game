@@ -64,7 +64,7 @@ void TitleScene::onReturnFromOtherScene(const SceneChangeParameter&) {
 
 void TitleScene::callbackForSceneChange() {
     auto scene_change_func = [this]() {
-        scene_change_listener_ptr_->requestAddScene(SceneName::kRule, SceneChangeParameter{});
+        scene_change_listener_ptr_->requestAddScene(SceneName::kMenu, SceneChangeParameter{});
         };
 
     auto fade_effect_ptr = std::make_shared<FadeEffect>(60, FadeEffect::FadeType::kFadeOut, scene_change_func);
