@@ -76,6 +76,9 @@ std::shared_ptr<SceneStack> GameMainLoop::initializeSceneStack() const {
         std::make_shared<const LanguageRecord>(
             language_record_initializer.initialize(game_setting_record_ptr_->language_country));
 
+    const auto sound_effect_loader_ptr = std::make_shared<SoundEffectLoader>();
+    sound_effect_loader_ptr->changeAllSoundVolume(game_setting_record_ptr_->sound_volume);
+
     auto scene_creator_ptr = std::make_unique<SceneCreator>(
         scene_change_listener_ptr_,
         fps_controller_,
@@ -84,7 +87,7 @@ std::shared_ptr<SceneStack> GameMainLoop::initializeSceneStack() const {
         std::make_shared<BgmPlayer>(),
         std::make_shared<FontLoader>(),
         std::make_shared<ImageLoader>(),
-        std::make_shared<SoundEffectLoader>());
+        sound_effect_loader_ptr);
 
     auto scene_stack_ptr = std::make_shared<SceneStack>(std::move(scene_creator_ptr));
 

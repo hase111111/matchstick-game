@@ -6,6 +6,8 @@
 namespace match_stick {
 
 void DxLibInput::update() {
+    constexpr double kMouseSensitivity = 1.0;
+
     keyboard_.update();
     mouse_.update();
 
@@ -16,7 +18,7 @@ void DxLibInput::update() {
             input_type_ = InputType::kMouse;
         }
 
-        if (mouse_.getDiffPos() > 0) {
+        if (mouse_.getDiffPos() > kMouseSensitivity) {
             DEBUG_PRINT("DxLibInput::update() Mouse is moved");
             input_type_ = InputType::kMouse;
         }
