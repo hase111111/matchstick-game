@@ -1,6 +1,8 @@
 ﻿
 #include "menu_scene.h"
 
+#include <DxLib.h>
+
 #include "dxlib_debug_print.h"
 #include "fade_effect.h"
 #include "fps_displayer.h"
@@ -18,7 +20,8 @@ MenuScene::MenuScene(const std::shared_ptr<SceneChangeListener>& scene_change_li
                      const std::shared_ptr<ImageLoader>& img_loader_ptr,
                      const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr) :
     scene_change_listener_ptr_(scene_change_listener_ptr),
-    entity_updater_ptr_(std::make_unique<EntityUpdater>()) {
+    entity_updater_ptr_(std::make_unique<EntityUpdater>()),
+    sound_effect_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/selecting2.mp3")) {
     DEBUG_PRINT("MenuScene Constructor called");
 
     // ルール画面のエンティティを登録
@@ -85,6 +88,9 @@ void MenuScene::sceneBackCallback() {
     });
 
     entity_updater_ptr_->registerEntity(fade_effect_ptr);
+
+    // サウンドを再生
+    PlaySoundMem(sound_effect_handle_, DX_PLAYTYPE_BACK);
 }
 
 void MenuScene::sceneChangeCallback(const SceneName scene_name) {
@@ -102,6 +108,9 @@ void MenuScene::sceneChangeCallback(const SceneName scene_name) {
     });
 
     entity_updater_ptr_->registerEntity(fade_effect_ptr);
+
+    // サウンドを再生
+    PlaySoundMem(sound_effect_handle_, DX_PLAYTYPE_BACK);
 }
 
 }  // namespace match_stick

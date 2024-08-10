@@ -90,6 +90,7 @@ private:
     const int small_font_handle_{ 0 };
 
     const int sound_effect_handle_{ 0 };
+    const int sound_effect_handle2_{ 0 };
 
     int counter_{ 0 };
 

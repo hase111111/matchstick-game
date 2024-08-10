@@ -18,7 +18,7 @@ RuleUIHexagon::RuleUIHexagon(const std::shared_ptr<const DxLibInput>& input_ptr,
                              const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr) :
     input_ptr_(input_ptr),
     font_handle_(font_loader->loadAndGetFontHandle("data/font/azuki_font32.dft")),
-    sound_effect1_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/selecting1.mp3")),
+    sound_effect1_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/selecting3.mp3")),
     sound_effect2_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/selecting2.mp3")) {
     ASSERT_NOT_NULL_PTR(input_ptr_);
 }

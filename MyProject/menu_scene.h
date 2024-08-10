@@ -44,6 +44,8 @@ private:
 
     void sceneChangeCallback(SceneName scene_name);
 
+    const int sound_effect_handle_;
+
     bool now_scene_change_{ false };
 
     bool game_end_{ false };

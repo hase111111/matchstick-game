@@ -20,8 +20,8 @@ RuleUI::RuleUI(std::function<void()> on_button_pressed,
     rule_ui_hexagon_(input_ptr, font_loader, sound_effect_loader_ptr),
     rule_text_(language_record_ptr, font_loader),
     font_handle_(font_loader->loadAndGetFontHandle("data/font/azuki_font24.dft")),
-    sound_effect1_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/selecting1.mp3")),
-    sound_effect2_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/hand_cancel.mp3")),
+    sound_effect1_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/selecting3.mp3")),
+    sound_effect2_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/selecting2.mp3")),
     button_text_(language_record_ptr->get("rule_back_scene")) {}
 
 bool RuleUI::update() {
