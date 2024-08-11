@@ -37,9 +37,6 @@
     <Filter Include="ソース ファイル\scenes\_old">
       <UniqueIdentifier>{2ae8811f-ecde-4568-bed8-2f4ba0fea400}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\scenes\_old\RuleScene">
-      <UniqueIdentifier>{11c72331-3063-4d5f-a74a-fcf711cb95de}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\scenes\_old\ReplayScene">
       <UniqueIdentifier>{6d689bb1-38dd-46dd-8137-06ff5a0bdf37}</UniqueIdentifier>
     </Filter>
@@ -150,12 +147,6 @@
     <ClCompile Include="MatchGameOut.cpp">
       <Filter>ソース ファイル\scenes\_old\match game</Filter>
     </ClCompile>
-    <ClCompile Include="RuleParam.cpp">
-      <Filter>ソース ファイル\scenes\_old\RuleScene</Filter>
-    </ClCompile>
-    <ClCompile Include="RulePage.cpp">
-      <Filter>ソース ファイル\scenes\_old\RuleScene</Filter>
-    </ClCompile>
     <ClCompile Include="MatchGameList2.cpp">
       <Filter>ソース ファイル\scenes\_old\match game</Filter>
     </ClCompile>
@@ -248,9 +239,6 @@
     </ClCompile>
     <ClCompile Include="SceneChangeEffect.cpp">
       <Filter>ソース ファイル\scenes\_old</Filter>
-    </ClCompile>
-    <ClCompile Include="RuleScene.cpp">
-      <Filter>ソース ファイル\scenes\_old\RuleScene</Filter>
     </ClCompile>
     <ClCompile Include="fade_effect.cpp">
       <Filter>ソース ファイル\entity</Filter>
@@ -362,12 +350,6 @@
     <ClInclude Include="MenuBox.h">
       <Filter>ソース ファイル\scenes\_old\MenuScene</Filter>
     </ClInclude>
-    <ClInclude Include="RuleParam.h">
-      <Filter>ソース ファイル\scenes\_old\RuleScene</Filter>
-    </ClInclude>
-    <ClInclude Include="RulePage.h">
-      <Filter>ソース ファイル\scenes\_old\RuleScene</Filter>
-    </ClInclude>
     <ClInclude Include="ResultDrawBack.h">
       <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
     </ClInclude>
@@ -475,9 +457,6 @@
     </ClInclude>
     <ClInclude Include="SceneChangeEffect.h">
       <Filter>ソース ファイル\scenes\_old</Filter>
-    </ClInclude>
-    <ClInclude Include="RuleScene.h">
-      <Filter>ソース ファイル\scenes\_old\RuleScene</Filter>
     </ClInclude>
     <ClInclude Include="fade_effect.h">
       <Filter>ソース ファイル\entity</Filter>
