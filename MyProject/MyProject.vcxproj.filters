@@ -55,9 +55,6 @@
     <Filter Include="ソース ファイル\scenes\_old\ResultScene\Draw">
       <UniqueIdentifier>{6c3e3030-7301-4673-a563-e02c6edd3b16}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\scenes\_old\MenuScene">
-      <UniqueIdentifier>{aacf0788-ffce-462c-9d96-f8c07fedbf3c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\entity">
       <UniqueIdentifier>{2fa5bfcf-e71c-4168-af5b-e780e96d83a8}</UniqueIdentifier>
     </Filter>
@@ -114,9 +111,6 @@
     <ClCompile Include="GameScene.cpp">
       <Filter>ソース ファイル\scenes\_old\GameScene</Filter>
     </ClCompile>
-    <ClCompile Include="MenuScene.cpp">
-      <Filter>ソース ファイル\scenes\_old\MenuScene</Filter>
-    </ClCompile>
     <ClCompile Include="GameHand.cpp">
       <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
     </ClCompile>
@@ -131,12 +125,6 @@
     </ClCompile>
     <ClCompile Include="ResultScene.cpp">
       <Filter>ソース ファイル\scenes\_old\ResultScene</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuDrawBack.cpp">
-      <Filter>ソース ファイル\scenes\_old\MenuScene</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuBox.cpp">
-      <Filter>ソース ファイル\scenes\_old\MenuScene</Filter>
     </ClCompile>
     <ClCompile Include="MatchGameCPU.cpp">
       <Filter>ソース ファイル\scenes\_old\match game</Filter>
@@ -323,9 +311,6 @@
     <ClInclude Include="GameScene.h">
       <Filter>ソース ファイル\scenes\_old\GameScene</Filter>
     </ClInclude>
-    <ClInclude Include="MenuScene.h">
-      <Filter>ソース ファイル\scenes\_old\MenuScene</Filter>
-    </ClInclude>
     <ClInclude Include="GameParam.h">
       <Filter>ソース ファイル\scenes\_old\GameScene</Filter>
     </ClInclude>
@@ -343,12 +328,6 @@
     </ClInclude>
     <ClInclude Include="GameSelectingHand.h">
       <Filter>ソース ファイル\scenes\_old\GameScene\progress</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuDrawBack.h">
-      <Filter>ソース ファイル\scenes\_old\MenuScene</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuBox.h">
-      <Filter>ソース ファイル\scenes\_old\MenuScene</Filter>
     </ClInclude>
     <ClInclude Include="ResultDrawBack.h">
       <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
