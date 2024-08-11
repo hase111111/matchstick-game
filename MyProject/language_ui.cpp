@@ -1,22 +1,25 @@
 ﻿
 #include "language_ui.h"
 
+#include <magic_enum.hpp>
+
 #include <DxLib.h>
 
 #include "define.h"
+#include "string_util.h"
 
 namespace {
 
 constexpr int kTableWidth = 400;
 constexpr int kTableColumnHeight = 60;
-constexpr int kTableColumnNum = 2;
+constexpr int kTableColumnNum = static_cast<int>(magic_enum::enum_count<::match_stick::LanguageRecord::Country>());
 constexpr int kTableRow0Width = 60;
 constexpr int kTableRow1Width = 340;
 constexpr int kTableRowNum = 2;
 constexpr int kTableThickness = 3;
 
 constexpr int kTableLeftX = 100;
-constexpr int kTableTopY = 60;
+constexpr int kTableTopY = 130;
 
 constexpr int kButtonWidth = 220;
 constexpr int kButtonHeight = 60;
@@ -33,8 +36,14 @@ const unsigned int color_white = GetColor(0xda, 0xda, 0xda);
 
 namespace match_stick {
 
-LanguageUI::LanguageUI(const std::shared_ptr<const DxLibInput>& dxlib_input) :
-    dxlib_input_(dxlib_input) {}
+LanguageUI::LanguageUI(const std::shared_ptr<const LanguageRecord>& lang,
+                       const std::shared_ptr<const DxLibInput>& dxlib_input,
+                       const std::shared_ptr<FontLoader>& font_loader_ptr,
+                       const std::shared_ptr<ImageLoader>& img_loader_ptr) :
+    dxlib_input_(dxlib_input),
+    current_country_(lang->getCurrentCountry()),
+    checked_img_handle_(img_loader_ptr->loadAndGetImageHandle("data/img/icon_checked.png")),
+    font_handle_(font_loader_ptr->loadAndGetFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")) {}
 
 bool LanguageUI::update() {
     updateSelectIndex();
@@ -64,7 +73,6 @@ void LanguageUI::updateSelectIndex() {
         }
     } else {
         // マウス入力
-
     }
 }
 
@@ -95,14 +103,24 @@ void LanguageUI::drawTable() const {
                 color_white, TRUE);
 
         // 1列目
-        const int x3 = x2;
+        const int x3 = x2 - kTableThickness;
         const int x4 = x3 + kTableRow1Width;
         DrawBox(x3, y1, x4, y2, color_back, TRUE);
         DrawBox(x3 + kTableThickness, y1 + kTableThickness,
-                       x4 - kTableThickness, y2 - kTableThickness,
-                                      color_white, TRUE);
-    }
+                x4 - kTableThickness, y2 - kTableThickness,
+                color_white, TRUE);
 
+        // 文字列の描画
+        const LanguageRecord::Country country = static_cast<LanguageRecord::Country>(i);
+        const std::string str = string_util::EnumToStringRemoveTopK(country);
+        const int text_width = GetDrawStringWidthToHandle(str.c_str(), str.length(), font_handle_);
+        DrawStringToHandle((x3 + x4 - text_width) / 2, y1 + 10, str.c_str(), color_back, font_handle_);
+
+        // チェックマークの描画
+        if (current_country_ == country) {
+            DrawRotaGraph((x1 + x2) / 2, (y1 + y2) / 2, 0.8, 0.0, checked_img_handle_, TRUE);
+        }
+    }
 }
 
 }  // namespace match_stick

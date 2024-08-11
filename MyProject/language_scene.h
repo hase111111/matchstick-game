@@ -18,13 +18,12 @@ namespace match_stick {
 class LanguageScene final : public IScene {
 public:
     LanguageScene(const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
-              const std::shared_ptr<const FpsController>& entity_updater_ptr,
-              const std::shared_ptr<LanguageRecord>& language_record_ptr,
-              const std::shared_ptr<const DxLibInput>& input_ptr,
-              const std::shared_ptr<FontLoader>& font_loader_ptr,
-              const std::shared_ptr<ImageLoader>& img_loader_ptr,
-              const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr);
-
+                  const std::shared_ptr<const FpsController>& entity_updater_ptr,
+                  const std::shared_ptr<LanguageRecord>& language_record_ptr,
+                  const std::shared_ptr<const DxLibInput>& input_ptr,
+                  const std::shared_ptr<FontLoader>& font_loader_ptr,
+                  const std::shared_ptr<ImageLoader>& img_loader_ptr,
+                  const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr);
     ~LanguageScene() = default;
 
     bool update() override;
