@@ -10,7 +10,8 @@ enum class SceneName {
     kResult,
     kRule,
     kMenu,
-    kReplay
+    kReplay,
+    kLanguage,
 };
 
 }  // namespace match_stick

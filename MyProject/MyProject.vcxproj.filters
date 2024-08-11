@@ -100,6 +100,12 @@
     <Filter Include="ソース ファイル\scenes\menu_scene\entity">
       <UniqueIdentifier>{4b2f0063-18f1-4a04-9d77-cf76983374d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\scenes\language_scene">
+      <UniqueIdentifier>{36b5a625-d994-4cb4-b8d0-2b71db519d2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scenes\language_scene\entity">
+      <UniqueIdentifier>{d26bed60-bc0a-4e7f-8f52-671fd5a6f58e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -308,6 +314,12 @@
     </ClCompile>
     <ClCompile Include="menu_scene.cpp">
       <Filter>ソース ファイル\scenes\menu_scene</Filter>
+    </ClCompile>
+    <ClCompile Include="language_scene.cpp">
+      <Filter>ソース ファイル\scenes\language_scene</Filter>
+    </ClCompile>
+    <ClCompile Include="language_back_ground_base.cpp">
+      <Filter>ソース ファイル\scenes\language_scene\entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -550,6 +562,12 @@
     </ClInclude>
     <ClInclude Include="menu_scene.h">
       <Filter>ソース ファイル\scenes\menu_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="language_scene.h">
+      <Filter>ソース ファイル\scenes\language_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="language_back_ground_base.h">
+      <Filter>ソース ファイル\scenes\language_scene\entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

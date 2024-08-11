@@ -8,6 +8,7 @@
 
 #include "dxlib_debug_print.h"
 #include "define.h"
+#include "math_const.h"
 
 namespace match_stick {
 
@@ -58,7 +59,7 @@ bool MenuUI::update() {
 
     if (selected_bar_type_ != getBarTypeFromIndex()) {
         selected_bar_type_ = getBarTypeFromIndex();
-        bar_rotation_map_[selected_bar_type_] = 6.28;
+        bar_rotation_map_[selected_bar_type_] = MathConst<double>::kPi * 2.0;
 
         PlaySoundMem(sound_effect_handle_, DX_PLAYTYPE_BACK);
 
@@ -80,7 +81,7 @@ bool MenuUI::update() {
         } else if (index_x == 1 && index_y == 1) {
             scene_change_callback_(SceneName::kDebug);
         } else if (index_x == 2 && index_y == 1) {
-            scene_change_callback_(SceneName::kDebug);
+            scene_change_callback_(SceneName::kLanguage);
         } else if (index_y == 2 && (index_x == 0 || index_x == 1)) {
             scene_back_callback_();
         } else if (index_y == 2 && index_x == 2) {
@@ -196,6 +197,9 @@ MenuUI::BarType MenuUI::getBarTypeFromIndex() const {
     } else if (index_x == 2 && index_y == 2) {
         return BarType::kButton1;
     }
+
+    ASSERT_MUST_NOT_REACH_HERE();
+    return BarType::kGameStart;
 }
 
 void MenuUI::drawBar() const {

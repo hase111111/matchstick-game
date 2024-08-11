@@ -21,7 +21,7 @@ public:
     SceneCreator(
         const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
         const std::shared_ptr<const FpsController>& fps_controller_ptr,
-        const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+        const std::shared_ptr<LanguageRecord>& language_record_ptr,
         const std::shared_ptr<const DxLibInput>& input_ptr,
         const std::shared_ptr<BgmPlayer>& bgm_player_ptr,
         const std::shared_ptr<FontLoader>& font_loader_ptr,
@@ -36,7 +36,7 @@ private:
 
     const std::shared_ptr<const FpsController> fps_controller_ptr_;
 
-    const std::shared_ptr<const LanguageRecord> language_record_ptr_;
+    const std::shared_ptr<LanguageRecord> language_record_ptr_;
 
     const std::shared_ptr<const DxLibInput> input_ptr_;
 

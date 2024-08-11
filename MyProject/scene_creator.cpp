@@ -5,6 +5,7 @@
 #include "dxlib_assert.h"
 #include "dxlib_debug_print.h"
 #include "game_scene.h"
+#include "language_scene.h"
 #include "menu_scene.h"
 #include "rule_scene.h"
 #include "title_scene.h"
@@ -13,7 +14,7 @@ namespace match_stick {
 
 SceneCreator::SceneCreator(const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
                            const std::shared_ptr<const FpsController>& fps_controller_ptr,
-                           const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+                           const std::shared_ptr<LanguageRecord>& language_record_ptr,
                            const std::shared_ptr<const DxLibInput>& input_ptr,
                            const std::shared_ptr<BgmPlayer>& bgm_player_ptr,
                            const std::shared_ptr<FontLoader>& font_loader_ptr,
@@ -54,6 +55,18 @@ std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) co
         DEBUG_PRINT_LINE();
         return std::make_unique<GameScene>(
             scene_change_listener_ptr_,
+            language_record_ptr_,
+            input_ptr_,
+            font_loader_ptr_,
+            image_loader_ptr_,
+            sound_effect_loader_ptr_);
+    }
+    case SceneName::kLanguage: {
+        DEBUG_PRINT("SceneCreator::createScene() SceneName::kLanguage");
+        DEBUG_PRINT_LINE();
+        return std::make_unique<LanguageScene>(
+            scene_change_listener_ptr_,
+            fps_controller_ptr_,
             language_record_ptr_,
             input_ptr_,
             font_loader_ptr_,

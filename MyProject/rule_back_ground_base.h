@@ -4,7 +4,6 @@
 #include <memory>
 
 #include "i_entity.h"
-#include "image_loader.h"
 
 namespace match_stick {
 
