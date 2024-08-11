@@ -2,15 +2,15 @@
 #This is a setting for language.
 [language]
     
-    #param list : [ kJapan , kEnglish , kChina ]
-    language_country = "kJapan"
+    #param list : [ kJapan , kEnglish , kChina , kKorea ]
+    language_country = "kKorea"
     
 #This is a setting for sound and volume.
 [sound]
     
     #The value range is from 0 to 100.
-    bgm_volume = 10
+    bgm_volume = 50
     
     #The value range is from 0 to 100.
-    sound_volume = 10
+    sound_volume = 50
     
