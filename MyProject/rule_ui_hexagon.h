@@ -38,8 +38,8 @@ private:
 
     const int radius_{ 30 };
     const int hexagon_center_x_{ Define::kWindowSizeX / 24 };
-    const int hexagon_center_y_{ Define::kWindowSizeY / 6 };
-    const int hexagon_num_{ 16 };
+    const int hexagon_center_y_{ Define::kWindowSizeY / 5 };
+    const int hexagon_num_{ 14 };
 
     int current_pointing_{ 0 };
     int current_hover_{ -1 };

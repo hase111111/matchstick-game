@@ -17,9 +17,7 @@ public:
 
     void set(const std::string& key, Country country, const std::string& value);
 
-    bool has(const std::string& key) const {
-        return records_.find(key) != records_.end();
-    }
+    bool has(const std::string& key) const;
 
     inline Country getCurrentCountry() const {
         return current_country_;

@@ -322,7 +322,7 @@
       <Filter>ソース ファイル\scenes\language_scene\entity</Filter>
     </ClCompile>
     <ClCompile Include="language_ui.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\scenes\language_scene\entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
