@@ -22,7 +22,7 @@ void LanguageBackGroundBase::draw() const {
     DrawBox(0, 0, Define::kWindowSizeX, Define::kWindowSizeY, color_white, TRUE);
 
     // アイコン 
-    const int icon_pos_x = 70;
+    const int icon_pos_x = 120;
     const int icon_pos_y = 60;
     DrawRotaGraph(icon_pos_x, icon_pos_y, 0.6, 0.0, icon_handle_, TRUE);
 
