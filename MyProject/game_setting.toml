@@ -3,7 +3,7 @@
 [language]
     
     #param list : [ kJapan , kEnglish , kChina ]
-    language_country = "kChina"
+    language_country = "kJapan"
     
 #This is a setting for sound and volume.
 [sound]

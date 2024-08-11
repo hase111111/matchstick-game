@@ -2,9 +2,9 @@
 # Type the key on the left and the text on the right.,
 # Separate keys and sentences with commas.,
 #,
-# �V���[�v����n�܂�s�̓R�����g�ł��D,
-# �ȉ��ɁC�����ɃL�[�C�E���Ƀe�L�X�g����͂��Ă��������D,
-# �L�[�ƃe�L�X�g�̓J���}�ŋ�؂��Ă��������D,
+# シャープから始まる行はコメントです．,
+# 以下に，左側にキー，右側にテキストを入力してください．,
+# キーとテキストはカンマで区切ってください．,
 #,
 ,
 game_title, Match Stick Game

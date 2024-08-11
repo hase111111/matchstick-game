@@ -12,6 +12,7 @@ public:
         kJapan,
         kEnglish,
         kChina,
+        kKorea,
     };
 
     std::string get(const std::string& key) const;
@@ -27,6 +28,8 @@ public:
     void setCurrentCountry(Country country) {
         current_country_ = country;
     }
+
+    static bool isEnglish(Country country);
 
 private:
     std::map<std::string, std::map<Country, std::string>> records_;

@@ -11,16 +11,17 @@
 
 namespace match_stick {
 
-RuleText::RuleText(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+RuleText::RuleText(const std::shared_ptr<const LanguageRecord>& lang,
                    const std::shared_ptr<FontLoader>& font_loader) :
-    rule_text_(createRuleText(language_record_ptr)),
-    need_hyphen_(language_record_ptr->getCurrentCountry() != LanguageRecord::Country::kJapan),
-    big_font_handle_(font_loader->loadAndGetFontHandle("data/font/azuki_font32.dft")),
-    small_font_handle_(font_loader->loadAndGetFontHandle("data/font/azuki_font24.dft")),
+    rule_text_(createRuleText(lang)),
+    need_hyphen_(LanguageRecord::isEnglish(lang->getCurrentCountry())),
+    big_font_handle_(font_loader->loadAndGetFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")),
+    small_font_handle_(font_loader->loadAndGetFontHandle(lang->getCurrentCountry(), "data/font/azuki_font24.dft")),
     box_left_(getBoxLeft()),
     box_top_(getBoxTop()),
     box_right_(getBoxRight()),
-    box_bottom_(getBoxBottom()) {
+    box_bottom_(getBoxBottom()),
+    current_country_(lang->getCurrentCountry()) {
     // ルールのテキストを更新
     updateDrawText();
 }
@@ -58,7 +59,7 @@ void RuleText::updateDrawText() {
         return;
     }
 
-    const int text_length = 54;
+    const int text_length = LanguageRecord::isEnglish(current_country_) ? 54 : 84;
 
     for (const auto& text : rule_text_[number_]) {
         // 文字列が，text_lengthを超える場合は，改行する
@@ -80,7 +81,6 @@ void RuleText::updateDrawText() {
             }
         } else {
             draw_text_.push_back(text);
-
         }
     }
 }

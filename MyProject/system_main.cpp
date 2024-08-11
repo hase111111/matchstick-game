@@ -17,6 +17,7 @@ bool SystemMain::initialize() {
     // icon.rcで設定したアイコンファイルをセットする
     SetWindowIconID(333);
 
+    SetUseCharCodeFormat(DX_CHARCODEFORMAT_UTF8);
     SetWindowText(Define::kWindowTitle);  // ウィンドウタイトルを付ける
     SetAlwaysRunFlag(TRUE);  // ウィンドウがノンアクティブでも実行
     SetOutApplicationLogValidFlag(FALSE);  // ログ出力しない

@@ -29,7 +29,7 @@ LanguageScene::LanguageScene(const std::shared_ptr<SceneChangeListener>& scene_c
     entity_updater_ptr_->registerEntity(std::make_shared<LanguageUI>(input_ptr));
 
     // FPS表示エンティティの登録
-    entity_updater_ptr_->registerEntity(std::make_shared<FpsDisplayer>(fps_controller_ptr, font_loader_ptr));
+    entity_updater_ptr_->registerEntity(std::make_shared<FpsDisplayer>(fps_controller_ptr, language_record_ptr, font_loader_ptr));
 
     // 入力スキーム表示エンティティの登録
     entity_updater_ptr_->registerEntity(std::make_shared<InputSchemeDisplayer>(input_ptr, img_loader_ptr));

@@ -23,7 +23,7 @@ RuleScene::RuleScene(const std::shared_ptr<SceneChangeListener>& scene_change_li
 
     // ルール画面のエンティティを登録
     entity_updater_ptr_->registerEntity(std::make_shared<RuleBackGroundBase>());
-    entity_updater_ptr_->registerEntity(std::make_shared<FpsDisplayer>(entity_updater_ptr, font_loader_ptr));
+    entity_updater_ptr_->registerEntity(std::make_shared<FpsDisplayer>(entity_updater_ptr, language_record_ptr, font_loader_ptr));
     entity_updater_ptr_->registerEntity(std::make_shared<InputSchemeDisplayer>(input_ptr, img_loader_ptr));
 
     const auto rule_ui_ptr = std::make_shared<RuleUI>(std::bind(&RuleScene::backScene, this), language_record_ptr,

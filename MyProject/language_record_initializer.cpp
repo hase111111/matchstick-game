@@ -52,6 +52,9 @@ std::string LanguageRecordInitializer::getLanguageFilePath(LanguageRecord::Count
     case LanguageRecord::Country::kChina: {
         return "data/language/chn.csv";
     }
+    case LanguageRecord::Country::kKorea: {
+        return "data/language/kor.csv";
+    }
     default: {
         ASSERT_MUST_NOT_REACH_HERE();
         return "";

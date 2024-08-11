@@ -12,7 +12,7 @@
 
 namespace match_stick {
 
-MenuUI::MenuUI(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+MenuUI::MenuUI(const std::shared_ptr<const LanguageRecord>& lang,
                const std::shared_ptr<const DxLibInput>& input_ptr,
                const std::shared_ptr<FontLoader>& font_loader_ptr,
                const std::shared_ptr<ImageLoader>& img_loader_ptr,
@@ -21,12 +21,12 @@ MenuUI::MenuUI(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
                const std::function<void()>& scene_back_callback,
                const std::function<void(SceneName)>& scene_change_callback) :
     input_ptr_(input_ptr),
-    font_handle_(font_loader_ptr->loadAndGetFontHandle("data/font/azuki_font32.dft")),
-    big_font_handle_(font_loader_ptr->loadAndGetFontHandle("data/font/azuki_font48.dft")),
-    small_font_handle_(font_loader_ptr->loadAndGetFontHandle("data/font/azuki_font24.dft")),
+    font_handle_(font_loader_ptr->loadAndGetFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")),
+    big_font_handle_(font_loader_ptr->loadAndGetFontHandle(lang->getCurrentCountry(), "data/font/azuki_font48.dft")),
+    small_font_handle_(font_loader_ptr->loadAndGetFontHandle(lang->getCurrentCountry(), "data/font/azuki_font24.dft")),
     sound_effect_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/selecting3.mp3")),
-    button0_text_(language_record_ptr->get("menu_back")),
-    button1_text_(language_record_ptr->get("menu_end")),
+    button0_text_(lang->get("menu_back")),
+    button1_text_(lang->get("menu_end")),
     game_end_callback_(game_end_callback),
     scene_back_callback_(scene_back_callback),
     scene_change_callback_(scene_change_callback) {
@@ -43,11 +43,11 @@ MenuUI::MenuUI(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
     }
 
     // テキストを初期化
-    bar_text_map_[BarType::kGameStart] = language_record_ptr->get("menu_game");
-    bar_text_map_[BarType::kRule] = language_record_ptr->get("menu_rule");
-    bar_text_map_[BarType::kSetting] = language_record_ptr->get("menu_setting");
-    bar_text_map_[BarType::kReplay] = language_record_ptr->get("menu_replay");
-    bar_text_map_[BarType::kLanguage] = language_record_ptr->get("menu_language");
+    bar_text_map_[BarType::kGameStart] = lang->get("menu_game");
+    bar_text_map_[BarType::kRule] = lang->get("menu_rule");
+    bar_text_map_[BarType::kSetting] = lang->get("menu_setting");
+    bar_text_map_[BarType::kReplay] = lang->get("menu_replay");
+    bar_text_map_[BarType::kLanguage] = lang->get("menu_language");
 }
 
 bool MenuUI::update() {
@@ -302,7 +302,8 @@ void MenuUI::drawButton() const {
 
         // テキストを描画
         const std::string text = (i == 0) ? button0_text_ : button1_text_;
-        const int text_width = GetDrawStringWidthToHandle(text.c_str(), static_cast<int>(text.size()), small_font_handle_);
+        const int text_width =
+            GetDrawStringWidthToHandle(text.c_str(), static_cast<int>(text.size()), small_font_handle_);
 
         DrawStringToHandle(Define::kWindowSizeX - kButtonWidth * 2 + i * (kButtonWidth + kBarThickness)
                                 - kButtonRight + kButtonWidth / 2 - text_width / 2,

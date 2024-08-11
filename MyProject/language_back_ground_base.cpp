@@ -7,11 +7,11 @@
 
 namespace match_stick {
 
-LanguageBackGroundBase::LanguageBackGroundBase(const std::shared_ptr<LanguageRecord>& language_record_ptr,
+LanguageBackGroundBase::LanguageBackGroundBase(const std::shared_ptr<LanguageRecord>& lang,
                                                const std::shared_ptr<FontLoader>& font_loader_ptr,
                                                const std::shared_ptr<ImageLoader>& img_loader_ptr) :
-    title_text_(language_record_ptr->get("language_title")),
-    font_handle_(font_loader_ptr->loadAndGetFontHandle("data/font/azuki_font48.dft")),
+    title_text_(lang->get("language_title")),
+    font_handle_(font_loader_ptr->loadAndGetFontHandle(lang->getCurrentCountry(), "data/font/azuki_font48.dft")),
     icon_handle_(img_loader_ptr->loadAndGetImageHandle("data/img/icon_language.png")) {}
 
 void LanguageBackGroundBase::draw() const {

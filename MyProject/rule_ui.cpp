@@ -11,18 +11,18 @@
 namespace match_stick {
 
 RuleUI::RuleUI(std::function<void()> on_button_pressed,
-               const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+               const std::shared_ptr<const LanguageRecord>& lang,
                const std::shared_ptr<const DxLibInput>& input_ptr,
                const std::shared_ptr<FontLoader>& font_loader,
                const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr) :
     on_button_pressed_(on_button_pressed),
     input_ptr_(input_ptr),
-    rule_ui_hexagon_(input_ptr, font_loader, sound_effect_loader_ptr),
-    rule_text_(language_record_ptr, font_loader),
-    font_handle_(font_loader->loadAndGetFontHandle("data/font/azuki_font24.dft")),
+    rule_ui_hexagon_(lang, input_ptr, font_loader, sound_effect_loader_ptr),
+    rule_text_(lang, font_loader),
+    font_handle_(font_loader->loadAndGetFontHandle(lang->getCurrentCountry(), "data/font/azuki_font24.dft")),
     sound_effect1_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/selecting3.mp3")),
     sound_effect2_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/selecting2.mp3")),
-    button_text_(language_record_ptr->get("rule_back_scene")) {}
+    button_text_(lang->get("rule_back_scene")) {}
 
 bool RuleUI::update() {
     if (already_button_pressed_) {

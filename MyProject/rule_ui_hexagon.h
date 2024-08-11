@@ -13,7 +13,8 @@ namespace match_stick {
 
 class RuleUIHexagon final {
 public:
-    RuleUIHexagon(const std::shared_ptr<const DxLibInput>& input_ptr,
+    RuleUIHexagon(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+                  const std::shared_ptr<const DxLibInput>& input_ptr,
                   const std::shared_ptr<FontLoader>& font_loader,
                   const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr);
     ~RuleUIHexagon() = default;

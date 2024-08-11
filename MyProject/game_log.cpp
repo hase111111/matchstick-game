@@ -9,7 +9,7 @@ namespace match_stick {
 
 GameLog::GameLog(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
                  const std::shared_ptr<FontLoader>& font_loader) :
-    small_font_handle_(font_loader->loadAndGetFontHandle("data/font/azuki_font16.dft")) {}
+    small_font_handle_(0) {}
 
 void GameLog::draw() const {
 

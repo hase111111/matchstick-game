@@ -38,6 +38,8 @@ private:
     int getBoxRight() const;
     int getBoxBottom() const;
 
+    const LanguageRecord::Country current_country_;
+
     int counter_{ 0 };
     int number_{ 0 };
 

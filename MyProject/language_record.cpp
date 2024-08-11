@@ -32,4 +32,8 @@ bool LanguageRecord::has(const std::string& key) const {
     return true;
 }
 
+bool LanguageRecord::isEnglish(const Country country) {
+    return country == Country::kEnglish;
+}
+
 }  // namespace match_stick
