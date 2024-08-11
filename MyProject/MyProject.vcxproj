@@ -203,6 +203,7 @@
     <ClCompile Include="language_record.cpp" />
     <ClCompile Include="language_record_initializer.cpp" />
     <ClCompile Include="language_scene.cpp" />
+    <ClCompile Include="language_ui.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MatchGameCommon.cpp" />
     <ClCompile Include="MatchGameCPU.cpp" />
@@ -284,6 +285,7 @@
     <ClInclude Include="language_record.h" />
     <ClInclude Include="language_record_initializer.h" />
     <ClInclude Include="language_scene.h" />
+    <ClInclude Include="language_ui.h" />
     <ClInclude Include="MatchGameCommon.h" />
     <ClInclude Include="match_game_field.h" />
     <ClInclude Include="match_game_rule.h" />

@@ -4,6 +4,7 @@
 #include "dxlib_assert.h"
 #include "fade_effect.h"
 #include "language_back_ground_base.h"
+#include "language_ui.h"
 
 namespace match_stick {
 
@@ -23,6 +24,7 @@ LanguageScene::LanguageScene(const std::shared_ptr<SceneChangeListener>& scene_c
     // エンティティの登録
     entity_updater_ptr_->registerEntity(
         std::make_shared<LanguageBackGroundBase>(language_record_ptr, font_loader_ptr, img_loader_ptr));
+    entity_updater_ptr_->registerEntity(std::make_shared<LanguageUI>());
 
     // フェードイン演出を追加
     const auto fade_effect_ptr = std::make_shared<FadeEffect>(60, FadeEffect::FadeType::kFadeIn, []() {});

@@ -31,6 +31,7 @@ void RuleText::update(const int number) {
     if (number_ != number) {
         DEBUG_PRINT(std::format("RuleText::update: number_:{}(index is {}) -> number:{}(index is {})",
             number_ + 1, number_, number + 1, number));
+
         hexagon_angle_velocity_ = MathConst<double>::kPi * 0.5;
 
         number_ = number;
