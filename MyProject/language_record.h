@@ -11,6 +11,7 @@ public:
     enum class Country {
         kJapan,
         kEnglish,
+        kChina,
     };
 
     std::string get(const std::string& key) const;

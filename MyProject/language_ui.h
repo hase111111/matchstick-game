@@ -23,8 +23,11 @@ public:
     void draw() const override;
 
 private:
-
     void updateSelectIndex();
+
+    void drawButton() const;
+
+    void drawTable() const;
 
     const std::shared_ptr<const DxLibInput> dxlib_input_;
 

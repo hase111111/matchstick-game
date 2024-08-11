@@ -44,10 +44,13 @@ LanguageRecord LanguageRecordInitializer::initialize(const LanguageRecord::Count
 std::string LanguageRecordInitializer::getLanguageFilePath(LanguageRecord::Country country) const {
     switch (country) {
     case LanguageRecord::Country::kJapan: {
-        return "data/language/jp.csv";
+        return "data/language/jpn.csv";
     }
     case LanguageRecord::Country::kEnglish: {
-        return "data/language/en.csv";
+        return "data/language/eng.csv";
+    }
+    case LanguageRecord::Country::kChina: {
+        return "data/language/chn.csv";
     }
     default: {
         ASSERT_MUST_NOT_REACH_HERE();
