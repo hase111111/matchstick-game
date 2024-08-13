@@ -43,16 +43,16 @@ LanguageRecord LanguageRecordInitializer::initialize(const LanguageRecord::Count
 
 std::string LanguageRecordInitializer::getLanguageFilePath(LanguageRecord::Country country) const {
     switch (country) {
-    case LanguageRecord::Country::kJapan: {
+    case LanguageRecord::Country::kJapanese: {
         return "data/language/jpn.csv";
     }
     case LanguageRecord::Country::kEnglish: {
         return "data/language/eng.csv";
     }
-    case LanguageRecord::Country::kChina: {
+    case LanguageRecord::Country::kChinese: {
         return "data/language/chn.csv";
     }
-    case LanguageRecord::Country::kKorea: {
+    case LanguageRecord::Country::kKorean: {
         return "data/language/kor.csv";
     }
     default: {

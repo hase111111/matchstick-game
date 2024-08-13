@@ -2,8 +2,8 @@
 #This is a setting for language.
 [language]
     
-    #param list : [ kJapan , kEnglish , kChina , kKorea ]
-    language_country = "kKorea"
+    #param list : [ kJapanese , kEnglish , kChinese , kKorean ]
+    language_country = "kEnglish"
     
 #This is a setting for sound and volume.
 [sound]

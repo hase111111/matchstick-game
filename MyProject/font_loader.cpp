@@ -68,7 +68,7 @@ void FontLoader::loadFontHandle(const Country country, const std::string& file_p
 }
 
 bool FontLoader::isCountryForOtherLanguage(const Country country) const {
-    return country == Country::kChina || country == Country::kKorea;
+    return country == Country::kChinese || country == Country::kKorean;
 }
 
 bool FontLoader::alreadyLoadedFont(const Country country, const std::string& file_path) const {

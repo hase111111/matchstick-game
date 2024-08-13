@@ -9,10 +9,10 @@ namespace match_stick {
 class LanguageRecord final {
 public:
     enum class Country {
-        kJapan,
+        kJapanese,
         kEnglish,
-        kChina,
-        kKorea,
+        kChinese,
+        kKorean,
     };
 
     std::string get(const std::string& key) const;
@@ -34,7 +34,7 @@ public:
 private:
     std::map<std::string, std::map<Country, std::string>> records_;
 
-    Country current_country_{ Country::kJapan };
+    Country current_country_{ Country::kJapanese };
 };
 
 }  // namespace match_stick

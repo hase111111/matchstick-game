@@ -42,6 +42,7 @@ LanguageUI::LanguageUI(const std::shared_ptr<const LanguageRecord>& lang,
                        const std::shared_ptr<ImageLoader>& img_loader_ptr) :
     dxlib_input_(dxlib_input),
     current_country_(lang->getCurrentCountry()),
+    hovered_country_(current_country_),
     checked_img_handle_(img_loader_ptr->loadAndGetImageHandle("data/img/icon_checked.png")),
     font_handle_(font_loader_ptr->loadAndGetFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")) {}
 
@@ -60,15 +61,15 @@ void LanguageUI::draw() const {
 void LanguageUI::updateSelectIndex() {
     if (dxlib_input_->getInputType() == DxLibInput::InputType::kKeyboard) {
         // キーボード入力
-        if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_DOWN)) {
+        if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_DOWN) == 1) {
             select_index_y_++;
-        } else if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_UP)) {
+        } else if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_UP) == 1) {
             select_index_y_--;
         }
 
-        if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_RIGHT)) {
+        if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_RIGHT) == 1) {
             select_index_x_++;
-        } else if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_LEFT)) {
+        } else if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_LEFT) == 1) {
             select_index_x_--;
         }
     } else {
@@ -105,20 +106,29 @@ void LanguageUI::drawTable() const {
         // 1列目
         const int x3 = x2 - kTableThickness;
         const int x4 = x3 + kTableRow1Width;
+        const unsigned int color = select_index_x_ % 2 == 0 && select_index_y_ % kTableColumnNum == i ?
+            GetColor(128, 128, 128) : color_white;
         DrawBox(x3, y1, x4, y2, color_back, TRUE);
         DrawBox(x3 + kTableThickness, y1 + kTableThickness,
                 x4 - kTableThickness, y2 - kTableThickness,
-                color_white, TRUE);
+                color, TRUE);
 
         // 文字列の描画
         const LanguageRecord::Country country = static_cast<LanguageRecord::Country>(i);
         const std::string str = string_util::EnumToStringRemoveTopK(country);
-        const int text_width = GetDrawStringWidthToHandle(str.c_str(), str.length(), font_handle_);
+        const int text_width = GetDrawStringWidthToHandle(str.c_str(), static_cast<int>(str.length()), font_handle_);
         DrawStringToHandle((x3 + x4 - text_width) / 2, y1 + 10, str.c_str(), color_back, font_handle_);
 
         // チェックマークの描画
         if (current_country_ == country) {
             DrawRotaGraph((x1 + x2) / 2, (y1 + y2) / 2, 0.8, 0.0, checked_img_handle_, TRUE);
+        }
+
+        // ホバー中の選択肢にも半透明のチェックマークを表示する
+        if (hovered_country_ == country) {
+            SetDrawBlendMode(DX_BLENDMODE_ALPHA, 64);
+            DrawRotaGraph((x1 + x2) / 2, (y1 + y2) / 2, 0.8, 0.0, checked_img_handle_, TRUE);
+            SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
         }
     }
 }

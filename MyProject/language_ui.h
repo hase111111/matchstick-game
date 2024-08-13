@@ -38,7 +38,7 @@ private:
     const std::shared_ptr<const DxLibInput> dxlib_input_;
 
     const std::string attention_str_{ "Attention: After the change, "
-                                      "you need to go back to the title to update the text." };
+        "you need to go back to the title to update the text." };
 
     int select_index_x_{ 0 }, select_index_y_{ 0 };
 
@@ -47,6 +47,7 @@ private:
     const int checked_img_handle_;
 
     LanguageRecord::Country current_country_;
+    LanguageRecord::Country hovered_country_;
 };
 
 }  // namespace match_stick
