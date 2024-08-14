@@ -24,8 +24,9 @@ std::string MatchGameField::toString() const {
     return str;
 }
 
-std::vector<MatchGameField> MatchGameField::createNextFieldList(const MatchGameRule& rule) const {
-    std::vector<MatchGameField> next_field_list;
+std::vector<std::tuple<MatchGameField, MatchGameField::Move>>
+MatchGameField::createNextFieldList(const MatchGameRule& rule) const {
+    std::vector<std::tuple<MatchGameField, MatchGameField::Move>> result;
 
     // 攻撃による次の状態を生成する．
     for (int i = 0; i < kMaxHand; ++i) {
@@ -39,10 +40,14 @@ std::vector<MatchGameField> MatchGameField::createNextFieldList(const MatchGameR
             }
 
             MatchGameField next_field = *this;
-
             next_field.attack(rule, i, j);
 
-            next_field_list.push_back(next_field);
+            Move move;
+            move.type = Move::Type::kAttack;
+            move.attack_index = i;
+            move.attacked_index = j;
+
+            result.push_back({ next_field, move });
         }
     }
 
@@ -58,10 +63,13 @@ std::vector<MatchGameField> MatchGameField::createNextFieldList(const MatchGameR
             }
 
             MatchGameField next_field = *this;
-
             next_field.changeNegativeNumber(rule, i);
 
-            next_field_list.push_back(next_field);
+            Move move;
+            move.type = Move::Type::kChangeNegativeNumber;
+            move.change_negative_number_index = i;
+
+            result.push_back({ next_field ,move });
         }
     }
 
@@ -82,15 +90,19 @@ std::vector<MatchGameField> MatchGameField::createNextFieldList(const MatchGameR
                 }
 
                 MatchGameField next_field = *this;
-
                 next_field.selfHarm(rule, i, j);
 
-                next_field_list.push_back(next_field);
+                Move move;
+                move.type = Move::Type::kSelfHarm;
+                move.attack_index = i;
+                move.attacked_index = j;
+
+                result.push_back({ next_field, move });
             }
         }
     }
 
-    return next_field_list;
+    return result;
 }
 
 void MatchGameField::attack(const MatchGameRule& rule,
@@ -190,6 +202,31 @@ std::vector<MatchGameField> MatchGameField::createFreeSortFieldList(const MatchG
     // 合計値を取得する．
 
     return next_field_list;
+}
+
+std::string MatchGameField::Move::toString() const {
+    switch (type) {
+    case match_stick::MatchGameField::Move::Type::kNone: {
+        return "None";
+    }
+    case match_stick::MatchGameField::Move::Type::kAttack: {
+        return "Attack: " + std::to_string(attack_index) + " -> " + std::to_string(attacked_index);
+    }
+    case match_stick::MatchGameField::Move::Type::kChangeNegativeNumber: {
+        return "ChangeNegativeNumber: " + std::to_string(change_negative_number_index);
+    }
+    case match_stick::MatchGameField::Move::Type::kSelfHarm: {
+        return "SelfHarm: " + std::to_string(attack_index) + " -> " + std::to_string(attacked_index);
+    }
+    case match_stick::MatchGameField::Move::Type::kFreeSort: {
+        return "FreeSort";
+    }
+    default:
+        ASSERT_MUST_NOT_REACH_HERE();
+        break;
+    }
+
+    return "";
 }
 
 }  // namespace match_stick

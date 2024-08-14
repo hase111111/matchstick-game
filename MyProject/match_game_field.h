@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <array>
 #include <string>
+#include <tuple>
 #include <utility>
 #include <vector>
 
@@ -13,6 +14,23 @@ namespace match_stick {
 
 struct MatchGameField final {
     static constexpr int kMaxHand = 3;
+
+    struct Move final {
+        enum class Type {
+            kNone,
+            kAttack,
+            kChangeNegativeNumber,
+            kSelfHarm,
+            kFreeSort,
+        };
+
+        Type type{ Type::kNone };
+        int attack_index{ 0 };
+        int attacked_index{ 0 };
+        int change_negative_number_index{ 0 };
+
+        std::string toString() const;
+    };
 
     enum class State {
         kPlayer1Win,
@@ -103,11 +121,11 @@ struct MatchGameField final {
     }
 
     //! @brief 次の盤面を生成する．
-    std::vector<MatchGameField> createNextFieldList(const MatchGameRule& rule) const;
+    std::vector<std::tuple<MatchGameField, Move>> createNextFieldList(const MatchGameRule& rule) const;
 
     //! @brief 攻撃を行う．ターンプレイヤーが相手プレイヤーの手札を攻撃する．
-    //! @param attack_player_index 攻撃するプレイヤーの手札のインデックス
-    //! @param attacked_player_index 攻撃されるプレイヤーの手札のインデックス
+    //! @param attack_player_index 攻撃するプレイヤーの腕のインデックス
+    //! @param attacked_player_index 攻撃されるプレイヤーの腕のインデックス
     void attack(const MatchGameRule& rule, int attack_player_hand_index, int attacked_player_hand_index);
 
     //! @brief プレイヤーの手を負の数にする．
@@ -118,7 +136,6 @@ struct MatchGameField final {
 
     //! @brief 采配を行った後の盤面を生成する．
     std::vector<MatchGameField> createFreeSortFieldList(const MatchGameRule& rule) const;
-
 };
 
 }  // namespace match_stick

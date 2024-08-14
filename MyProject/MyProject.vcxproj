@@ -212,7 +212,6 @@
     <ClCompile Include="MatchGameList2.cpp" />
     <ClCompile Include="MatchGameOut.cpp" />
     <ClCompile Include="match_game_field.cpp" />
-    <ClCompile Include="match_game_sample.cpp" />
     <ClCompile Include="menu_back_ground_base.cpp" />
     <ClCompile Include="menu_scene.cpp" />
     <ClCompile Include="menu_ui.cpp" />
@@ -285,7 +284,6 @@
     <ClInclude Include="MatchGameCommon.h" />
     <ClInclude Include="match_game_field.h" />
     <ClInclude Include="match_game_rule.h" />
-    <ClInclude Include="match_game_sample.h" />
     <ClInclude Include="math_const.h" />
     <ClInclude Include="menu_back_ground_base.h" />
     <ClInclude Include="menu_scene.h" />
