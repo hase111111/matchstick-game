@@ -195,6 +195,7 @@
     <ClCompile Include="game_back_ground_base.cpp" />
     <ClCompile Include="game_log.cpp" />
     <ClCompile Include="game_scene.cpp" />
+    <ClCompile Include="game_setting_exporter.cpp" />
     <ClCompile Include="game_setting_importer.cpp" />
     <ClCompile Include="image_loader.cpp" />
     <ClCompile Include="game_main_loop.cpp" />
@@ -268,6 +269,7 @@
     <ClInclude Include="game_log.h" />
     <ClInclude Include="game_main_loop.h" />
     <ClInclude Include="game_scene.h" />
+    <ClInclude Include="game_setting_exporter.h" />
     <ClInclude Include="game_setting_importer.h" />
     <ClInclude Include="game_setting_record.h" />
     <ClInclude Include="image_loader.h" />

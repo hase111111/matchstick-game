@@ -31,9 +31,13 @@ public:
     void draw() const override;
 
 private:
+    static constexpr int kIndexFirstValue = 1000000000;
+
     void updateSelectIndex();
 
     void updateDecideButton();
+
+    void applyLanguage();
 
     void drawText() const;
 
@@ -44,7 +48,7 @@ private:
     const std::shared_ptr<const DxLibInput> dxlib_input_;
     const std::shared_ptr<LanguageRecord> language_record_ptr_;
 
-    int select_index_x_{ 1000000000 }, select_index_y_{ 1000000000 };
+    int select_index_x_{ kIndexFirstValue }, select_index_y_{ kIndexFirstValue };
 
     LanguageRecord::Country current_country_;
     LanguageRecord::Country hovered_country_;
@@ -60,6 +64,9 @@ private:
     const std::string button_back_text_;
 
     const std::function<void()> on_back_button_clicked_;
+
+    static_assert(kIndexFirstValue % 2 == 0, "kIndexFirstValue must be even number");
+    static_assert(kIndexFirstValue % 4 == 0, "kIndexFirstValue must be multiple of 4");
 };
 
 }  // namespace match_stick

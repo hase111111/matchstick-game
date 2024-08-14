@@ -12,7 +12,7 @@ namespace match_stick {
 bool SystemMain::initialize() {
     // 設定ファイルを読み込む
     const GameSettingImporter game_setting_importer{};
-    game_setting_record_ptr_ = game_setting_importer.import("game_setting.toml");
+    game_setting_record_ptr_ = std::make_shared<GameSettingRecord>(game_setting_importer.importSetting());
 
     // icon.rcで設定したアイコンファイルをセットする
     SetWindowIconID(333);

@@ -7,6 +7,8 @@
 
 #include "define.h"
 #include "dxlib_assert.h"
+#include "game_setting_exporter.h"
+#include "game_setting_importer.h"
 #include "string_util.h"
 
 namespace {
@@ -88,10 +90,10 @@ void LanguageUI::updateSelectIndex() {
         // 横移動のときは縦の選択肢をリセット
         if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_RIGHT) == 1) {
             select_index_x_++;
-            select_index_y_ = 1000000000;
+            select_index_y_ = kIndexFirstValue;
         } else if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_LEFT) == 1) {
             select_index_x_--;
-            select_index_y_ = 1000000000;
+            select_index_y_ = kIndexFirstValue;
         }
     } else {
         // マウス入力
@@ -106,7 +108,19 @@ void LanguageUI::updateSelectIndex() {
             const int y2 = y1 + kTableColumnHeight;
 
             if (x1 <= mouse_x && mouse_x <= x2 && y1 <= mouse_y && mouse_y <= y2) {
-                select_index_x_ = 1000000000;
+                select_index_x_ = kIndexFirstValue;
+                select_index_y_ = i;
+                break;
+            }
+        }
+
+        // ボタンにホバーしているかチェック
+        for (int i = 0; i < kButtonNum; i++) {
+            const int x = kButtonLeftX;
+            const int y = kButtonTopY + i * (kButtonHeight + kButtonDistance);
+
+            if (x <= mouse_x && mouse_x <= x + kButtonWidth && y <= mouse_y && mouse_y <= y + kButtonHeight) {
+                select_index_x_ = kIndexFirstValue + 1;
                 select_index_y_ = i;
                 break;
             }
@@ -131,14 +145,32 @@ void LanguageUI::updateDecideButton() {
     }
 
     if (hovered_country_ != current_country_) {
+        // ホバーしている国を current_country_ に設定
         language_record_ptr_->setCurrentCountry(hovered_country_);
         current_country_ = hovered_country_;
     } else if (select_index_x_ % 2 == 1 && select_index_y_ % kButtonNum == 0) {
+        // リセットボタンが押されたときは初期値に戻す
         language_record_ptr_->setCurrentCountry(first_country_);
         current_country_ = hovered_country_ = first_country_;
     } else if (select_index_x_ % 2 == 1 && select_index_y_ % kButtonNum == 1) {
+        // 戻るボタンが押されたときは，設定を適用してタイトル画面に戻る
+        applyLanguage();
         on_back_button_clicked_();
     }
+}
+
+void LanguageUI::applyLanguage() {
+    // 設定が変更されていなければ何もしない
+    if (first_country_ == language_record_ptr_->getCurrentCountry()) { return; }
+
+    // 現在の設定を取得し，言語の設定のみを更新
+    GameSettingImporter importer;
+    auto game_setting_record_ptr = importer.importSetting();
+    game_setting_record_ptr.language_country = language_record_ptr_->getCurrentCountry();
+
+    // 設定をファイルに書き込む
+    GameSettingExporter exporter;
+    exporter.exportSetting(game_setting_record_ptr);
 }
 
 void LanguageUI::drawText() const {
