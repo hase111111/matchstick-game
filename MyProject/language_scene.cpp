@@ -16,7 +16,7 @@ LanguageScene::LanguageScene(const std::shared_ptr<SceneChangeListener>& scene_c
                              const std::shared_ptr<const DxLibInput>& input_ptr,
                              const std::shared_ptr<FontLoader>& font_loader_ptr,
                              const std::shared_ptr<ImageLoader>& img_loader_ptr,
-                             const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr) :
+                             const std::shared_ptr<SoundEffectLoader>&) :
     scene_change_listener_ptr_(scene_change_listener_ptr),
     entity_updater_ptr_(std::make_unique<EntityUpdater>()) {
     // ポインタのチェック
