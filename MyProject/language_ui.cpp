@@ -28,9 +28,11 @@ constexpr int kButtonThickness = 3;
 constexpr int kButtonLeftX = ::match_stick::Define::kWindowSizeX - kButtonWidth * 3 / 2;
 constexpr int kButtonTopY = ::match_stick::Define::kWindowSizeY - 2 * kButtonHeight - 50;
 constexpr int kButtonDistance = 10;
+constexpr int kButtonNum = 2;
 
 const unsigned int color_back = GetColor(0x21, 0x21, 0x21);
 const unsigned int color_white = GetColor(0xda, 0xda, 0xda);
+const unsigned int color_hover = GetColor(0x80, 0x80, 0x80);
 
 }  // namespace
 
@@ -44,7 +46,8 @@ LanguageUI::LanguageUI(const std::shared_ptr<const LanguageRecord>& lang,
     current_country_(lang->getCurrentCountry()),
     hovered_country_(current_country_),
     checked_img_handle_(img_loader_ptr->loadAndGetImageHandle("data/img/icon_checked.png")),
-    font_handle_(font_loader_ptr->loadAndGetFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")) {}
+    font_handle_(font_loader_ptr->loadAndGetFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")),
+    small_font_handle_(font_loader_ptr->loadAndGetFontHandle(lang->getCurrentCountry(), "data/font/azuki_font20.dft")) {}
 
 bool LanguageUI::update() {
     updateSelectIndex();
@@ -56,6 +59,8 @@ void LanguageUI::draw() const {
     drawButton();
 
     drawTable();
+
+    drawText();
 }
 
 void LanguageUI::updateSelectIndex() {
@@ -67,26 +72,69 @@ void LanguageUI::updateSelectIndex() {
             select_index_y_--;
         }
 
+        // 横移動のときは縦の選択肢をリセット
         if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_RIGHT) == 1) {
             select_index_x_++;
+            select_index_y_ = 0;
         } else if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_LEFT) == 1) {
             select_index_x_--;
+            select_index_y_ = 0;
         }
     } else {
         // マウス入力
+        const int mouse_x = dxlib_input_->getCursorPosX();
+        const int mouse_y = dxlib_input_->getCursorPosY();
+
+        // テーブル内にホバーしているかチェック
+        for (int i = 0; i < kTableColumnNum; i++) {
+            const int x1 = kTableLeftX;
+            const int x2 = x1 + kTableRow0Width + kTableRow1Width;
+            const int y1 = kTableTopY + i * (kTableColumnHeight - kTableThickness);
+            const int y2 = y1 + kTableColumnHeight;
+
+            if (x1 <= mouse_x && mouse_x <= x2 && y1 <= mouse_y && mouse_y <= y2) {
+                select_index_x_ = 0;
+                select_index_y_ = i;
+                break;
+            }
+        }
     }
+
+    // ホバーしている国を更新
+    if (select_index_x_ % 2 == 0) {
+        hovered_country_ = static_cast<LanguageRecord::Country>(select_index_y_ % kTableColumnNum);
+    } else {
+        hovered_country_ = current_country_;
+    }
+}
+
+void LanguageUI::drawText() const {
+    const std::string attention_str0{ "Attention!"};
+    const std::string attention_str1{"After the change, you need to go back "};
+    const std::string attention_str2{"to the title screen to apply the change."};
+
+    const int text_left_x = Define::kWindowSizeX / 2 + 30;
+
+    // テキストの描画
+    DrawStringToHandle(text_left_x, kTableTopY, attention_str0.c_str(), color_back, small_font_handle_);
+    DrawStringToHandle(text_left_x, kTableTopY + 40, attention_str1.c_str(), color_back, small_font_handle_);
+    DrawStringToHandle(text_left_x, kTableTopY + 80, attention_str2.c_str(), color_back, small_font_handle_);
 }
 
 void LanguageUI::drawButton() const {
     // ボタンの描画
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < kButtonNum; i++) {
         const int x = kButtonLeftX;
         const int y = kButtonTopY + i * (kButtonHeight + kButtonDistance);
+
+        const unsigned int color = select_index_x_ % 2 == 1 && select_index_y_ % kButtonNum == i ?
+            color_hover : color_white;
+
         DrawBox(x, y, x + kButtonWidth, y + kButtonHeight, color_back, TRUE);
 
         DrawBox(x + kButtonThickness, y + kButtonThickness,
                 x + kButtonWidth - kButtonThickness, y + kButtonHeight - kButtonThickness,
-                color_white, TRUE);
+                color, TRUE);
     }
 }
 
@@ -107,7 +155,7 @@ void LanguageUI::drawTable() const {
         const int x3 = x2 - kTableThickness;
         const int x4 = x3 + kTableRow1Width;
         const unsigned int color = select_index_x_ % 2 == 0 && select_index_y_ % kTableColumnNum == i ?
-            GetColor(128, 128, 128) : color_white;
+            color_hover : color_white;
         DrawBox(x3, y1, x4, y2, color_back, TRUE);
         DrawBox(x3 + kTableThickness, y1 + kTableThickness,
                 x4 - kTableThickness, y2 - kTableThickness,
