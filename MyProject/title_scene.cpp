@@ -3,6 +3,7 @@
 
 #include <DxLib.h>
 
+#include "dxlib_assert.h"
 #include "fade_effect.h"
 #include "fps_displayer.h"
 #include "input_scheme_displayer.h"
@@ -24,6 +25,16 @@ TitleScene::TitleScene(const std::shared_ptr<SceneChangeListener>& scene_change_
     input_ptr_(input_ptr),
     sound_effect_loader_ptr_(sound_effect_loader_ptr),
     entity_updater_ptr_(std::make_unique<EntityUpdater>()) {
+    ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
+    ASSERT_NOT_NULL_PTR(input_ptr_);
+    ASSERT_NOT_NULL_PTR(sound_effect_loader_ptr_);
+    ASSERT_NOT_NULL_PTR(entity_updater_ptr_);
+
+    ASSERT_NOT_NULL_PTR(fps_controller_ptr);
+    ASSERT_NOT_NULL_PTR(language_record_ptr);
+    ASSERT_NOT_NULL_PTR(font_loader_ptr);
+    ASSERT_NOT_NULL_PTR(img_loader_ptr);
+
     // タイトルのエンティティを登録
     entity_updater_ptr_->registerEntity(std::make_shared<TitleBackGroundBase>(img_loader_ptr));
     entity_updater_ptr_->registerEntity(std::make_shared<TitleLogo>(input_ptr, language_record_ptr, font_loader_ptr));
@@ -36,6 +47,10 @@ TitleScene::TitleScene(const std::shared_ptr<SceneChangeListener>& scene_change_
     // シーン遷移用のエンティティを登録
     entity_updater_ptr_->registerEntity(std::make_shared<TitleSceneSwitcher>(input_ptr, sound_effect_loader_ptr,
         std::bind(&TitleScene::callbackForSceneChange, this)));
+
+    // フェードイン演出を追加
+    auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeIn, []() {});
+    entity_updater_ptr_->registerEntity(fade_effect_ptr);
 }
 
 bool TitleScene::update() {
@@ -65,7 +80,7 @@ void TitleScene::onReturnFromOtherScene(const SceneChangeParameter&) {
 void TitleScene::callbackForSceneChange() {
     auto scene_change_func = [this]() {
         scene_change_listener_ptr_->requestAddScene(SceneName::kMenu, SceneChangeParameter{});
-        };
+    };
 
     auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeOut, scene_change_func);
 
