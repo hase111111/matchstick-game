@@ -1,6 +1,7 @@
 ﻿
 #pragma once
 
+#include <functional>
 #include <memory>
 #include <string>
 
@@ -17,7 +18,8 @@ public:
     LanguageUI(const std::shared_ptr<LanguageRecord>& language_record_ptr,
                const std::shared_ptr<const DxLibInput>& dxlib_input,
                const std::shared_ptr<FontLoader>& font_loader_ptr,
-               const std::shared_ptr<ImageLoader>& img_loader_ptr);
+               const std::shared_ptr<ImageLoader>& img_loader_ptr,
+               const std::function<void()>& on_back_button_clicked);
     ~LanguageUI() = default;
 
     inline int getLayer() const override {
@@ -30,7 +32,7 @@ public:
 
 private:
     void updateSelectIndex();
-    
+
     void updateDecideButton();
 
     void drawText() const;
@@ -40,20 +42,24 @@ private:
     void drawTable() const;
 
     const std::shared_ptr<const DxLibInput> dxlib_input_;
+    const std::shared_ptr<LanguageRecord> language_record_ptr_;
 
-    int select_index_x_{ 0 }, select_index_y_{ 0 };
+    int select_index_x_{ 1000000000 }, select_index_y_{ 1000000000 };
+
+    LanguageRecord::Country current_country_;
+    LanguageRecord::Country hovered_country_;
+    const LanguageRecord::Country first_country_;
 
     const int font_handle_;
+    const int button_font_handle_;
     const int small_font_handle_;
 
     const int checked_img_handle_;
 
-    const std::shared_ptr<LanguageRecord> language_record_ptr_;
+    const std::string button_reset_text_;
+    const std::string button_back_text_;
 
-    LanguageRecord::Country current_country_;
-    LanguageRecord::Country hovered_country_;
-
-    const LanguageRecord::Country first_country_;
+    const std::function<void()> on_back_button_clicked_;
 };
 
 }  // namespace match_stick

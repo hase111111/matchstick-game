@@ -6,6 +6,7 @@
 #include <DxLib.h>
 
 #include "define.h"
+#include "dxlib_assert.h"
 #include "string_util.h"
 
 namespace {
@@ -38,18 +39,26 @@ const unsigned int color_hover = GetColor(0x80, 0x80, 0x80);
 
 namespace match_stick {
 
-LanguageUI::LanguageUI(const std::shared_ptr<LanguageRecord>& lang,
+LanguageUI::LanguageUI(const std::shared_ptr<LanguageRecord>& language_record_ptr,
                        const std::shared_ptr<const DxLibInput>& dxlib_input,
                        const std::shared_ptr<FontLoader>& font_loader_ptr,
-                       const std::shared_ptr<ImageLoader>& img_loader_ptr) :
+                       const std::shared_ptr<ImageLoader>& img_loader_ptr,
+                       const std::function<void()>& on_back_button_clicked) :
     dxlib_input_(dxlib_input),
-    current_country_(lang->getCurrentCountry()),
+    language_record_ptr_(language_record_ptr),
+    current_country_(language_record_ptr->getCurrentCountry()),
     hovered_country_(current_country_),
-    first_country_(lang->getCurrentCountry()),
-    language_record_ptr_(lang),
+    first_country_(current_country_),
+    font_handle_(font_loader_ptr->loadAndGetFontHandle(current_country_, "data/font/azuki_font32.dft")),
+    button_font_handle_(font_loader_ptr->loadAndGetFontHandle(current_country_, "data/font/azuki_font24.dft")),
+    small_font_handle_(font_loader_ptr->loadAndGetFontHandle(current_country_, "data/font/azuki_font20.dft")),
     checked_img_handle_(img_loader_ptr->loadAndGetImageHandle("data/img/icon_checked.png")),
-    font_handle_(font_loader_ptr->loadAndGetFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")),
-    small_font_handle_(font_loader_ptr->loadAndGetFontHandle(lang->getCurrentCountry(), "data/font/azuki_font20.dft")) {}
+    button_reset_text_(language_record_ptr->get("language_reset")),
+    button_back_text_(language_record_ptr->get("language_back")),
+    on_back_button_clicked_(on_back_button_clicked) {
+    ASSERT_NOT_NULL_PTR(language_record_ptr_);
+    ASSERT_NOT_NULL_PTR(dxlib_input_);
+}
 
 bool LanguageUI::update() {
     updateSelectIndex();
@@ -79,10 +88,10 @@ void LanguageUI::updateSelectIndex() {
         // 横移動のときは縦の選択肢をリセット
         if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_RIGHT) == 1) {
             select_index_x_++;
-            select_index_y_ = 0;
+            select_index_y_ = 1000000000;
         } else if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_LEFT) == 1) {
             select_index_x_--;
-            select_index_y_ = 0;
+            select_index_y_ = 1000000000;
         }
     } else {
         // マウス入力
@@ -97,7 +106,7 @@ void LanguageUI::updateSelectIndex() {
             const int y2 = y1 + kTableColumnHeight;
 
             if (x1 <= mouse_x && mouse_x <= x2 && y1 <= mouse_y && mouse_y <= y2) {
-                select_index_x_ = 0;
+                select_index_x_ = 1000000000;
                 select_index_y_ = i;
                 break;
             }
@@ -115,18 +124,20 @@ void LanguageUI::updateSelectIndex() {
 void LanguageUI::updateDecideButton() {
     if (dxlib_input_->getInputType() == DxLibInput::InputType::kKeyboard) {
         // キーボード入力
-        if (hovered_country_ != current_country_ &&
-            dxlib_input_->getKeyboardPressingCount(KEY_INPUT_Z) == 1) {
-            language_record_ptr_->setCurrentCountry(hovered_country_);
-            current_country_ = hovered_country_;
-        }
+        if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_Z) != 1) { return; }
     } else {
         // マウス入力
-        if (hovered_country_ != current_country_ &&
-            dxlib_input_->getMousePressingCount(MOUSE_INPUT_LEFT) == 1) {
-            language_record_ptr_->setCurrentCountry(hovered_country_);
-            current_country_ = hovered_country_;
-        }
+        if (dxlib_input_->getMousePressingCount(MOUSE_INPUT_LEFT) != 1) { return; }
+    }
+
+    if (hovered_country_ != current_country_) {
+        language_record_ptr_->setCurrentCountry(hovered_country_);
+        current_country_ = hovered_country_;
+    } else if (select_index_x_ % 2 == 1 && select_index_y_ % kButtonNum == 0) {
+        language_record_ptr_->setCurrentCountry(first_country_);
+        current_country_ = hovered_country_ = first_country_;
+    } else if (select_index_x_ % 2 == 1 && select_index_y_ % kButtonNum == 1) {
+        on_back_button_clicked_();
     }
 }
 
@@ -157,6 +168,13 @@ void LanguageUI::drawButton() const {
         DrawBox(x + kButtonThickness, y + kButtonThickness,
                 x + kButtonWidth - kButtonThickness, y + kButtonHeight - kButtonThickness,
                 color, TRUE);
+
+        const std::string str = i == 0 ? button_reset_text_ : button_back_text_;
+        const int text_width =
+            GetDrawStringWidthToHandle(str.c_str(), static_cast<int>(str.length()), button_font_handle_);
+
+        DrawStringToHandle(x + (kButtonWidth - text_width) / 2, y + kButtonHeight / 2 - 12, str.c_str(),
+            color_back, button_font_handle_);
     }
 }
 
