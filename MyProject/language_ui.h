@@ -14,7 +14,7 @@ namespace match_stick {
 
 class LanguageUI final : public IEntity {
 public:
-    LanguageUI(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+    LanguageUI(const std::shared_ptr<LanguageRecord>& language_record_ptr,
                const std::shared_ptr<const DxLibInput>& dxlib_input,
                const std::shared_ptr<FontLoader>& font_loader_ptr,
                const std::shared_ptr<ImageLoader>& img_loader_ptr);
@@ -30,6 +30,8 @@ public:
 
 private:
     void updateSelectIndex();
+    
+    void updateDecideButton();
 
     void drawText() const;
 
@@ -46,8 +48,12 @@ private:
 
     const int checked_img_handle_;
 
+    const std::shared_ptr<LanguageRecord> language_record_ptr_;
+
     LanguageRecord::Country current_country_;
     LanguageRecord::Country hovered_country_;
+
+    const LanguageRecord::Country first_country_;
 };
 
 }  // namespace match_stick

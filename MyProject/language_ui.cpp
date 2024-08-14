@@ -38,19 +38,23 @@ const unsigned int color_hover = GetColor(0x80, 0x80, 0x80);
 
 namespace match_stick {
 
-LanguageUI::LanguageUI(const std::shared_ptr<const LanguageRecord>& lang,
+LanguageUI::LanguageUI(const std::shared_ptr<LanguageRecord>& lang,
                        const std::shared_ptr<const DxLibInput>& dxlib_input,
                        const std::shared_ptr<FontLoader>& font_loader_ptr,
                        const std::shared_ptr<ImageLoader>& img_loader_ptr) :
     dxlib_input_(dxlib_input),
     current_country_(lang->getCurrentCountry()),
     hovered_country_(current_country_),
+    first_country_(lang->getCurrentCountry()),
+    language_record_ptr_(lang),
     checked_img_handle_(img_loader_ptr->loadAndGetImageHandle("data/img/icon_checked.png")),
     font_handle_(font_loader_ptr->loadAndGetFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")),
     small_font_handle_(font_loader_ptr->loadAndGetFontHandle(lang->getCurrentCountry(), "data/font/azuki_font20.dft")) {}
 
 bool LanguageUI::update() {
     updateSelectIndex();
+
+    updateDecideButton();
 
     return true;
 }
@@ -108,10 +112,28 @@ void LanguageUI::updateSelectIndex() {
     }
 }
 
+void LanguageUI::updateDecideButton() {
+    if (dxlib_input_->getInputType() == DxLibInput::InputType::kKeyboard) {
+        // キーボード入力
+        if (hovered_country_ != current_country_ &&
+            dxlib_input_->getKeyboardPressingCount(KEY_INPUT_Z) == 1) {
+            language_record_ptr_->setCurrentCountry(hovered_country_);
+            current_country_ = hovered_country_;
+        }
+    } else {
+        // マウス入力
+        if (hovered_country_ != current_country_ &&
+            dxlib_input_->getMousePressingCount(MOUSE_INPUT_LEFT) == 1) {
+            language_record_ptr_->setCurrentCountry(hovered_country_);
+            current_country_ = hovered_country_;
+        }
+    }
+}
+
 void LanguageUI::drawText() const {
-    const std::string attention_str0{ "Attention!"};
-    const std::string attention_str1{"After the change, you need to go back "};
-    const std::string attention_str2{"to the title screen to apply the change."};
+    const std::string attention_str0{ "Attention!" };
+    const std::string attention_str1{ "After the change, you need to go back " };
+    const std::string attention_str2{ "to the title screen to apply the change." };
 
     const int text_left_x = Define::kWindowSizeX / 2 + 30;
 
