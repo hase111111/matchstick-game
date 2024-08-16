@@ -45,6 +45,7 @@ LanguageUI::LanguageUI(const std::shared_ptr<LanguageRecord>& language_record_pt
                        const std::shared_ptr<const DxLibInput>& dxlib_input,
                        const std::shared_ptr<FontLoader>& font_loader_ptr,
                        const std::shared_ptr<ImageLoader>& img_loader_ptr,
+                       const std::shared_ptr<SoundEffectLoader>& sound_effect_loader,
                        const std::function<void()>& on_back_button_clicked) :
     dxlib_input_(dxlib_input),
     language_record_ptr_(language_record_ptr),
@@ -54,6 +55,8 @@ LanguageUI::LanguageUI(const std::shared_ptr<LanguageRecord>& language_record_pt
     font_handle_(font_loader_ptr->loadAndGetFontHandle(current_country_, "data/font/azuki_font32.dft")),
     button_font_handle_(font_loader_ptr->loadAndGetFontHandle(current_country_, "data/font/azuki_font24.dft")),
     small_font_handle_(font_loader_ptr->loadAndGetFontHandle(current_country_, "data/font/azuki_font20.dft")),
+    select_sound_handle_(sound_effect_loader->loadAndGetSoundHandle("data/sound/selecting3.mp3")),
+    decide_sound_handle_(sound_effect_loader->loadAndGetSoundHandle("data/sound/selecting2.mp3")),
     checked_img_handle_(img_loader_ptr->loadAndGetImageHandle("data/img/icon_checked.png")),
     button_reset_text_(language_record_ptr->get("language_reset")),
     button_back_text_(language_record_ptr->get("language_back")),
@@ -82,16 +85,20 @@ void LanguageUI::updateSelectIndex() {
     if (dxlib_input_->getInputType() == DxLibInput::InputType::kKeyboard) {
         // キーボード入力
         if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_DOWN) == 1) {
+            PlaySoundMem(select_sound_handle_, DX_PLAYTYPE_BACK);
             select_index_y_++;
         } else if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_UP) == 1) {
+            PlaySoundMem(select_sound_handle_, DX_PLAYTYPE_BACK);
             select_index_y_--;
         }
 
         // 横移動のときは縦の選択肢をリセット
         if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_RIGHT) == 1) {
+            PlaySoundMem(select_sound_handle_, DX_PLAYTYPE_BACK);
             select_index_x_++;
             select_index_y_ = kIndexFirstValue;
         } else if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_LEFT) == 1) {
+            PlaySoundMem(select_sound_handle_, DX_PLAYTYPE_BACK);
             select_index_x_--;
             select_index_y_ = kIndexFirstValue;
         }
@@ -108,6 +115,10 @@ void LanguageUI::updateSelectIndex() {
             const int y2 = y1 + kTableColumnHeight;
 
             if (x1 <= mouse_x && mouse_x <= x2 && y1 <= mouse_y && mouse_y <= y2) {
+                // 変更があったときだけ音を鳴らす
+                if (select_index_x_ % 2 == 0 && select_index_y_ % kTableColumnNum != i) {
+                    PlaySoundMem(select_sound_handle_, DX_PLAYTYPE_BACK);
+                }
                 select_index_x_ = kIndexFirstValue;
                 select_index_y_ = i;
                 break;
@@ -120,6 +131,10 @@ void LanguageUI::updateSelectIndex() {
             const int y = kButtonTopY + i * (kButtonHeight + kButtonDistance);
 
             if (x <= mouse_x && mouse_x <= x + kButtonWidth && y <= mouse_y && mouse_y <= y + kButtonHeight) {
+                // 変更があったときだけ音を鳴らす
+                if (select_index_x_ % 2 == 1 && select_index_y_ % kButtonNum != i) {
+                    PlaySoundMem(select_sound_handle_, DX_PLAYTYPE_BACK);
+                }
                 select_index_x_ = kIndexFirstValue + 1;
                 select_index_y_ = i;
                 break;
@@ -148,14 +163,23 @@ void LanguageUI::updateDecideButton() {
         // ホバーしている国を current_country_ に設定
         language_record_ptr_->setCurrentCountry(hovered_country_);
         current_country_ = hovered_country_;
+
+        // 選択音を鳴らす
+        PlaySoundMem(decide_sound_handle_, DX_PLAYTYPE_BACK);
     } else if (select_index_x_ % 2 == 1 && select_index_y_ % kButtonNum == 0) {
         // リセットボタンが押されたときは初期値に戻す
         language_record_ptr_->setCurrentCountry(first_country_);
         current_country_ = hovered_country_ = first_country_;
+
+        // 選択音を鳴らす
+        PlaySoundMem(decide_sound_handle_, DX_PLAYTYPE_BACK);
     } else if (select_index_x_ % 2 == 1 && select_index_y_ % kButtonNum == 1) {
         // 戻るボタンが押されたときは，設定を適用してタイトル画面に戻る
         applyLanguage();
         on_back_button_clicked_();
+
+        // 選択音を鳴らす
+        PlaySoundMem(decide_sound_handle_, DX_PLAYTYPE_BACK);
     }
 }
 

@@ -10,6 +10,7 @@
 #include "i_entity.h"
 #include "language_record.h"
 #include "image_loader.h"
+#include "sound_effect_loader.h"
 
 namespace match_stick {
 
@@ -19,6 +20,7 @@ public:
                const std::shared_ptr<const DxLibInput>& dxlib_input,
                const std::shared_ptr<FontLoader>& font_loader_ptr,
                const std::shared_ptr<ImageLoader>& img_loader_ptr,
+               const std::shared_ptr<SoundEffectLoader>& sound_effect_loader,
                const std::function<void()>& on_back_button_clicked);
     ~LanguageUI() = default;
 
@@ -57,6 +59,9 @@ private:
     const int font_handle_;
     const int button_font_handle_;
     const int small_font_handle_;
+
+    const int select_sound_handle_;
+    const int decide_sound_handle_;
 
     const int checked_img_handle_;
 
