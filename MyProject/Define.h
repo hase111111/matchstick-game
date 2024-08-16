@@ -10,7 +10,7 @@ public:
 
     static constexpr char kWindowTitle[] = "Match Stick Game";
 
-    static constexpr double kWindowExRate = 0.625;
+    static constexpr double kWindowExRate = 0.8;//0.625;
 private:
     Define() = delete;
 };

@@ -19,6 +19,8 @@ void createConsole();
 
 void debugPrint(const std::string& str, DebugPrintType type);
 
+constexpr bool color_can_change = false;
+
 }  // namespace debug_print_internal
 
 }  // namespace match_stick
