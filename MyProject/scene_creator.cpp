@@ -42,17 +42,13 @@ SceneCreator::SceneCreator(const std::shared_ptr<SceneChangeListener>& scene_cha
 }
 
 std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) const {
-    DEBUG_PRINT_LINE();
-
     switch (scene_name) {
     case SceneName::kDebug: {
-        DEBUG_PRINT("SceneCreator::createScene() SceneName::kDebug");
-        DEBUG_PRINT_LINE();
+        DEBUG_PRINT_IMPORTANT("SceneCreator::createScene() SceneName::kDebug");
         return std::make_unique<DebugScene>(scene_change_listener_ptr_, input_ptr_);
     }
     case SceneName::kGame: {
-        DEBUG_PRINT("SceneCreator::createScene() SceneName::kGame");
-        DEBUG_PRINT_LINE();
+        DEBUG_PRINT_IMPORTANT("SceneCreator::createScene() SceneName::kGame");
         return std::make_unique<GameScene>(
             scene_change_listener_ptr_,
             language_record_ptr_,
@@ -62,8 +58,7 @@ std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) co
             sound_effect_loader_ptr_);
     }
     case SceneName::kLanguage: {
-        DEBUG_PRINT("SceneCreator::createScene() SceneName::kLanguage");
-        DEBUG_PRINT_LINE();
+        DEBUG_PRINT_IMPORTANT("SceneCreator::createScene() SceneName::kLanguage");
         return std::make_unique<LanguageScene>(
             scene_change_listener_ptr_,
             fps_controller_ptr_,
@@ -74,8 +69,7 @@ std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) co
             sound_effect_loader_ptr_);
     }
     case SceneName::kMenu: {
-        DEBUG_PRINT("SceneCreator::createScene() SceneName::kMenu");
-        DEBUG_PRINT_LINE();
+        DEBUG_PRINT_IMPORTANT("SceneCreator::createScene() SceneName::kMenu");
         return std::make_unique<MenuScene>(
             scene_change_listener_ptr_,
             fps_controller_ptr_,
@@ -86,8 +80,7 @@ std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) co
             sound_effect_loader_ptr_);
     }
     case SceneName::kRule: {
-        DEBUG_PRINT("SceneCreator::createScene() SceneName::kRule");
-        DEBUG_PRINT_LINE();
+        DEBUG_PRINT_IMPORTANT("SceneCreator::createScene() SceneName::kRule");
         return std::make_unique<RuleScene>(
             scene_change_listener_ptr_,
             fps_controller_ptr_,
@@ -98,8 +91,7 @@ std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) co
             sound_effect_loader_ptr_);
     }
     case SceneName::kTitle: {
-        DEBUG_PRINT("SceneCreator::createScene() SceneName::kTitle");
-        DEBUG_PRINT_LINE();
+        DEBUG_PRINT_IMPORTANT("SceneCreator::createScene() SceneName::kTitle");
         return std::make_unique<TitleScene>(
             scene_change_listener_ptr_,
             fps_controller_ptr_,
