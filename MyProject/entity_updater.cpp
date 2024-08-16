@@ -14,8 +14,7 @@ void EntityUpdater::registerEntity(const std::shared_ptr<IEntity>& entity_ptr) {
 
     entities_.push_back(entity_ptr);
 
-    DEBUG_PRINT("register entity. now stack size is " + std::to_string(entities_.size()));
-    DEBUG_PRINT("new entity layer: " + std::to_string(entity_ptr->getLayer()));
+    DEBUG_PRINT_INFO("register entity. now stack size is " + std::to_string(entities_.size()));
 }
 
 void EntityUpdater::update() {
@@ -28,7 +27,7 @@ void EntityUpdater::update() {
             entities_.erase(entities_.begin() + i);
             --i;
 
-            DEBUG_PRINT("erase entity. now stack size is " + std::to_string(entities_.size()));
+            DEBUG_PRINT_INFO("erase entity. now stack size is " + std::to_string(entities_.size()));
         }
     }
 }
@@ -40,7 +39,7 @@ void EntityUpdater::draw() const {
 
     auto sort_func = [](const std::shared_ptr<const IEntity>& a, const std::shared_ptr<const IEntity>& b) {
         return a->getLayer() < b->getLayer();
-    };
+        };
 
     std::sort(sorted_entities_.begin(), sorted_entities_.end(), sort_func);
 

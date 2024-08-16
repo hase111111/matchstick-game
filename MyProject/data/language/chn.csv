@@ -21,6 +21,7 @@ menu_end,游戏结束
 language_title,语言设置
 language_reset,重置
 language_back,返回上一屏幕
+language_apply_and_back,申请并返回
 rule_back_scene, 返回上一屏幕
 rule_text_0_0,如何使用此屏幕．
 rule_text_0_1,选择左侧的菜单项即可查看规则．

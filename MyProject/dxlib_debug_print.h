@@ -32,20 +32,24 @@ constexpr bool color_can_change = false;
 #define PREPAER_DEBUG_PRINT() ::match_stick::debug_print_internal::createConsole()
 
 #define DEBUG_PRINT(str) \
-::match_stick::debug_print_internal::debugPrint(__FUNCTION__, str, ::match_stick::debug_print_internal::DebugPrintType::kDebug) 
+::match_stick::debug_print_internal::debugPrint( \
+    __FUNCTION__, str, ::match_stick::debug_print_internal::DebugPrintType::kDebug)
 
 #define DEBUG_PRINT_WARNING(str) \
-::match_stick::debug_print_internal::debugPrint(__FUNCTION__, str, ::match_stick::debug_print_internal::DebugPrintType::kWarning)
+::match_stick::debug_print_internal::debugPrint( \
+    __FUNCTION__, str, ::match_stick::debug_print_internal::DebugPrintType::kWarning)
 
 #define DEBUG_PRINT_ERROR(str) \
-::match_stick::debug_print_internal::debugPrint(__FUNCTION__, str, ::match_stick::debug_print_internal::DebugPrintType::kError)
+::match_stick::debug_print_internal::debugPrint( \
+    __FUNCTION__, str, ::match_stick::debug_print_internal::DebugPrintType::kError)
 
 #define DEBUG_PRINT_IMPORTANT(str) \
-::match_stick::debug_print_internal::debugPrint(__FUNCTION__, str, ::match_stick::debug_print_internal::DebugPrintType::kImportant)
+::match_stick::debug_print_internal::debugPrint( \
+    __FUNCTION__, str, ::match_stick::debug_print_internal::DebugPrintType::kImportant)
 
 #define DEBUG_PRINT_INFO(str) \
-::match_stick::debug_print_internal::debugPrint(__FUNCTION__ ,str, ::match_stick::debug_print_internal::DebugPrintType::kInfo)
-
+::match_stick::debug_print_internal::debugPrint( \
+    __FUNCTION__, str, ::match_stick::debug_print_internal::DebugPrintType::kInfo)
 
 #else
 
