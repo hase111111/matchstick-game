@@ -16,7 +16,7 @@ public:
     TitleLogo(const std::shared_ptr<const DxLibInput>& input_ptr,
               const std::shared_ptr<const LanguageRecord>& language_record_ptr,
               const std::shared_ptr<FontLoader>& font_loader);
-    ~TitleLogo();
+    ~TitleLogo() = default;
 
     inline int getLayer() const override {
         return constants::kUIFrontLayer;

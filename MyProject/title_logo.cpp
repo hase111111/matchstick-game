@@ -18,13 +18,7 @@ TitleLogo::TitleLogo(const std::shared_ptr<const DxLibInput>& input_ptr,
     game_title_(lang->get("game_title")),
     announce_keyboard_(lang->get("press_z_key_to_start")),
     announce_mouse_(lang->get("click_left_to_start")),
-    copy_right_(lang->get("copy_right")) {
-    DEBUG_PRINT("TitleLogo Constructor called");
-}
-
-TitleLogo::~TitleLogo() {
-    DEBUG_PRINT("TitleLogo Destructor called");
-}
+    copy_right_(lang->get("copy_right")) {}
 
 bool TitleLogo::update() {
     ++counter_;
