@@ -37,9 +37,6 @@
     <Filter Include="ソース ファイル\scenes\_old">
       <UniqueIdentifier>{2ae8811f-ecde-4568-bed8-2f4ba0fea400}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\scenes\_old\ReplayScene">
-      <UniqueIdentifier>{6d689bb1-38dd-46dd-8137-06ff5a0bdf37}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\scenes\_old\GameScene">
       <UniqueIdentifier>{9059677a-6910-4eed-b7f4-591d69d5cba6}</UniqueIdentifier>
     </Filter>
@@ -48,12 +45,6 @@
     </Filter>
     <Filter Include="ソース ファイル\scenes\_old\GameScene\progress">
       <UniqueIdentifier>{1e5ef222-d4b9-447a-9053-26cc20577e77}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\_old\ResultScene">
-      <UniqueIdentifier>{07b68408-6706-491e-99cf-2b8c5999451b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\_old\ResultScene\Draw">
-      <UniqueIdentifier>{6c3e3030-7301-4673-a563-e02c6edd3b16}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\entity">
       <UniqueIdentifier>{2fa5bfcf-e71c-4168-af5b-e780e96d83a8}</UniqueIdentifier>
@@ -123,9 +114,6 @@
     <ClCompile Include="GameAnime.cpp">
       <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
     </ClCompile>
-    <ClCompile Include="ResultScene.cpp">
-      <Filter>ソース ファイル\scenes\_old\ResultScene</Filter>
-    </ClCompile>
     <ClCompile Include="MatchGameCPU.cpp">
       <Filter>ソース ファイル\scenes\_old\match game</Filter>
     </ClCompile>
@@ -137,21 +125,6 @@
     </ClCompile>
     <ClCompile Include="MatchGameList2.cpp">
       <Filter>ソース ファイル\scenes\_old\match game</Filter>
-    </ClCompile>
-    <ClCompile Include="ResultDrawBack.cpp">
-      <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
-    </ClCompile>
-    <ClCompile Include="ResultDrawHand.cpp">
-      <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
-    </ClCompile>
-    <ClCompile Include="ResultString.cpp">
-      <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
-    </ClCompile>
-    <ClCompile Include="ResultKey.cpp">
-      <Filter>ソース ファイル\scenes\_old\ResultScene</Filter>
-    </ClCompile>
-    <ClCompile Include="ReplayScene.cpp">
-      <Filter>ソース ファイル\scenes\_old\ReplayScene</Filter>
     </ClCompile>
     <ClCompile Include="dxlib_mouse.cpp">
       <Filter>ソース ファイル\common\input</Filter>
@@ -224,9 +197,6 @@
     </ClCompile>
     <ClCompile Include="title_logo.cpp">
       <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneChangeEffect.cpp">
-      <Filter>ソース ファイル\scenes\_old</Filter>
     </ClCompile>
     <ClCompile Include="fade_effect.cpp">
       <Filter>ソース ファイル\entity</Filter>
@@ -323,26 +293,8 @@
     <ClInclude Include="GameAnime.h">
       <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
     </ClInclude>
-    <ClInclude Include="ResultScene.h">
-      <Filter>ソース ファイル\scenes\_old\ResultScene</Filter>
-    </ClInclude>
     <ClInclude Include="GameSelectingHand.h">
       <Filter>ソース ファイル\scenes\_old\GameScene\progress</Filter>
-    </ClInclude>
-    <ClInclude Include="ResultDrawBack.h">
-      <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
-    </ClInclude>
-    <ClInclude Include="ResultDrawHand.h">
-      <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
-    </ClInclude>
-    <ClInclude Include="ResultString.h">
-      <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
-    </ClInclude>
-    <ClInclude Include="ResultKey.h">
-      <Filter>ソース ファイル\scenes\_old\ResultScene</Filter>
-    </ClInclude>
-    <ClInclude Include="ReplayScene.h">
-      <Filter>ソース ファイル\scenes\_old\ReplayScene</Filter>
     </ClInclude>
     <ClInclude Include="error_message_box.h">
       <Filter>ソース ファイル\systems</Filter>
@@ -433,9 +385,6 @@
     </ClInclude>
     <ClInclude Include="title_hand_animation.h">
       <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneChangeEffect.h">
-      <Filter>ソース ファイル\scenes\_old</Filter>
     </ClInclude>
     <ClInclude Include="fade_effect.h">
       <Filter>ソース ファイル\entity</Filter>
