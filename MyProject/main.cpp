@@ -10,11 +10,10 @@
 
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
-
-    PREPAER_DEBUG_PRINT();
-
     using match_stick::ErrorMessageBox;
     using match_stick::SystemMain;
+
+    PREPAER_DEBUG_PRINT();  // デバッグ用のコンソールを作成
 
     SystemMain system_main;
 
