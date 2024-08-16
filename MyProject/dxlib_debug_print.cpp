@@ -6,6 +6,48 @@
 
 #include <DxLib.h>
 
+namespace {
+
+std::string changeFunctionMacroToString(const std::string& func_name) {
+    // match_stick::をすべて削除
+    std::string str = "Class Name [" + func_name;
+    const std::string match_stick = "match_stick::";
+
+    while (true) {
+        const size_t pos = str.find(match_stick);
+        if (pos == std::string::npos) {
+            break;
+        }
+        str.erase(pos, match_stick.size());
+    }
+
+    // struct ，class を削除
+    const std::string struct_str = "struct ";
+    const std::string class_str = "class ";
+    while (true) {
+        const size_t pos = str.find(struct_str);
+        if (pos == std::string::npos) {
+            break;
+        }
+        str.erase(pos, struct_str.size());
+    }
+
+    // :: を削除し，カンマで置き換える．
+    const std::string replace_str = "], Func Name [";
+    while (true) {
+        const size_t pos = str.find("::");
+        if (pos == std::string::npos) {
+            break;
+        }
+        str.replace(pos, 2, replace_str);
+    }
+
+    str += "]";
+
+    return str;
+}
+
+}  // namespace
 
 namespace match_stick::debug_print_internal {
 
@@ -17,7 +59,7 @@ void createConsole() {
 }
 
 void debugPrint(const std::string& func_name, const std::string& str, const DebugPrintType type) {
-    const std::string text = "[" + func_name + "] \n\t" + str;
+    const std::string text = changeFunctionMacroToString(func_name) + "\n\t" + str;
 
     // 番号を表示，3桁右詰め
     std::cout << std::right << std::setw(3) << std::setfill('0') << print_count++ << " : ";
