@@ -11,13 +11,15 @@ namespace match_stick {
 //! @brief 画像を読み込むクラス．
 class ImageLoader final {
 public:
+    void loadImageHandle(const std::string& file_path);
+
+    [[nodiscard]]
     int loadAndGetImageHandle(const std::string& file_path);
 
-    inline int getImageHandle(const std::string& file_path) const {
-        ASSERT(isImageLoaded(file_path), "The image is not loaded. File is " + file_path);
-        return image_handle_.at(file_path);
-    }
+    [[nodiscard]]
+    int getImageHandle(const std::string& file_path) const;
 
+    [[nodiscard]]
     inline bool isImageLoaded(const std::string& file_path) const {
         return image_handle_.count(file_path) != 0;
     }

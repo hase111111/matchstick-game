@@ -15,7 +15,7 @@ class TitleLogo final : public IEntity {
 public:
     TitleLogo(const std::shared_ptr<const DxLibInput>& input_ptr,
               const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-              const std::shared_ptr<FontLoader>& font_loader);
+              const std::shared_ptr<const FontLoader>& font_loader);
     ~TitleLogo() = default;
 
     inline int getLayer() const override {

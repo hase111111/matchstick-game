@@ -13,7 +13,7 @@ namespace match_stick {
 class TitleSceneSwitcher final : public IEntity {
 public:
     TitleSceneSwitcher(const std::shared_ptr<const DxLibInput>& input_ptr,
-                       const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr,
+                       const std::shared_ptr<const SoundEffectLoader>& sound_effect_loader_ptr,
                        const std::function<void()>& scene_change_func);
 
     inline int getLayer() const override {

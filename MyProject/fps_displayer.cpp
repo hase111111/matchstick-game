@@ -9,9 +9,9 @@ namespace match_stick {
 
 FpsDisplayer::FpsDisplayer(const std::shared_ptr<const FpsController>& fps_controller_ptr,
                            const std::shared_ptr<const LanguageRecord>& lang,
-                           const std::shared_ptr<FontLoader>& font_loader_ptr) :
+                           const std::shared_ptr<const FontLoader>& font_loader_ptr) :
     fps_controller_ptr_(fps_controller_ptr),
-    font_handle_(font_loader_ptr->loadAndGetFontHandle(lang->getCurrentCountry(), "data/font/azuki_font20.dft")) {}
+    font_handle_(font_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font20.dft")) {}
 
 void FpsDisplayer::draw() const {
     const double fps = fps_controller_ptr_->getCurrentFps();

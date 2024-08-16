@@ -22,7 +22,7 @@ int FontLoader::loadAndGetFontHandle(const LanguageRecord::Country country,
     return getFontHandle(country, file_path);
 }
 
-int FontLoader::getFontHandle(const Country country, const std::string& file_path) {
+int FontLoader::getFontHandle(const Country country, const std::string& file_path) const {
     ASSERT(alreadyLoadedFont(country, file_path), "The font has not been loaded yet.");
 
     const int result_handle = isCountryForOtherLanguage(country) ?

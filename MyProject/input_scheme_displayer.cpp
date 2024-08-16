@@ -6,10 +6,10 @@
 namespace match_stick {
 
 InputSchemeDisplayer::InputSchemeDisplayer(const std::shared_ptr<const DxLibInput>& input_ptr,
-                                           const std::shared_ptr<ImageLoader>& font_loader_ptr) :
+                                           const std::shared_ptr<const ImageLoader>& font_loader_ptr) :
     input_ptr_(input_ptr),
-    keyboard_image_handle_(font_loader_ptr->loadAndGetImageHandle("data/img/icon_keyboard.png")),
-    mouse_image_handle_(font_loader_ptr->loadAndGetImageHandle("data/img/icon_mouse.png")) {}
+    keyboard_image_handle_(font_loader_ptr->getImageHandle("data/img/icon_keyboard.png")),
+    mouse_image_handle_(font_loader_ptr->getImageHandle("data/img/icon_mouse.png")) {}
 
 void InputSchemeDisplayer::draw() const {
     const int left_pos = 5;

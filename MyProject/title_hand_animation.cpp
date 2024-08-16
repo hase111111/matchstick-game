@@ -1,13 +1,15 @@
 ﻿
 #include "title_hand_animation.h"
 
+#include <format>
+
 #include <DxLib.h>
 
 #include "define.h"
 
 namespace match_stick {
 
-TitleHandAnimation::TitleHandAnimation(const std::shared_ptr<ImageLoader>& image_loader) :
+TitleHandAnimation::TitleHandAnimation(const std::shared_ptr<const ImageLoader>& image_loader) :
     image_handle_(loadImages(image_loader)) {
     // 腕の画像のサイズを取得する
     GetGraphSize(image_handle_[0], &hand_size_x_, &hand_size_y_);
@@ -57,12 +59,12 @@ void TitleHandAnimation::draw() const {
 }
 
 std::array<int, TitleHandAnimation::kImageNum> TitleHandAnimation::loadImages(
-    const std::shared_ptr<ImageLoader>& image_loader) const {
+    const std::shared_ptr<const ImageLoader>& image_loader) const {
 
     std::array<int, kImageNum> image_handle = {};
 
     for (unsigned int i = 0; i < kImageNum; ++i) {
-        image_handle[i] = image_loader->loadAndGetImageHandle("data/img/hand/" + std::to_string(i) + "_hand.png");
+        image_handle[i] = image_loader->getImageHandle(std::format("data/img/hand/{}_hand.png", i));
     }
 
     return image_handle;

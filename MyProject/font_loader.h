@@ -14,7 +14,7 @@ class FontLoader final {
 public:
     int loadAndGetFontHandle(Country country, const std::string& file_path, int edge = 0);
 
-    int getFontHandle(Country country, const std::string& file_path);
+    int getFontHandle(Country country, const std::string& file_path) const;
 
     void loadFontHandle(Country country, const std::string& file_path, int edge = 0);
 

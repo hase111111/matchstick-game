@@ -9,6 +9,7 @@
 #include "menu_scene.h"
 #include "rule_scene.h"
 #include "title_scene.h"
+#include "title_scene_resource_loader.h"
 
 namespace match_stick {
 
@@ -92,6 +93,12 @@ std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) co
     }
     case SceneName::kTitle: {
         DEBUG_PRINT_IMPORTANT("SceneCreator::createScene() SceneName::kTitle");
+
+        // タイトルシーンのリソースをロード
+        TitleSceneResourceLoader title_scene_resource_loader(
+            font_loader_ptr_, image_loader_ptr_, sound_effect_loader_ptr_);
+        title_scene_resource_loader.loadImage();
+
         return std::make_unique<TitleScene>(
             scene_change_listener_ptr_,
             fps_controller_ptr_,

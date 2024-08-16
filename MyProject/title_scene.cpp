@@ -18,9 +18,9 @@ TitleScene::TitleScene(const std::shared_ptr<SceneChangeListener>& scene_change_
                        const std::shared_ptr<const FpsController>& fps_controller_ptr,
                        const std::shared_ptr<const LanguageRecord>& language_record_ptr,
                        const std::shared_ptr<const DxLibInput>& input_ptr,
-                       const std::shared_ptr<FontLoader>& font_loader_ptr,
-                       const std::shared_ptr<ImageLoader>& img_loader_ptr,
-                       const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr) :
+                       const std::shared_ptr<const FontLoader>& font_loader_ptr,
+                       const std::shared_ptr<const ImageLoader>& img_loader_ptr,
+                       const std::shared_ptr<const SoundEffectLoader>& sound_effect_loader_ptr) :
     scene_change_listener_ptr_(scene_change_listener_ptr),
     input_ptr_(input_ptr),
     sound_effect_loader_ptr_(sound_effect_loader_ptr),

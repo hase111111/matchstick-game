@@ -10,7 +10,7 @@ namespace match_stick {
 
 class TitleBackGroundBase final : public IEntity {
 public:
-    TitleBackGroundBase(const std::shared_ptr<ImageLoader>& image_loader);
+    TitleBackGroundBase(const std::shared_ptr<const ImageLoader>& image_loader);
     ~TitleBackGroundBase() = default;
 
     inline int getLayer() const override {

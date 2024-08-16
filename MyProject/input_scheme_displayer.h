@@ -12,7 +12,7 @@ namespace match_stick {
 class InputSchemeDisplayer : public IEntity {
 public:
     InputSchemeDisplayer(const std::shared_ptr<const DxLibInput>& input_ptr,
-                         const std::shared_ptr<ImageLoader>& font_loader_ptr);
+                         const std::shared_ptr<const ImageLoader>& font_loader_ptr);
 
     inline int getLayer() const override {
         return constants::kUIFrontLayer;
