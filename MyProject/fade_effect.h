@@ -16,7 +16,7 @@ public:
     };
 
     FadeEffect(int fade_time, FadeType fade_type, std::function<void()> callback);
-    ~FadeEffect();
+    ~FadeEffect() = default;
 
     inline int getLayer() const override {
         return constants::kFrontLayer;
