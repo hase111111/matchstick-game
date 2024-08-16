@@ -7,6 +7,8 @@ namespace match_stick {
 
 namespace debug_print_internal {
 
+static int print_count = 0;
+
 enum class DebugPrintType {
     kWarning,       //!< 警告
     kError,         //!< エラー
@@ -17,7 +19,7 @@ enum class DebugPrintType {
 
 void createConsole();
 
-void debugPrint(const std::string& str, DebugPrintType type);
+void debugPrint(const std::string& func_name, const std::string& str, DebugPrintType type);
 
 constexpr bool color_can_change = false;
 
@@ -30,19 +32,19 @@ constexpr bool color_can_change = false;
 #define PREPAER_DEBUG_PRINT() ::match_stick::debug_print_internal::createConsole()
 
 #define DEBUG_PRINT(str) \
-::match_stick::debug_print_internal::debugPrint(str, ::match_stick::debug_print_internal::DebugPrintType::kDebug) 
+::match_stick::debug_print_internal::debugPrint(__FUNCTION__, str, ::match_stick::debug_print_internal::DebugPrintType::kDebug) 
 
 #define DEBUG_PRINT_WARNING(str) \
-::match_stick::debug_print_internal::debugPrint(str, ::match_stick::debug_print_internal::DebugPrintType::kWarning)
+::match_stick::debug_print_internal::debugPrint(__FUNCTION__, str, ::match_stick::debug_print_internal::DebugPrintType::kWarning)
 
 #define DEBUG_PRINT_ERROR(str) \
-::match_stick::debug_print_internal::debugPrint(str, ::match_stick::debug_print_internal::DebugPrintType::kError)
+::match_stick::debug_print_internal::debugPrint(__FUNCTION__, str, ::match_stick::debug_print_internal::DebugPrintType::kError)
 
 #define DEBUG_PRINT_IMPORTANT(str) \
-::match_stick::debug_print_internal::debugPrint(str, ::match_stick::debug_print_internal::DebugPrintType::kImportant)
+::match_stick::debug_print_internal::debugPrint(__FUNCTION__, str, ::match_stick::debug_print_internal::DebugPrintType::kImportant)
 
 #define DEBUG_PRINT_INFO(str) \
-::match_stick::debug_print_internal::debugPrint(str, ::match_stick::debug_print_internal::DebugPrintType::kInfo)
+::match_stick::debug_print_internal::debugPrint(__FUNCTION__ ,str, ::match_stick::debug_print_internal::DebugPrintType::kInfo)
 
 
 #else

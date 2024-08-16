@@ -2,6 +2,7 @@
 #include "dxlib_debug_print.h"
 
 #include <iostream>
+#include <iomanip>
 
 #include <DxLib.h>
 
@@ -15,8 +16,11 @@ void createConsole() {
     freopen_s(&fp, "CONOUT$", "w", stderr);  // 標準エラー出力(stderr)を新しいコンソールに向ける
 }
 
-void debugPrint(const std::string& str, const DebugPrintType type) {
-    // type に応じて色を変える
+void debugPrint(const std::string& func_name, const std::string& str, const DebugPrintType type) {
+    const std::string text = "[" + func_name + "] \n\t" + str;
+
+    // 番号を表示，3桁右詰め
+    std::cout << std::right << std::setw(3) << std::setfill('0') << print_count++ << " : ";
 
     switch (type) {
     case DebugPrintType::kWarning: {
@@ -26,8 +30,8 @@ void debugPrint(const std::string& str, const DebugPrintType type) {
         } else {
             std::cout << "Warning: ";
         }
-        std::cout << str << std::endl;
-        return;
+        std::cout << text << std::endl;
+        break;
     }
     case DebugPrintType::kError: {
         // 赤色
@@ -36,8 +40,8 @@ void debugPrint(const std::string& str, const DebugPrintType type) {
         } else {
             std::cout << "Error: ";
         }
-        std::cout << str << std::endl;
-        return;
+        std::cout << text << std::endl;
+        break;
     }
     case DebugPrintType::kInfo: {
         // 通常
@@ -46,22 +50,24 @@ void debugPrint(const std::string& str, const DebugPrintType type) {
         } else {
             std::cout << "Info: ";
         }
-        std::cout << str << std::endl;
-        return;
+        std::cout << text << std::endl;
+        break;
     }
     case DebugPrintType::kImportant: {
         // 横線を引く
         if (color_can_change) {
+            std::cout << "\n";
             std::cout << "\x1b[39m";
             std::cout << "----------------------------------------------------------" << std::endl;
-            std::cout << str << std::endl;
+            std::cout << text << std::endl;
             std::cout << "----------------------------------------------------------" << std::endl;
         } else {
+            std::cout << "Important: \n";
             std::cout << "----------------------------------------------------------" << std::endl;
-            std::cout << "Important: " << str << std::endl;
+            std::cout << text << std::endl;
             std::cout << "----------------------------------------------------------" << std::endl;
         }
-        return;
+        break;
     }
     case DebugPrintType::kDebug: {
         // 灰色
@@ -70,10 +76,12 @@ void debugPrint(const std::string& str, const DebugPrintType type) {
         } else {
             std::cout << "Debug: ";
         }
-        std::cout << str << std::endl;
-        return;
+        std::cout << text << std::endl;
+        break;
     }
     }
+
+    std::cout << std::endl;
 }
 
 }  // namespace match_stick::debug_print_internal
