@@ -26,4 +26,20 @@ int ImageLoader::loadAndGetImageHandle(const std::string& file_path) {
     return graphic_handle;
 }
 
+void ImageLoader::reloadAllImage() {
+    // すべての画像を解放する．
+    InitGraph();
+
+    // ハンドルを -1 にする．
+    for (auto& pair : image_handle_) {
+        pair.second = -1;
+    }
+
+    // すべての画像を再読み込みする．
+    for (auto& pair : image_handle_) {
+        pair.second = LoadGraph(pair.first.c_str());
+        ASSERT(pair.second >= 0, "Failed to reload image. File Path : " + pair.first);
+    }
+}
+
 }  // namespace match_stick

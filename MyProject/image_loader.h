@@ -22,6 +22,7 @@ public:
         return image_handle_.count(file_path) != 0;
     }
 
+    void reloadAllImage();
 private:
     std::map<std::string, int> image_handle_;  //!< 画像を格納する配列．キーはファイルパス．
 };
