@@ -46,7 +46,7 @@ LanguageUI::LanguageUI(const std::shared_ptr<LanguageRecord>& language_record_pt
                        const std::shared_ptr<FontLoader>& font_loader_ptr,
                        const std::shared_ptr<ImageLoader>& img_loader_ptr,
                        const std::shared_ptr<SoundEffectLoader>& sound_effect_loader,
-                       const std::function<void()>& on_back_button_clicked) :
+                       const std::function<void(bool)>& on_back_button_clicked) :
     dxlib_input_(dxlib_input),
     language_record_ptr_(language_record_ptr),
     current_country_(language_record_ptr->getCurrentCountry()),
@@ -60,6 +60,7 @@ LanguageUI::LanguageUI(const std::shared_ptr<LanguageRecord>& language_record_pt
     checked_img_handle_(img_loader_ptr->loadAndGetImageHandle("data/img/icon_checked.png")),
     button_reset_text_(language_record_ptr->get("language_reset")),
     button_back_text_(language_record_ptr->get("language_back")),
+    button_apply_back_text_(language_record_ptr->get("language_apply_and_back")),
     on_back_button_clicked_(on_back_button_clicked) {
     ASSERT_NOT_NULL_PTR(language_record_ptr_);
     ASSERT_NOT_NULL_PTR(dxlib_input_);
@@ -151,6 +152,10 @@ void LanguageUI::updateSelectIndex() {
 }
 
 void LanguageUI::updateDecideButton() {
+    // シーンチェンジ中はボタンを押せない
+    if (now_scene_changed_) { return; }
+
+    // 決定ボタンが押されてなければ何もしない
     if (dxlib_input_->getInputType() == DxLibInput::InputType::kKeyboard) {
         // キーボード入力
         if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_Z) != 1) { return; }
@@ -176,10 +181,12 @@ void LanguageUI::updateDecideButton() {
     } else if (select_index_x_ % 2 == 1 && select_index_y_ % kButtonNum == 1) {
         // 戻るボタンが押されたときは，設定を適用してタイトル画面に戻る
         applyLanguage();
-        on_back_button_clicked_();
+        on_back_button_clicked_(current_country_ == first_country_);
 
         // 選択音を鳴らす
         PlaySoundMem(decide_sound_handle_, DX_PLAYTYPE_BACK);
+
+        now_scene_changed_ = true;
     }
 }
 
@@ -216,21 +223,38 @@ void LanguageUI::drawButton() const {
         const int x = kButtonLeftX;
         const int y = kButtonTopY + i * (kButtonHeight + kButtonDistance);
 
+        // 外枠
+        DrawBox(x, y, x + kButtonWidth, y + kButtonHeight, color_back, TRUE);
+
+        // 内側を塗りつぶす
         const unsigned int color = select_index_x_ % 2 == 1 && select_index_y_ % kButtonNum == i ?
             color_hover : color_white;
-
-        DrawBox(x, y, x + kButtonWidth, y + kButtonHeight, color_back, TRUE);
 
         DrawBox(x + kButtonThickness, y + kButtonThickness,
                 x + kButtonWidth - kButtonThickness, y + kButtonHeight - kButtonThickness,
                 color, TRUE);
 
-        const std::string str = i == 0 ? button_reset_text_ : button_back_text_;
+        // i == 0 のときはリセットボタン，i == 1 のときは戻るボタン
+        std::string str;
+        if (i == 0) {
+            str = button_reset_text_;
+        } else {
+            if (current_country_ == first_country_) {
+                str = button_back_text_;
+            } else {
+                str = button_apply_back_text_;
+            }
+        }
         const int text_width =
             GetDrawStringWidthToHandle(str.c_str(), static_cast<int>(str.length()), button_font_handle_);
 
+        // リセットできないときは文字を薄くする
+        const unsigned int color_str = (i == 0 && current_country_ == first_country_) ?
+            color_back * 2 / 3 : color_back;
+
+        // 文字列の描画
         DrawStringToHandle(x + (kButtonWidth - text_width) / 2, y + kButtonHeight / 2 - 12, str.c_str(),
-            color_back, button_font_handle_);
+            color_str, button_font_handle_);
     }
 }
 

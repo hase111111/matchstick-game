@@ -20,7 +20,8 @@ menu_back,Back to Title
 menu_end,Exit Game
 language_title,Language Settings
 language_reset,Reset
-language_back,Apply and Return
+language_back,Return
+language_apply_and_back,Apply and Return
 rule_back_scene, Return
 rule_text_0_0,How to use this screen
 rule_text_0_1,Select an item from the menu on the left to review the rules.

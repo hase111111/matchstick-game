@@ -1,6 +1,8 @@
 ﻿
 #include "language_scene.h"
 
+#include <functional>
+
 #include "dxlib_assert.h"
 #include "dxlib_debug_print.h"
 #include "fade_effect.h"
@@ -48,7 +50,8 @@ LanguageScene::LanguageScene(const std::shared_ptr<SceneChangeListener>& scene_c
         };
 
     entity_updater_ptr_->registerEntity(std::make_shared<LanguageUI>(
-        lang, input_ptr, font_loader_ptr, img_loader_ptr, sound_effect_loader, on_back_button_clicked));
+        lang, input_ptr, font_loader_ptr, img_loader_ptr, sound_effect_loader,
+        std::bind(&LanguageScene::callBackOnBackButtonClicked, this, std::placeholders::_1)));
 
     // FPS 表示エンティティの登録
     entity_updater_ptr_->registerEntity(std::make_shared<FpsDisplayer>(fps_controller_ptr, lang, font_loader_ptr));
@@ -76,6 +79,22 @@ void LanguageScene::draw() const {
 void LanguageScene::onReturnFromOtherScene(const SceneChangeParameter&) {
     // 他のシーンから戻ってきたときの処理
     DEBUG_PRINT_IMPORTANT("LanguageScene::onReturnFromOtherScene called.");
+}
+
+void LanguageScene::callBackOnBackButtonClicked(const bool back_one_scene) {
+    // バックボタンが押されたときの処理
+    DEBUG_PRINT_IMPORTANT("LanguageScene::callBackOnBackButtonClicked called.");
+
+    auto scene_change_func = [this]() { scene_change_listener_ptr_->requestDeleteScene(1, SceneChangeParameter{}); };
+    auto all_delete_func = [this]() { scene_change_listener_ptr_->requestDeleteAllScene(); };
+
+    if (back_one_scene) {
+        entity_updater_ptr_->registerEntity(
+            std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeOut, scene_change_func));
+    } else {
+        entity_updater_ptr_->registerEntity(
+            std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeOut, all_delete_func));
+    }
 }
 
 }  // namespace match_stick
