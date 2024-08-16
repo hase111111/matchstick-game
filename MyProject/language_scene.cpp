@@ -2,6 +2,7 @@
 #include "language_scene.h"
 
 #include "dxlib_assert.h"
+#include "dxlib_debug_print.h"
 #include "fade_effect.h"
 #include "fps_displayer.h"
 #include "input_scheme_displayer.h"
@@ -30,6 +31,8 @@ LanguageScene::LanguageScene(const std::shared_ptr<SceneChangeListener>& scene_c
 
     ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
     ASSERT_NOT_NULL_PTR(entity_updater_ptr_);
+
+    DEBUG_PRINT_INFO("LanguageScene Constructor called.");
 
     // エンティティの登録
     entity_updater_ptr_->registerEntity(
@@ -68,6 +71,11 @@ bool LanguageScene::update() {
 void LanguageScene::draw() const {
     // エンティティの描画
     entity_updater_ptr_->draw();
+}
+
+void LanguageScene::onReturnFromOtherScene(const SceneChangeParameter&) {
+    // 他のシーンから戻ってきたときの処理
+    DEBUG_PRINT_IMPORTANT("LanguageScene::onReturnFromOtherScene called.");
 }
 
 }  // namespace match_stick

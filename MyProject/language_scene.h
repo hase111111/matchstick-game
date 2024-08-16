@@ -32,7 +32,7 @@ public:
 
     void onStart(const SceneChangeParameter&) override {};
 
-    void onReturnFromOtherScene(const SceneChangeParameter&) override {};
+    void onReturnFromOtherScene(const SceneChangeParameter&) override;
 
 private:
     const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
