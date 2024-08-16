@@ -91,6 +91,9 @@
     <Filter Include="ソース ファイル\scenes\language_scene\entity">
       <UniqueIdentifier>{d26bed60-bc0a-4e7f-8f52-671fd5a6f58e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\resource\loader">
+      <UniqueIdentifier>{b275a9b1-ab17-4b07-a32f-0326499a362c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -158,18 +161,6 @@
     </ClCompile>
     <ClCompile Include="scene_stack.cpp">
       <Filter>ソース ファイル\systems\scene_controller</Filter>
-    </ClCompile>
-    <ClCompile Include="image_loader.cpp">
-      <Filter>ソース ファイル\resource</Filter>
-    </ClCompile>
-    <ClCompile Include="bgm_player.cpp">
-      <Filter>ソース ファイル\resource</Filter>
-    </ClCompile>
-    <ClCompile Include="font_loader.cpp">
-      <Filter>ソース ファイル\resource</Filter>
-    </ClCompile>
-    <ClCompile Include="sound_effect_loader.cpp">
-      <Filter>ソース ファイル\resource</Filter>
     </ClCompile>
     <ClCompile Include="language_record.cpp">
       <Filter>ソース ファイル\resource</Filter>
@@ -270,6 +261,18 @@
     <ClCompile Include="game_setting_exporter.cpp">
       <Filter>ソース ファイル\resource</Filter>
     </ClCompile>
+    <ClCompile Include="bgm_player.cpp">
+      <Filter>ソース ファイル\resource\loader</Filter>
+    </ClCompile>
+    <ClCompile Include="font_loader.cpp">
+      <Filter>ソース ファイル\resource\loader</Filter>
+    </ClCompile>
+    <ClCompile Include="sound_effect_loader.cpp">
+      <Filter>ソース ファイル\resource\loader</Filter>
+    </ClCompile>
+    <ClCompile Include="image_loader.cpp">
+      <Filter>ソース ファイル\resource\loader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -343,18 +346,6 @@
     </ClInclude>
     <ClInclude Include="i_scene.h">
       <Filter>ソース ファイル\systems\scene_controller</Filter>
-    </ClInclude>
-    <ClInclude Include="image_loader.h">
-      <Filter>ソース ファイル\resource</Filter>
-    </ClInclude>
-    <ClInclude Include="bgm_player.h">
-      <Filter>ソース ファイル\resource</Filter>
-    </ClInclude>
-    <ClInclude Include="font_loader.h">
-      <Filter>ソース ファイル\resource</Filter>
-    </ClInclude>
-    <ClInclude Include="sound_effect_loader.h">
-      <Filter>ソース ファイル\resource</Filter>
     </ClInclude>
     <ClInclude Include="language_record.h">
       <Filter>ソース ファイル\resource</Filter>
@@ -481,6 +472,18 @@
     </ClInclude>
     <ClInclude Include="game_setting_exporter.h">
       <Filter>ソース ファイル\resource</Filter>
+    </ClInclude>
+    <ClInclude Include="font_loader.h">
+      <Filter>ソース ファイル\resource\loader</Filter>
+    </ClInclude>
+    <ClInclude Include="bgm_player.h">
+      <Filter>ソース ファイル\resource\loader</Filter>
+    </ClInclude>
+    <ClInclude Include="sound_effect_loader.h">
+      <Filter>ソース ファイル\resource\loader</Filter>
+    </ClInclude>
+    <ClInclude Include="image_loader.h">
+      <Filter>ソース ファイル\resource\loader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

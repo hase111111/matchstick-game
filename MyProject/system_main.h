@@ -2,6 +2,7 @@
 #pragma once
 
 #include <memory>
+#include <string>
 
 #include "game_setting_record.h"
 
@@ -17,6 +18,8 @@ public:
     void main() const;
 
 private:
+    const std::string kWindowClassName{ "DxLibMatchStickGameWindowClassName" };
+
     std::shared_ptr<GameSettingRecord> game_setting_record_ptr_;
 };
 

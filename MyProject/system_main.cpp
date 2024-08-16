@@ -17,13 +17,16 @@ bool SystemMain::initialize() {
     // icon.rcで設定したアイコンファイルをセットする
     SetWindowIconID(333);
 
-    SetUseCharCodeFormat(DX_CHARCODEFORMAT_UTF8);
-    SetWindowText(Define::kWindowTitle);  // ウィンドウタイトルを付ける
-    SetAlwaysRunFlag(TRUE);  // ウィンドウがノンアクティブでも実行
-    SetOutApplicationLogValidFlag(FALSE);  // ログ出力しない
-    const int COLOR_BIT = 32;  // 色の bit 数。通常32で良いが軽くするなら16にする
+    SetUseCharCodeFormat(DX_CHARCODEFORMAT_UTF8);   // 文字コードをUTF-8に設定する
+    SetWindowText(Define::kWindowTitle);            // ウィンドウタイトルを付ける
+    SetAlwaysRunFlag(TRUE);                         // ウィンドウがノンアクティブでも実行
+    SetOutApplicationLogValidFlag(FALSE);           // ログ出力しない
+    SetDoubleStartValidFlag(FALSE);                 // 二重起動を許可しない
+    SetMainWindowClassName(kWindowClassName.c_str());  // ウィンドウのクラス名を設定する
+
     // ゲーム画面の解像度を設定する
-    SetGraphMode(Define::kWindowSizeX, Define::kWindowSizeY, COLOR_BIT);
+    const int color_bit = 32;  // 色の bit 数。通常32で良いが軽くするなら16にする
+    SetGraphMode(Define::kWindowSizeX, Define::kWindowSizeY, color_bit);
 
     // フルスクリーン設定
     if (true) {
@@ -49,7 +52,7 @@ bool SystemMain::initialize() {
         return false;
     }
 
-    SetSysCommandOffFlag(TRUE);  // ALTを無効にする
+    SetSysCommandOffFlag(TRUE);     // ALTを無効にする
     SetDrawScreen(DX_SCREEN_BACK);  // 裏画面処理を設定する
 
     return true;
