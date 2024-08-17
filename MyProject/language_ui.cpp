@@ -28,8 +28,8 @@ constexpr int kButtonWidth = 220;
 constexpr int kButtonHeight = 60;
 constexpr int kButtonThickness = 3;
 
-constexpr int kButtonLeftX = ::match_stick::GameConst::kWindowSizeX - kButtonWidth * 3 / 2;
-constexpr int kButtonTopY = ::match_stick::GameConst::kWindowSizeY - 2 * kButtonHeight - 50;
+constexpr int kButtonLeftX = ::match_stick::GameConst::kResolutionX - kButtonWidth * 3 / 2;
+constexpr int kButtonTopY = ::match_stick::GameConst::kResolutionY - 2 * kButtonHeight - 50;
 constexpr int kButtonDistance = 10;
 constexpr int kButtonNum = 2;
 
@@ -216,7 +216,7 @@ void LanguageUI::drawText() const {
     const std::string attention_str1{ "After the change, you need to go back " };
     const std::string attention_str2{ "to the title screen to apply the change." };
 
-    const int text_left_x = GameConst::kWindowSizeX / 2 + 30;
+    const int text_left_x = GameConst::kResolutionX / 2 + 30;
 
     // テキストの描画
     DrawStringToHandle(text_left_x, kTableTopY, attention_str0.c_str(), color_back, small_font_handle_);

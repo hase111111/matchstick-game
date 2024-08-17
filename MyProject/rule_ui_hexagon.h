@@ -3,7 +3,6 @@
 
 #include <memory>
 
-#include "game_const.h"
 #include "dxlib_input.h"
 #include "font_loader.h"
 #include "i_entity.h"
@@ -36,11 +35,6 @@ private:
 
     const int sound_effect1_handle_;
     const int sound_effect2_handle_;
-
-    const int radius_{ 30 };
-    const int hexagon_center_x_{ GameConst::kWindowSizeX / 24 };
-    const int hexagon_center_y_{ GameConst::kWindowSizeY / 5 };
-    const int hexagon_num_{ 14 };
 
     int current_pointing_{ 0 };
     int current_hover_{ -1 };

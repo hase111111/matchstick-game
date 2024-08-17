@@ -8,7 +8,7 @@
 namespace match_stick {
 
 void SettingBackGroundBase::draw() const {
-    DrawBox(0, 0, GameConst::kWindowSizeX, GameConst::kWindowSizeY, GetColor(255, 255, 255), TRUE);
+    DrawBox(0, 0, GameConst::kResolutionX, GameConst::kResolutionY, GetColor(255, 255, 255), TRUE);
 }
 
 }  // namespace match_stick

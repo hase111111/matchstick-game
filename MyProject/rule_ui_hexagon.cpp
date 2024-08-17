@@ -8,8 +8,18 @@
 
 #include "dxlib_assert.h"
 #include "dxlib_debug_print.h"
+#include "game_const.h"
 #include "math_const.h"
 
+
+namespace {
+
+const int kRadius{ 30 };
+const int kHexagonCenterX{ ::match_stick::GameConst::kResolutionX / 24 };
+const int kHexagonCenterY{ ::match_stick::GameConst::kResolutionY / 5 };
+const int kHexagonNum{ 14 };
+
+}  // namespace
 
 namespace match_stick {
 
@@ -63,14 +73,14 @@ int RuleUIHexagon::update(const bool hexagon_is_hovered) {
 
         const int up_count = input_ptr_->getKeyboardPressingCount(KEY_INPUT_UP);
         if (up_count == 1 || (up_count % 8 == 4 && up_count > 20)) {
-            current_hover_ = (current_hover_ - 1 + hexagon_num_) % hexagon_num_;
+            current_hover_ = (current_hover_ - 1 + kHexagonNum) % kHexagonNum;
 
             PlaySoundMem(sound_effect1_handle_, DX_PLAYTYPE_BACK);
         }
 
         const int down_count = input_ptr_->getKeyboardPressingCount(KEY_INPUT_DOWN);
         if (down_count == 1 || (down_count % 8 == 4 && down_count > 20)) {
-            current_hover_ = (current_hover_ + 1) % hexagon_num_;
+            current_hover_ = (current_hover_ + 1) % kHexagonNum;
 
             PlaySoundMem(sound_effect1_handle_, DX_PLAYTYPE_BACK);
         }
@@ -94,15 +104,15 @@ void RuleUIHexagon::draw() const {
     const unsigned int hover_color = GetColor(50, 50, 50);
     const unsigned int text_color = GetColor(255, 255, 255);
 
-    for (int i = 0; i < hexagon_num_ / 2; ++i) {
+    for (int i = 0; i < kHexagonNum / 2; ++i) {
         const int first_index = 2 * i + 1;
 
-        const int x1 = hexagon_center_x_;
-        const int y1 = hexagon_center_y_ + static_cast<int>(i * radius_ * cos(30 * MathConst<double>::kPi / 180) * 2);
+        const int x1 = kHexagonCenterX;
+        const int y1 = kHexagonCenterY + static_cast<int>(i * kRadius * cos(30 * MathConst<double>::kPi / 180) * 2);
         if (first_index == current_hover_ + 1 && hexagon_is_hovered_) {
-            drawHexagon(x1, y1, radius_, true, edge_color, hover_color);
+            drawHexagon(x1, y1, kRadius, true, edge_color, hover_color);
         } else {
-            drawHexagon(x1, y1, radius_, (first_index == current_pointing_ + 1), edge_color, fill_color);
+            drawHexagon(x1, y1, kRadius, (first_index == current_pointing_ + 1), edge_color, fill_color);
         }
 
         // 番号を描画
@@ -115,12 +125,12 @@ void RuleUIHexagon::draw() const {
 
         const int second_index = 2 * i + 2;
 
-        const int x2 = x1 + radius_ * 3 / 2;
-        const int y2 = y1 + static_cast<int>(radius_ * cos(30 * MathConst<double>::kPi / 180));
+        const int x2 = x1 + kRadius * 3 / 2;
+        const int y2 = y1 + static_cast<int>(kRadius * cos(30 * MathConst<double>::kPi / 180));
         if (second_index == current_hover_ + 1 && hexagon_is_hovered_) {
-            drawHexagon(x2, y2, radius_, true, edge_color, hover_color);
+            drawHexagon(x2, y2, kRadius, true, edge_color, hover_color);
         } else {
-            drawHexagon(x2, y2, radius_, (second_index == current_pointing_ + 1), edge_color, fill_color);
+            drawHexagon(x2, y2, kRadius, (second_index == current_pointing_ + 1), edge_color, fill_color);
         }
 
         // 番号を描画
@@ -176,16 +186,16 @@ void RuleUIHexagon::drawHexagon(int center_x, int center_y, int radius, bool fil
 
 int RuleUIHexagon::getHoverIndex(int x, int y) const {
     // 互い違いに配置された六角形の内部かどうかを判定
-    for (int i = 0; i < hexagon_num_ / 2; ++i) {
-        const int x1 = hexagon_center_x_;
-        const int y1 = hexagon_center_y_ + static_cast<int>(i * radius_ * cos(30 * MathConst<double>::kPi / 180) * 2);
-        if (isInsideHexagon(x, y, x1, y1, radius_)) {
+    for (int i = 0; i < kHexagonNum / 2; ++i) {
+        const int x1 = kHexagonCenterX;
+        const int y1 = kHexagonCenterY + static_cast<int>(i * kRadius * cos(30 * MathConst<double>::kPi / 180) * 2);
+        if (isInsideHexagon(x, y, x1, y1, kRadius)) {
             return 2 * i;
         }
 
-        const int x2 = x1 + radius_ * 3 / 2;
-        const int y2 = y1 + static_cast<int>(radius_ * cos(30 * MathConst<double>::kPi / 180));
-        if (isInsideHexagon(x, y, x2, y2, radius_)) {
+        const int x2 = x1 + kRadius * 3 / 2;
+        const int y2 = y1 + static_cast<int>(kRadius * cos(30 * MathConst<double>::kPi / 180));
+        if (isInsideHexagon(x, y, x2, y2, kRadius)) {
             return 2 * i + 1;
         }
     }

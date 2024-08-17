@@ -26,7 +26,7 @@ bool SystemMain::initialize() {
 
     // ゲーム画面の解像度を設定する
     const int color_bit = 32;  // 色の bit 数。通常32で良いが軽くするなら16にする
-    SetGraphMode(GameConst::kWindowSizeX, GameConst::kWindowSizeY, color_bit);
+    SetGraphMode(GameConst::kResolutionX, GameConst::kResolutionY, color_bit);
 
     // フルスクリーン設定
     if (true) {
@@ -41,7 +41,7 @@ bool SystemMain::initialize() {
         GetWindowRect(GetDesktopWindow(), &rc);
         const int width = rc.right - rc.left;  // 横幅取得
         const double ex_rate = static_cast<double>(width) *
-            GameConst::kWindowExRate / static_cast<double>(GameConst::kWindowSizeX);
+            GameConst::kWindowExRate / static_cast<double>(GameConst::kResolutionX);
         // ウィンドウサイズを変更したい時はここに倍率を指定する
         SetWindowSizeExtendRate(ex_rate);
     }

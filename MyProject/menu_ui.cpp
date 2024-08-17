@@ -170,18 +170,18 @@ void MenuUI::updateSelectedBarType() {
         }
 
         // 下のボタン
-        if (GameConst::kWindowSizeX - kButtonWidth * 2 - kButtonRight <= input_x &&
-            input_x <= GameConst::kWindowSizeX - kButtonRight &&
-            GameConst::kWindowSizeY - kButtonBottom - kButtonHeight <= input_y &&
-            input_y <= GameConst::kWindowSizeY - kButtonBottom) {
+        if (GameConst::kResolutionX - kButtonWidth * 2 - kButtonRight <= input_x &&
+            input_x <= GameConst::kResolutionX - kButtonRight &&
+            GameConst::kResolutionY - kButtonBottom - kButtonHeight <= input_y &&
+            input_y <= GameConst::kResolutionY - kButtonBottom) {
             selected_bar_index_x_ = 0;
             selected_bar_index_y_ = 2;
         }
 
-        if (GameConst::kWindowSizeX - kButtonWidth - kButtonRight <= input_x &&
-            input_x <= GameConst::kWindowSizeX - kButtonRight &&
-            GameConst::kWindowSizeY - kButtonBottom - kButtonHeight <= input_y &&
-            input_y <= GameConst::kWindowSizeY - kButtonBottom) {
+        if (GameConst::kResolutionX - kButtonWidth - kButtonRight <= input_x &&
+            input_x <= GameConst::kResolutionX - kButtonRight &&
+            GameConst::kResolutionY - kButtonBottom - kButtonHeight <= input_y &&
+            input_y <= GameConst::kResolutionY - kButtonBottom) {
             selected_bar_index_x_ = 2;
             selected_bar_index_y_ = 2;
         }
@@ -288,10 +288,10 @@ void MenuUI::drawButton() const {
 
     // ボタンを描画
     for (int i = 0; i < 2; ++i) {
-        DrawBox(GameConst::kWindowSizeX - kButtonWidth + i * (kButtonWidth + kBarThickness) - kButtonRight,
-                GameConst::kWindowSizeY - kButtonBottom,
-                GameConst::kWindowSizeX - kButtonWidth * 2 + i * (kButtonWidth + kBarThickness) - kButtonRight,
-                GameConst::kWindowSizeY - kButtonBottom - kButtonHeight,
+        DrawBox(GameConst::kResolutionX - kButtonWidth + i * (kButtonWidth + kBarThickness) - kButtonRight,
+                GameConst::kResolutionY - kButtonBottom,
+                GameConst::kResolutionX - kButtonWidth * 2 + i * (kButtonWidth + kBarThickness) - kButtonRight,
+                GameConst::kResolutionY - kButtonBottom - kButtonHeight,
                 bar_color, TRUE);
 
         unsigned int color = bar_inner_color;
@@ -304,20 +304,22 @@ void MenuUI::drawButton() const {
             color = bar_hovered_color;
         }
 
-        DrawBox(GameConst::kWindowSizeX - kButtonWidth + i * (kButtonWidth + kBarThickness) - kButtonRight - kBarThickness,
-            GameConst::kWindowSizeY - kButtonBottom - kBarThickness,
-            GameConst::kWindowSizeX - kButtonWidth * 2 + i * (kButtonWidth + kBarThickness) - kButtonRight + kBarThickness,
-            GameConst::kWindowSizeY - kButtonBottom - kButtonHeight + kBarThickness,
-            color, TRUE);
+        const int button_width = kButtonWidth + kBarThickness;
+
+        DrawBox(GameConst::kResolutionX - kButtonWidth + i * button_width - kButtonRight - kBarThickness,
+                GameConst::kResolutionY - kButtonBottom - kBarThickness,
+                GameConst::kResolutionX - kButtonWidth * 2 + i * button_width - kButtonRight + kBarThickness,
+                GameConst::kResolutionY - kButtonBottom - kButtonHeight + kBarThickness,
+                color, TRUE);
 
         // テキストを描画
         const std::string text = (i == 0) ? button0_text_ : button1_text_;
         const int text_width =
             GetDrawStringWidthToHandle(text.c_str(), static_cast<int>(text.size()), small_font_handle_);
 
-        DrawStringToHandle(GameConst::kWindowSizeX - kButtonWidth * 2 + i * (kButtonWidth + kBarThickness)
+        DrawStringToHandle(GameConst::kResolutionX - kButtonWidth * 2 + i * (kButtonWidth + kBarThickness)
                                 - kButtonRight + kButtonWidth / 2 - text_width / 2,
-                           GameConst::kWindowSizeY - kButtonBottom - kButtonHeight / 2 - 12,
+                           GameConst::kResolutionY - kButtonBottom - kButtonHeight / 2 - 12,
                            text.c_str(), GetColor(0x00, 0x00, 0x00), small_font_handle_);
     }
 }
