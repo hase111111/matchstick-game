@@ -20,9 +20,9 @@ class MenuUI final : public IEntity {
 public:
     MenuUI(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
            const std::shared_ptr<const DxLibInput>& input_ptr,
-           const std::shared_ptr<FontLoader>& font_loader_ptr,
-           const std::shared_ptr<ImageLoader>& img_loader_ptr,
-           const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr,
+           const std::shared_ptr<const FontLoader>& font_loader_ptr,
+           const std::shared_ptr<const ImageLoader>& img_loader_ptr,
+           const std::shared_ptr<const SoundEffectLoader>& sound_effect_loader_ptr,
            const std::function<void()>& game_end_callback,
            const std::function<void()>& scene_back_callback,
            const std::function<void(SceneName)>& scene_change_callback);

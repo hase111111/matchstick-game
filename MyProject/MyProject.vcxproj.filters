@@ -282,6 +282,9 @@
     <ClCompile Include="language_scene_resource_loader.cpp">
       <Filter>ソース ファイル\scenes\language_scene</Filter>
     </ClCompile>
+    <ClCompile Include="menu_scene_resource_loader.cpp">
+      <Filter>ソース ファイル\scenes\menu_scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -502,6 +505,9 @@
     </ClInclude>
     <ClInclude Include="language_scene_resource_loader.h">
       <Filter>ソース ファイル\scenes\language_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="menu_scene_resource_loader.h">
+      <Filter>ソース ファイル\scenes\menu_scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -3,6 +3,7 @@
 
 #include <DxLib.h>
 
+#include "dxlib_assert.h"
 #include "dxlib_debug_print.h"
 #include "fade_effect.h"
 #include "fps_displayer.h"
@@ -16,13 +17,23 @@ MenuScene::MenuScene(const std::shared_ptr<SceneChangeListener>& scene_change_li
                      const std::shared_ptr<const FpsController>& entity_updater_ptr,
                      const std::shared_ptr<const LanguageRecord>& language_record_ptr,
                      const std::shared_ptr<const DxLibInput>& input_ptr,
-                     const std::shared_ptr<FontLoader>& font_loader_ptr,
-                     const std::shared_ptr<ImageLoader>& img_loader_ptr,
-                     const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr) :
+                     const std::shared_ptr<const FontLoader>& font_loader_ptr,
+                     const std::shared_ptr<const ImageLoader>& img_loader_ptr,
+                     const std::shared_ptr<const SoundEffectLoader>& sound_effect_loader_ptr) :
     scene_change_listener_ptr_(scene_change_listener_ptr),
     entity_updater_ptr_(std::make_unique<EntityUpdater>()),
-    sound_effect_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/selecting2.mp3")) {
-    DEBUG_PRINT("MenuScene Constructor called");
+    sound_effect_handle_(sound_effect_loader_ptr->getSoundHandle("data/sound/selecting2.mp3")) {
+    // ポインタが nullptr でないことを確認
+    ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
+    ASSERT_NOT_NULL_PTR(entity_updater_ptr);
+    ASSERT_NOT_NULL_PTR(language_record_ptr);
+    ASSERT_NOT_NULL_PTR(input_ptr);
+    ASSERT_NOT_NULL_PTR(font_loader_ptr);
+    ASSERT_NOT_NULL_PTR(img_loader_ptr);
+    ASSERT_NOT_NULL_PTR(sound_effect_loader_ptr);
+
+    ASSERT_NOT_NULL_PTR(entity_updater_ptr_);
+    ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
 
     // ルール画面のエンティティを登録
     entity_updater_ptr_->registerEntity(std::make_shared<FpsDisplayer>(entity_updater_ptr, language_record_ptr, font_loader_ptr));

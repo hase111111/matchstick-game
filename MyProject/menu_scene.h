@@ -21,9 +21,9 @@ public:
               const std::shared_ptr<const FpsController>& entity_updater_ptr,
               const std::shared_ptr<const LanguageRecord>& language_record_ptr,
               const std::shared_ptr<const DxLibInput>& input_ptr,
-              const std::shared_ptr<FontLoader>& font_loader_ptr,
-              const std::shared_ptr<ImageLoader>& img_loader_ptr,
-              const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr);
+              const std::shared_ptr<const FontLoader>& font_loader_ptr,
+              const std::shared_ptr<const ImageLoader>& img_loader_ptr,
+              const std::shared_ptr<const SoundEffectLoader>& sound_effect_loader_ptr);
 
     ~MenuScene();
 
@@ -38,7 +38,7 @@ public:
 private:
     const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
 
-    std::unique_ptr<EntityUpdater> entity_updater_ptr_;
+    const std::unique_ptr<EntityUpdater> entity_updater_ptr_;
 
     void sceneBackCallback();
 

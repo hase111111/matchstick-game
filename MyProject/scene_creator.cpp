@@ -8,6 +8,7 @@
 #include "language_scene.h"
 #include "language_scene_resource_loader.h"
 #include "menu_scene.h"
+#include "menu_scene_resource_loader.h"
 #include "rule_scene.h"
 #include "rule_scene_resource_loader.h"
 #include "title_scene.h"
@@ -87,6 +88,13 @@ std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) co
     }
     case SceneName::kMenu: {
         DEBUG_PRINT_IMPORTANT("SceneCreator::createScene() SceneName::kMenu");
+
+        // メニューシーンのリソースをロード
+        MenuSceneResourceLoader menu_scene_resource_loader(
+            font_loader_ptr_, image_loader_ptr_, sound_effect_loader_ptr_);
+
+        menu_scene_resource_loader.loadImage();
+
         return std::make_unique<MenuScene>(
             scene_change_listener_ptr_,
             fps_controller_ptr_,
