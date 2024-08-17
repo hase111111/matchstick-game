@@ -87,7 +87,7 @@ bool MenuUI::update() {
         } else if (index_x == 2 && index_y == 0) {
             scene_change_callback_(SceneName::kRule);
         } else if (index_x == 0 && index_y == 1) {
-            scene_change_callback_(SceneName::kDebug);
+            scene_change_callback_(SceneName::kSetting);
         } else if (index_x == 1 && index_y == 1) {
             scene_change_callback_(SceneName::kDebug);
         } else if (index_x == 2 && index_y == 1) {
