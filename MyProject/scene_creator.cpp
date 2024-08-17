@@ -30,12 +30,19 @@ SceneCreator::SceneCreator(const std::shared_ptr<SceneChangeListener>& scene_cha
     image_loader_ptr_(image_loader_ptr),
     sound_effect_loader_ptr_(sound_loader_ptr) {
     // ポインタが nullptr でないことを確認
+    ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
+    ASSERT_NOT_NULL_PTR(fps_controller_ptr);
+    ASSERT_NOT_NULL_PTR(language_record_ptr);
+    ASSERT_NOT_NULL_PTR(input_ptr);
+    ASSERT_NOT_NULL_PTR(bgm_player_ptr);
+    ASSERT_NOT_NULL_PTR(font_loader_ptr);
+    ASSERT_NOT_NULL_PTR(image_loader_ptr);
+    ASSERT_NOT_NULL_PTR(sound_loader_ptr);
+
     ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
-
     ASSERT_NOT_NULL_PTR(fps_controller_ptr_);
-
+    ASSERT_NOT_NULL_PTR(language_record_ptr_);
     ASSERT_NOT_NULL_PTR(input_ptr_);
-
     ASSERT_NOT_NULL_PTR(bgm_player_ptr_);
     ASSERT_NOT_NULL_PTR(font_loader_ptr_);
     ASSERT_NOT_NULL_PTR(image_loader_ptr_);
