@@ -5,13 +5,14 @@ namespace match_stick {
 
 enum class SceneName {
     kDebug,
-    kTitle,
     kGame,
-    kResult,
-    kRule,
+    kLanguage,
     kMenu,
     kReplay,
-    kLanguage,
+    kResult,
+    kRule,
+    kSetting,
+    kTitle,
 };
 
 }  // namespace match_stick

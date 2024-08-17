@@ -11,6 +11,7 @@
 #include "menu_scene_resource_loader.h"
 #include "rule_scene.h"
 #include "rule_scene_resource_loader.h"
+#include "setting_scene.h"
 #include "title_scene.h"
 #include "title_scene_resource_loader.h"
 
@@ -132,6 +133,18 @@ std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) co
         title_scene_resource_loader.loadImage();
 
         return std::make_unique<TitleScene>(
+            scene_change_listener_ptr_,
+            fps_controller_ptr_,
+            language_record_ptr_,
+            input_ptr_,
+            font_loader_ptr_,
+            image_loader_ptr_,
+            sound_effect_loader_ptr_);
+    }
+    case SceneName::kSetting: {
+        DEBUG_PRINT_IMPORTANT("SceneCreator::createScene() SceneName::kSetting");
+
+        return std::make_unique<SettingScene>(
             scene_change_listener_ptr_,
             fps_controller_ptr_,
             language_record_ptr_,
