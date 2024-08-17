@@ -3,7 +3,7 @@
 
 #include <DxLib.h>
 
-#include "define.h"
+#include "game_const.h"
 #include "dxlib_assert.h"
 #include "math_const.h"
 

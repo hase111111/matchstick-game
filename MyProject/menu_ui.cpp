@@ -8,7 +8,7 @@
 
 #include "dxlib_assert.h"
 #include "dxlib_debug_print.h"
-#include "define.h"
+#include "game_const.h"
 #include "math_const.h"
 
 namespace match_stick {

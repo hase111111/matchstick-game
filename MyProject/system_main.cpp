@@ -3,7 +3,7 @@
 
 #include <DxLib.h>
 
-#include "define.h"
+#include "game_const.h"
 #include "game_main_loop.h"
 #include "game_setting_importer.h"
 

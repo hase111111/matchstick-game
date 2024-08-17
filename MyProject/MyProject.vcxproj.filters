@@ -254,7 +254,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="define.h">
+    <ClInclude Include="game_const.h">
       <Filter>ソース ファイル\common</Filter>
     </ClInclude>
     <ClInclude Include="error_message_box.h">

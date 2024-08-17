@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "define.h"
+#include "game_const.h"
 #include "dxlib_input.h"
 #include "font_loader.h"
 #include "i_entity.h"

@@ -3,7 +3,7 @@
 
 #include <DxLib.h>
 
-#include "define.h"
+#include "game_const.h"
 
 namespace match_stick {
 
