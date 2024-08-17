@@ -17,12 +17,12 @@ bool SystemMain::initialize() {
     // icon.rcで設定したアイコンファイルをセットする
     SetWindowIconID(333);
 
-    SetUseCharCodeFormat(DX_CHARCODEFORMAT_UTF8);   // 文字コードをUTF-8に設定する
-    SetWindowText(GameConst::kWindowTitle);            // ウィンドウタイトルを付ける
-    SetAlwaysRunFlag(TRUE);                         // ウィンドウがノンアクティブでも実行
-    SetOutApplicationLogValidFlag(FALSE);           // ログ出力しない
-    SetDoubleStartValidFlag(FALSE);                 // 二重起動を許可しない
-    SetMainWindowClassName(kWindowClassName.c_str());  // ウィンドウのクラス名を設定する
+    SetUseCharCodeFormat(DX_CHARCODEFORMAT_UTF8);       // 文字コードをUTF-8に設定する
+    SetWindowText(GameConst::kWindowTitle);             // ウィンドウタイトルを付ける
+    SetAlwaysRunFlag(TRUE);                             // ウィンドウがノンアクティブでも実行
+    SetOutApplicationLogValidFlag(FALSE);               // ログ出力しない
+    SetDoubleStartValidFlag(FALSE);                     // 二重起動を許可しない
+    SetMainWindowClassName(kWindowClassName.c_str());   // ウィンドウのクラス名を設定する
 
     // ゲーム画面の解像度を設定する
     const int color_bit = 32;  // 色の bit 数。通常32で良いが軽くするなら16にする
