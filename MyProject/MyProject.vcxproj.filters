@@ -94,6 +94,9 @@
     <Filter Include="ソース ファイル\resource\loader">
       <UniqueIdentifier>{b275a9b1-ab17-4b07-a32f-0326499a362c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\scenes\setting_scene">
+      <UniqueIdentifier>{a4c0a763-0aed-4cbc-a0a1-8a923d14450a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -284,6 +287,9 @@
     </ClCompile>
     <ClCompile Include="menu_scene_resource_loader.cpp">
       <Filter>ソース ファイル\scenes\menu_scene</Filter>
+    </ClCompile>
+    <ClCompile Include="setting_scene.cpp">
+      <Filter>ソース ファイル\scenes\setting_scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -508,6 +514,9 @@
     </ClInclude>
     <ClInclude Include="menu_scene_resource_loader.h">
       <Filter>ソース ファイル\scenes\menu_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="setting_scene.h">
+      <Filter>ソース ファイル\scenes\setting_scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

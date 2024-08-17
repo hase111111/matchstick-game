@@ -228,6 +228,7 @@
     <ClCompile Include="scene_change_parameter.cpp" />
     <ClCompile Include="scene_creator.cpp" />
     <ClCompile Include="scene_stack.cpp" />
+    <ClCompile Include="setting_scene.cpp" />
     <ClCompile Include="sound_effect_loader.cpp" />
     <ClCompile Include="string_util.cpp" />
     <ClCompile Include="system_main.cpp" />
@@ -299,6 +300,7 @@
     <ClInclude Include="scene_creator.h" />
     <ClInclude Include="scene_name.h" />
     <ClInclude Include="scene_stack.h" />
+    <ClInclude Include="setting_scene.h" />
     <ClInclude Include="sound_effect_loader.h" />
     <ClInclude Include="string_util.h" />
     <ClInclude Include="system_main.h" />
