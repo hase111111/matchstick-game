@@ -5,6 +5,7 @@
 
 #include "define.h"
 #include "dxlib_assert.h"
+#include "math_const.h"
 
 namespace match_stick {
 
@@ -30,7 +31,9 @@ void LanguageBackGroundBase::draw() const {
     // アイコン
     const int icon_pos_x = 120;
     const int icon_pos_y = 60;
-    DrawRotaGraph(icon_pos_x, icon_pos_y, 0.6, 0.0, icon_handle_, TRUE);
+    const double angle = counter_ * MathConst<double>::kPi / 180;
+
+    DrawRotaGraph(icon_pos_x, icon_pos_y, 0.6, angle, icon_handle_, TRUE);
 
     // タイトル
     DrawStringToHandle(icon_pos_x + 50, icon_pos_y - 25, title_text_.c_str(), color_back, font_handle_, color_white);

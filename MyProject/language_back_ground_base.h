@@ -23,6 +23,8 @@ public:
     }
 
     bool update() override {
+        ++counter_;
+
         return true;
     }
 
@@ -34,6 +36,8 @@ private:
     const int font_handle_;
 
     const int icon_handle_;
+
+    int counter_{ 0 };
 };
 
 }  // namespace match_stick
