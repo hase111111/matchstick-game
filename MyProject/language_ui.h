@@ -18,9 +18,9 @@ class LanguageUI final : public IEntity {
 public:
     LanguageUI(const std::shared_ptr<LanguageRecord>& language_record_ptr,
                const std::shared_ptr<const DxLibInput>& dxlib_input,
-               const std::shared_ptr<FontLoader>& font_loader_ptr,
-               const std::shared_ptr<ImageLoader>& img_loader_ptr,
-               const std::shared_ptr<SoundEffectLoader>& sound_effect_loader,
+               const std::shared_ptr<const FontLoader>& font_loader_ptr,
+               const std::shared_ptr<const ImageLoader>& img_loader_ptr,
+               const std::shared_ptr<const SoundEffectLoader>& sound_effect_loader,
                const std::function<void(bool)>& on_back_button_clicked);
     ~LanguageUI() = default;
 

@@ -6,6 +6,7 @@
 #include "dxlib_debug_print.h"
 #include "game_scene.h"
 #include "language_scene.h"
+#include "language_scene_resource_loader.h"
 #include "menu_scene.h"
 #include "rule_scene.h"
 #include "rule_scene_resource_loader.h"
@@ -68,6 +69,13 @@ std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) co
     }
     case SceneName::kLanguage: {
         DEBUG_PRINT_IMPORTANT("SceneCreator::createScene() SceneName::kLanguage");
+
+        // 言語シーンのリソースをロード
+        LanguageSceneResourceLoader language_scene_resource_loader(
+            font_loader_ptr_, image_loader_ptr_, sound_effect_loader_ptr_);
+
+        language_scene_resource_loader.loadImage();
+
         return std::make_unique<LanguageScene>(
             scene_change_listener_ptr_,
             fps_controller_ptr_,

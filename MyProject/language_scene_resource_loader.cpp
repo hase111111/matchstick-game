@@ -1,5 +1,5 @@
 ﻿
-#include "rule_scene_resource_loader.h"
+#include "language_scene_resource_loader.h"
 
 #include <format>
 
@@ -10,9 +10,10 @@
 
 namespace match_stick {
 
-RuleSceneResourceLoader::RuleSceneResourceLoader(const std::shared_ptr<FontLoader>& font_loader_ptr,
-                                                 const std::shared_ptr<ImageLoader>& image_loader_ptr,
-                                                 const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr) :
+LanguageSceneResourceLoader::LanguageSceneResourceLoader(
+    const std::shared_ptr<FontLoader>& font_loader_ptr,
+    const std::shared_ptr<ImageLoader>& image_loader_ptr,
+    const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr) :
     font_loader_ptr_(font_loader_ptr),
     image_loader_ptr_(image_loader_ptr),
     sound_effect_loader_ptr_(sound_effect_loader_ptr) {
@@ -25,16 +26,19 @@ RuleSceneResourceLoader::RuleSceneResourceLoader(const std::shared_ptr<FontLoade
     ASSERT_NOT_NULL_PTR(sound_effect_loader_ptr_);
 }
 
-void RuleSceneResourceLoader::loadImage() {
+void LanguageSceneResourceLoader::loadImage() {
     // 画像のロード
     image_loader_ptr_->loadImageHandle("data/img/icon_mouse.png");
     image_loader_ptr_->loadImageHandle("data/img/icon_keyboard.png");
+    image_loader_ptr_->loadImageHandle("data/img/icon_language.png");
+    image_loader_ptr_->loadImageHandle("data/img/icon_checked.png");
 
     // フォントのロード
     for (const auto& country : magic_enum::enum_values<LanguageRecord::Country>()) {
         font_loader_ptr_->loadFontHandle(country, "data/font/azuki_font20.dft");
         font_loader_ptr_->loadFontHandle(country, "data/font/azuki_font24.dft");
         font_loader_ptr_->loadFontHandle(country, "data/font/azuki_font32.dft");
+        font_loader_ptr_->loadFontHandle(country, "data/font/azuki_font48.dft");
     }
 
     // サウンドのロード

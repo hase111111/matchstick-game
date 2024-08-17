@@ -43,25 +43,32 @@ namespace match_stick {
 
 LanguageUI::LanguageUI(const std::shared_ptr<LanguageRecord>& language_record_ptr,
                        const std::shared_ptr<const DxLibInput>& dxlib_input,
-                       const std::shared_ptr<FontLoader>& font_loader_ptr,
-                       const std::shared_ptr<ImageLoader>& img_loader_ptr,
-                       const std::shared_ptr<SoundEffectLoader>& sound_effect_loader,
+                       const std::shared_ptr<const FontLoader>& font_loader_ptr,
+                       const std::shared_ptr<const ImageLoader>& img_loader_ptr,
+                       const std::shared_ptr<const SoundEffectLoader>& sound_effect_loader,
                        const std::function<void(bool)>& on_back_button_clicked) :
     dxlib_input_(dxlib_input),
     language_record_ptr_(language_record_ptr),
     current_country_(language_record_ptr->getCurrentCountry()),
     hovered_country_(current_country_),
     first_country_(current_country_),
-    font_handle_(font_loader_ptr->loadAndGetFontHandle(current_country_, "data/font/azuki_font32.dft")),
-    button_font_handle_(font_loader_ptr->loadAndGetFontHandle(current_country_, "data/font/azuki_font24.dft")),
-    small_font_handle_(font_loader_ptr->loadAndGetFontHandle(current_country_, "data/font/azuki_font20.dft")),
-    select_sound_handle_(sound_effect_loader->loadAndGetSoundHandle("data/sound/selecting3.mp3")),
-    decide_sound_handle_(sound_effect_loader->loadAndGetSoundHandle("data/sound/selecting2.mp3")),
-    checked_img_handle_(img_loader_ptr->loadAndGetImageHandle("data/img/icon_checked.png")),
+    font_handle_(font_loader_ptr->getFontHandle(current_country_, "data/font/azuki_font32.dft")),
+    button_font_handle_(font_loader_ptr->getFontHandle(current_country_, "data/font/azuki_font24.dft")),
+    small_font_handle_(font_loader_ptr->getFontHandle(current_country_, "data/font/azuki_font20.dft")),
+    select_sound_handle_(sound_effect_loader->getSoundHandle("data/sound/selecting3.mp3")),
+    decide_sound_handle_(sound_effect_loader->getSoundHandle("data/sound/selecting2.mp3")),
+    checked_img_handle_(img_loader_ptr->getImageHandle("data/img/icon_checked.png")),
     button_reset_text_(language_record_ptr->get("language_reset")),
     button_back_text_(language_record_ptr->get("language_back")),
     button_apply_back_text_(language_record_ptr->get("language_apply_and_back")),
     on_back_button_clicked_(on_back_button_clicked) {
+    // ポインタのチェック
+    ASSERT_NOT_NULL_PTR(language_record_ptr);
+    ASSERT_NOT_NULL_PTR(dxlib_input);
+    ASSERT_NOT_NULL_PTR(font_loader_ptr);
+    ASSERT_NOT_NULL_PTR(img_loader_ptr);
+    ASSERT_NOT_NULL_PTR(sound_effect_loader);
+
     ASSERT_NOT_NULL_PTR(language_record_ptr_);
     ASSERT_NOT_NULL_PTR(dxlib_input_);
 }

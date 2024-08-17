@@ -13,9 +13,9 @@ namespace match_stick {
 
 class LanguageBackGroundBase final : public IEntity {
 public:
-    LanguageBackGroundBase(const std::shared_ptr<LanguageRecord>& language_record_ptr,
-                           const std::shared_ptr<FontLoader>& font_loader_ptr,
-                           const std::shared_ptr<ImageLoader>& img_loader_ptr);
+    LanguageBackGroundBase(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+                           const std::shared_ptr<const FontLoader>& font_loader_ptr,
+                           const std::shared_ptr<const ImageLoader>& img_loader_ptr);
     ~LanguageBackGroundBase() = default;
 
     inline int getLayer() const override {
