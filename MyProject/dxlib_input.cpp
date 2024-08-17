@@ -14,17 +14,17 @@ void DxLibInput::update() {
     // 現在の入力方法を更新
     if (input_type_ == InputType::kKeyboard && !keyboard_.isAnyKeyPressed()) {
         if (mouse_.isAnyButtonPressed()) {
-            DEBUG_PRINT("DxLibInput::update() Mouse is pressed");
+            DEBUG_PRINT("Mouse is pressed");
             input_type_ = InputType::kMouse;
         }
 
         if (mouse_.getDiffPos() > kMouseSensitivity) {
-            DEBUG_PRINT("DxLibInput::update() Mouse is moved");
+            DEBUG_PRINT("Mouse is moved");
             input_type_ = InputType::kMouse;
         }
     } else if (input_type_ == InputType::kMouse) {
         if (keyboard_.isAnyKeyPressed()) {
-            DEBUG_PRINT("DxLibInput::update() Keyboard is pressed");
+            DEBUG_PRINT("Keyboard is pressed");
             input_type_ = InputType::kKeyboard;
         }
     }
