@@ -11,7 +11,7 @@ TitleBackGroundBase::TitleBackGroundBase(const std::shared_ptr<const ImageLoader
     image_handle_(image_loader->getImageHandle("data/img/title_back.png")) {}
 
 void TitleBackGroundBase::draw() const {
-    DrawRotaGraph(Define::kWindowSizeX / 2, Define::kWindowSizeY / 2, 1.0, 0.0, image_handle_, TRUE);
+    DrawRotaGraph(GameConst::kWindowSizeX / 2, GameConst::kWindowSizeY / 2, 1.0, 0.0, image_handle_, TRUE);
 }
 
 }  // namespace match_stick

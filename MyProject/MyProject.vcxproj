@@ -187,11 +187,6 @@
     <ClCompile Include="font_loader.cpp" />
     <ClCompile Include="fps_controller.cpp" />
     <ClCompile Include="fps_displayer.cpp" />
-    <ClCompile Include="GameAnime.cpp" />
-    <ClCompile Include="GameHand.cpp" />
-    <ClCompile Include="GameLog.cpp" />
-    <ClCompile Include="GameParam.cpp" />
-    <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="game_back_ground_base.cpp" />
     <ClCompile Include="game_log.cpp" />
     <ClCompile Include="game_scene.cpp" />
@@ -207,11 +202,6 @@
     <ClCompile Include="language_scene_resource_loader.cpp" />
     <ClCompile Include="language_ui.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MatchGameCommon.cpp" />
-    <ClCompile Include="MatchGameCPU.cpp" />
-    <ClCompile Include="MatchGameList.cpp" />
-    <ClCompile Include="MatchGameList2.cpp" />
-    <ClCompile Include="MatchGameOut.cpp" />
     <ClCompile Include="match_game_field.cpp" />
     <ClCompile Include="menu_back_ground_base.cpp" />
     <ClCompile Include="menu_scene.cpp" />
@@ -256,12 +246,6 @@
     <ClInclude Include="font_loader.h" />
     <ClInclude Include="fps_controller.h" />
     <ClInclude Include="fps_displayer.h" />
-    <ClInclude Include="GameAnime.h" />
-    <ClInclude Include="GameHand.h" />
-    <ClInclude Include="GameLog.h" />
-    <ClInclude Include="GameParam.h" />
-    <ClInclude Include="GameScene.h" />
-    <ClInclude Include="GameSelectingHand.h" />
     <ClInclude Include="game_back_ground_base.h" />
     <ClInclude Include="game_hand_renderer.h" />
     <ClInclude Include="game_log.h" />
@@ -281,7 +265,6 @@
     <ClInclude Include="language_scene.h" />
     <ClInclude Include="language_scene_resource_loader.h" />
     <ClInclude Include="language_ui.h" />
-    <ClInclude Include="MatchGameCommon.h" />
     <ClInclude Include="match_game_field.h" />
     <ClInclude Include="match_game_rule.h" />
     <ClInclude Include="math_const.h" />

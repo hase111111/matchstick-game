@@ -12,7 +12,7 @@ void MenuBackGroundBase::draw() const {
     const unsigned int color_white = GetColor(0xda, 0xda, 0xda);
 
     // 下地
-    DrawBox(0, 0, Define::kWindowSizeX, Define::kWindowSizeY, color_white, TRUE);
+    DrawBox(0, 0, GameConst::kWindowSizeX, GameConst::kWindowSizeY, color_white, TRUE);
 }
 
 }  // namespace match_stick

@@ -34,26 +34,11 @@
     <Filter Include="ソース ファイル\common\toml11">
       <UniqueIdentifier>{56dbbd5b-9d6b-4979-bf06-b4e8677b0ebb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\scenes\_old">
-      <UniqueIdentifier>{2ae8811f-ecde-4568-bed8-2f4ba0fea400}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\_old\GameScene">
-      <UniqueIdentifier>{9059677a-6910-4eed-b7f4-591d69d5cba6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\_old\GameScene\draw">
-      <UniqueIdentifier>{6cdbd00e-c51e-4e47-ba03-6605d69a91d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\_old\GameScene\progress">
-      <UniqueIdentifier>{1e5ef222-d4b9-447a-9053-26cc20577e77}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\entity">
       <UniqueIdentifier>{2fa5bfcf-e71c-4168-af5b-e780e96d83a8}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\systems">
       <UniqueIdentifier>{cd406cf8-0c3d-4f77-8926-cfe6fe8e77f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\_old\match game">
-      <UniqueIdentifier>{5ed7f2a4-5183-478c-8e04-3961fac60061}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\systems\scene_controller">
       <UniqueIdentifier>{223e1ced-1b86-437f-8a66-23f5986bdfdb}</UniqueIdentifier>
@@ -104,36 +89,6 @@
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="MatchGameCommon.cpp">
-      <Filter>ソース ファイル\scenes\_old\match game</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScene.cpp">
-      <Filter>ソース ファイル\scenes\_old\GameScene</Filter>
-    </ClCompile>
-    <ClCompile Include="GameHand.cpp">
-      <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
-    </ClCompile>
-    <ClCompile Include="GameLog.cpp">
-      <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
-    </ClCompile>
-    <ClCompile Include="GameParam.cpp">
-      <Filter>ソース ファイル\scenes\_old\GameScene</Filter>
-    </ClCompile>
-    <ClCompile Include="GameAnime.cpp">
-      <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
-    </ClCompile>
-    <ClCompile Include="MatchGameCPU.cpp">
-      <Filter>ソース ファイル\scenes\_old\match game</Filter>
-    </ClCompile>
-    <ClCompile Include="MatchGameList.cpp">
-      <Filter>ソース ファイル\scenes\_old\match game</Filter>
-    </ClCompile>
-    <ClCompile Include="MatchGameOut.cpp">
-      <Filter>ソース ファイル\scenes\_old\match game</Filter>
-    </ClCompile>
-    <ClCompile Include="MatchGameList2.cpp">
-      <Filter>ソース ファイル\scenes\_old\match game</Filter>
     </ClCompile>
     <ClCompile Include="dxlib_mouse.cpp">
       <Filter>ソース ファイル\common\input</Filter>
@@ -301,27 +256,6 @@
   <ItemGroup>
     <ClInclude Include="define.h">
       <Filter>ソース ファイル\common</Filter>
-    </ClInclude>
-    <ClInclude Include="MatchGameCommon.h">
-      <Filter>ソース ファイル\scenes\_old\match game</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScene.h">
-      <Filter>ソース ファイル\scenes\_old\GameScene</Filter>
-    </ClInclude>
-    <ClInclude Include="GameParam.h">
-      <Filter>ソース ファイル\scenes\_old\GameScene</Filter>
-    </ClInclude>
-    <ClInclude Include="GameHand.h">
-      <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
-    </ClInclude>
-    <ClInclude Include="GameLog.h">
-      <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
-    </ClInclude>
-    <ClInclude Include="GameAnime.h">
-      <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
-    </ClInclude>
-    <ClInclude Include="GameSelectingHand.h">
-      <Filter>ソース ファイル\scenes\_old\GameScene\progress</Filter>
     </ClInclude>
     <ClInclude Include="error_message_box.h">
       <Filter>ソース ファイル\systems</Filter>

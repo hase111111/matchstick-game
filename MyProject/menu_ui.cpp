@@ -170,18 +170,18 @@ void MenuUI::updateSelectedBarType() {
         }
 
         // 下のボタン
-        if (Define::kWindowSizeX - kButtonWidth * 2 - kButtonRight <= input_x &&
-            input_x <= Define::kWindowSizeX - kButtonRight &&
-            Define::kWindowSizeY - kButtonBottom - kButtonHeight <= input_y &&
-            input_y <= Define::kWindowSizeY - kButtonBottom) {
+        if (GameConst::kWindowSizeX - kButtonWidth * 2 - kButtonRight <= input_x &&
+            input_x <= GameConst::kWindowSizeX - kButtonRight &&
+            GameConst::kWindowSizeY - kButtonBottom - kButtonHeight <= input_y &&
+            input_y <= GameConst::kWindowSizeY - kButtonBottom) {
             selected_bar_index_x_ = 0;
             selected_bar_index_y_ = 2;
         }
 
-        if (Define::kWindowSizeX - kButtonWidth - kButtonRight <= input_x &&
-            input_x <= Define::kWindowSizeX - kButtonRight &&
-            Define::kWindowSizeY - kButtonBottom - kButtonHeight <= input_y &&
-            input_y <= Define::kWindowSizeY - kButtonBottom) {
+        if (GameConst::kWindowSizeX - kButtonWidth - kButtonRight <= input_x &&
+            input_x <= GameConst::kWindowSizeX - kButtonRight &&
+            GameConst::kWindowSizeY - kButtonBottom - kButtonHeight <= input_y &&
+            input_y <= GameConst::kWindowSizeY - kButtonBottom) {
             selected_bar_index_x_ = 2;
             selected_bar_index_y_ = 2;
         }
@@ -288,10 +288,10 @@ void MenuUI::drawButton() const {
 
     // ボタンを描画
     for (int i = 0; i < 2; ++i) {
-        DrawBox(Define::kWindowSizeX - kButtonWidth + i * (kButtonWidth + kBarThickness) - kButtonRight,
-                Define::kWindowSizeY - kButtonBottom,
-                Define::kWindowSizeX - kButtonWidth * 2 + i * (kButtonWidth + kBarThickness) - kButtonRight,
-                Define::kWindowSizeY - kButtonBottom - kButtonHeight,
+        DrawBox(GameConst::kWindowSizeX - kButtonWidth + i * (kButtonWidth + kBarThickness) - kButtonRight,
+                GameConst::kWindowSizeY - kButtonBottom,
+                GameConst::kWindowSizeX - kButtonWidth * 2 + i * (kButtonWidth + kBarThickness) - kButtonRight,
+                GameConst::kWindowSizeY - kButtonBottom - kButtonHeight,
                 bar_color, TRUE);
 
         unsigned int color = bar_inner_color;
@@ -304,10 +304,10 @@ void MenuUI::drawButton() const {
             color = bar_hovered_color;
         }
 
-        DrawBox(Define::kWindowSizeX - kButtonWidth + i * (kButtonWidth + kBarThickness) - kButtonRight - kBarThickness,
-            Define::kWindowSizeY - kButtonBottom - kBarThickness,
-            Define::kWindowSizeX - kButtonWidth * 2 + i * (kButtonWidth + kBarThickness) - kButtonRight + kBarThickness,
-            Define::kWindowSizeY - kButtonBottom - kButtonHeight + kBarThickness,
+        DrawBox(GameConst::kWindowSizeX - kButtonWidth + i * (kButtonWidth + kBarThickness) - kButtonRight - kBarThickness,
+            GameConst::kWindowSizeY - kButtonBottom - kBarThickness,
+            GameConst::kWindowSizeX - kButtonWidth * 2 + i * (kButtonWidth + kBarThickness) - kButtonRight + kBarThickness,
+            GameConst::kWindowSizeY - kButtonBottom - kButtonHeight + kBarThickness,
             color, TRUE);
 
         // テキストを描画
@@ -315,9 +315,9 @@ void MenuUI::drawButton() const {
         const int text_width =
             GetDrawStringWidthToHandle(text.c_str(), static_cast<int>(text.size()), small_font_handle_);
 
-        DrawStringToHandle(Define::kWindowSizeX - kButtonWidth * 2 + i * (kButtonWidth + kBarThickness)
+        DrawStringToHandle(GameConst::kWindowSizeX - kButtonWidth * 2 + i * (kButtonWidth + kBarThickness)
                                 - kButtonRight + kButtonWidth / 2 - text_width / 2,
-                           Define::kWindowSizeY - kButtonBottom - kButtonHeight / 2 - 12,
+                           GameConst::kWindowSizeY - kButtonBottom - kButtonHeight / 2 - 12,
                            text.c_str(), GetColor(0x00, 0x00, 0x00), small_font_handle_);
     }
 }

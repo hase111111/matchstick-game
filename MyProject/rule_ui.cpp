@@ -53,10 +53,10 @@ void RuleUI::draw() const {
 }
 
 void RuleUI::drawButton() const {
-    const int button_width = Define::kWindowSizeX / 6;
-    const int button_height = Define::kWindowSizeY / 12;
-    const int button_x = Define::kWindowSizeX - button_width - 5;
-    const int button_y = Define::kWindowSizeY - button_height - 5;
+    const int button_width = GameConst::kWindowSizeX / 6;
+    const int button_height = GameConst::kWindowSizeY / 12;
+    const int button_x = GameConst::kWindowSizeX - button_width - 5;
+    const int button_y = GameConst::kWindowSizeY - button_height - 5;
     const int button_text_width =
         GetDrawStringWidthToHandle(button_text_.c_str(), static_cast<int>(button_text_.size()), font_handle_);
 
@@ -75,10 +75,10 @@ void RuleUI::drawButton() const {
 }
 
 bool RuleUI::isButtonHovered() const {
-    const int button_width = Define::kWindowSizeX / 6;
-    const int button_height = Define::kWindowSizeY / 12;
-    const int button_x = Define::kWindowSizeX - button_width - 5;
-    const int button_y = Define::kWindowSizeY - button_height - 5;
+    const int button_width = GameConst::kWindowSizeX / 6;
+    const int button_height = GameConst::kWindowSizeY / 12;
+    const int button_x = GameConst::kWindowSizeX - button_width - 5;
+    const int button_y = GameConst::kWindowSizeY - button_height - 5;
 
     const int mouse_x = input_ptr_->getCursorPosX();
     const int mouse_y = input_ptr_->getCursorPosY();

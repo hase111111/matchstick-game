@@ -18,7 +18,7 @@ bool SystemMain::initialize() {
     SetWindowIconID(333);
 
     SetUseCharCodeFormat(DX_CHARCODEFORMAT_UTF8);   // 文字コードをUTF-8に設定する
-    SetWindowText(Define::kWindowTitle);            // ウィンドウタイトルを付ける
+    SetWindowText(GameConst::kWindowTitle);            // ウィンドウタイトルを付ける
     SetAlwaysRunFlag(TRUE);                         // ウィンドウがノンアクティブでも実行
     SetOutApplicationLogValidFlag(FALSE);           // ログ出力しない
     SetDoubleStartValidFlag(FALSE);                 // 二重起動を許可しない
@@ -26,7 +26,7 @@ bool SystemMain::initialize() {
 
     // ゲーム画面の解像度を設定する
     const int color_bit = 32;  // 色の bit 数。通常32で良いが軽くするなら16にする
-    SetGraphMode(Define::kWindowSizeX, Define::kWindowSizeY, color_bit);
+    SetGraphMode(GameConst::kWindowSizeX, GameConst::kWindowSizeY, color_bit);
 
     // フルスクリーン設定
     if (true) {
@@ -41,7 +41,7 @@ bool SystemMain::initialize() {
         GetWindowRect(GetDesktopWindow(), &rc);
         const int width = rc.right - rc.left;  // 横幅取得
         const double ex_rate = static_cast<double>(width) *
-            Define::kWindowExRate / static_cast<double>(Define::kWindowSizeX);
+            GameConst::kWindowExRate / static_cast<double>(GameConst::kWindowSizeX);
         // ウィンドウサイズを変更したい時はここに倍率を指定する
         SetWindowSizeExtendRate(ex_rate);
     }

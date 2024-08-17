@@ -133,8 +133,8 @@ void RuleText::drawHexagon(const int center_x, const int center_y, const int rad
 }
 
 void RuleText::drawNumberBox() const {
-    const int center_x = box_left_ + Define::kWindowSizeX / 20;
-    const int center_y = box_top_ + Define::kWindowSizeY / 12;
+    const int center_x = box_left_ + GameConst::kWindowSizeX / 20;
+    const int center_y = box_top_ + GameConst::kWindowSizeY / 12;
     const int radius = 35;
     const double angle_offset = counter_ * MathConst<double>::kPi / 180 - hexagon_angle_velocity_;
     const unsigned int edge_color = GetColor(0, 0, 0);
@@ -203,27 +203,27 @@ std::vector<std::vector<std::string>> RuleText::createRuleText(
 }
 
 int RuleText::getBoxLeft() const {
-    const int box_size_x = Define::kWindowSizeX * 40 / 50;
-    const int x_dif = Define::kWindowSizeX / 18;
-    return (Define::kWindowSizeX + x_dif - box_size_x) / 2;
+    const int box_size_x = GameConst::kWindowSizeX * 40 / 50;
+    const int x_dif = GameConst::kWindowSizeX / 18;
+    return (GameConst::kWindowSizeX + x_dif - box_size_x) / 2;
 }
 
 int RuleText::getBoxTop() const {
-    const int box_size_y = Define::kWindowSizeY * 42 / 50;
-    const int y_dif = -Define::kWindowSizeY / 20;
-    return (Define::kWindowSizeY + y_dif - box_size_y) / 2;
+    const int box_size_y = GameConst::kWindowSizeY * 42 / 50;
+    const int y_dif = -GameConst::kWindowSizeY / 20;
+    return (GameConst::kWindowSizeY + y_dif - box_size_y) / 2;
 }
 
 int RuleText::getBoxRight() const {
-    const int box_size_x = Define::kWindowSizeX * 40 / 50;
-    const int x_dif = Define::kWindowSizeX / 18;
-    return (Define::kWindowSizeX + x_dif + box_size_x) / 2;
+    const int box_size_x = GameConst::kWindowSizeX * 40 / 50;
+    const int x_dif = GameConst::kWindowSizeX / 18;
+    return (GameConst::kWindowSizeX + x_dif + box_size_x) / 2;
 }
 
 int RuleText::getBoxBottom() const {
-    const int box_size_y = Define::kWindowSizeY * 42 / 50;
-    const int y_dif = -Define::kWindowSizeY / 20;
-    return (Define::kWindowSizeY + y_dif + box_size_y) / 2;
+    const int box_size_y = GameConst::kWindowSizeY * 42 / 50;
+    const int y_dif = -GameConst::kWindowSizeY / 20;
+    return (GameConst::kWindowSizeY + y_dif + box_size_y) / 2;
 }
 
 }  // namespace match_stick

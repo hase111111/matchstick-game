@@ -37,7 +37,7 @@ void FadeEffect::draw() const {
         SetDrawBlendMode(DX_BLENDMODE_ALPHA, blend);
     }
 
-    DrawBox(0, 0, Define::kWindowSizeX, Define::kWindowSizeY, GetColor(0, 0, 0), TRUE);
+    DrawBox(0, 0, GameConst::kWindowSizeX, GameConst::kWindowSizeY, GetColor(0, 0, 0), TRUE);
 
     SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }

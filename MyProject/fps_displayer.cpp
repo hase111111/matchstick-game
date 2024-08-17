@@ -17,7 +17,7 @@ void FpsDisplayer::draw() const {
     const double fps = fps_controller_ptr_->getCurrentFps();
 
     const int x_pos = 10;
-    const int y_pos = Define::kWindowSizeY - 20;
+    const int y_pos = GameConst::kWindowSizeY - 20;
 
     if (fps < 0) {
         // 0以下を返す時，未だFPSが計測されていないことを意味する

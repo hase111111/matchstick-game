@@ -32,8 +32,8 @@ void TitleLogo::draw() const {
     // タイトル
     const int game_title_size = static_cast<int>(game_title_.size());
     const int game_title_len = GetDrawStringWidthToHandle(game_title_.c_str(), game_title_size, big_font_handle_);
-    const int title_x = (Define::kWindowSizeX - game_title_len) / 2;
-    const int title_y = Define::kWindowSizeY / 8;
+    const int title_x = (GameConst::kWindowSizeX - game_title_len) / 2;
+    const int title_y = GameConst::kWindowSizeY / 8;
     DrawFormatStringToHandle(title_x, title_y, color, big_font_handle_, game_title_.c_str());
 
     // キー入力を促すメッセージ
@@ -42,8 +42,8 @@ void TitleLogo::draw() const {
 
     const int announce_size = static_cast<int>(announce.size());
     const int announce_len = GetDrawStringWidthToHandle(announce.c_str(), announce_size, middle_font_handle_);
-    const int announce_x = (Define::kWindowSizeX - announce_len) / 2;
-    const int announce_y = Define::kWindowSizeY * 3 / 4;
+    const int announce_x = (GameConst::kWindowSizeX - announce_len) / 2;
+    const int announce_y = GameConst::kWindowSizeY * 3 / 4;
 
     SetDrawBlendMode(DX_BLENDMODE_ALPHA, static_cast<int>(255.0 * abs(cos(counter_ / blink_period_))));
     DrawFormatStringToHandle(announce_x, announce_y, color, middle_font_handle_, announce.c_str());
@@ -52,8 +52,8 @@ void TitleLogo::draw() const {
     // コピーライト
     const int copy_right_size = static_cast<int>(copy_right_.size());
     const int copy_right_len = GetDrawStringWidthToHandle(copy_right_.c_str(), copy_right_size, small_font_handle_);
-    const int copy_right_x = Define::kWindowSizeX - copy_right_len - 10;
-    const int copy_right_y = Define::kWindowSizeY - 30;
+    const int copy_right_x = GameConst::kWindowSizeX - copy_right_len - 10;
+    const int copy_right_y = GameConst::kWindowSizeY - 30;
 
     DrawFormatStringToHandle(copy_right_x, copy_right_y, color, small_font_handle_, copy_right_.c_str());
 }
