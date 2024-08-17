@@ -36,7 +36,7 @@ public:
     void onReturnFromOtherScene(const SceneChangeParameter&) override {};
 
 private:
-    void backScene();
+    void callBackReturnButton();
 
     const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
 

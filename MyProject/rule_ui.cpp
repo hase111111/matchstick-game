@@ -10,11 +10,11 @@
 
 namespace match_stick {
 
-RuleUI::RuleUI(std::function<void()> on_button_pressed,
-               const std::shared_ptr<const LanguageRecord>& lang,
+RuleUI::RuleUI(const std::shared_ptr<const LanguageRecord>& lang,
                const std::shared_ptr<const DxLibInput>& input_ptr,
                const std::shared_ptr<FontLoader>& font_loader,
-               const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr) :
+               const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr,
+               std::function<void()> on_button_pressed) :
     on_button_pressed_(on_button_pressed),
     input_ptr_(input_ptr),
     rule_ui_hexagon_(lang, input_ptr, font_loader, sound_effect_loader_ptr),

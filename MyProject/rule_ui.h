@@ -17,11 +17,11 @@ namespace match_stick {
 
 class RuleUI final : public IEntity {
 public:
-    RuleUI(std::function<void()> on_button_pressed,
-           const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+    RuleUI(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
            const std::shared_ptr<const DxLibInput>& input_ptr,
            const std::shared_ptr<FontLoader>& font_loader,
-           const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr);
+           const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr,
+           std::function<void()> on_button_pressed);
     ~RuleUI() = default;
 
     inline int getLayer() const override {
