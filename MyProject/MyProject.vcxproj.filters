@@ -276,6 +276,9 @@
     <ClCompile Include="title_scene_resource_loader.cpp">
       <Filter>ソース ファイル\scenes\title_scene</Filter>
     </ClCompile>
+    <ClCompile Include="rule_scene_resource_loader.cpp">
+      <Filter>ソース ファイル\scenes\rule_scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="define.h">
@@ -490,6 +493,9 @@
     </ClInclude>
     <ClInclude Include="title_scene_resource_loader.h">
       <Filter>ソース ファイル\scenes\title_scene</Filter>
+    </ClInclude>
+    <ClInclude Include="rule_scene_resource_loader.h">
+      <Filter>ソース ファイル\scenes\rule_scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

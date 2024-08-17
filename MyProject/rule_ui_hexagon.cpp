@@ -15,12 +15,18 @@ namespace match_stick {
 
 RuleUIHexagon::RuleUIHexagon(const std::shared_ptr<const LanguageRecord>& lang,
                              const std::shared_ptr<const DxLibInput>& input_ptr,
-                             const std::shared_ptr<FontLoader>& font_loader,
-                             const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr) :
+                             const std::shared_ptr<const FontLoader>& font_loader,
+                             const std::shared_ptr<const SoundEffectLoader>& sound_effect_loader_ptr) :
     input_ptr_(input_ptr),
-    font_handle_(font_loader->loadAndGetFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")),
-    sound_effect1_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/selecting3.mp3")),
-    sound_effect2_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/selecting2.mp3")) {
+    font_handle_(font_loader->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")),
+    sound_effect1_handle_(sound_effect_loader_ptr->getSoundHandle("data/sound/selecting3.mp3")),
+    sound_effect2_handle_(sound_effect_loader_ptr->getSoundHandle("data/sound/selecting2.mp3")) {
+    // ポインタが nullptr でないことを確認
+    ASSERT_NOT_NULL_PTR(lang);
+    ASSERT_NOT_NULL_PTR(input_ptr);
+    ASSERT_NOT_NULL_PTR(font_loader);
+    ASSERT_NOT_NULL_PTR(sound_effect_loader_ptr);
+
     ASSERT_NOT_NULL_PTR(input_ptr_);
 }
 
@@ -38,7 +44,6 @@ int RuleUIHexagon::update(const bool hexagon_is_hovered) {
         // マウスによる操作
         if (current_hover_ != hover_index) {
             current_hover_ = hover_index;
-            DEBUG_PRINT(std::format("RuleUIHexagon::update() hover_index: {}", current_hover_ + 1));
 
             if (current_hover_ != -1 && hover_counter_ == 0) {
                 PlaySoundMem(sound_effect1_handle_, DX_PLAYTYPE_BACK);
@@ -48,7 +53,7 @@ int RuleUIHexagon::update(const bool hexagon_is_hovered) {
 
         if (input_ptr_->getMousePressingCount(MOUSE_INPUT_LEFT) == 1 && current_hover_ != -1) {
             current_pointing_ = current_hover_;
-            DEBUG_PRINT(std::format("RuleUIHexagon::update() current_pointing: {}", current_pointing_ + 1));
+            DEBUG_PRINT(std::format("current_pointing: {}", current_pointing_ + 1));
 
             PlaySoundMem(sound_effect2_handle_, DX_PLAYTYPE_BACK);
         }
@@ -59,7 +64,6 @@ int RuleUIHexagon::update(const bool hexagon_is_hovered) {
         const int up_count = input_ptr_->getKeyboardPressingCount(KEY_INPUT_UP);
         if (up_count == 1 || (up_count % 8 == 4 && up_count > 20)) {
             current_hover_ = (current_hover_ - 1 + hexagon_num_) % hexagon_num_;
-            DEBUG_PRINT(std::format("RuleUIHexagon::update() current_pointing: {}", current_hover_ + 1));
 
             PlaySoundMem(sound_effect1_handle_, DX_PLAYTYPE_BACK);
         }
@@ -67,14 +71,13 @@ int RuleUIHexagon::update(const bool hexagon_is_hovered) {
         const int down_count = input_ptr_->getKeyboardPressingCount(KEY_INPUT_DOWN);
         if (down_count == 1 || (down_count % 8 == 4 && down_count > 20)) {
             current_hover_ = (current_hover_ + 1) % hexagon_num_;
-            DEBUG_PRINT(std::format("RuleUIHexagon::update() current_pointing: {}", current_hover_ + 1));
 
             PlaySoundMem(sound_effect1_handle_, DX_PLAYTYPE_BACK);
         }
 
         if (input_ptr_->getKeyboardPressingCount(KEY_INPUT_Z) == 1) {
             current_pointing_ = current_hover_;
-            DEBUG_PRINT(std::format("RuleUIHexagon::update() current_pointing: {}", current_pointing_ + 1));
+            DEBUG_PRINT(std::format("current_pointing: {}", current_pointing_ + 1));
 
             PlaySoundMem(sound_effect2_handle_, DX_PLAYTYPE_BACK);
         }

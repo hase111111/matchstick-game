@@ -13,7 +13,7 @@ namespace match_stick {
 class RuleText final {
 public:
     RuleText(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-             const std::shared_ptr<FontLoader>& font_loader);
+             const std::shared_ptr<const FontLoader>& font_loader);
     ~RuleText() = default;
 
     void update(int number);

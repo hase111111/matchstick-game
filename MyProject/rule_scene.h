@@ -21,9 +21,9 @@ public:
               const std::shared_ptr<const FpsController>& entity_updater_ptr,
               const std::shared_ptr<const LanguageRecord>& language_record_ptr,
               const std::shared_ptr<const DxLibInput>& input_ptr,
-              const std::shared_ptr<FontLoader>& font_loader_ptr,
-              const std::shared_ptr<ImageLoader>& img_loader_ptr,
-              const std::shared_ptr<SoundEffectLoader>& sound_effect_loader_ptr);
+              const std::shared_ptr<const FontLoader>& font_loader_ptr,
+              const std::shared_ptr<const ImageLoader>& img_loader_ptr,
+              const std::shared_ptr<const SoundEffectLoader>& sound_effect_loader_ptr);
 
     ~RuleScene() = default;
 

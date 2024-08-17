@@ -8,6 +8,7 @@
 #include "language_scene.h"
 #include "menu_scene.h"
 #include "rule_scene.h"
+#include "rule_scene_resource_loader.h"
 #include "title_scene.h"
 #include "title_scene_resource_loader.h"
 
@@ -89,6 +90,13 @@ std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) co
     }
     case SceneName::kRule: {
         DEBUG_PRINT_IMPORTANT("SceneCreator::createScene() SceneName::kRule");
+
+        // ルールシーンのリソースをロード
+        RuleSceneResourceLoader rule_scene_resource_loader(
+            font_loader_ptr_, image_loader_ptr_, sound_effect_loader_ptr_);
+
+        rule_scene_resource_loader.loadImage();
+
         return std::make_unique<RuleScene>(
             scene_change_listener_ptr_,
             fps_controller_ptr_,
@@ -104,6 +112,7 @@ std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) co
         // タイトルシーンのリソースをロード
         TitleSceneResourceLoader title_scene_resource_loader(
             font_loader_ptr_, image_loader_ptr_, sound_effect_loader_ptr_);
+
         title_scene_resource_loader.loadImage();
 
         return std::make_unique<TitleScene>(
