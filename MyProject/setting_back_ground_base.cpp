@@ -8,7 +8,9 @@
 namespace match_stick {
 
 void SettingBackGroundBase::draw() const {
-    DrawBox(0, 0, GameConst::kResolutionX, GameConst::kResolutionY, GetColor(255, 255, 255), TRUE);
+    const unsigned int color_white = GetColor(0xda, 0xda, 0xda);
+
+    DrawBox(0, 0, GameConst::kResolutionX, GameConst::kResolutionY, color_white, TRUE);
 }
 
 }  // namespace match_stick
