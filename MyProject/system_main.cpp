@@ -39,9 +39,9 @@ bool SystemMain::initialize() {
         // 画面サイズ設定（スクリーンの大きさを取得して、それに合わせてウィンドウのサイズを変更する）
         RECT rc;
         GetWindowRect(GetDesktopWindow(), &rc);
-        const int width = rc.right - rc.left;  // 横幅取得
-        const double ex_rate = static_cast<double>(width) *
-            GameConst::kWindowExRate / static_cast<double>(GameConst::kResolutionX);
+        const double width = static_cast<double>(rc.right - rc.left);  // 横幅取得
+        const double ex_rate = width * 0.5 / static_cast<double>(GameConst::kResolutionX);
+
         // ウィンドウサイズを変更したい時はここに倍率を指定する
         SetWindowSizeExtendRate(ex_rate);
     }

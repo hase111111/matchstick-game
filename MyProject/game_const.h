@@ -9,8 +9,6 @@ public:
     static constexpr int kResolutionY = 540;
 
     static constexpr char kWindowTitle[] = "Match Stick Game";
-
-    static constexpr double kWindowExRate = 0.8;//0.625;
 private:
     GameConst() = delete;
 };
