@@ -6,6 +6,7 @@
 #include <DxLib.h>
 
 #include "define.h"
+#include "dxlib_assert.h"
 #include "math_const.h"
 
 namespace match_stick {
@@ -22,7 +23,12 @@ RuleUI::RuleUI(const std::shared_ptr<const LanguageRecord>& lang,
     font_handle_(font_loader->loadAndGetFontHandle(lang->getCurrentCountry(), "data/font/azuki_font24.dft")),
     sound_effect1_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/selecting3.mp3")),
     sound_effect2_handle_(sound_effect_loader_ptr->loadAndGetSoundHandle("data/sound/selecting2.mp3")),
-    button_text_(lang->get("rule_back_scene")) {}
+    button_text_(lang->get("rule_back_scene")) {
+    ASSERT_NOT_NULL_PTR(lang);
+    ASSERT_NOT_NULL_PTR(input_ptr);
+    ASSERT_NOT_NULL_PTR(font_loader);
+    ASSERT_NOT_NULL_PTR(sound_effect_loader_ptr);
+}
 
 bool RuleUI::update() {
     if (already_button_pressed_) {

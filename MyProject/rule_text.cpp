@@ -6,6 +6,7 @@
 #include <DxLib.h>
 
 #include "define.h"
+#include "dxlib_assert.h"
 #include "dxlib_debug_print.h"
 #include "math_const.h"
 
@@ -22,6 +23,10 @@ RuleText::RuleText(const std::shared_ptr<const LanguageRecord>& lang,
     box_right_(getBoxRight()),
     box_bottom_(getBoxBottom()),
     current_country_(lang->getCurrentCountry()) {
+    // ポインタが nullptr でないことを確認
+    ASSERT_NOT_NULL_PTR(lang);
+    ASSERT_NOT_NULL_PTR(font_loader);
+
     // ルールのテキストを更新
     updateDrawText();
 }
