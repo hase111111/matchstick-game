@@ -5,6 +5,9 @@
 
 namespace match_stick {
 
+//! @namespace match_stick::debug_print_internal
+//! @brief デバッグ用のプリント関数を提供する名前空間
+//! インターナルな関数にするため，深い階層にしている
 namespace debug_print_internal {
 
 static int print_count = 0;
@@ -20,8 +23,6 @@ enum class DebugPrintType {
 void createConsole();
 
 void debugPrint(const std::string& func_name, const std::string& str, DebugPrintType type);
-
-constexpr bool color_can_change = false;
 
 }  // namespace debug_print_internal
 

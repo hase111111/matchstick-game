@@ -6,6 +6,8 @@
 
 #include <DxLib.h>
 
+#include "string_util.h"
+
 namespace {
 
 std::string changeFunctionMacroToString(const std::string& func_name) {
@@ -64,63 +66,16 @@ void debugPrint(const std::string& func_name, const std::string& str, const Debu
     // 番号を表示，3桁右詰め
     std::cout << std::right << std::setw(3) << std::setfill('0') << print_count++ << " : ";
 
-    switch (type) {
-    case DebugPrintType::kWarning: {
-        // 黄色
-        if (color_can_change) {
-            std::cout << "\x1b[33m";
-        } else {
-            std::cout << "Warning: ";
-        }
+    // デバッグ情報の種類を表示
+    std::cout << "Type [" << string_util::EnumToStringRemoveTopK(type) << "] ";
+
+    if (type == DebugPrintType::kImportant) {
+        std::cout << std::endl;
+        std::cout << "----------------------------------------------------------" << std::endl;
         std::cout << text << std::endl;
-        break;
-    }
-    case DebugPrintType::kError: {
-        // 赤色
-        if (color_can_change) {
-            std::cout << "\x1b[31m";
-        } else {
-            std::cout << "Error: ";
-        }
+        std::cout << "----------------------------------------------------------" << std::endl;
+    } else {
         std::cout << text << std::endl;
-        break;
-    }
-    case DebugPrintType::kInfo: {
-        // 通常
-        if (color_can_change) {
-            std::cout << "\x1b[39m";
-        } else {
-            std::cout << "Info: ";
-        }
-        std::cout << text << std::endl;
-        break;
-    }
-    case DebugPrintType::kImportant: {
-        // 横線を引く
-        if (color_can_change) {
-            std::cout << "\n";
-            std::cout << "\x1b[39m";
-            std::cout << "----------------------------------------------------------" << std::endl;
-            std::cout << text << std::endl;
-            std::cout << "----------------------------------------------------------" << std::endl;
-        } else {
-            std::cout << "Important: \n";
-            std::cout << "----------------------------------------------------------" << std::endl;
-            std::cout << text << std::endl;
-            std::cout << "----------------------------------------------------------" << std::endl;
-        }
-        break;
-    }
-    case DebugPrintType::kDebug: {
-        // 灰色
-        if (color_can_change) {
-            std::cout << "\x1b[31m";
-        } else {
-            std::cout << "Debug: ";
-        }
-        std::cout << text << std::endl;
-        break;
-    }
     }
 
     std::cout << std::endl;
