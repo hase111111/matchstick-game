@@ -15,11 +15,11 @@ public:
         kKorean,
     };
 
-    std::string get(const std::string& key) const;
+    std::string getValue(const std::string& key) const;
 
-    void set(const std::string& key, Country country, const std::string& value);
+    void setValue(const std::string& key, Country country, const std::string& value);
 
-    bool has(const std::string& key) const;
+    bool hasKey(const std::string& key) const;
 
     inline Country getCurrentCountry() const {
         return current_country_;

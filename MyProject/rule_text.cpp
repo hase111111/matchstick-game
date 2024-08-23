@@ -12,19 +12,21 @@
 
 namespace match_stick {
 
-RuleText::RuleText(const std::shared_ptr<const LanguageRecord>& lang,
+RuleText::RuleText(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
                    const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr) :
-    rule_text_(createRuleText(lang)),
-    need_hyphen_(LanguageRecord::isEnglish(lang->getCurrentCountry())),
-    big_font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")),
-    small_font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font24.dft")),
+    rule_text_(createRuleText(language_record_ptr)),
+    need_hyphen_(LanguageRecord::isEnglish(language_record_ptr->getCurrentCountry())),
+    font32_handle_(dxlib_resource_loader_ptr->getFontHandle(language_record_ptr->getCurrentCountry(),
+        "data/font/azuki_font32.dft")),
+    font24_handle_(dxlib_resource_loader_ptr->getFontHandle(language_record_ptr->getCurrentCountry(),
+        "data/font/azuki_font24.dft")),
     box_left_(getBoxLeft()),
     box_top_(getBoxTop()),
     box_right_(getBoxRight()),
     box_bottom_(getBoxBottom()),
-    current_country_(lang->getCurrentCountry()) {
+    current_country_(language_record_ptr->getCurrentCountry()) {
     // ポインタが nullptr でないことを確認
-    ASSERT_NOT_NULL_PTR(lang);
+    ASSERT_NOT_NULL_PTR(language_record_ptr);
     ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
 
     // ルールのテキストを更新
@@ -144,11 +146,11 @@ void RuleText::drawNumberBox() const {
 
     // 現在の number を表示
     const std::string text = std::to_string(number_ + 1);
-    const int text_width = GetDrawStringWidthToHandle(text.c_str(), static_cast<int>(text.size()), big_font_handle_);
+    const int text_width = GetDrawStringWidthToHandle(text.c_str(), static_cast<int>(text.size()), font32_handle_);
     const int text_x = center_x - text_width / 2;
     const int text_y = center_y - 16;
 
-    DrawStringToHandle(text_x, text_y, text.c_str(), GetColor(0, 0, 0), big_font_handle_);
+    DrawStringToHandle(text_x, text_y, text.c_str(), GetColor(0, 0, 0), font32_handle_);
 }
 
 void RuleText::drawText() const {
@@ -158,17 +160,17 @@ void RuleText::drawText() const {
 
     // タイトルを表示
     const std::string title = draw_text_[0];
-    const int title_width = GetDrawStringWidthToHandle(title.c_str(), static_cast<int>(title.size()), big_font_handle_);
+    const int title_width = GetDrawStringWidthToHandle(title.c_str(), static_cast<int>(title.size()), font32_handle_);
 
     DrawStringToHandle((box_left_ + box_right_ - title_width) / 2, box_top_ + 50,
-                       title.c_str(), GetColor(0, 0, 0), big_font_handle_);
+                       title.c_str(), GetColor(0, 0, 0), font32_handle_);
 
     // ルールのテキストを表示
     for (int i = 1; i < draw_text_.size(); ++i) {
         const std::string text = draw_text_[i];
 
         DrawStringToHandle(box_left_ + 40, box_top_ + 75 + 35 * i,
-            text.c_str(), GetColor(0, 0, 0), small_font_handle_);
+            text.c_str(), GetColor(0, 0, 0), font24_handle_);
     }
 }
 
@@ -187,11 +189,11 @@ std::vector<std::vector<std::string>> RuleText::createRuleText(
         while (true) {
             std::string rule_text_key = std::format("rule_text_{}_{}", i, j);
 
-            if (!language_record_ptr->has(rule_text_key)) {
+            if (!language_record_ptr->hasKey(rule_text_key)) {
                 break;
             }
 
-            rule_text.push_back(language_record_ptr->get(rule_text_key));
+            rule_text.push_back(language_record_ptr->getValue(rule_text_key));
 
             ++j;
         }

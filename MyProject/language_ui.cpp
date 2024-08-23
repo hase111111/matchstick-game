@@ -45,20 +45,23 @@ LanguageUI::LanguageUI(const std::shared_ptr<LanguageRecord>& language_record_pt
                        const std::shared_ptr<const DxLibInput>& dxlib_input,
                        const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr,
                        const std::function<void(bool)>& on_back_button_clicked) :
-    dxlib_input_(dxlib_input),
+    dxlib_input_ptr_(dxlib_input),
     language_record_ptr_(language_record_ptr),
     current_country_(language_record_ptr->getCurrentCountry()),
     hovered_country_(current_country_),
     first_country_(current_country_),
-    font_handle_(dxlib_resource_loader_ptr->getFontHandle(current_country_, "data/font/azuki_font32.dft")),
-    button_font_handle_(dxlib_resource_loader_ptr->getFontHandle(current_country_, "data/font/azuki_font24.dft")),
-    small_font_handle_(dxlib_resource_loader_ptr->getFontHandle(current_country_, "data/font/azuki_font20.dft")),
+    font32_handle_(dxlib_resource_loader_ptr->getFontHandle(current_country_,
+        "data/font/azuki_font32.dft")),
+    font24_handle_(dxlib_resource_loader_ptr->getFontHandle(current_country_,
+        "data/font/azuki_font24.dft")),
+    font20_handle_(dxlib_resource_loader_ptr->getFontHandle(current_country_,
+        "data/font/azuki_font20.dft")),
     select_sound_handle_(dxlib_resource_loader_ptr->getSoundHandle("data/sound/selecting3.mp3")),
     decide_sound_handle_(dxlib_resource_loader_ptr->getSoundHandle("data/sound/selecting2.mp3")),
     checked_img_handle_(dxlib_resource_loader_ptr->getImageHandle("data/img/icon_checked.png")),
-    button_reset_text_(language_record_ptr->get("language_reset")),
-    button_back_text_(language_record_ptr->get("language_back")),
-    button_apply_back_text_(language_record_ptr->get("language_apply_and_back")),
+    button_reset_text_(language_record_ptr->getValue("language_reset")),
+    button_back_text_(language_record_ptr->getValue("language_back")),
+    button_apply_back_text_(language_record_ptr->getValue("language_apply_and_back")),
     on_back_button_clicked_(on_back_button_clicked) {
     // ポインタのチェック
     ASSERT_NOT_NULL_PTR(language_record_ptr);
@@ -66,7 +69,7 @@ LanguageUI::LanguageUI(const std::shared_ptr<LanguageRecord>& language_record_pt
     ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
 
     ASSERT_NOT_NULL_PTR(language_record_ptr_);
-    ASSERT_NOT_NULL_PTR(dxlib_input_);
+    ASSERT_NOT_NULL_PTR(dxlib_input_ptr_);
 }
 
 bool LanguageUI::update() {
@@ -86,30 +89,30 @@ void LanguageUI::draw() const {
 }
 
 void LanguageUI::updateSelectIndex() {
-    if (dxlib_input_->getInputType() == DxLibInput::InputType::kKeyboard) {
+    if (dxlib_input_ptr_->getInputType() == DxLibInput::InputType::kKeyboard) {
         // キーボード入力
-        if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_DOWN) == 1) {
+        if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_DOWN) == 1) {
             PlaySoundMem(select_sound_handle_, DX_PLAYTYPE_BACK);
             select_index_y_++;
-        } else if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_UP) == 1) {
+        } else if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_UP) == 1) {
             PlaySoundMem(select_sound_handle_, DX_PLAYTYPE_BACK);
             select_index_y_--;
         }
 
         // 横移動のときは縦の選択肢をリセット
-        if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_RIGHT) == 1) {
+        if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_RIGHT) == 1) {
             PlaySoundMem(select_sound_handle_, DX_PLAYTYPE_BACK);
             select_index_x_++;
             select_index_y_ = kIndexFirstValue;
-        } else if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_LEFT) == 1) {
+        } else if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_LEFT) == 1) {
             PlaySoundMem(select_sound_handle_, DX_PLAYTYPE_BACK);
             select_index_x_--;
             select_index_y_ = kIndexFirstValue;
         }
     } else {
         // マウス入力
-        const int mouse_x = dxlib_input_->getCursorPosX();
-        const int mouse_y = dxlib_input_->getCursorPosY();
+        const int mouse_x = dxlib_input_ptr_->getCursorPosX();
+        const int mouse_y = dxlib_input_ptr_->getCursorPosY();
 
         // テーブル内にホバーしているかチェック
         for (int i = 0; i < kTableColumnNum; i++) {
@@ -159,12 +162,12 @@ void LanguageUI::updateDecideButton() {
     if (now_scene_changed_) { return; }
 
     // 決定ボタンが押されてなければ何もしない
-    if (dxlib_input_->getInputType() == DxLibInput::InputType::kKeyboard) {
+    if (dxlib_input_ptr_->getInputType() == DxLibInput::InputType::kKeyboard) {
         // キーボード入力
-        if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_Z) != 1) { return; }
+        if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_Z) != 1) { return; }
     } else {
         // マウス入力
-        if (dxlib_input_->getMousePressingCount(MOUSE_INPUT_LEFT) != 1) { return; }
+        if (dxlib_input_ptr_->getMousePressingCount(MOUSE_INPUT_LEFT) != 1) { return; }
     }
 
     if (hovered_country_ != current_country_) {
@@ -215,9 +218,9 @@ void LanguageUI::drawText() const {
     const int text_left_x = GameConst::kResolutionX / 2 + 30;
 
     // テキストの描画
-    DrawStringToHandle(text_left_x, kTableTopY, attention_str0.c_str(), color_back, small_font_handle_);
-    DrawStringToHandle(text_left_x, kTableTopY + 40, attention_str1.c_str(), color_back, small_font_handle_);
-    DrawStringToHandle(text_left_x, kTableTopY + 80, attention_str2.c_str(), color_back, small_font_handle_);
+    DrawStringToHandle(text_left_x, kTableTopY, attention_str0.c_str(), color_back, font20_handle_);
+    DrawStringToHandle(text_left_x, kTableTopY + 40, attention_str1.c_str(), color_back, font20_handle_);
+    DrawStringToHandle(text_left_x, kTableTopY + 80, attention_str2.c_str(), color_back, font20_handle_);
 }
 
 void LanguageUI::drawButton() const {
@@ -249,7 +252,7 @@ void LanguageUI::drawButton() const {
             }
         }
         const int text_width =
-            GetDrawStringWidthToHandle(str.c_str(), static_cast<int>(str.length()), button_font_handle_);
+            GetDrawStringWidthToHandle(str.c_str(), static_cast<int>(str.length()), font24_handle_);
 
         // リセットできないときは文字を薄くする
         const unsigned int color_str = (i == 0 && current_country_ == first_country_) ?
@@ -257,7 +260,7 @@ void LanguageUI::drawButton() const {
 
         // 文字列の描画
         DrawStringToHandle(x + (kButtonWidth - text_width) / 2, y + kButtonHeight / 2 - 12, str.c_str(),
-            color_str, button_font_handle_);
+            color_str, font24_handle_);
     }
 }
 
@@ -287,8 +290,8 @@ void LanguageUI::drawTable() const {
         // 文字列の描画
         const LanguageRecord::Country country = static_cast<LanguageRecord::Country>(i);
         const std::string str = string_util::EnumToStringRemoveTopK(country);
-        const int text_width = GetDrawStringWidthToHandle(str.c_str(), static_cast<int>(str.length()), font_handle_);
-        DrawStringToHandle((x3 + x4 - text_width) / 2, y1 + 10, str.c_str(), color_back, font_handle_);
+        const int text_width = GetDrawStringWidthToHandle(str.c_str(), static_cast<int>(str.length()), font32_handle_);
+        DrawStringToHandle((x3 + x4 - text_width) / 2, y1 + 10, str.c_str(), color_back, font32_handle_);
 
         // チェックマークの描画
         if (current_country_ == country) {

@@ -46,10 +46,10 @@ MenuUI::MenuUI(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
         "data/font/azuki_font32.dft")),
     font24_handle_(dxlib_resource_loader_ptr->getFontHandle(language_record_ptr->getCurrentCountry(),
         "data/font/azuki_font24.dft")),
-    sound_effect_handle_(dxlib_resource_loader_ptr->getSoundHandle("data/sound/selecting3.mp3")),
+    select_sound_effect_handle_(dxlib_resource_loader_ptr->getSoundHandle("data/sound/selecting3.mp3")),
     decision_sound_effect_handle_(dxlib_resource_loader_ptr->getSoundHandle("data/sound/selecting2.mp3")),
-    button0_text_(language_record_ptr->get("menu_back")),
-    button1_text_(language_record_ptr->get("menu_end")),
+    button0_text_(language_record_ptr->getValue("menu_back")),
+    button1_text_(language_record_ptr->getValue("menu_end")),
     game_end_callback_(game_end_callback),
     scene_back_callback_(scene_back_callback),
     scene_change_callback_(scene_change_callback) {
@@ -73,11 +73,11 @@ MenuUI::MenuUI(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
     }
 
     // テキストを初期化
-    bar_text_map_[BarType::kGameStart] = language_record_ptr->get("menu_game");
-    bar_text_map_[BarType::kRule] = language_record_ptr->get("menu_rule");
-    bar_text_map_[BarType::kSetting] = language_record_ptr->get("menu_setting");
-    bar_text_map_[BarType::kReplay] = language_record_ptr->get("menu_replay");
-    bar_text_map_[BarType::kLanguage] = language_record_ptr->get("menu_language");
+    bar_text_map_[BarType::kGameStart] = language_record_ptr->getValue("menu_game");
+    bar_text_map_[BarType::kRule] = language_record_ptr->getValue("menu_rule");
+    bar_text_map_[BarType::kSetting] = language_record_ptr->getValue("menu_setting");
+    bar_text_map_[BarType::kReplay] = language_record_ptr->getValue("menu_replay");
+    bar_text_map_[BarType::kLanguage] = language_record_ptr->getValue("menu_language");
 }
 
 bool MenuUI::update() {
@@ -91,7 +91,7 @@ bool MenuUI::update() {
         selected_bar_type_ = getBarTypeFromIndex();
         bar_rotation_map_[selected_bar_type_] = MathConst<double>::kPi * 2.0;
 
-        PlaySoundMem(sound_effect_handle_, DX_PLAYTYPE_BACK);
+        PlaySoundMem(select_sound_effect_handle_, DX_PLAYTYPE_BACK);
 
         DEBUG_PRINT(std::format("index_x:={}, index_y:={}",
             selected_bar_index_x_ % kIndexMaxX, selected_bar_index_y_ % kIndexMaxY));

@@ -17,9 +17,9 @@ namespace match_stick {
 class RuleUI final : public IEntity {
 public:
     RuleUI(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-           const std::shared_ptr<const DxLibInput>& input_ptr,
-           const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr,
-           std::function<void()> on_button_pressed);
+        const std::shared_ptr<const DxLibInput>& input_ptr,
+        const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr,
+        std::function<void()> on_button_pressed);
     ~RuleUI() = default;
 
     inline int getLayer() const override {
@@ -41,7 +41,7 @@ private:
     RuleUIHexagon rule_ui_hexagon_;
     RuleText rule_text_;
 
-    const int font_handle_;
+    const int font24_handle_;
     const int sound_effect1_handle_;
     const int sound_effect2_handle_;
 

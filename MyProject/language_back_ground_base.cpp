@@ -12,7 +12,7 @@ namespace match_stick {
 LanguageBackGroundBase::LanguageBackGroundBase(
     const std::shared_ptr<const LanguageRecord>& lang,
     const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr) :
-    title_text_(lang->get("language_title")),
+    title_text_(lang->getValue("language_title")),
     font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font48.dft")),
     icon_handle_(dxlib_resource_loader_ptr->getImageHandle("data/img/icon_language.png")) {
     // ポインタのチェック

@@ -43,7 +43,7 @@ private:
 
     void drawTable() const;
 
-    const std::shared_ptr<const DxLibInput> dxlib_input_;
+    const std::shared_ptr<const DxLibInput> dxlib_input_ptr_;
     const std::shared_ptr<LanguageRecord> language_record_ptr_;
 
     int select_index_x_{ kIndexFirstValue }, select_index_y_{ kIndexFirstValue };
@@ -54,16 +54,18 @@ private:
     LanguageRecord::Country hovered_country_;
     const LanguageRecord::Country first_country_;
 
-    const int font_handle_;
-    const int button_font_handle_;
-    const int small_font_handle_;
+    const int font32_handle_;
+    const int font24_handle_;
+    const int font20_handle_;
 
     const int select_sound_handle_;
     const int decide_sound_handle_;
 
     const int checked_img_handle_;
 
-    const std::string button_reset_text_, button_back_text_, button_apply_back_text_;
+    const std::string button_reset_text_;
+    const std::string button_back_text_;
+    const std::string button_apply_back_text_;
 
     const std::function<void(bool)> on_back_button_clicked_;
 

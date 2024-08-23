@@ -19,10 +19,10 @@ TitleLogo::TitleLogo(const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
         "data/font/azuki_font32.dft")),
     font20_handle_(dxlib_resource_loader_ptr->getFontHandle(language_record_ptr->getCurrentCountry(),
         "data/font/azuki_font20.dft")),
-    game_title_(language_record_ptr->get("game_title")),
-    announce_keyboard_(language_record_ptr->get("press_z_key_to_start")),
-    announce_mouse_(language_record_ptr->get("click_left_to_start")),
-    copy_right_(language_record_ptr->get("copy_right")) {
+    game_title_(language_record_ptr->getValue("game_title")),
+    announce_keyboard_(language_record_ptr->getValue("press_z_key_to_start")),
+    announce_mouse_(language_record_ptr->getValue("click_left_to_start")),
+    copy_right_(language_record_ptr->getValue("copy_right")) {
     // NULL チェック
     ASSERT_NOT_NULL_PTR(dxlib_input_ptr_);
 }

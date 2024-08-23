@@ -7,7 +7,7 @@
 
 namespace match_stick {
 
-std::string LanguageRecord::get(const std::string& key) const {
+std::string LanguageRecord::getValue(const std::string& key) const {
     ASSERT(records_.find(key) != records_.end(), "LanguageRecord::Get: key not found: " + key);
     ASSERT(records_.at(key).find(current_country_) != records_.at(key).end(),
         "LanguageRecord::Get: country not found. key is " + key +
@@ -16,11 +16,11 @@ std::string LanguageRecord::get(const std::string& key) const {
     return records_.at(key).at(current_country_);
 }
 
-void LanguageRecord::set(const std::string& key, Country country, const std::string& value) {
+void LanguageRecord::setValue(const std::string& key, Country country, const std::string& value) {
     records_[key][country] = value;
 }
 
-bool LanguageRecord::has(const std::string& key) const {
+bool LanguageRecord::hasKey(const std::string& key) const {
     if (records_.find(key) == records_.end()) {
         return false;
     }
