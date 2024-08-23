@@ -88,7 +88,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
@@ -99,6 +99,7 @@
       <UseStandardPreprocessor>true</UseStandardPreprocessor>
       <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
       <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -223,6 +224,7 @@
     <ClCompile Include="sound_effect_loader.cpp" />
     <ClCompile Include="string_util.cpp" />
     <ClCompile Include="system_main.cpp" />
+    <ClCompile Include="test_runner.cpp" />
     <ClCompile Include="title_back_ground_base.cpp" />
     <ClCompile Include="title_hand_animation.cpp" />
     <ClCompile Include="title_logo.cpp" />
@@ -280,7 +282,9 @@
     <ClInclude Include="rule_ui_hexagon.h" />
     <ClInclude Include="scene_change_executer.h" />
     <ClInclude Include="scene_change_listener.h" />
+    <ClInclude Include="scene_change_listener_test.h" />
     <ClInclude Include="scene_change_parameter.h" />
+    <ClInclude Include="scene_change_parameter_test.h" />
     <ClInclude Include="scene_creator.h" />
     <ClInclude Include="scene_name.h" />
     <ClInclude Include="scene_stack.h" />
@@ -289,6 +293,9 @@
     <ClInclude Include="sound_effect_loader.h" />
     <ClInclude Include="string_util.h" />
     <ClInclude Include="system_main.h" />
+    <ClInclude Include="test_register.h" />
+    <ClInclude Include="test_runner.h" />
+    <ClInclude Include="test_sample.h" />
     <ClInclude Include="title_back_ground_base.h" />
     <ClInclude Include="title_hand_animation.h" />
     <ClInclude Include="title_logo.h" />

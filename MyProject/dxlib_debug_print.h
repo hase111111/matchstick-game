@@ -22,6 +22,8 @@ enum class DebugPrintType {
 
 void createConsole();
 
+void runTest();
+
 void debugPrint(const std::string& func_name, const std::string& str, DebugPrintType type);
 
 }  // namespace debug_print_internal
@@ -30,7 +32,9 @@ void debugPrint(const std::string& func_name, const std::string& str, DebugPrint
 
 #ifdef _DEBUG
 
-#define PREPAER_DEBUG_PRINT() ::match_stick::debug_print_internal::createConsole()
+#define PREPAER_DEBUG_PRINT() \
+::match_stick::debug_print_internal::createConsole(); \
+::match_stick::debug_print_internal::runTest();
 
 #define DEBUG_PRINT(str) \
 ::match_stick::debug_print_internal::debugPrint( \

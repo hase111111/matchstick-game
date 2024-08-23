@@ -28,7 +28,7 @@ public:
     //! @param[out] parameter パラメータ．
     //! @param[out] delete_num 削除するシーンの数．
     //! @return リクエストの種類．
-    RequestType receiveRequest(SceneName* scene_name, SceneChangeParameter* parameter, int* delete_num);
+    RequestType receiveRequest(SceneName* const scene_name, SceneChangeParameter* const parameter, int* const delete_num);
 
 private:
     SceneName scene_name_{ SceneName::kTitle };
