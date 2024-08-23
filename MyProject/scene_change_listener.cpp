@@ -37,11 +37,16 @@ bool SceneChangeListener::hasRequest() const {
 }
 
 SceneChangeListener::RequestType SceneChangeListener::receiveRequest(
-    SceneName* scene_name, SceneChangeParameter* parameter, int* delete_num) {
+    SceneName* const  scene_name, SceneChangeParameter* const  parameter, int* const  delete_num) {
     // 引数が nullでないかチェックする．
     ASSERT_NOT_NULL_PTR(scene_name);
     ASSERT_NOT_NULL_PTR(parameter);
     ASSERT_NOT_NULL_PTR(delete_num);
+
+    // 冗長だが，C6011警告を抑制するための処理
+    if (scene_name == nullptr || parameter == nullptr || delete_num == nullptr) {
+        return RequestType::kNone;
+    }
 
     // リクエストがない場合は何もしない．
     if (!has_request_) {
