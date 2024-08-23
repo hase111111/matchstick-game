@@ -85,6 +85,9 @@
     <Filter Include="ソース ファイル\scenes\setting_scene\entity">
       <UniqueIdentifier>{338e3423-38de-442c-bc69-8298d98d9b4a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\common\test">
+      <UniqueIdentifier>{809d2312-94e0-45e5-9395-dc57271a4815}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -251,6 +254,9 @@
     </ClCompile>
     <ClCompile Include="setting_back_ground_base.cpp">
       <Filter>ソース ファイル\scenes\setting_scene\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="test_runner.cpp">
+      <Filter>ソース ファイル\common\test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -460,6 +466,15 @@
     </ClInclude>
     <ClInclude Include="setting_back_ground_base.h">
       <Filter>ソース ファイル\scenes\setting_scene\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="test_runner.h">
+      <Filter>ソース ファイル\common\test</Filter>
+    </ClInclude>
+    <ClInclude Include="test_register.h">
+      <Filter>ソース ファイル\common\test</Filter>
+    </ClInclude>
+    <ClInclude Include="test_sample.h">
+      <Filter>ソース ファイル\common\test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

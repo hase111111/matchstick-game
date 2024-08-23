@@ -7,6 +7,7 @@
 #include <DxLib.h>
 
 #include "string_util.h"
+#include "test_runner.h"
 
 namespace {
 
@@ -58,6 +59,23 @@ void createConsole() {
     AllocConsole();
     freopen_s(&fp, "CONOUT$", "w", stdout);  // 標準出力(stdout)を新しいコンソールに向ける
     freopen_s(&fp, "CONOUT$", "w", stderr);  // 標準エラー出力(stderr)を新しいコンソールに向ける
+
+    std::cout << std::endl;  // 見やすさのための改行
+}
+
+void runTest() {
+    TestRunner test_runner;
+    const bool res = test_runner.run();
+
+    // テスト結果を表示
+
+    std::cout << std::endl;  // 見やすさのための改行
+
+    if (res) {
+        DEBUG_PRINT_INFO("Test Success.");
+    } else {
+        DEBUG_PRINT_ERROR("Test Failed.");
+    }
 }
 
 void debugPrint(const std::string& func_name, const std::string& str, const DebugPrintType type) {

@@ -223,6 +223,7 @@
     <ClCompile Include="sound_effect_loader.cpp" />
     <ClCompile Include="string_util.cpp" />
     <ClCompile Include="system_main.cpp" />
+    <ClCompile Include="test_runner.cpp" />
     <ClCompile Include="title_back_ground_base.cpp" />
     <ClCompile Include="title_hand_animation.cpp" />
     <ClCompile Include="title_logo.cpp" />
@@ -289,6 +290,9 @@
     <ClInclude Include="sound_effect_loader.h" />
     <ClInclude Include="string_util.h" />
     <ClInclude Include="system_main.h" />
+    <ClInclude Include="test_register.h" />
+    <ClInclude Include="test_runner.h" />
+    <ClInclude Include="test_sample.h" />
     <ClInclude Include="title_back_ground_base.h" />
     <ClInclude Include="title_hand_animation.h" />
     <ClInclude Include="title_logo.h" />
