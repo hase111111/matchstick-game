@@ -13,11 +13,11 @@
 namespace match_stick {
 
 RuleText::RuleText(const std::shared_ptr<const LanguageRecord>& lang,
-                   const std::shared_ptr<const FontLoader>& font_loader) :
+                   const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr) :
     rule_text_(createRuleText(lang)),
     need_hyphen_(LanguageRecord::isEnglish(lang->getCurrentCountry())),
-    big_font_handle_(font_loader->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")),
-    small_font_handle_(font_loader->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font24.dft")),
+    big_font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")),
+    small_font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font24.dft")),
     box_left_(getBoxLeft()),
     box_top_(getBoxTop()),
     box_right_(getBoxRight()),
@@ -25,7 +25,7 @@ RuleText::RuleText(const std::shared_ptr<const LanguageRecord>& lang,
     current_country_(lang->getCurrentCountry()) {
     // ポインタが nullptr でないことを確認
     ASSERT_NOT_NULL_PTR(lang);
-    ASSERT_NOT_NULL_PTR(font_loader);
+    ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
 
     // ルールのテキストを更新
     updateDrawText();

@@ -10,11 +10,13 @@ namespace match_stick {
 
 TitleLogo::TitleLogo(const std::shared_ptr<const DxLibInput>& input_ptr,
                      const std::shared_ptr<const LanguageRecord>& lang,
-                     const std::shared_ptr<const FontLoader>& font_loader) :
+                     const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr) :
     input_ptr_(input_ptr),
-    big_font_handle_(font_loader->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font64.dft")),
-    middle_font_handle_(font_loader->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")),
-    small_font_handle_(font_loader->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font20.dft")),
+    big_font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font64.dft")),
+    middle_font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(),
+        "data/font/azuki_font32.dft")),
+    small_font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(),
+        "data/font/azuki_font20.dft")),
     game_title_(lang->get("game_title")),
     announce_keyboard_(lang->get("press_z_key_to_start")),
     announce_mouse_(lang->get("click_left_to_start")),

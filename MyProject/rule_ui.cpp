@@ -12,22 +12,20 @@
 namespace match_stick {
 
 RuleUI::RuleUI(const std::shared_ptr<const LanguageRecord>& lang,
-               const std::shared_ptr<const DxLibInput>& input_ptr,
-               const std::shared_ptr<const FontLoader>& font_loader,
-               const std::shared_ptr<const SoundEffectLoader>& sound_effect_loader_ptr,
+               const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
+               const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr,
                std::function<void()> on_button_pressed) :
     on_button_pressed_(on_button_pressed),
-    input_ptr_(input_ptr),
-    rule_ui_hexagon_(lang, input_ptr, font_loader, sound_effect_loader_ptr),
-    rule_text_(lang, font_loader),
-    font_handle_(font_loader->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font24.dft")),
-    sound_effect1_handle_(sound_effect_loader_ptr->getSoundHandle("data/sound/selecting3.mp3")),
-    sound_effect2_handle_(sound_effect_loader_ptr->getSoundHandle("data/sound/selecting2.mp3")),
+    input_ptr_(dxlib_input_ptr),
+    rule_ui_hexagon_(lang, dxlib_input_ptr, dxlib_resource_loader_ptr),
+    rule_text_(lang, dxlib_resource_loader_ptr),
+    font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font24.dft")),
+    sound_effect1_handle_(dxlib_resource_loader_ptr->getSoundHandle("data/sound/selecting3.mp3")),
+    sound_effect2_handle_(dxlib_resource_loader_ptr->getSoundHandle("data/sound/selecting2.mp3")),
     button_text_(lang->get("rule_back_scene")) {
     ASSERT_NOT_NULL_PTR(lang);
-    ASSERT_NOT_NULL_PTR(input_ptr);
-    ASSERT_NOT_NULL_PTR(font_loader);
-    ASSERT_NOT_NULL_PTR(sound_effect_loader_ptr);
+    ASSERT_NOT_NULL_PTR(dxlib_input_ptr);
+    ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
 }
 
 bool RuleUI::update() {

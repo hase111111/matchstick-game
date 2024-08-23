@@ -5,7 +5,7 @@
 #include <string>
 
 #include "dxlib_input.h"
-#include "font_loader.h"
+#include "dxlib_resource_loader.h"
 #include "i_entity.h"
 #include "language_record.h"
 
@@ -15,7 +15,7 @@ class TitleLogo final : public IEntity {
 public:
     TitleLogo(const std::shared_ptr<const DxLibInput>& input_ptr,
               const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-              const std::shared_ptr<const FontLoader>& font_loader);
+              const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
     ~TitleLogo() = default;
 
     inline int getLayer() const override {

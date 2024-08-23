@@ -44,6 +44,10 @@ public:
         sound_effect_loader_.loadSoundHandle(file_path);
     }
 
+    inline void changeAllSoundVolume(const int volume) {
+        sound_effect_loader_.changeAllSoundVolume(volume);
+    }
+
 private:
     BgmPlayer bgm_player_;
     FontLoader font_loader_;

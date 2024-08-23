@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "font_loader.h"
+#include "dxlib_resource_loader.h"
 #include "fps_controller.h"
 #include "i_entity.h"
 
@@ -13,7 +13,7 @@ class FpsDisplayer final : public IEntity {
 public:
     FpsDisplayer(const std::shared_ptr<const FpsController>& fps_controller_ptr,
                  const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-                 const std::shared_ptr<const FontLoader>& font_loader_ptr);
+                 const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
 
     ~FpsDisplayer() = default;
 

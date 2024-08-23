@@ -15,17 +15,16 @@ namespace match_stick {
 
 MenuUI::MenuUI(const std::shared_ptr<const LanguageRecord>& lang,
                const std::shared_ptr<const DxLibInput>& input_ptr,
-               const std::shared_ptr<const FontLoader>& font_loader_ptr,
-               const std::shared_ptr<const ImageLoader>& img_loader_ptr,
-               const std::shared_ptr<const SoundEffectLoader>& sound_effect_loader_ptr,
+               const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr,
                const std::function<void()>& game_end_callback,
                const std::function<void()>& scene_back_callback,
                const std::function<void(SceneName)>& scene_change_callback) :
     input_ptr_(input_ptr),
-    font_handle_(font_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")),
-    big_font_handle_(font_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font48.dft")),
-    small_font_handle_(font_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font24.dft")),
-    sound_effect_handle_(sound_effect_loader_ptr->getSoundHandle("data/sound/selecting3.mp3")),
+    font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")),
+    big_font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font48.dft")),
+    small_font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(),
+        "data/font/azuki_font24.dft")),
+    sound_effect_handle_(dxlib_resource_loader_ptr->getSoundHandle("data/sound/selecting3.mp3")),
     button0_text_(lang->get("menu_back")),
     button1_text_(lang->get("menu_end")),
     game_end_callback_(game_end_callback),
@@ -34,18 +33,16 @@ MenuUI::MenuUI(const std::shared_ptr<const LanguageRecord>& lang,
     // ポインタが nullptr でないことを確認
     ASSERT_NOT_NULL_PTR(lang);
     ASSERT_NOT_NULL_PTR(input_ptr);
-    ASSERT_NOT_NULL_PTR(font_loader_ptr);
-    ASSERT_NOT_NULL_PTR(img_loader_ptr);
-    ASSERT_NOT_NULL_PTR(sound_effect_loader_ptr);
+    ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
 
     ASSERT_NOT_NULL_PTR(input_ptr_);
 
     // 画像を読み込む
-    bar_image_handle_map_[BarType::kGameStart] = img_loader_ptr->getImageHandle("data/img/icon_game.png");
-    bar_image_handle_map_[BarType::kRule] = img_loader_ptr->getImageHandle("data/img/icon_rule.png");
-    bar_image_handle_map_[BarType::kSetting] = img_loader_ptr->getImageHandle("data/img/icon_setting.png");
-    bar_image_handle_map_[BarType::kReplay] = img_loader_ptr->getImageHandle("data/img/icon_replay.png");
-    bar_image_handle_map_[BarType::kLanguage] = img_loader_ptr->getImageHandle("data/img/icon_language.png");
+    bar_image_handle_map_[BarType::kGameStart] = dxlib_resource_loader_ptr->getImageHandle("data/img/icon_game.png");
+    bar_image_handle_map_[BarType::kRule] = dxlib_resource_loader_ptr->getImageHandle("data/img/icon_rule.png");
+    bar_image_handle_map_[BarType::kSetting] = dxlib_resource_loader_ptr->getImageHandle("data/img/icon_setting.png");
+    bar_image_handle_map_[BarType::kReplay] = dxlib_resource_loader_ptr->getImageHandle("data/img/icon_replay.png");
+    bar_image_handle_map_[BarType::kLanguage] = dxlib_resource_loader_ptr->getImageHandle("data/img/icon_language.png");
 
     // 回転を初期化
     for (const auto bar_type : magic_enum::enum_values<BarType>()) {

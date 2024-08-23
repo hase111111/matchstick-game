@@ -4,9 +4,8 @@
 #include <memory>
 #include <string>
 
-#include "font_loader.h"
+#include "dxlib_resource_loader.h"
 #include "i_entity.h"
-#include "image_loader.h"
 #include "language_record.h"
 
 namespace match_stick {
@@ -14,8 +13,7 @@ namespace match_stick {
 class LanguageBackGroundBase final : public IEntity {
 public:
     LanguageBackGroundBase(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-                           const std::shared_ptr<const FontLoader>& font_loader_ptr,
-                           const std::shared_ptr<const ImageLoader>& img_loader_ptr);
+                           const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
     ~LanguageBackGroundBase() = default;
 
     inline int getLayer() const override {

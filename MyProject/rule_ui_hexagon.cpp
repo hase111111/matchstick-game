@@ -24,18 +24,16 @@ const int kHexagonNum{ 14 };
 namespace match_stick {
 
 RuleUIHexagon::RuleUIHexagon(const std::shared_ptr<const LanguageRecord>& lang,
-                             const std::shared_ptr<const DxLibInput>& input_ptr,
-                             const std::shared_ptr<const FontLoader>& font_loader,
-                             const std::shared_ptr<const SoundEffectLoader>& sound_effect_loader_ptr) :
-    input_ptr_(input_ptr),
-    font_handle_(font_loader->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")),
-    sound_effect1_handle_(sound_effect_loader_ptr->getSoundHandle("data/sound/selecting3.mp3")),
-    sound_effect2_handle_(sound_effect_loader_ptr->getSoundHandle("data/sound/selecting2.mp3")) {
+                             const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
+                             const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr) :
+    input_ptr_(dxlib_input_ptr),
+    font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")),
+    sound_effect1_handle_(dxlib_resource_loader_ptr->getSoundHandle("data/sound/selecting3.mp3")),
+    sound_effect2_handle_(dxlib_resource_loader_ptr->getSoundHandle("data/sound/selecting2.mp3")) {
     // ポインタが nullptr でないことを確認
     ASSERT_NOT_NULL_PTR(lang);
-    ASSERT_NOT_NULL_PTR(input_ptr);
-    ASSERT_NOT_NULL_PTR(font_loader);
-    ASSERT_NOT_NULL_PTR(sound_effect_loader_ptr);
+    ASSERT_NOT_NULL_PTR(dxlib_input_ptr);
+    ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
 
     ASSERT_NOT_NULL_PTR(input_ptr_);
 }

@@ -5,15 +5,15 @@
 #include <memory>
 
 #include "dxlib_input.h"
+#include "dxlib_resource_loader.h"
 #include "i_entity.h"
-#include "sound_effect_loader.h"
 
 namespace match_stick {
 
 class TitleSceneSwitcher final : public IEntity {
 public:
-    TitleSceneSwitcher(const std::shared_ptr<const DxLibInput>& input_ptr,
-                       const std::shared_ptr<const SoundEffectLoader>& sound_effect_loader_ptr,
+    TitleSceneSwitcher(const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
+                       const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr,
                        const std::function<void()>& scene_change_func);
 
     inline int getLayer() const override {

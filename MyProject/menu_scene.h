@@ -4,14 +4,12 @@
 #include <memory>
 
 #include "dxlib_input.h"
+#include "dxlib_resource_loader.h"
 #include "entity_updater.h"
-#include "font_loader.h"
 #include "fps_controller.h"
 #include "i_scene.h"
-#include "image_loader.h"
 #include "language_record.h"
 #include "scene_change_listener.h"
-#include "sound_effect_loader.h"
 
 namespace match_stick {
 
@@ -21,11 +19,8 @@ public:
               const std::shared_ptr<const FpsController>& fps_controller_ptr,
               const std::shared_ptr<const LanguageRecord>& language_record_ptr,
               const std::shared_ptr<const DxLibInput>& input_ptr,
-              const std::shared_ptr<const FontLoader>& font_loader_ptr,
-              const std::shared_ptr<const ImageLoader>& img_loader_ptr,
-              const std::shared_ptr<const SoundEffectLoader>& sound_effect_loader_ptr);
-
-    ~MenuScene();
+              const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
+    ~MenuScene() = default;
 
     bool update() override;
 

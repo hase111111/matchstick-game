@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-#include "font_loader.h"
+#include "dxlib_resource_loader.h"
 #include "language_record.h"
 
 namespace match_stick {
@@ -13,7 +13,7 @@ namespace match_stick {
 class RuleText final {
 public:
     RuleText(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-             const std::shared_ptr<const FontLoader>& font_loader);
+             const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
     ~RuleText() = default;
 
     void update(int number);
