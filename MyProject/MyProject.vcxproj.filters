@@ -485,6 +485,9 @@
     <ClInclude Include="scene_change_parameter_test.h">
       <Filter>ソース ファイル\systems\test</Filter>
     </ClInclude>
+    <ClInclude Include="dxlib_resource_loader.h">
+      <Filter>ソース ファイル\resource\loader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\iconsetting.rc">

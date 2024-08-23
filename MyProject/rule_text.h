@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-#include "font_loader.h"
+#include "dxlib_resource_loader.h"
 #include "language_record.h"
 
 namespace match_stick {
@@ -13,7 +13,7 @@ namespace match_stick {
 class RuleText final {
 public:
     RuleText(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-             const std::shared_ptr<const FontLoader>& font_loader);
+        const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
     ~RuleText() = default;
 
     void update(int number);
@@ -24,7 +24,7 @@ private:
     void updateDrawText();
 
     void drawHexagon(int center_x, int center_y, int radius, bool fill, double angle_offset,
-                     unsigned int edge_color, unsigned int fill_color) const;
+        unsigned int edge_color, unsigned int fill_color) const;
 
     void drawNumberBox() const;
 
@@ -51,8 +51,8 @@ private:
 
     double hexagon_angle_velocity_{ 0 };
 
-    const int big_font_handle_;
-    const int small_font_handle_;
+    const int font32_handle_;
+    const int font24_handle_;
 
     const int box_left_;
     const int box_top_;

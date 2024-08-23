@@ -9,16 +9,15 @@
 
 namespace match_stick {
 
-LanguageBackGroundBase::LanguageBackGroundBase(const std::shared_ptr<const LanguageRecord>& lang,
-                                               const std::shared_ptr<const FontLoader>& font_loader_ptr,
-                                               const std::shared_ptr<const ImageLoader>& img_loader_ptr) :
-    title_text_(lang->get("language_title")),
-    font_handle_(font_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font48.dft")),
-    icon_handle_(img_loader_ptr->getImageHandle("data/img/icon_language.png")) {
+LanguageBackGroundBase::LanguageBackGroundBase(
+    const std::shared_ptr<const LanguageRecord>& lang,
+    const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr) :
+    title_text_(lang->getValue("language_title")),
+    font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font48.dft")),
+    icon_handle_(dxlib_resource_loader_ptr->getImageHandle("data/img/icon_language.png")) {
     // ポインタのチェック
     ASSERT_NOT_NULL_PTR(lang);
-    ASSERT_NOT_NULL_PTR(font_loader_ptr);
-    ASSERT_NOT_NULL_PTR(img_loader_ptr);
+    ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
 }
 
 void LanguageBackGroundBase::draw() const {

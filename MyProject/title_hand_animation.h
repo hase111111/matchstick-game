@@ -5,17 +5,15 @@
 #include <memory>
 #include <vector>
 
+#include "dxlib_resource_loader.h"
 #include "i_entity.h"
-#include "image_loader.h"
 
 namespace match_stick {
 
 class TitleHandAnimation final : public IEntity {
 public:
-    TitleHandAnimation(const std::shared_ptr<const ImageLoader>& image_loader);
+    TitleHandAnimation(const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
     ~TitleHandAnimation() = default;
-
-    TitleHandAnimation& operator=(const TitleHandAnimation&) = delete;
 
     inline int getLayer() const override {
         return constants::kUIBottomLayer;
@@ -41,7 +39,8 @@ private:
     static constexpr unsigned int kImageNum = 6;  //<! タイトル画面の手のアニメーション画像の数
 
     //! @brief タイトル画面の手のアニメーション画像をロードする
-    std::array<int, kImageNum> loadImages(const std::shared_ptr<const ImageLoader>& image_loader) const;
+    std::array<int, kImageNum> loadImages(
+        const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr) const;
 
     void initHandPos();
 

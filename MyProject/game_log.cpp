@@ -3,13 +3,18 @@
 
 #include <DxLib.h>
 
+#include "dxlib_assert.h"
 #include "game_const.h"
 
 namespace match_stick {
 
 GameLog::GameLog(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-                 const std::shared_ptr<FontLoader>& font_loader) :
-    small_font_handle_(0) {}
+                 const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr) :
+    small_font_handle_(0) {
+    // nullptr チェック
+    ASSERT_NOT_NULL_PTR(language_record_ptr);
+    ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
+}
 
 void GameLog::draw() const {
 

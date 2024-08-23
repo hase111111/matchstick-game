@@ -1,6 +1,9 @@
 ﻿
 #include "menu_scene.h"
 
+#include <format>
+
+#include <magic_enum.hpp>
 #include <DxLib.h>
 
 #include "dxlib_assert.h"
@@ -16,44 +19,38 @@ namespace match_stick {
 MenuScene::MenuScene(const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
                      const std::shared_ptr<const FpsController>& fps_controller_ptr,
                      const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-                     const std::shared_ptr<const DxLibInput>& input_ptr,
-                     const std::shared_ptr<const FontLoader>& font_loader_ptr,
-                     const std::shared_ptr<const ImageLoader>& img_loader_ptr,
-                     const std::shared_ptr<const SoundEffectLoader>& sound_effect_loader_ptr) :
+                     const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
+                     const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr) :
     scene_change_listener_ptr_(scene_change_listener_ptr),
-    entity_updater_ptr_(std::make_unique<EntityUpdater>()),
-    sound_effect_handle_(sound_effect_loader_ptr->getSoundHandle("data/sound/selecting2.mp3")) {
+    entity_updater_ptr_(std::make_unique<EntityUpdater>()) {
     // ポインタが nullptr でないことを確認
     ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
     ASSERT_NOT_NULL_PTR(fps_controller_ptr);
     ASSERT_NOT_NULL_PTR(language_record_ptr);
-    ASSERT_NOT_NULL_PTR(input_ptr);
-    ASSERT_NOT_NULL_PTR(font_loader_ptr);
-    ASSERT_NOT_NULL_PTR(img_loader_ptr);
-    ASSERT_NOT_NULL_PTR(sound_effect_loader_ptr);
+    ASSERT_NOT_NULL_PTR(dxlib_input_ptr);
+    ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
 
     ASSERT_NOT_NULL_PTR(entity_updater_ptr_);
     ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
 
     // ルール画面のエンティティを登録
-    entity_updater_ptr_->registerEntity(std::make_shared<FpsDisplayer>(fps_controller_ptr, language_record_ptr, font_loader_ptr));
-    entity_updater_ptr_->registerEntity(std::make_shared<InputSchemeDisplayer>(input_ptr, img_loader_ptr));
+    entity_updater_ptr_->registerEntity(std::make_shared<FpsDisplayer>(
+        fps_controller_ptr, language_record_ptr, dxlib_resource_loader_ptr));
+    entity_updater_ptr_->registerEntity(std::make_shared<InputSchemeDisplayer>(
+        dxlib_input_ptr, dxlib_resource_loader_ptr));
     entity_updater_ptr_->registerEntity(std::make_shared<MenuBackGroundBase>());
 
     const auto game_end_callback = [this]() { game_end_ = true; };
     const auto scene_back_callback = [this]() { sceneBackCallback(); };
     const auto scene_change_callback = [this](const SceneName scene_name) { sceneChangeCallback(scene_name); };
 
-    entity_updater_ptr_->registerEntity(std::make_shared<MenuUI>(language_record_ptr, input_ptr, font_loader_ptr,
-        img_loader_ptr, sound_effect_loader_ptr, game_end_callback, scene_back_callback, scene_change_callback));
+    entity_updater_ptr_->registerEntity(std::make_shared<MenuUI>(
+        language_record_ptr, dxlib_input_ptr, dxlib_resource_loader_ptr,
+        game_end_callback, scene_back_callback, scene_change_callback));
 
     // フェードイン演出を追加
     const auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeIn, []() {});
     entity_updater_ptr_->registerEntity(fade_effect_ptr);
-}
-
-MenuScene::~MenuScene() {
-    DEBUG_PRINT("MenuScene Destructor called");
 }
 
 bool MenuScene::update() {
@@ -72,7 +69,7 @@ void MenuScene::draw() const {
 }
 
 void MenuScene::onReturnFromOtherScene(const SceneChangeParameter&) {
-    DEBUG_PRINT_IMPORTANT("MenuScene::onReturnFromOtherScene called");
+    DEBUG_PRINT_IMPORTANT("Now MenuScene is returned from other scene.");
 
     // フェードイン演出を追加
     const auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeIn, []() {});
@@ -87,7 +84,7 @@ void MenuScene::sceneBackCallback() {
         return;
     }
 
-    DEBUG_PRINT("MenuScene::sceneBackCallback called");
+    DEBUG_PRINT("Return the scene to the previous one.");
 
     now_scene_change_ = true;
 
@@ -97,9 +94,6 @@ void MenuScene::sceneBackCallback() {
     });
 
     entity_updater_ptr_->registerEntity(fade_effect_ptr);
-
-    // サウンドを再生
-    PlaySoundMem(sound_effect_handle_, DX_PLAYTYPE_BACK);
 }
 
 void MenuScene::sceneChangeCallback(const SceneName scene_name) {
@@ -107,7 +101,7 @@ void MenuScene::sceneChangeCallback(const SceneName scene_name) {
         return;
     }
 
-    DEBUG_PRINT("MenuScene::sceneChangeCallback called");
+    DEBUG_PRINT(std::format("Change the scene to {}.", magic_enum::enum_name(scene_name)));
 
     now_scene_change_ = true;
 
@@ -117,9 +111,6 @@ void MenuScene::sceneChangeCallback(const SceneName scene_name) {
     });
 
     entity_updater_ptr_->registerEntity(fade_effect_ptr);
-
-    // サウンドを再生
-    PlaySoundMem(sound_effect_handle_, DX_PLAYTYPE_BACK);
 }
 
 }  // namespace match_stick

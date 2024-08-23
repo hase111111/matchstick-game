@@ -20,13 +20,13 @@
 
 #include <DxLib.h>
 
+#include "dxlib_resource_loader.h"
 #include "language_record_initializer.h"
-
 
 namespace match_stick {
 
 GameMainLoop::GameMainLoop(const std::shared_ptr<const GameSettingRecord>& game_setting_record) :
-    input_ptr_(std::make_shared<DxLibInput>()),
+    dxlib_input_ptr_(std::make_shared<DxLibInput>()),
     fps_controller_(std::make_shared<FpsController>(60)),
     game_setting_record_ptr_(game_setting_record),
     scene_change_listener_ptr_(std::make_shared<SceneChangeListener>()),
@@ -35,7 +35,7 @@ GameMainLoop::GameMainLoop(const std::shared_ptr<const GameSettingRecord>& game_
 
 bool GameMainLoop::loop() {
     // 入力を取得
-    input_ptr_->update();
+    dxlib_input_ptr_->update();
 
     // シーンのスタックの一番上を実行する．
     if (!scene_stack_ptr_->updateTopScene()) {
@@ -69,25 +69,22 @@ bool GameMainLoop::loop() {
 
 std::shared_ptr<SceneStack> GameMainLoop::initializeSceneStack() const {
     ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
-    ASSERT_NOT_NULL_PTR(input_ptr_);
+    ASSERT_NOT_NULL_PTR(dxlib_input_ptr_);
 
     LanguageRecordInitializer language_record_initializer;
     const auto language_record_ptr =
         std::make_shared<LanguageRecord>(
             language_record_initializer.initialize(game_setting_record_ptr_->language_country));
 
-    const auto sound_effect_loader_ptr = std::make_shared<SoundEffectLoader>();
-    sound_effect_loader_ptr->changeAllSoundVolume(game_setting_record_ptr_->sound_volume);
+    const auto dxlib_resource_loader_ptr = std::make_shared<DxLibResourceLoader>();
+    dxlib_resource_loader_ptr->changeAllSoundVolume(game_setting_record_ptr_->sound_volume);
 
     auto scene_creator_ptr = std::make_unique<SceneCreator>(
         scene_change_listener_ptr_,
         fps_controller_,
         language_record_ptr,
-        input_ptr_,
-        std::make_shared<BgmPlayer>(),
-        std::make_shared<FontLoader>(),
-        std::make_shared<ImageLoader>(),
-        sound_effect_loader_ptr);
+        dxlib_input_ptr_,
+        dxlib_resource_loader_ptr);
 
     auto scene_stack_ptr = std::make_shared<SceneStack>(std::move(scene_creator_ptr));
 

@@ -32,7 +32,7 @@ LanguageRecord LanguageRecordInitializer::initialize(const LanguageRecord::Count
             const std::string key = line.substr(0, comma_pos);
             const std::string value = line.substr(comma_pos + 1);
 
-            record.set(key, country_enum, value);
+            record.setValue(key, country_enum, value);
         }
     }
 

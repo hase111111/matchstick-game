@@ -26,24 +26,6 @@ void ImageLoader::loadImageHandle(const std::string& file_path) {
     return;
 }
 
-int ImageLoader::loadAndGetImageHandle(const std::string& file_path) {
-    // 既に読み込み済みならば，そのハンドルを返す．
-    if (image_handle_.contains(file_path)) {
-        return image_handle_[file_path];
-    }
-
-    // そうでなければ画像を読み込み，ハンドルを返す．
-    const int graphic_handle = LoadGraph(file_path.c_str());
-
-    // assert内で読み込み処理をしてはいけないので注意．
-    ASSERT(graphic_handle >= 0, "Failed to load image. File Path : " + file_path);
-
-    // 記録してから，ハンドルを返す．
-    image_handle_[file_path] = graphic_handle;
-
-    return graphic_handle;
-}
-
 int ImageLoader::getImageHandle(const std::string& file_path) const {
     ASSERT(isImageLoaded(file_path), "The image is not loaded. File is " + file_path);
     return image_handle_.at(file_path);

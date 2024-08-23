@@ -12,11 +12,10 @@ class FontLoader final {
     using Country = LanguageRecord::Country;
 
 public:
-    int loadAndGetFontHandle(Country country, const std::string& file_path, int edge = 0);
-
+    [[nodiscard]]
     int getFontHandle(Country country, const std::string& file_path) const;
 
-    void loadFontHandle(Country country, const std::string& file_path, int edge = 0);
+    void loadFontHandle(Country country, const std::string& file_path);
 
 private:
     static constexpr int kMaxFontHandleNum = 20;  //! フォントの読み込みの最大数を設定する．

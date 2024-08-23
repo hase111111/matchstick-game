@@ -11,7 +11,7 @@ namespace match_stick {
 DebugScene::DebugScene(const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
                        const std::shared_ptr<const DxLibInput>& input_ptr) :
     scene_change_listener_ptr_(scene_change_listener_ptr),
-    input_ptr_(input_ptr) {
+    dxlib_input_ptr_(input_ptr) {
     MatchGameRule rule;
     rule.negative_number_valid = true;
     rule.five_over_valid = true;
@@ -39,11 +39,11 @@ DebugScene::DebugScene(const std::shared_ptr<SceneChangeListener>& scene_change_
 }
 
 bool DebugScene::update() {
-    if (input_ptr_->getKeyboardPressingCount(KEY_INPUT_ESCAPE) == 1) {
+    if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_ESCAPE) == 1) {
         return false;
     }
 
-    if (input_ptr_->getKeyboardPressingCount(KEY_INPUT_R) == 1) {
+    if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_R) == 1) {
         scene_change_listener_ptr_->requestDeleteScene(1, SceneChangeParameter{});
     }
 

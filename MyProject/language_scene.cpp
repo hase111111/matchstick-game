@@ -15,28 +15,24 @@ namespace match_stick {
 
 LanguageScene::LanguageScene(const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
                              const std::shared_ptr<const FpsController>& fps_controller_ptr,
-                             const std::shared_ptr<LanguageRecord>& lang,
-                             const std::shared_ptr<const DxLibInput>& input_ptr,
-                             const std::shared_ptr<const FontLoader>& font_loader_ptr,
-                             const std::shared_ptr<const ImageLoader>& img_loader_ptr,
-                             const std::shared_ptr<const SoundEffectLoader>& sound_effect_loader) :
+                             const std::shared_ptr<LanguageRecord>& language_record_ptr,
+                             const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
+                             const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr) :
     scene_change_listener_ptr_(scene_change_listener_ptr),
     entity_updater_ptr_(std::make_unique<EntityUpdater>()) {
     // ポインタのチェック
     ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
     ASSERT_NOT_NULL_PTR(fps_controller_ptr);
-    ASSERT_NOT_NULL_PTR(lang);
-    ASSERT_NOT_NULL_PTR(input_ptr);
-    ASSERT_NOT_NULL_PTR(font_loader_ptr);
-    ASSERT_NOT_NULL_PTR(img_loader_ptr);
-    ASSERT_NOT_NULL_PTR(sound_effect_loader);
+    ASSERT_NOT_NULL_PTR(language_record_ptr);
+    ASSERT_NOT_NULL_PTR(dxlib_input_ptr);
+    ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
 
     ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
     ASSERT_NOT_NULL_PTR(entity_updater_ptr_);
 
     // エンティティの登録
     entity_updater_ptr_->registerEntity(
-        std::make_shared<LanguageBackGroundBase>(lang, font_loader_ptr, img_loader_ptr));
+        std::make_shared<LanguageBackGroundBase>(language_record_ptr, dxlib_resource_loader_ptr));
 
     const auto on_back_button_clicked = [this]() {
         auto scene_change_func = [this]() {
@@ -48,14 +44,16 @@ LanguageScene::LanguageScene(const std::shared_ptr<SceneChangeListener>& scene_c
         };
 
     entity_updater_ptr_->registerEntity(std::make_shared<LanguageUI>(
-        lang, input_ptr, font_loader_ptr, img_loader_ptr, sound_effect_loader,
+        language_record_ptr, dxlib_input_ptr, dxlib_resource_loader_ptr,
         std::bind(&LanguageScene::callBackOnBackButtonClicked, this, std::placeholders::_1)));
 
     // FPS 表示エンティティの登録
-    entity_updater_ptr_->registerEntity(std::make_shared<FpsDisplayer>(fps_controller_ptr, lang, font_loader_ptr));
+    entity_updater_ptr_->registerEntity(std::make_shared<FpsDisplayer>(
+        fps_controller_ptr, language_record_ptr, dxlib_resource_loader_ptr));
 
     // 入力スキーム表示エンティティの登録
-    entity_updater_ptr_->registerEntity(std::make_shared<InputSchemeDisplayer>(input_ptr, img_loader_ptr));
+    entity_updater_ptr_->registerEntity(std::make_shared<InputSchemeDisplayer>(
+        dxlib_input_ptr, dxlib_resource_loader_ptr));
 
     // フェードイン演出を追加
     const auto fade_effect_ptr = std::make_shared<FadeEffect>(60, FadeEffect::FadeType::kFadeIn, []() {});

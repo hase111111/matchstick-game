@@ -6,22 +6,20 @@
 #include <string>
 
 #include "dxlib_input.h"
-#include "font_loader.h"
+#include "dxlib_resource_loader.h"
 #include "i_entity.h"
 #include "language_record.h"
 #include "rule_text.h"
 #include "rule_ui_hexagon.h"
-#include "sound_effect_loader.h"
 
 namespace match_stick {
 
 class RuleUI final : public IEntity {
 public:
     RuleUI(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-           const std::shared_ptr<const DxLibInput>& input_ptr,
-           const std::shared_ptr<const FontLoader>& font_loader,
-           const std::shared_ptr<const SoundEffectLoader>& sound_effect_loader_ptr,
-           std::function<void()> on_button_pressed);
+        const std::shared_ptr<const DxLibInput>& input_ptr,
+        const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr,
+        std::function<void()> on_button_pressed);
     ~RuleUI() = default;
 
     inline int getLayer() const override {
@@ -39,11 +37,11 @@ private:
 
     const std::function<void()> on_button_pressed_;
 
-    const std::shared_ptr<const DxLibInput> input_ptr_;
+    const std::shared_ptr<const DxLibInput> dxlib_input_ptr_;
     RuleUIHexagon rule_ui_hexagon_;
     RuleText rule_text_;
 
-    const int font_handle_;
+    const int font24_handle_;
     const int sound_effect1_handle_;
     const int sound_effect2_handle_;
 

@@ -25,7 +25,7 @@ public:
 
 private:
     std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
-    std::shared_ptr<const DxLibInput> input_ptr_;
+    std::shared_ptr<const DxLibInput> dxlib_input_ptr_;
 };
 
 }  // namespace match_stick

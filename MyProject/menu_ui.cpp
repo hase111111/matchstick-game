@@ -11,41 +11,61 @@
 #include "game_const.h"
 #include "math_const.h"
 
+namespace {
+
+static constexpr int kBarWidth = 260;
+static constexpr int kBarHeight = 210;
+static constexpr int kBarThickness = 3;
+
+static constexpr int kBarStartX = 70;
+static constexpr int kBarStartY = 20;
+static constexpr int kBarDistance = 20;
+
+static constexpr int kButtonWidth = 200;
+static constexpr int kButtonHeight = 60;
+static constexpr int kButtonRight = 10;
+static constexpr int kButtonBottom = 10;
+
+static constexpr int kIndexMaxX = 3;
+static constexpr int kIndexMaxY = 3;
+
+}  // namespace
+
 namespace match_stick {
 
-MenuUI::MenuUI(const std::shared_ptr<const LanguageRecord>& lang,
-               const std::shared_ptr<const DxLibInput>& input_ptr,
-               const std::shared_ptr<const FontLoader>& font_loader_ptr,
-               const std::shared_ptr<const ImageLoader>& img_loader_ptr,
-               const std::shared_ptr<const SoundEffectLoader>& sound_effect_loader_ptr,
+MenuUI::MenuUI(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+               const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
+               const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr,
                const std::function<void()>& game_end_callback,
                const std::function<void()>& scene_back_callback,
                const std::function<void(SceneName)>& scene_change_callback) :
-    input_ptr_(input_ptr),
-    font_handle_(font_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")),
-    big_font_handle_(font_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font48.dft")),
-    small_font_handle_(font_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font24.dft")),
-    sound_effect_handle_(sound_effect_loader_ptr->getSoundHandle("data/sound/selecting3.mp3")),
-    button0_text_(lang->get("menu_back")),
-    button1_text_(lang->get("menu_end")),
+    dxlib_input_ptr_(dxlib_input_ptr),
+    font48_handle_(dxlib_resource_loader_ptr->getFontHandle(language_record_ptr->getCurrentCountry(),
+        "data/font/azuki_font48.dft")),
+    font32_handle_(dxlib_resource_loader_ptr->getFontHandle(language_record_ptr->getCurrentCountry(),
+        "data/font/azuki_font32.dft")),
+    font24_handle_(dxlib_resource_loader_ptr->getFontHandle(language_record_ptr->getCurrentCountry(),
+        "data/font/azuki_font24.dft")),
+    select_sound_effect_handle_(dxlib_resource_loader_ptr->getSoundHandle("data/sound/selecting3.mp3")),
+    decision_sound_effect_handle_(dxlib_resource_loader_ptr->getSoundHandle("data/sound/selecting2.mp3")),
+    button0_text_(language_record_ptr->getValue("menu_back")),
+    button1_text_(language_record_ptr->getValue("menu_end")),
     game_end_callback_(game_end_callback),
     scene_back_callback_(scene_back_callback),
     scene_change_callback_(scene_change_callback) {
     // ポインタが nullptr でないことを確認
-    ASSERT_NOT_NULL_PTR(lang);
-    ASSERT_NOT_NULL_PTR(input_ptr);
-    ASSERT_NOT_NULL_PTR(font_loader_ptr);
-    ASSERT_NOT_NULL_PTR(img_loader_ptr);
-    ASSERT_NOT_NULL_PTR(sound_effect_loader_ptr);
+    ASSERT_NOT_NULL_PTR(language_record_ptr);
+    ASSERT_NOT_NULL_PTR(dxlib_input_ptr);
+    ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
 
-    ASSERT_NOT_NULL_PTR(input_ptr_);
+    ASSERT_NOT_NULL_PTR(dxlib_input_ptr_);
 
     // 画像を読み込む
-    bar_image_handle_map_[BarType::kGameStart] = img_loader_ptr->getImageHandle("data/img/icon_game.png");
-    bar_image_handle_map_[BarType::kRule] = img_loader_ptr->getImageHandle("data/img/icon_rule.png");
-    bar_image_handle_map_[BarType::kSetting] = img_loader_ptr->getImageHandle("data/img/icon_setting.png");
-    bar_image_handle_map_[BarType::kReplay] = img_loader_ptr->getImageHandle("data/img/icon_replay.png");
-    bar_image_handle_map_[BarType::kLanguage] = img_loader_ptr->getImageHandle("data/img/icon_language.png");
+    bar_image_handle_map_[BarType::kGameStart] = dxlib_resource_loader_ptr->getImageHandle("data/img/icon_game.png");
+    bar_image_handle_map_[BarType::kRule] = dxlib_resource_loader_ptr->getImageHandle("data/img/icon_rule.png");
+    bar_image_handle_map_[BarType::kSetting] = dxlib_resource_loader_ptr->getImageHandle("data/img/icon_setting.png");
+    bar_image_handle_map_[BarType::kReplay] = dxlib_resource_loader_ptr->getImageHandle("data/img/icon_replay.png");
+    bar_image_handle_map_[BarType::kLanguage] = dxlib_resource_loader_ptr->getImageHandle("data/img/icon_language.png");
 
     // 回転を初期化
     for (const auto bar_type : magic_enum::enum_values<BarType>()) {
@@ -53,11 +73,11 @@ MenuUI::MenuUI(const std::shared_ptr<const LanguageRecord>& lang,
     }
 
     // テキストを初期化
-    bar_text_map_[BarType::kGameStart] = lang->get("menu_game");
-    bar_text_map_[BarType::kRule] = lang->get("menu_rule");
-    bar_text_map_[BarType::kSetting] = lang->get("menu_setting");
-    bar_text_map_[BarType::kReplay] = lang->get("menu_replay");
-    bar_text_map_[BarType::kLanguage] = lang->get("menu_language");
+    bar_text_map_[BarType::kGameStart] = language_record_ptr->getValue("menu_game");
+    bar_text_map_[BarType::kRule] = language_record_ptr->getValue("menu_rule");
+    bar_text_map_[BarType::kSetting] = language_record_ptr->getValue("menu_setting");
+    bar_text_map_[BarType::kReplay] = language_record_ptr->getValue("menu_replay");
+    bar_text_map_[BarType::kLanguage] = language_record_ptr->getValue("menu_language");
 }
 
 bool MenuUI::update() {
@@ -71,29 +91,35 @@ bool MenuUI::update() {
         selected_bar_type_ = getBarTypeFromIndex();
         bar_rotation_map_[selected_bar_type_] = MathConst<double>::kPi * 2.0;
 
-        PlaySoundMem(sound_effect_handle_, DX_PLAYTYPE_BACK);
+        PlaySoundMem(select_sound_effect_handle_, DX_PLAYTYPE_BACK);
 
         DEBUG_PRINT(std::format("index_x:={}, index_y:={}",
             selected_bar_index_x_ % kIndexMaxX, selected_bar_index_y_ % kIndexMaxY));
     }
 
-    if (input_ptr_->getMousePressingCount(MOUSE_INPUT_LEFT) == 1 ||
-        input_ptr_->getKeyboardPressingCount(KEY_INPUT_Z) == 1) {
+    if (dxlib_input_ptr_->getMousePressingCount(MOUSE_INPUT_LEFT) == 1 ||
+        dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_Z) == 1) {
         const int index_x = selected_bar_index_x_ % kIndexMaxX;
         const int index_y = selected_bar_index_y_ % kIndexMaxY;
 
         if (index_y == 0 && (index_x == 0 || index_x == 1)) {
             scene_change_callback_(SceneName::kGame);
+            PlaySoundMem(decision_sound_effect_handle_, DX_PLAYTYPE_BACK);
         } else if (index_x == 2 && index_y == 0) {
             scene_change_callback_(SceneName::kRule);
+            PlaySoundMem(decision_sound_effect_handle_, DX_PLAYTYPE_BACK);
         } else if (index_x == 0 && index_y == 1) {
             scene_change_callback_(SceneName::kSetting);
+            PlaySoundMem(decision_sound_effect_handle_, DX_PLAYTYPE_BACK);
         } else if (index_x == 1 && index_y == 1) {
             scene_change_callback_(SceneName::kDebug);
+            PlaySoundMem(decision_sound_effect_handle_, DX_PLAYTYPE_BACK);
         } else if (index_x == 2 && index_y == 1) {
             scene_change_callback_(SceneName::kLanguage);
+            PlaySoundMem(decision_sound_effect_handle_, DX_PLAYTYPE_BACK);
         } else if (index_y == 2 && (index_x == 0 || index_x == 1)) {
             scene_back_callback_();
+            PlaySoundMem(decision_sound_effect_handle_, DX_PLAYTYPE_BACK);
         } else if (index_y == 2 && index_x == 2) {
             game_end_callback_();
         }
@@ -121,31 +147,31 @@ void MenuUI::updateRotation() {
 }
 
 void MenuUI::updateSelectedBarType() {
-    if (input_ptr_->getInputType() == DxLibInput::InputType::kKeyboard) {
+    if (dxlib_input_ptr_->getInputType() == DxLibInput::InputType::kKeyboard) {
         // 横方向の選択
         if (selected_bar_index_y_ % kIndexMaxY == 0 || selected_bar_index_y_ % kIndexMaxY == 2) {
-            if (input_ptr_->getKeyboardPressingCount(KEY_INPUT_LEFT) == 1) {
+            if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_LEFT) == 1) {
                 selected_bar_index_x_ = selected_bar_index_x_ % kIndexMaxX == 2 ? 0 : 2;
-            } else if (input_ptr_->getKeyboardPressingCount(KEY_INPUT_RIGHT) == 1) {
+            } else if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_RIGHT) == 1) {
                 selected_bar_index_x_ = selected_bar_index_x_ % kIndexMaxX == 2 ? 0 : 2;
             }
         } else {
-            if (input_ptr_->getKeyboardPressingCount(KEY_INPUT_LEFT) == 1) {
+            if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_LEFT) == 1) {
                 selected_bar_index_x_ += kIndexMaxX - 1;
-            } else if (input_ptr_->getKeyboardPressingCount(KEY_INPUT_RIGHT) == 1) {
+            } else if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_RIGHT) == 1) {
                 selected_bar_index_x_ += 1;
             }
         }
 
         // 縦方向の選択
-        if (input_ptr_->getKeyboardPressingCount(KEY_INPUT_UP) == 1) {
+        if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_UP) == 1) {
             selected_bar_index_y_ += kIndexMaxY - 1;
-        } else if (input_ptr_->getKeyboardPressingCount(KEY_INPUT_DOWN) == 1) {
+        } else if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_DOWN) == 1) {
             selected_bar_index_y_ += 1;
         }
     } else {
-        const int input_x = input_ptr_->getCursorPosX();
-        const int input_y = input_ptr_->getCursorPosY();
+        const int input_x = dxlib_input_ptr_->getCursorPosX();
+        const int input_y = dxlib_input_ptr_->getCursorPosY();
 
         for (int i = 0; i < 2; ++i) {
             for (int j = 0; j < kIndexMaxX; ++j) {
@@ -245,11 +271,11 @@ void MenuUI::drawBar() const {
 
             // テキストを描画
             const int text_width = GetDrawStringWidthToHandle(bar_text_map_.at(bar_type).c_str(),
-                static_cast<int>(bar_text_map_.at(bar_type).size()), font_handle_);
+                static_cast<int>(bar_text_map_.at(bar_type).size()), font32_handle_);
             DrawStringToHandle(kBarStartX + (kBarWidth + kBarDistance) * j + kBarWidth / 2 - text_width / 2,
                                kBarStartY + (kBarHeight + kBarDistance) * i + kBarHeight / 5 - 20,
                                bar_text_map_.at(bar_type).c_str(),
-                               GetColor(0x00, 0x00, 0x00), font_handle_);
+                               GetColor(0x00, 0x00, 0x00), font32_handle_);
         }
     }
 
@@ -271,11 +297,11 @@ void MenuUI::drawBar() const {
 
     // テキストを描画
     const int text_width = GetDrawStringWidthToHandle(bar_text_map_.at(BarType::kGameStart).c_str(),
-            static_cast<int>(bar_text_map_.at(BarType::kGameStart).size()), big_font_handle_);
+            static_cast<int>(bar_text_map_.at(BarType::kGameStart).size()), font48_handle_);
     DrawStringToHandle(kBarStartX + kBarWidth * 5 / 4 + kBarDistance / 2 - text_width / 2,
                        kBarStartY + kBarHeight / 3 - 20,
                        bar_text_map_.at(BarType::kGameStart).c_str(),
-                       GetColor(0x00, 0x00, 0x00), big_font_handle_);
+                       GetColor(0x00, 0x00, 0x00), font48_handle_);
 }
 
 void MenuUI::drawButton() const {
@@ -315,12 +341,12 @@ void MenuUI::drawButton() const {
         // テキストを描画
         const std::string text = (i == 0) ? button0_text_ : button1_text_;
         const int text_width =
-            GetDrawStringWidthToHandle(text.c_str(), static_cast<int>(text.size()), small_font_handle_);
+            GetDrawStringWidthToHandle(text.c_str(), static_cast<int>(text.size()), font24_handle_);
 
         DrawStringToHandle(GameConst::kResolutionX - kButtonWidth * 2 + i * (kButtonWidth + kBarThickness)
                                 - kButtonRight + kButtonWidth / 2 - text_width / 2,
                            GameConst::kResolutionY - kButtonBottom - kButtonHeight / 2 - 12,
-                           text.c_str(), GetColor(0x00, 0x00, 0x00), small_font_handle_);
+                           text.c_str(), GetColor(0x00, 0x00, 0x00), font24_handle_);
     }
 }
 

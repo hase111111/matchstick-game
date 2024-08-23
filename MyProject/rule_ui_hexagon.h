@@ -4,9 +4,8 @@
 #include <memory>
 
 #include "dxlib_input.h"
-#include "font_loader.h"
+#include "dxlib_resource_loader.h"
 #include "i_entity.h"
-#include "sound_effect_loader.h"
 
 namespace match_stick {
 
@@ -14,8 +13,7 @@ class RuleUIHexagon final {
 public:
     RuleUIHexagon(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
                   const std::shared_ptr<const DxLibInput>& input_ptr,
-                  const std::shared_ptr<const FontLoader>& font_loader,
-                  const std::shared_ptr<const SoundEffectLoader>& sound_effect_loader_ptr);
+                  const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
     ~RuleUIHexagon() = default;
 
     int update(bool hexagon_is_hovered);
@@ -29,7 +27,7 @@ private:
     int getHoverIndex(int x, int y) const;
     bool isInsideHexagon(int x, int y, int center_x, int center_y, int radius) const;
 
-    const std::shared_ptr<const DxLibInput> input_ptr_;
+    const std::shared_ptr<const DxLibInput> dxlib_input_ptr_;
 
     const int font_handle_;
 

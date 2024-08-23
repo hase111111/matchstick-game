@@ -14,18 +14,16 @@ public:
     void loadImageHandle(const std::string& file_path);
 
     [[nodiscard]]
-    int loadAndGetImageHandle(const std::string& file_path);
-
-    [[nodiscard]]
     int getImageHandle(const std::string& file_path) const;
 
+    void reloadAllImage();
+
+private:
     [[nodiscard]]
     inline bool isImageLoaded(const std::string& file_path) const {
         return image_handle_.count(file_path) != 0;
     }
 
-    void reloadAllImage();
-private:
     std::map<std::string, int> image_handle_;  //!< 画像を格納する配列．キーはファイルパス．
 };
 

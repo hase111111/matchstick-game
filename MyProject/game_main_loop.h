@@ -22,7 +22,7 @@ public:
 private:
     std::shared_ptr<SceneStack> initializeSceneStack() const;
 
-    const std::shared_ptr<DxLibInput> input_ptr_;
+    const std::shared_ptr<DxLibInput> dxlib_input_ptr_;
 
     const std::shared_ptr<FpsController> fps_controller_;
 
