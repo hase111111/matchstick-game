@@ -9,4 +9,5 @@
 #include <doctest.h>
 
 #include "scene_change_listener_test.h"
+#include "scene_change_parameter_test.h"
 #include "test_sample.h"
