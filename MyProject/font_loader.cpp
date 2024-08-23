@@ -9,14 +9,14 @@
 namespace match_stick {
 
 int FontLoader::loadAndGetFontHandle(const LanguageRecord::Country country,
-                                     const std::string& file_path, const int edge) {
+                                     const std::string& file_path) {
     // フォントをすでに読み込んでいるならそのハンドルを返す．
     if (alreadyLoadedFont(country, file_path)) {
         return getFontHandle(country, file_path);
     }
 
     // 読み込む．
-    loadFontHandle(country, file_path, edge);
+    loadFontHandle(country, file_path);
 
     // ハンドルを返す．
     return getFontHandle(country, file_path);
@@ -33,7 +33,7 @@ int FontLoader::getFontHandle(const Country country, const std::string& file_pat
     return result_handle;
 }
 
-void FontLoader::loadFontHandle(const Country country, const std::string& file_path, int edge) {
+void FontLoader::loadFontHandle(const Country country, const std::string& file_path) {
     // フォントをすでに読み込んでいるなら何もしない．
     if (alreadyLoadedFont(country, file_path)) {
         return;
@@ -45,7 +45,7 @@ void FontLoader::loadFontHandle(const Country country, const std::string& file_p
     if (isCountryForOtherLanguage(country)) {
         font_handle = CreateFontToHandle(NULL, getFontSizeByString(file_path), 2);
     } else {
-        font_handle = LoadFontDataToHandle(file_path.c_str(), edge);
+        font_handle = LoadFontDataToHandle(file_path.c_str());
     }
 
     // assert内で読み込み処理をしてはいけないので注意．
