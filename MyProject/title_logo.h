@@ -34,9 +34,9 @@ private:
     const int font20_handle_;
 
     const std::string game_title_;
-    const std::string announce_keyboard_;
-    const std::string announce_mouse_;
-    const std::string copy_right_;
+    const std::string announce_keyboard_text_;
+    const std::string announce_mouse_text_;
+    const std::string copy_right_text_;
 
     const double blink_period_{ 30 };  //!< 点滅周期，単位はフレーム
     int counter_{ 0 };  //!< 点滅カウンタ

@@ -20,9 +20,9 @@ TitleLogo::TitleLogo(const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
     font20_handle_(dxlib_resource_loader_ptr->getFontHandle(language_record_ptr->getCurrentCountry(),
         "data/font/azuki_font20.dft")),
     game_title_(language_record_ptr->getValue("game_title")),
-    announce_keyboard_(language_record_ptr->getValue("press_z_key_to_start")),
-    announce_mouse_(language_record_ptr->getValue("click_left_to_start")),
-    copy_right_(language_record_ptr->getValue("copy_right")) {
+    announce_keyboard_text_(language_record_ptr->getValue("press_z_key_to_start")),
+    announce_mouse_text_(language_record_ptr->getValue("click_left_to_start")),
+    copy_right_text_(language_record_ptr->getValue("copy_right")) {
     // NULL チェック
     ASSERT_NOT_NULL_PTR(dxlib_input_ptr_);
 }
@@ -45,7 +45,7 @@ void TitleLogo::draw() const {
 
     // キー入力を促すメッセージ
     std::string announce = (dxlib_input_ptr_->getInputType() == DxLibInput::InputType::kMouse) ?
-        announce_mouse_ : announce_keyboard_;
+        announce_mouse_text_ : announce_keyboard_text_;
 
     const int announce_size = static_cast<int>(announce.size());
     const int announce_len = GetDrawStringWidthToHandle(announce.c_str(), announce_size, font32_handle_);
@@ -57,12 +57,12 @@ void TitleLogo::draw() const {
     SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
 
     // コピーライト
-    const int copy_right_size = static_cast<int>(copy_right_.size());
-    const int copy_right_len = GetDrawStringWidthToHandle(copy_right_.c_str(), copy_right_size, font20_handle_);
+    const int copy_right_size = static_cast<int>(copy_right_text_.size());
+    const int copy_right_len = GetDrawStringWidthToHandle(copy_right_text_.c_str(), copy_right_size, font20_handle_);
     const int copy_right_x = GameConst::kResolutionX - copy_right_len - 10;
     const int copy_right_y = GameConst::kResolutionY - 30;
 
-    DrawFormatStringToHandle(copy_right_x, copy_right_y, color, font20_handle_, copy_right_.c_str());
+    DrawFormatStringToHandle(copy_right_x, copy_right_y, color, font20_handle_, copy_right_text_.c_str());
 }
 
 }  // namespace match_stick
