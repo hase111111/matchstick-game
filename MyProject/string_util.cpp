@@ -1,7 +1,6 @@
 ﻿
 #include "string_util.h"
 
-
 namespace match_stick::string_util {
 
 std::vector<std::string> Split(const std::string& str, const std::string& separator) {
