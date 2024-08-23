@@ -12,8 +12,7 @@ class FontLoader final {
     using Country = LanguageRecord::Country;
 
 public:
-    int loadAndGetFontHandle(Country country, const std::string& file_path);
-
+    [[nodiscard]]
     int getFontHandle(Country country, const std::string& file_path) const;
 
     void loadFontHandle(Country country, const std::string& file_path);

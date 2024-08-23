@@ -14,22 +14,19 @@ public:
     void loadSoundHandle(const std::string& file_path);
 
     [[nodiscard]]
-    int loadAndGetSoundHandle(const std::string& file_path);
-
-    [[nodiscard]]
     inline int getSoundHandle(const std::string& file_path) const {
         ASSERT(sound_handle_.count(file_path) != 0, "The sound effect is not loaded. File is " + file_path);
         return sound_handle_.at(file_path);
     }
 
+    void changeAllSoundVolume(int volume);
+
+private:
     [[nodiscard]]
     inline bool isSoundLoaded(const std::string& file_path) const {
         return sound_handle_.count(file_path) != 0;
     }
 
-    void changeAllSoundVolume(int volume);
-
-private:
     std::map<std::string, int> sound_handle_;  //!< SEを格納する配列．キーはファイルパス．
 
     int volume_percent_{ 100 };  //!< SEの音量．

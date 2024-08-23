@@ -8,20 +8,6 @@
 
 namespace match_stick {
 
-int FontLoader::loadAndGetFontHandle(const LanguageRecord::Country country,
-                                     const std::string& file_path) {
-    // フォントをすでに読み込んでいるならそのハンドルを返す．
-    if (alreadyLoadedFont(country, file_path)) {
-        return getFontHandle(country, file_path);
-    }
-
-    // 読み込む．
-    loadFontHandle(country, file_path);
-
-    // ハンドルを返す．
-    return getFontHandle(country, file_path);
-}
-
 int FontLoader::getFontHandle(const Country country, const std::string& file_path) const {
     ASSERT(alreadyLoadedFont(country, file_path), "The font has not been loaded yet.");
 
