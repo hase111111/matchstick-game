@@ -79,7 +79,7 @@ void runTest() {
 }
 
 void debugPrint(const std::string& func_name, const std::string& str, const DebugPrintType type) {
-    const std::string text = changeFunctionMacroToString(func_name) + "\n\t" + str;
+    const std::string text = changeFunctionMacroToString(func_name) + "\n\t";
 
     // 番号を表示，3桁右詰め
     std::cout << std::right << std::setw(3) << std::setfill('0') << print_count++ << " : ";
@@ -89,11 +89,20 @@ void debugPrint(const std::string& func_name, const std::string& str, const Debu
 
     if (type == DebugPrintType::kImportant) {
         std::cout << std::endl;
-        std::cout << "----------------------------------------------------------" << std::endl;
-        std::cout << text << std::endl;
-        std::cout << "----------------------------------------------------------" << std::endl;
+
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), static_cast<WORD>(type));
+        std::cout << "----------------------------------------------------------------------------------" << std::endl;
+        std::cout << text << str << std::endl;
+        std::cout << "----------------------------------------------------------------------------------" << std::endl;
+        // 色をリセット
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
     } else {
-        std::cout << text << std::endl;
+        std::cout << text;
+
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), static_cast<WORD>(type));
+        std::cout << str << std::endl;
+        // 色をリセット
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
     }
 
     std::cout << std::endl;
