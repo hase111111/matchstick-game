@@ -29,9 +29,9 @@ public:
 private:
     const std::shared_ptr<const DxLibInput> dxlib_input_ptr_;
 
-    const int big_font_handle_;
-    const int middle_font_handle_;
-    const int small_font_handle_;
+    const int font64_handle_;
+    const int font32_handle_;
+    const int font20_handle_;
 
     const std::string game_title_;
     const std::string announce_keyboard_;
