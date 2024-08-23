@@ -69,7 +69,7 @@ private:
 
     void drawButton() const;
 
-    const std::shared_ptr<const DxLibInput> input_ptr_;
+    const std::shared_ptr<const DxLibInput> dxlib_input_ptr_;
 
     std::map<BarType, int> bar_image_handle_map_;
     std::map<BarType, double> bar_rotation_map_;

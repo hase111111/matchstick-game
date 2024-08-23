@@ -16,7 +16,7 @@ RuleUI::RuleUI(const std::shared_ptr<const LanguageRecord>& lang,
                const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr,
                std::function<void()> on_button_pressed) :
     on_button_pressed_(on_button_pressed),
-    input_ptr_(dxlib_input_ptr),
+    dxlib_input_ptr_(dxlib_input_ptr),
     rule_ui_hexagon_(lang, dxlib_input_ptr, dxlib_resource_loader_ptr),
     rule_text_(lang, dxlib_resource_loader_ptr),
     font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font24.dft")),
@@ -78,15 +78,15 @@ bool RuleUI::isButtonHovered() const {
     const int button_x = GameConst::kResolutionX - button_width - 5;
     const int button_y = GameConst::kResolutionY - button_height - 5;
 
-    const int mouse_x = input_ptr_->getCursorPosX();
-    const int mouse_y = input_ptr_->getCursorPosY();
+    const int mouse_x = dxlib_input_ptr_->getCursorPosX();
+    const int mouse_y = dxlib_input_ptr_->getCursorPosY();
 
     return button_x <= mouse_x && mouse_x <= button_x + button_width &&
         button_y <= mouse_y && mouse_y <= button_y + button_height;
 }
 
 void RuleUI::updateButton() {
-    if (input_ptr_->getInputType() == DxLibInput::InputType::kMouse) {
+    if (dxlib_input_ptr_->getInputType() == DxLibInput::InputType::kMouse) {
         if (isButtonHovered() && !is_button_hovered_) {
             PlaySoundMem(sound_effect1_handle_, DX_PLAYTYPE_BACK);
             is_button_hovered_ = true;
@@ -94,19 +94,19 @@ void RuleUI::updateButton() {
             is_button_hovered_ = false;
         }
 
-        if (is_button_hovered_ && input_ptr_->getMousePressingCount(MOUSE_INPUT_LEFT) == 1) {
+        if (is_button_hovered_ && dxlib_input_ptr_->getMousePressingCount(MOUSE_INPUT_LEFT) == 1) {
             already_button_pressed_ = true;
             PlaySoundMem(sound_effect2_handle_, DX_PLAYTYPE_BACK);
             on_button_pressed_();
         }
     } else {
-        if (input_ptr_->getKeyboardPressingCount(KEY_INPUT_LEFT) == 1 ||
-            input_ptr_->getKeyboardPressingCount(KEY_INPUT_RIGHT) == 1) {
+        if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_LEFT) == 1 ||
+            dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_RIGHT) == 1) {
             PlaySoundMem(sound_effect1_handle_, DX_PLAYTYPE_BACK);
             is_button_hovered_ = !is_button_hovered_;
         }
 
-        if (is_button_hovered_ && input_ptr_->getKeyboardPressingCount(KEY_INPUT_Z) == 1) {
+        if (is_button_hovered_ && dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_Z) == 1) {
             already_button_pressed_ = true;
             PlaySoundMem(sound_effect2_handle_, DX_PLAYTYPE_BACK);
             on_button_pressed_();

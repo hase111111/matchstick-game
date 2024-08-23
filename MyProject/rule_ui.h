@@ -37,7 +37,7 @@ private:
 
     const std::function<void()> on_button_pressed_;
 
-    const std::shared_ptr<const DxLibInput> input_ptr_;
+    const std::shared_ptr<const DxLibInput> dxlib_input_ptr_;
     RuleUIHexagon rule_ui_hexagon_;
     RuleText rule_text_;
 

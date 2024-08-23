@@ -11,7 +11,7 @@ namespace match_stick {
 TitleLogo::TitleLogo(const std::shared_ptr<const DxLibInput>& input_ptr,
                      const std::shared_ptr<const LanguageRecord>& lang,
                      const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr) :
-    input_ptr_(input_ptr),
+    dxlib_input_ptr_(input_ptr),
     big_font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font64.dft")),
     middle_font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(),
         "data/font/azuki_font32.dft")),
@@ -39,7 +39,7 @@ void TitleLogo::draw() const {
     DrawFormatStringToHandle(title_x, title_y, color, big_font_handle_, game_title_.c_str());
 
     // キー入力を促すメッセージ
-    std::string announce = (input_ptr_->getInputType() == DxLibInput::InputType::kMouse) ?
+    std::string announce = (dxlib_input_ptr_->getInputType() == DxLibInput::InputType::kMouse) ?
         announce_mouse_ : announce_keyboard_;
 
     const int announce_size = static_cast<int>(announce.size());

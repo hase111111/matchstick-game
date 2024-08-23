@@ -25,7 +25,7 @@ public:
     void draw() const override {};
 
 private:
-    const std::shared_ptr<const DxLibInput> input_ptr_;
+    const std::shared_ptr<const DxLibInput> dxlib_input_ptr_;
 
     const std::function<void()> scene_change_func_;
 

@@ -13,7 +13,7 @@ namespace match_stick {
 
 class TitleLogo final : public IEntity {
 public:
-    TitleLogo(const std::shared_ptr<const DxLibInput>& input_ptr,
+    TitleLogo(const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
               const std::shared_ptr<const LanguageRecord>& language_record_ptr,
               const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
     ~TitleLogo() = default;
@@ -27,7 +27,7 @@ public:
     void draw() const override;
 
 private:
-    const std::shared_ptr<const DxLibInput> input_ptr_;
+    const std::shared_ptr<const DxLibInput> dxlib_input_ptr_;
 
     const int big_font_handle_;
     const int middle_font_handle_;

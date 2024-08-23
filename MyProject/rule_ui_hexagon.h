@@ -27,7 +27,7 @@ private:
     int getHoverIndex(int x, int y) const;
     bool isInsideHexagon(int x, int y, int center_x, int center_y, int radius) const;
 
-    const std::shared_ptr<const DxLibInput> input_ptr_;
+    const std::shared_ptr<const DxLibInput> dxlib_input_ptr_;
 
     const int font_handle_;
 

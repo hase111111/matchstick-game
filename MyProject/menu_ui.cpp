@@ -19,7 +19,7 @@ MenuUI::MenuUI(const std::shared_ptr<const LanguageRecord>& lang,
                const std::function<void()>& game_end_callback,
                const std::function<void()>& scene_back_callback,
                const std::function<void(SceneName)>& scene_change_callback) :
-    input_ptr_(input_ptr),
+    dxlib_input_ptr_(input_ptr),
     font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")),
     big_font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font48.dft")),
     small_font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(),
@@ -35,7 +35,7 @@ MenuUI::MenuUI(const std::shared_ptr<const LanguageRecord>& lang,
     ASSERT_NOT_NULL_PTR(input_ptr);
     ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
 
-    ASSERT_NOT_NULL_PTR(input_ptr_);
+    ASSERT_NOT_NULL_PTR(dxlib_input_ptr_);
 
     // 画像を読み込む
     bar_image_handle_map_[BarType::kGameStart] = dxlib_resource_loader_ptr->getImageHandle("data/img/icon_game.png");
@@ -74,8 +74,8 @@ bool MenuUI::update() {
             selected_bar_index_x_ % kIndexMaxX, selected_bar_index_y_ % kIndexMaxY));
     }
 
-    if (input_ptr_->getMousePressingCount(MOUSE_INPUT_LEFT) == 1 ||
-        input_ptr_->getKeyboardPressingCount(KEY_INPUT_Z) == 1) {
+    if (dxlib_input_ptr_->getMousePressingCount(MOUSE_INPUT_LEFT) == 1 ||
+        dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_Z) == 1) {
         const int index_x = selected_bar_index_x_ % kIndexMaxX;
         const int index_y = selected_bar_index_y_ % kIndexMaxY;
 
@@ -118,31 +118,31 @@ void MenuUI::updateRotation() {
 }
 
 void MenuUI::updateSelectedBarType() {
-    if (input_ptr_->getInputType() == DxLibInput::InputType::kKeyboard) {
+    if (dxlib_input_ptr_->getInputType() == DxLibInput::InputType::kKeyboard) {
         // 横方向の選択
         if (selected_bar_index_y_ % kIndexMaxY == 0 || selected_bar_index_y_ % kIndexMaxY == 2) {
-            if (input_ptr_->getKeyboardPressingCount(KEY_INPUT_LEFT) == 1) {
+            if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_LEFT) == 1) {
                 selected_bar_index_x_ = selected_bar_index_x_ % kIndexMaxX == 2 ? 0 : 2;
-            } else if (input_ptr_->getKeyboardPressingCount(KEY_INPUT_RIGHT) == 1) {
+            } else if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_RIGHT) == 1) {
                 selected_bar_index_x_ = selected_bar_index_x_ % kIndexMaxX == 2 ? 0 : 2;
             }
         } else {
-            if (input_ptr_->getKeyboardPressingCount(KEY_INPUT_LEFT) == 1) {
+            if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_LEFT) == 1) {
                 selected_bar_index_x_ += kIndexMaxX - 1;
-            } else if (input_ptr_->getKeyboardPressingCount(KEY_INPUT_RIGHT) == 1) {
+            } else if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_RIGHT) == 1) {
                 selected_bar_index_x_ += 1;
             }
         }
 
         // 縦方向の選択
-        if (input_ptr_->getKeyboardPressingCount(KEY_INPUT_UP) == 1) {
+        if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_UP) == 1) {
             selected_bar_index_y_ += kIndexMaxY - 1;
-        } else if (input_ptr_->getKeyboardPressingCount(KEY_INPUT_DOWN) == 1) {
+        } else if (dxlib_input_ptr_->getKeyboardPressingCount(KEY_INPUT_DOWN) == 1) {
             selected_bar_index_y_ += 1;
         }
     } else {
-        const int input_x = input_ptr_->getCursorPosX();
-        const int input_y = input_ptr_->getCursorPosY();
+        const int input_x = dxlib_input_ptr_->getCursorPosX();
+        const int input_y = dxlib_input_ptr_->getCursorPosY();
 
         for (int i = 0; i < 2; ++i) {
             for (int j = 0; j < kIndexMaxX; ++j) {
