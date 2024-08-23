@@ -22,8 +22,7 @@ MenuScene::MenuScene(const std::shared_ptr<SceneChangeListener>& scene_change_li
                      const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
                      const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr) :
     scene_change_listener_ptr_(scene_change_listener_ptr),
-    entity_updater_ptr_(std::make_unique<EntityUpdater>()),
-    sound_effect_handle_(dxlib_resource_loader_ptr->getSoundHandle("data/sound/selecting2.mp3")) {
+    entity_updater_ptr_(std::make_unique<EntityUpdater>()) {
     // ポインタが nullptr でないことを確認
     ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
     ASSERT_NOT_NULL_PTR(fps_controller_ptr);
@@ -95,9 +94,6 @@ void MenuScene::sceneBackCallback() {
     });
 
     entity_updater_ptr_->registerEntity(fade_effect_ptr);
-
-    // サウンドを再生
-    PlaySoundMem(sound_effect_handle_, DX_PLAYTYPE_BACK);
 }
 
 void MenuScene::sceneChangeCallback(const SceneName scene_name) {
@@ -115,9 +111,6 @@ void MenuScene::sceneChangeCallback(const SceneName scene_name) {
     });
 
     entity_updater_ptr_->registerEntity(fade_effect_ptr);
-
-    // サウンドを再生
-    PlaySoundMem(sound_effect_handle_, DX_PLAYTYPE_BACK);
 }
 
 }  // namespace match_stick

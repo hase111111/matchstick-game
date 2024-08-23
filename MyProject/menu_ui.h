@@ -68,7 +68,8 @@ private:
     const int font32_handle_{ 0 };
     const int font24_handle_{ 0 };
 
-    const int sound_effect_handle_{ 0 };
+    const int select_sound_effect_handle_{ 0 };
+    const int decision_sound_effect_handle_{ 0 };
 
     const std::string button0_text_;
     const std::string button1_text_;

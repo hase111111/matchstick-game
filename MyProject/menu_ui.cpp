@@ -47,6 +47,7 @@ MenuUI::MenuUI(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
     font24_handle_(dxlib_resource_loader_ptr->getFontHandle(language_record_ptr->getCurrentCountry(),
         "data/font/azuki_font24.dft")),
     sound_effect_handle_(dxlib_resource_loader_ptr->getSoundHandle("data/sound/selecting3.mp3")),
+    decision_sound_effect_handle_(dxlib_resource_loader_ptr->getSoundHandle("data/sound/selecting2.mp3")),
     button0_text_(language_record_ptr->get("menu_back")),
     button1_text_(language_record_ptr->get("menu_end")),
     game_end_callback_(game_end_callback),
@@ -103,16 +104,22 @@ bool MenuUI::update() {
 
         if (index_y == 0 && (index_x == 0 || index_x == 1)) {
             scene_change_callback_(SceneName::kGame);
+            PlaySoundMem(decision_sound_effect_handle_, DX_PLAYTYPE_BACK);
         } else if (index_x == 2 && index_y == 0) {
             scene_change_callback_(SceneName::kRule);
+            PlaySoundMem(decision_sound_effect_handle_, DX_PLAYTYPE_BACK);
         } else if (index_x == 0 && index_y == 1) {
             scene_change_callback_(SceneName::kSetting);
+            PlaySoundMem(decision_sound_effect_handle_, DX_PLAYTYPE_BACK);
         } else if (index_x == 1 && index_y == 1) {
             scene_change_callback_(SceneName::kDebug);
+            PlaySoundMem(decision_sound_effect_handle_, DX_PLAYTYPE_BACK);
         } else if (index_x == 2 && index_y == 1) {
             scene_change_callback_(SceneName::kLanguage);
+            PlaySoundMem(decision_sound_effect_handle_, DX_PLAYTYPE_BACK);
         } else if (index_y == 2 && (index_x == 0 || index_x == 1)) {
             scene_back_callback_();
+            PlaySoundMem(decision_sound_effect_handle_, DX_PLAYTYPE_BACK);
         } else if (index_y == 2 && index_x == 2) {
             game_end_callback_();
         }
