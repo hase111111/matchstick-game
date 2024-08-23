@@ -282,6 +282,7 @@
     <ClInclude Include="rule_ui_hexagon.h" />
     <ClInclude Include="scene_change_executer.h" />
     <ClInclude Include="scene_change_listener.h" />
+    <ClInclude Include="scene_change_listener_test.h" />
     <ClInclude Include="scene_change_parameter.h" />
     <ClInclude Include="scene_creator.h" />
     <ClInclude Include="scene_name.h" />
