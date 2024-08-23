@@ -15,8 +15,6 @@ public:
     TitleHandAnimation(const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
     ~TitleHandAnimation() = default;
 
-    TitleHandAnimation& operator=(const TitleHandAnimation&) = delete;
-
     inline int getLayer() const override {
         return constants::kUIBottomLayer;
     }

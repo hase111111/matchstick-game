@@ -3,15 +3,16 @@
 
 #include <DxLib.h>
 
+#include "dxlib_assert.h"
 #include "game_const.h"
 #include "dxlib_debug_print.h"
 
 namespace match_stick {
 
-TitleLogo::TitleLogo(const std::shared_ptr<const DxLibInput>& input_ptr,
+TitleLogo::TitleLogo(const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
                      const std::shared_ptr<const LanguageRecord>& language_record_ptr,
                      const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr) :
-    dxlib_input_ptr_(input_ptr),
+    dxlib_input_ptr_(dxlib_input_ptr),
     font64_handle_(dxlib_resource_loader_ptr->getFontHandle(language_record_ptr->getCurrentCountry(),
         "data/font/azuki_font64.dft")),
     font32_handle_(dxlib_resource_loader_ptr->getFontHandle(language_record_ptr->getCurrentCountry(),
@@ -21,7 +22,10 @@ TitleLogo::TitleLogo(const std::shared_ptr<const DxLibInput>& input_ptr,
     game_title_(language_record_ptr->get("game_title")),
     announce_keyboard_(language_record_ptr->get("press_z_key_to_start")),
     announce_mouse_(language_record_ptr->get("click_left_to_start")),
-    copy_right_(language_record_ptr->get("copy_right")) {}
+    copy_right_(language_record_ptr->get("copy_right")) {
+    // NULL チェック
+    ASSERT_NOT_NULL_PTR(dxlib_input_ptr_);
+}
 
 bool TitleLogo::update() {
     ++counter_;
