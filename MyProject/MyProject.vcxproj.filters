@@ -482,6 +482,9 @@
     <ClInclude Include="scene_change_listener_test.h">
       <Filter>ソース ファイル\systems\test</Filter>
     </ClInclude>
+    <ClInclude Include="scene_change_parameter_test.h">
+      <Filter>ソース ファイル\systems\test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\iconsetting.rc">
