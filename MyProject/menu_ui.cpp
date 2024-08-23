@@ -11,28 +11,50 @@
 #include "game_const.h"
 #include "math_const.h"
 
+namespace {
+
+static constexpr int kBarWidth = 260;
+static constexpr int kBarHeight = 210;
+static constexpr int kBarThickness = 3;
+
+static constexpr int kBarStartX = 70;
+static constexpr int kBarStartY = 20;
+static constexpr int kBarDistance = 20;
+
+static constexpr int kButtonWidth = 200;
+static constexpr int kButtonHeight = 60;
+static constexpr int kButtonRight = 10;
+static constexpr int kButtonBottom = 10;
+
+static constexpr int kIndexMaxX = 3;
+static constexpr int kIndexMaxY = 3;
+
+}  // namespace
+
 namespace match_stick {
 
-MenuUI::MenuUI(const std::shared_ptr<const LanguageRecord>& lang,
-               const std::shared_ptr<const DxLibInput>& input_ptr,
+MenuUI::MenuUI(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+               const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
                const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr,
                const std::function<void()>& game_end_callback,
                const std::function<void()>& scene_back_callback,
                const std::function<void(SceneName)>& scene_change_callback) :
-    dxlib_input_ptr_(input_ptr),
-    font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font32.dft")),
-    big_font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(), "data/font/azuki_font48.dft")),
-    small_font_handle_(dxlib_resource_loader_ptr->getFontHandle(lang->getCurrentCountry(),
+    dxlib_input_ptr_(dxlib_input_ptr),
+    font48_handle_(dxlib_resource_loader_ptr->getFontHandle(language_record_ptr->getCurrentCountry(),
+        "data/font/azuki_font48.dft")),
+    font32_handle_(dxlib_resource_loader_ptr->getFontHandle(language_record_ptr->getCurrentCountry(),
+        "data/font/azuki_font32.dft")),
+    font24_handle_(dxlib_resource_loader_ptr->getFontHandle(language_record_ptr->getCurrentCountry(),
         "data/font/azuki_font24.dft")),
     sound_effect_handle_(dxlib_resource_loader_ptr->getSoundHandle("data/sound/selecting3.mp3")),
-    button0_text_(lang->get("menu_back")),
-    button1_text_(lang->get("menu_end")),
+    button0_text_(language_record_ptr->get("menu_back")),
+    button1_text_(language_record_ptr->get("menu_end")),
     game_end_callback_(game_end_callback),
     scene_back_callback_(scene_back_callback),
     scene_change_callback_(scene_change_callback) {
     // ポインタが nullptr でないことを確認
-    ASSERT_NOT_NULL_PTR(lang);
-    ASSERT_NOT_NULL_PTR(input_ptr);
+    ASSERT_NOT_NULL_PTR(language_record_ptr);
+    ASSERT_NOT_NULL_PTR(dxlib_input_ptr);
     ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
 
     ASSERT_NOT_NULL_PTR(dxlib_input_ptr_);
@@ -50,11 +72,11 @@ MenuUI::MenuUI(const std::shared_ptr<const LanguageRecord>& lang,
     }
 
     // テキストを初期化
-    bar_text_map_[BarType::kGameStart] = lang->get("menu_game");
-    bar_text_map_[BarType::kRule] = lang->get("menu_rule");
-    bar_text_map_[BarType::kSetting] = lang->get("menu_setting");
-    bar_text_map_[BarType::kReplay] = lang->get("menu_replay");
-    bar_text_map_[BarType::kLanguage] = lang->get("menu_language");
+    bar_text_map_[BarType::kGameStart] = language_record_ptr->get("menu_game");
+    bar_text_map_[BarType::kRule] = language_record_ptr->get("menu_rule");
+    bar_text_map_[BarType::kSetting] = language_record_ptr->get("menu_setting");
+    bar_text_map_[BarType::kReplay] = language_record_ptr->get("menu_replay");
+    bar_text_map_[BarType::kLanguage] = language_record_ptr->get("menu_language");
 }
 
 bool MenuUI::update() {
@@ -242,11 +264,11 @@ void MenuUI::drawBar() const {
 
             // テキストを描画
             const int text_width = GetDrawStringWidthToHandle(bar_text_map_.at(bar_type).c_str(),
-                static_cast<int>(bar_text_map_.at(bar_type).size()), font_handle_);
+                static_cast<int>(bar_text_map_.at(bar_type).size()), font32_handle_);
             DrawStringToHandle(kBarStartX + (kBarWidth + kBarDistance) * j + kBarWidth / 2 - text_width / 2,
                                kBarStartY + (kBarHeight + kBarDistance) * i + kBarHeight / 5 - 20,
                                bar_text_map_.at(bar_type).c_str(),
-                               GetColor(0x00, 0x00, 0x00), font_handle_);
+                               GetColor(0x00, 0x00, 0x00), font32_handle_);
         }
     }
 
@@ -268,11 +290,11 @@ void MenuUI::drawBar() const {
 
     // テキストを描画
     const int text_width = GetDrawStringWidthToHandle(bar_text_map_.at(BarType::kGameStart).c_str(),
-            static_cast<int>(bar_text_map_.at(BarType::kGameStart).size()), big_font_handle_);
+            static_cast<int>(bar_text_map_.at(BarType::kGameStart).size()), font48_handle_);
     DrawStringToHandle(kBarStartX + kBarWidth * 5 / 4 + kBarDistance / 2 - text_width / 2,
                        kBarStartY + kBarHeight / 3 - 20,
                        bar_text_map_.at(BarType::kGameStart).c_str(),
-                       GetColor(0x00, 0x00, 0x00), big_font_handle_);
+                       GetColor(0x00, 0x00, 0x00), font48_handle_);
 }
 
 void MenuUI::drawButton() const {
@@ -312,12 +334,12 @@ void MenuUI::drawButton() const {
         // テキストを描画
         const std::string text = (i == 0) ? button0_text_ : button1_text_;
         const int text_width =
-            GetDrawStringWidthToHandle(text.c_str(), static_cast<int>(text.size()), small_font_handle_);
+            GetDrawStringWidthToHandle(text.c_str(), static_cast<int>(text.size()), font24_handle_);
 
         DrawStringToHandle(GameConst::kResolutionX - kButtonWidth * 2 + i * (kButtonWidth + kBarThickness)
                                 - kButtonRight + kButtonWidth / 2 - text_width / 2,
                            GameConst::kResolutionY - kButtonBottom - kButtonHeight / 2 - 12,
-                           text.c_str(), GetColor(0x00, 0x00, 0x00), small_font_handle_);
+                           text.c_str(), GetColor(0x00, 0x00, 0x00), font24_handle_);
     }
 }
 

@@ -1,6 +1,9 @@
 ﻿
 #include "menu_scene.h"
 
+#include <format>
+
+#include <magic_enum.hpp>
 #include <DxLib.h>
 
 #include "dxlib_assert.h"
@@ -34,14 +37,16 @@ MenuScene::MenuScene(const std::shared_ptr<SceneChangeListener>& scene_change_li
     // ルール画面のエンティティを登録
     entity_updater_ptr_->registerEntity(std::make_shared<FpsDisplayer>(
         fps_controller_ptr, language_record_ptr, dxlib_resource_loader_ptr));
-    entity_updater_ptr_->registerEntity(std::make_shared<InputSchemeDisplayer>(dxlib_input_ptr, dxlib_resource_loader_ptr));
+    entity_updater_ptr_->registerEntity(std::make_shared<InputSchemeDisplayer>(
+        dxlib_input_ptr, dxlib_resource_loader_ptr));
     entity_updater_ptr_->registerEntity(std::make_shared<MenuBackGroundBase>());
 
     const auto game_end_callback = [this]() { game_end_ = true; };
     const auto scene_back_callback = [this]() { sceneBackCallback(); };
     const auto scene_change_callback = [this](const SceneName scene_name) { sceneChangeCallback(scene_name); };
 
-    entity_updater_ptr_->registerEntity(std::make_shared<MenuUI>(language_record_ptr, dxlib_input_ptr, dxlib_resource_loader_ptr,
+    entity_updater_ptr_->registerEntity(std::make_shared<MenuUI>(
+        language_record_ptr, dxlib_input_ptr, dxlib_resource_loader_ptr,
         game_end_callback, scene_back_callback, scene_change_callback));
 
     // フェードイン演出を追加
@@ -65,7 +70,7 @@ void MenuScene::draw() const {
 }
 
 void MenuScene::onReturnFromOtherScene(const SceneChangeParameter&) {
-    DEBUG_PRINT_IMPORTANT("Now, MenuScene::onReturnFromOtherScene is called.");
+    DEBUG_PRINT_IMPORTANT("Now MenuScene is returned from other scene.");
 
     // フェードイン演出を追加
     const auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeIn, []() {});
@@ -80,7 +85,7 @@ void MenuScene::sceneBackCallback() {
         return;
     }
 
-    DEBUG_PRINT("MenuScene::sceneBackCallback called");
+    DEBUG_PRINT("Return the scene to the previous one.");
 
     now_scene_change_ = true;
 
@@ -100,7 +105,7 @@ void MenuScene::sceneChangeCallback(const SceneName scene_name) {
         return;
     }
 
-    DEBUG_PRINT("MenuScene::sceneChangeCallback called");
+    DEBUG_PRINT(std::format("Change the scene to {}.", magic_enum::enum_name(scene_name)));
 
     now_scene_change_ = true;
 
