@@ -27,7 +27,6 @@ DxLibMouse::DxLibMouse() :
         wheel_rot_(0) {}
 
 void DxLibMouse::update() {
-
     // マウスの位置取得．
     cursor_past_pos_x_ = cursor_pos_x_;
     cursor_past_pos_y_ = cursor_pos_y_;
@@ -53,7 +52,6 @@ void DxLibMouse::update() {
 }
 
 int DxLibMouse::getPressingCount(const int mouse_code) const {
-
     // std::mapでは find も count も処理速度は同じくらい，
     // multimap や multiset は find を推奨する．
     if (releasing_counter_.count(mouse_code) == 0) {
@@ -64,7 +62,6 @@ int DxLibMouse::getPressingCount(const int mouse_code) const {
 }
 
 int DxLibMouse::getReleasingCount(const int mouse_code) const {
-
     if (releasing_counter_.count(mouse_code) == 0) {
         return -1;
     }
@@ -93,5 +90,10 @@ bool DxLibMouse::isAnyButtonPressed() const {
 
     return false;
 }
+
+// DxLib のマウスボタンの定義が変化していないか確認する．
+static_assert(MOUSE_INPUT_LEFT == 0x01, "DxLib mouse left button definition has changed.");
+static_assert(MOUSE_INPUT_RIGHT == 0x02, "DxLib mouse right button definition has changed.");
+static_assert(MOUSE_INPUT_MIDDLE == 0x04, "DxLib mouse middle button definition has changed.");
 
 }  // namespace match_stick
