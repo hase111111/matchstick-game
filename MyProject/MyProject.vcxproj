@@ -183,6 +183,7 @@
     <ClCompile Include="dxlib_input.cpp" />
     <ClCompile Include="dxlib_keyboard.cpp" />
     <ClCompile Include="dxlib_mouse.cpp" />
+    <ClCompile Include="dxlib_user_interface_base.cpp" />
     <ClCompile Include="entity_updater.cpp" />
     <ClCompile Include="fade_effect.cpp" />
     <ClCompile Include="font_loader.cpp" />
@@ -237,6 +238,7 @@
     <ClInclude Include="bgm_player.h" />
     <ClInclude Include="debug_scene.h" />
     <ClInclude Include="dxlib_resource_loader.h" />
+    <ClInclude Include="dxlib_user_interface_base.h" />
     <ClInclude Include="entity_updater_test.h" />
     <ClInclude Include="game_const.h" />
     <ClInclude Include="dxlib_assert.h" />

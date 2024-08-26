@@ -12,11 +12,13 @@ public:
     //! @return エンティティの削除を行うかどうか
     //! @retval true 削除しない
     //! @retval false 削除する
+    [[nodiscard]]
     virtual bool update() = 0;
 
     //! @brief エンティティのレイヤーを取得する
     //! @return レイヤー，int型で値が大きいほど手前に表示される
     //! @note レイヤーが同じ場合は登録順に表示される
+    [[nodiscard]]
     virtual int getLayer() const = 0;
 
     //! @brief エンティティの描画処理を行う
