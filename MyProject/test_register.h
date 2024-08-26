@@ -9,6 +9,7 @@
 #include <doctest.h>
 
 // テストファイルをインクルードする
+#include "entity_updater_test.h"
 #include "scene_change_listener_test.h"
 #include "scene_change_parameter_test.h"
 #include "scene_creator_test.h"

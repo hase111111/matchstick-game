@@ -91,6 +91,9 @@
     <Filter Include="ソース ファイル\common\test_system">
       <UniqueIdentifier>{809d2312-94e0-45e5-9395-dc57271a4815}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\entity\test">
+      <UniqueIdentifier>{7ca04839-9972-4223-bf4b-de478dea962a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -490,6 +493,9 @@
     </ClInclude>
     <ClInclude Include="scene_creator_test.h">
       <Filter>ソース ファイル\systems\test</Filter>
+    </ClInclude>
+    <ClInclude Include="entity_updater_test.h">
+      <Filter>ソース ファイル\entity\test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -31,15 +31,15 @@ bool FadeEffect::update() {
 
 void FadeEffect::draw() const {
     if (fade_type_ == FadeType::kFadeOut) {
-        SetDrawBlendMode(DX_BLENDMODE_ALPHA, counter_ * 255 / fade_time_);
+        DxLib::SetDrawBlendMode(DX_BLENDMODE_ALPHA, counter_ * 255 / fade_time_);
     } else {
         const int blend = 255 * (fade_time_ - counter_) / fade_time_;
-        SetDrawBlendMode(DX_BLENDMODE_ALPHA, blend);
+        DxLib::SetDrawBlendMode(DX_BLENDMODE_ALPHA, blend);
     }
 
-    DrawBox(0, 0, GameConst::kResolutionX, GameConst::kResolutionY, GetColor(0, 0, 0), TRUE);
+    DxLib::DrawBox(0, 0, GameConst::kResolutionX, GameConst::kResolutionY, DxLib::GetColor(0, 0, 0), TRUE);
 
-    SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+    DxLib::SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
 }  // namespace match_stick
