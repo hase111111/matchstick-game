@@ -13,6 +13,8 @@ public:
     TestRunner() = default;
     ~TestRunner() = default;
 
+    //! @brief テストを実行する．
+    //! @return テストが成功した場合は true，失敗した場合は false を返す．
     bool run() const;
 };
 

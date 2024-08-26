@@ -237,6 +237,7 @@
     <ClInclude Include="bgm_player.h" />
     <ClInclude Include="debug_scene.h" />
     <ClInclude Include="dxlib_resource_loader.h" />
+    <ClInclude Include="entity_updater_test.h" />
     <ClInclude Include="game_const.h" />
     <ClInclude Include="dxlib_assert.h" />
     <ClInclude Include="dxlib_debug_print.h" />
@@ -287,6 +288,7 @@
     <ClInclude Include="scene_change_parameter.h" />
     <ClInclude Include="scene_change_parameter_test.h" />
     <ClInclude Include="scene_creator.h" />
+    <ClInclude Include="scene_creator_test.h" />
     <ClInclude Include="scene_name.h" />
     <ClInclude Include="scene_stack.h" />
     <ClInclude Include="setting_back_ground_base.h" />

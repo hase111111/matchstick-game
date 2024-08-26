@@ -7,7 +7,6 @@
 namespace match_stick {
 
 class DxLibMouse final {
-
 public:
     DxLibMouse();
 

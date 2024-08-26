@@ -15,7 +15,7 @@ void ImageLoader::loadImageHandle(const std::string& file_path) {
     }
 
     // そうでなければ画像を読み込み，ハンドルを返す．
-    const int graphic_handle = LoadGraph(file_path.c_str());
+    const int graphic_handle = DxLib::LoadGraph(file_path.c_str());
 
     // assert内で読み込み処理をしてはいけないので注意．
     ASSERT(graphic_handle >= 0, "Failed to load image. File Path : " + file_path);
@@ -33,7 +33,7 @@ int ImageLoader::getImageHandle(const std::string& file_path) const {
 
 void ImageLoader::reloadAllImage() {
     // すべての画像を解放する．
-    InitGraph();
+    DxLib::InitGraph();
 
     // ハンドルを -1 にする．
     for (auto& pair : image_handle_) {

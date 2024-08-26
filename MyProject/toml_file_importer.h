@@ -41,8 +41,6 @@ public:
     //! @param file_path 読み込むファイルのパス．
     //! @return 読み込んだ構造体．失敗した場合は std::nulloptを返す．
     std::optional<T> Import(const std::string& file_path) const {
-        DEBUG_PRINT("Loads a file. file_path : " + file_path);
-
         if (!FileIsExist(file_path)) { return std::nullopt; }
 
         toml::value toml_value;
@@ -55,7 +53,7 @@ public:
 
         if (!ValidateData(data)) { return std::nullopt; }
 
-        DEBUG_PRINT("Loading completed successfully.");
+        DEBUG_PRINT_INFO("Loading completed successfully.");
 
         return data;
     }
@@ -74,77 +72,61 @@ public:
         TomlFileExporter<T> exporter;
         exporter.Export(file_path, T());
 
-        DEBUG_PRINT("Use default data.");
+        DEBUG_PRINT_WARNING("Use default data.");
 
         return T();
     }
 
 private:
     bool FileIsExist(const std::string& file_path) const {
-        DEBUG_PRINT("Check if the file exists. ");
-
         if (!std::filesystem::exists(file_path)) {
-            DEBUG_PRINT("The file does not exist.");
+            DEBUG_PRINT_ERROR("The file does not exist.");
 
             return false;
         }
-
-        DEBUG_PRINT("The file found.");
 
         return true;
     }
 
     bool ParseTomlFile(const std::string& file_path, toml::value* toml_value) const {
-        DEBUG_PRINT("Start parsing.");
-
         try {
             // バイナリモードで読み込む．
             std::ifstream ifs(file_path, std::ios::binary);
 
             *toml_value = toml::parse(ifs, file_path);
         } catch (toml::syntax_error err) {
-            DEBUG_PRINT("File parsing failed.");
-            DEBUG_PRINT("< Rows that failed to parse >");
-            DEBUG_PRINT(err.what());
+            DEBUG_PRINT_ERROR("File parsing failed.");
+            DEBUG_PRINT_ERROR("< Rows that failed to parse >");
+            DEBUG_PRINT_ERROR(err.what());
 
             return false;
         }
-
-        DEBUG_PRINT("File parsing succeeded.");
 
         return true;
     }
 
     bool SerializeTomlData(toml::value* toml_value, T* data) const {
-        DEBUG_PRINT("Serialize data.");
-
         try {
             *data = toml::from<T>::from_toml(*toml_value);
         } catch (...) {
-            DEBUG_PRINT("Data serialization failed.");
+            DEBUG_PRINT_ERROR("Data serialization failed.");
 
             return false;
         }
-
-        DEBUG_PRINT("Data serialization succeeded.");
 
         return true;
     }
 
     bool ValidateData(const T& data) const {
-        DEBUG_PRINT("Start data validation.");
-
         const auto [is_valid, error_message] = validator_->Validate(data);
 
         if (!is_valid) {
-            DEBUG_PRINT("Data validation failed.");
-            DEBUG_PRINT("<Reasons for Failure to Verify>");
-            DEBUG_PRINT(error_message);
+            DEBUG_PRINT_ERROR("Data validation failed.");
+            DEBUG_PRINT_ERROR("<Reasons for Failure to Verify>");
+            DEBUG_PRINT_ERROR(error_message);
 
             return false;
         }
-
-        DEBUG_PRINT("Data validation succeeded.");
 
         return true;
     }

@@ -2,9 +2,10 @@
 #pragma once
 
 #include <source_location>
+#include <stdexcept>
 #include <string>
 
-#include <Windows.h>
+#include <DxLib.h>
 
 
 namespace match_stick {
@@ -29,15 +30,21 @@ const std::source_location location = std::source_location::current(); \
 ::match_stick::assert_internal::ErrorAssert(expression, error_mes, location.file_name(), \
     location.function_name(), location.line());
 
-//! @brief エラーが発生したときにエラーメッセージを表示する．
-//! @param expr エラーが発生したかどうかの条件．
-//! @param error_mes エラーメッセージ．
+//! @brief エラーが発生したときにエラーメッセージを表示する
+//! DxLib の動作を止め，独自のエラーメッセージを表示する
+//! DxLib が初期化されていない場合は，例外を投げるが，そもそも呼び出さないこと
+//! @param expr true であることが期待される条件
+//! @param error_mes エラーメッセージ
 #define ASSERT(expr, error_mes)                                     \
 do {                                                                \
     if (!(expr)) {                                                  \
-        const std::string expr_str = #expr;                         \
-        const std::string message = error_mes;                      \
-        MATCH_STICK_INTERNAL_ERROR_MESSAGE(expr_str, message);      \
+        if (DxLib_IsInit() != TRUE) {                               \
+            throw std::runtime_error("DxLib is not initialized.");  \
+        } else {                                                    \
+            const std::string expr_str = #expr;                     \
+            const std::string message = error_mes;                  \
+            MATCH_STICK_INTERNAL_ERROR_MESSAGE(expr_str, message);  \
+        }                                                           \
     }                                                               \
 } while (0)
 
