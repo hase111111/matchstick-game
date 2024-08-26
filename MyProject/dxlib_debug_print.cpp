@@ -12,8 +12,18 @@
 
 namespace {
 
+//! @brief __FUNCTION__ マクロで取得した関数名を読みやすい形に変換する
+//! @param[in] func_name __FUNCTION__ マクロで取得した関数名
+//! @return 変換後の文字列
+//! @details MSVC でのみ動作する
 std::string changeFunctionMacroToString(const std::string& func_name) {
-    // match_stick::をすべて削除
+    // MSVC であることを確認する
+#if defined(_MSC_VER)
+#else
+#error "This function is only for MSVC."
+#endif
+
+// match_stick::をすべて削除
     std::string str = "Class Name [" + func_name;
     const std::string match_stick = "match_stick::";
 
