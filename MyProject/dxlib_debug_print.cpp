@@ -59,7 +59,7 @@ void createConsole() {
     FILE* fp;
 
     if (AllocConsole() == FALSE) {
-        ErrorMessageBox::show("コンソールの作成に失敗しました。");
+        ErrorMessageBox::show("createConsole コンソールの作成に失敗しました。");
         is_console_created = false;
         return;
     }
@@ -75,7 +75,7 @@ void createConsole() {
 void runTest() {
     // コンソールが作成されていない場合は，テストを実行しない
     if (!is_console_created) {
-        ErrorMessageBox::show("コンソールが作成されていません。");
+        ErrorMessageBox::show("runTest コンソールが作成されていません。");
         return;
     }
 

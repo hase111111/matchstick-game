@@ -7,7 +7,7 @@
 
 #include "scene_creator.h"
 
-TEST_CASE("SceneCreator::createScene when create title scene, should not return nullptr") {
+TEST_CASE("SceneCreator::createScene when create debug scene, should not return nullptr") {
     using match_stick::SceneCreator;
 
     // Arrange
@@ -25,7 +25,7 @@ TEST_CASE("SceneCreator::createScene when create title scene, should not return 
         dxlib_resource_loader);
 
     // Act
-    const auto scene = scene_creator->createScene(match_stick::SceneName::kTitle);
+    const auto scene = scene_creator->createScene(match_stick::SceneName::kDebug);
 
     // Assert
     CHECK(scene != nullptr);

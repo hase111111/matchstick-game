@@ -30,6 +30,7 @@ enum class DebugPrintType {
 };
 
 //! @brief デバッグ用のコンソールを作成する
+//! 作成に失敗した場合は，メッセージボックスを表示する
 //! @details
 //! DxLib はデバッグ用のコンソールを提供していないため，
 //! Win32API の AllocConsole() を使用してコンソールを作成する．
@@ -37,6 +38,7 @@ enum class DebugPrintType {
 void createConsole();
 
 //! @brief テストを実行する
+//! 実行に失敗した場合は，メッセージボックスを表示する
 //! @details
 //! doctest で作成されたテストを実行する．
 //! createConsole を実行していないと，テスト結果がコンソールに表示されない．
