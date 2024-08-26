@@ -264,6 +264,9 @@
     <ClCompile Include="test_runner.cpp">
       <Filter>ソース ファイル\common\test_system</Filter>
     </ClCompile>
+    <ClCompile Include="dxlib_user_interface_base.cpp">
+      <Filter>ソース ファイル\entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game_const.h">
@@ -496,6 +499,9 @@
     </ClInclude>
     <ClInclude Include="entity_updater_test.h">
       <Filter>ソース ファイル\entity\test</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_user_interface_base.h">
+      <Filter>ソース ファイル\entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
