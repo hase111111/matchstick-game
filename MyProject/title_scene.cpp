@@ -4,6 +4,7 @@
 #include <DxLib.h>
 
 #include "dxlib_assert.h"
+#include "dxlib_debug_print.h"
 #include "fade_effect.h"
 #include "fps_displayer.h"
 #include "input_scheme_displayer.h"
@@ -73,6 +74,8 @@ void TitleScene::draw() const {
 }
 
 void TitleScene::onReturnFromOtherScene(const SceneChangeParameter&) {
+    DEBUG_PRINT_IMPORTANT("Now, TitleScene is returned from other scene.");
+
     // フェードイン演出を追加
     auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeIn, []() {});
     entity_updater_ptr_->registerEntity(fade_effect_ptr);

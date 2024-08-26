@@ -56,7 +56,7 @@ void RuleScene::draw() const {
 }
 
 void RuleScene::onReturnFromOtherScene(const SceneChangeParameter&) {
-    DEBUG_PRINT_IMPORTANT("Now RuleScene is returned from other scene.");
+    DEBUG_PRINT_IMPORTANT("Now, RuleScene is returned from other scene.");
 }
 
 void RuleScene::callBackReturnButton() {

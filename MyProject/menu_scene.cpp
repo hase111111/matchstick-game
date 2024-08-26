@@ -69,7 +69,7 @@ void MenuScene::draw() const {
 }
 
 void MenuScene::onReturnFromOtherScene(const SceneChangeParameter&) {
-    DEBUG_PRINT_IMPORTANT("Now MenuScene is returned from other scene.");
+    DEBUG_PRINT_IMPORTANT("Now, MenuScene is returned from other scene.");
 
     // フェードイン演出を追加
     const auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeIn, []() {});

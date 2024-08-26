@@ -74,7 +74,7 @@ void LanguageScene::draw() const {
 
 void LanguageScene::callBackOnBackButtonClicked(const bool back_one_scene) {
     // バックボタンが押されたときの処理
-    DEBUG_PRINT_IMPORTANT("LanguageScene::callBackOnBackButtonClicked called.");
+    DEBUG_PRINT_IMPORTANT("Back button is clicked.");
 
     auto scene_change_func = [this]() { scene_change_listener_ptr_->requestDeleteScene(1, SceneChangeParameter{}); };
     auto all_delete_func = [this]() { scene_change_listener_ptr_->requestDeleteAllScene(); };
