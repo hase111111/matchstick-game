@@ -6,6 +6,7 @@
 
 #include <DxLib.h>
 
+#include "error_message_box.h"
 #include "string_util.h"
 #include "test_runner.h"
 
@@ -56,14 +57,31 @@ namespace match_stick::debug_print_internal {
 
 void createConsole() {
     FILE* fp;
-    AllocConsole();
+
+    if (AllocConsole() == FALSE) {
+        ErrorMessageBox::show("コンソールの作成に失敗しました。");
+        is_console_created = false;
+        return;
+    }
+
     freopen_s(&fp, "CONOUT$", "w", stdout);  // 標準出力(stdout)を新しいコンソールに向ける
     freopen_s(&fp, "CONOUT$", "w", stderr);  // 標準エラー出力(stderr)を新しいコンソールに向ける
 
     std::cout << std::endl;  // 見やすさのための改行
+
+    is_console_created = true;
 }
 
 void runTest() {
+    // コンソールが作成されていない場合は，テストを実行しない
+    if (!is_console_created) {
+        ErrorMessageBox::show("コンソールが作成されていません。");
+        return;
+    }
+
+    // デバッグプリントを無効にする
+    debug_print_off = true;
+
     TestRunner test_runner;
     const bool res = test_runner.run();
 
@@ -76,9 +94,17 @@ void runTest() {
     } else {
         DEBUG_PRINT_ERROR("Test Failed.");
     }
+
+    // デバッグプリントを有効にする
+    debug_print_off = false;
 }
 
 void debugPrint(const std::string& func_name, const std::string& str, const DebugPrintType type) {
+    // デバッグプリントが無効の場合は，何もしない
+    if (debug_print_off) {
+        return;
+    }
+
     const std::string text = changeFunctionMacroToString(func_name) + "\n\t";
 
     // 番号を表示，3桁右詰め
