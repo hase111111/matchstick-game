@@ -28,7 +28,8 @@ SettingScene::SettingScene(const std::shared_ptr<SceneChangeListener>& scene_cha
     ASSERT_NOT_NULL_PTR(entity_updater_ptr_);
 
     // エンティティを追加
-    entity_updater_ptr_->registerEntity(std::make_unique<SettingBackGroundBase>());
+    entity_updater_ptr_->registerEntity(std::make_unique<SettingBackGroundBase>(
+        language_record_ptr, dxlib_resource_loader_ptr));
     entity_updater_ptr_->registerEntity(std::make_shared<FpsDisplayer>(
         fps_controller_ptr, language_record_ptr, dxlib_resource_loader_ptr));
     entity_updater_ptr_->registerEntity(std::make_shared<InputSchemeDisplayer>(
