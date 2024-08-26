@@ -32,7 +32,7 @@ void debugPrint(const std::string& func_name, const std::string& str, DebugPrint
 
 #ifdef _DEBUG
 
-#define PREPAER_DEBUG_PRINT() \
+#define PREPAER_DEBUG_PRINT_AND_ACTIVATE_TEST() \
 ::match_stick::debug_print_internal::createConsole(); \
 ::match_stick::debug_print_internal::runTest();
 
