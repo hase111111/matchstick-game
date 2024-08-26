@@ -1,4 +1,7 @@
 ﻿
+// 表示→その他のウィンドウ→プロパティ→マネージャー
+// myBuildSettings → マクロ に DXLIB_DIR が定義されている．
+
 // C28251 を無視する
 #pragma warning(disable: 28251)
 
