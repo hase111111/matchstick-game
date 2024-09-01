@@ -509,7 +509,7 @@
     <ClInclude Include="dxlib_user_interface_base.h">
       <Filter>ソース ファイル\entity\user_interface</Filter>
     </ClInclude>
-    <ClInclude Include="i_dxlib_interface.h">
+    <ClInclude Include="i_dxlib_user_interface.h">
       <Filter>ソース ファイル\entity\user_interface</Filter>
     </ClInclude>
     <ClInclude Include="simple_box_button.h">

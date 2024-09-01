@@ -3,10 +3,10 @@
 
 namespace match_stick {
 
-class IDxLibInterface {
+class IDxLibUserInterface {
 public:
-    IDxLibInterface() = default;
-    ~IDxLibInterface() = default;
+    IDxLibUserInterface() = default;
+    ~IDxLibUserInterface() = default;
 
     virtual bool isHovered(int mouse_x, int mouse_y) const = 0;
 

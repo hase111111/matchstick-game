@@ -16,7 +16,7 @@ DxLibUserInterfaceBase::DxLibUserInterfaceBase(const std::shared_ptr<const DxLib
 }
 
 void DxLibUserInterfaceBase::registerInterface(
-    const std::shared_ptr<IDxLibInterface>& dxlib_interface, const int id) {
+    const std::shared_ptr<IDxLibUserInterface>& dxlib_interface, const int id) {
     // すでに登録されている場合はアサートを出す
     ASSERT(dxlib_interfaces_.find(id) == dxlib_interfaces_.end(), std::format("id ({}) duplicated", id));
 

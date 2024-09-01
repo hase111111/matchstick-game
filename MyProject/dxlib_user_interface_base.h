@@ -6,7 +6,7 @@
 #include <vector>
 
 #include "dxlib_input.h"
-#include "i_dxlib_interface.h"
+#include "i_dxlib_user_interface.h"
 #include "i_entity.h"
 
 namespace match_stick {
@@ -28,7 +28,7 @@ public:
     DxLibUserInterfaceBase(const std::shared_ptr<const DxLibInput>& dxlib_input);
     ~DxLibUserInterfaceBase() = default;
 
-    void registerInterface(const std::shared_ptr<IDxLibInterface>& dxlib_interface, int id);
+    void registerInterface(const std::shared_ptr<IDxLibUserInterface>& dxlib_interface, int id);
 
     void registerInterfaceDeployment(const std::map<int, DxLibInterfaceDeployment>& deployment_map);
 
@@ -52,7 +52,7 @@ private:
     void updateSelectedIdWhenKeyboardUsed();
 
 
-    std::map<int, std::shared_ptr<IDxLibInterface>> dxlib_interfaces_;
+    std::map<int, std::shared_ptr<IDxLibUserInterface>> dxlib_interfaces_;
 
     std::map<int, DxLibInterfaceDeployment> deployment_map_;
 

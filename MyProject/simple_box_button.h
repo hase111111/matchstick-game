@@ -7,13 +7,13 @@
 
 #include "dxlib_resource_loader.h"
 #include "language_record.h"
-#include "i_dxlib_interface.h"
+#include "i_dxlib_user_interface.h"
 #include "i_entity.h"
 
 
 namespace match_stick {
 
-class SimpleBoxButton final : public IDxLibInterface, public IEntity {
+class SimpleBoxButton final : public IDxLibUserInterface, public IEntity {
 public:
     SimpleBoxButton(const std::shared_ptr<const LanguageRecord>& language_record,
                     const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader,
@@ -31,7 +31,9 @@ public:
 
     void callbackWhenHoverEnded() override;
 
-    bool update() override {};
+    constexpr bool update() override {
+        return true;
+    };
 
     void draw() const override;
 
