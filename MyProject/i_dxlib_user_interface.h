@@ -10,6 +10,8 @@ public:
 
     virtual bool isHovered(int mouse_x, int mouse_y) const = 0;
 
+    virtual void initHoverState(bool is_hovered) = 0;
+
     virtual void callbackWhenClicked() = 0;
 
     virtual void callbackWhenHoverStarted() = 0;

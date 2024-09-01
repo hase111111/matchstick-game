@@ -34,6 +34,10 @@ bool SimpleBoxButton::isHovered(const int mouse_x, const int mouse_y) const {
             center_y_ - height_ / 2 <= mouse_y && mouse_y <= center_y_ + height_ / 2);
 }
 
+void SimpleBoxButton::initHoverState(const bool is_hovered) {
+    is_hovered_ = is_hovered;
+}
+
 void SimpleBoxButton::callbackWhenClicked() {
     callback_when_clicked_();
 }

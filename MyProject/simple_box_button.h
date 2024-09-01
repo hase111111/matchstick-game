@@ -25,6 +25,8 @@ public:
 
     bool isHovered(const int mouse_x, const int mouse_y) const override;
 
+    void initHoverState(bool is_hovered) override;
+
     void callbackWhenClicked() override;
 
     void callbackWhenHoverStarted() override;
