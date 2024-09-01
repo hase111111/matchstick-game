@@ -25,7 +25,7 @@ struct DxLibInterfaceDeployment final {
 
 class DxLibUserInterfaceBase final : IEntity {
 public:
-    DxLibUserInterfaceBase(const std::shared_ptr<const DxLibInput>& dxlib_input);
+    explicit DxLibUserInterfaceBase(const std::shared_ptr<const DxLibInput>& dxlib_input);
     ~DxLibUserInterfaceBase() = default;
 
     void registerInterface(const std::shared_ptr<IDxLibUserInterface>& dxlib_interface, int id);
