@@ -29,9 +29,10 @@ SimpleBoxButton::SimpleBoxButton(
     ASSERT_NOT_NULL_PTR(dxlib_resource_loader);
 
     // 色を設定
-    button_base_color_ = GameConst::kWhiteColor;
-    button_hovered_color_ = GameConst::kGrayColor;
-    button_frame_color_ = GameConst::kBlackColor;
+    button_base_color_ = GameConst::kBrightWhiteColor;
+    button_hovered_color_ = GameConst::kLightGrayColor;
+    button_frame_color_ = GameConst::kDarkGrayColor;
+    button_text_color_ = GameConst::kBlackColor;
 }
 
 bool SimpleBoxButton::isHovered(const int mouse_x, const int mouse_y) const {
@@ -79,7 +80,7 @@ void SimpleBoxButton::draw() const {
     const int text_height = DxLib::GetFontSizeToHandle(font_handle_);
 
     DxLib::DrawStringToHandle(center_x_ - text_width / 2, center_y_ - text_height / 2,
-                              text_.c_str(), button_frame_color_, font_handle_);
+                              text_.c_str(), button_text_color_, font_handle_);
 }
 
 }  // namespace match_stick

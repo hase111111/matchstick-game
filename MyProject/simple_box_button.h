@@ -57,6 +57,7 @@ private:
     unsigned int button_base_color_;
     unsigned int button_hovered_color_;
     unsigned int button_frame_color_;
+    unsigned int button_text_color_;
 
     const std::string text_;
 

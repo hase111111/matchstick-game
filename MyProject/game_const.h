@@ -11,8 +11,11 @@ public:
     static constexpr char kWindowTitle[] = "Match Stick Game";
 
     static const unsigned int kBlackColor;
+    static const unsigned int kDarkGrayColor;
     static const unsigned int kGrayColor;
+    static const unsigned int kLightGrayColor;
     static const unsigned int kWhiteColor;
+    static const unsigned int kBrightWhiteColor;
 
 private:
     GameConst() = delete;
