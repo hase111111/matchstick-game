@@ -19,11 +19,18 @@ struct DxLibInterfaceDeployment final {
         kRight,
     };
 
+    DxLibInterfaceDeployment() {
+        deployment_map[Direction::kUp] = -1;
+        deployment_map[Direction::kDown] = -1;
+        deployment_map[Direction::kLeft] = -1;
+        deployment_map[Direction::kRight] = -1;
+    }
+
     // 方向とその方向に配置するインターフェイスのid
     std::map<Direction, int> deployment_map;
 };
 
-class DxLibUserInterfaceBase final : IEntity {
+class DxLibUserInterfaceBase final : public IEntity {
 public:
     explicit DxLibUserInterfaceBase(const std::shared_ptr<const DxLibInput>& dxlib_input);
     ~DxLibUserInterfaceBase() = default;

@@ -3,10 +3,13 @@
 
 #include "dxlib_assert.h"
 #include "dxlib_debug_print.h"
+#include "dxlib_user_interface_base.h"
 #include "fade_effect.h"
 #include "fps_displayer.h"
+#include "game_const.h"
 #include "input_scheme_displayer.h"
 #include "setting_back_ground_base.h"
+#include "simple_box_button.h"
 
 namespace match_stick {
 
@@ -34,6 +37,21 @@ SettingScene::SettingScene(const std::shared_ptr<SceneChangeListener>& scene_cha
         fps_controller_ptr, language_record_ptr, dxlib_resource_loader_ptr));
     entity_updater_ptr_->registerEntity(std::make_shared<InputSchemeDisplayer>(
         dxlib_input_ptr, dxlib_resource_loader_ptr));
+
+    const auto dxlib_user_interface_base_ptr = std::make_shared<DxLibUserInterfaceBase>(dxlib_input_ptr);
+    entity_updater_ptr_->registerEntity(dxlib_user_interface_base_ptr);
+
+    const auto button_ptr = std::make_shared<SimpleBoxButton>(
+        language_record_ptr, dxlib_resource_loader_ptr,
+        GameConst::kResolutionX * 7 / 8, GameConst::kResolutionY * 7 / 8,
+        GameConst::kResolutionX * 5 / 24, GameConst::kResolutionY / 9,
+        "language_back", "data/font/azuki_font24.dft",
+        [this]() {
+            // シーン遷移
+            scene_change_listener_ptr_->requestDeleteScene(1, SceneChangeParameter());
+        });
+    entity_updater_ptr_->registerEntity(button_ptr);
+    dxlib_user_interface_base_ptr->registerInterface(button_ptr, 0);
 
     // フェードイン演出を追加
     const auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeIn, []() {});

@@ -23,11 +23,11 @@ void DxLibUserInterfaceBase::registerInterface(
     // id が負の場合はアサートを出す
     ASSERT(id >= 0, std::format("id ({}) is negative", id));
 
-    // 登録する
+    // ダブりがない場合は登録する
     dxlib_interfaces_[id] = dxlib_interface;
 
     // 選択中のボタンに登録されたボタンを設定する
-    selected_id_ = id;
+    setDefaultSelectedId(id);
 }
 
 void DxLibUserInterfaceBase::registerInterfaceDeployment(const std::map<int, DxLibInterfaceDeployment>& map) {
@@ -45,6 +45,15 @@ void DxLibUserInterfaceBase::setDefaultSelectedId(const int id) {
     // 登録する
     default_selected_id_ = id;
     selected_id_ = id;
+
+    // ホバー中に設定する
+    for (const auto& [i, dxlib_interface] : dxlib_interfaces_) {
+        if (i == default_selected_id_) {
+            dxlib_interface->initHoverState(true);
+        } else {
+            dxlib_interface->initHoverState(false);
+        }
+    }
 }
 
 bool DxLibUserInterfaceBase::update() {
@@ -60,9 +69,9 @@ bool DxLibUserInterfaceBase::update() {
 
     // 選択中のボタンを更新
     if (dxlib_input_->getInputType() == kKeyboard) {
-        updateSelectedIdWhenMouseUsed();
-    } else if (dxlib_input_->getInputType() == kMouse) {
         updateSelectedIdWhenKeyboardUsed();
+    } else if (dxlib_input_->getInputType() == kMouse) {
+        updateSelectedIdWhenMouseUsed();
     } else {
         ASSERT_MUST_NOT_REACH_HERE();
     }
@@ -118,8 +127,34 @@ void DxLibUserInterfaceBase::updateSelectedIdWhenMouseUsed() {
 }
 
 void DxLibUserInterfaceBase::updateSelectedIdWhenKeyboardUsed() {
-    // キーボード操作を行う場合は，選択されていない状態を許可しない．
+    using enum DxLibInterfaceDeployment::Direction;
+
+    // キーボード操作を行う場合は，選択されていない状態を許可しない
     selected_id_ = selected_id_ == kNoSelectedId ? 0 : selected_id_;
+
+    // 選択中のボタンの id が配置図に存在しない場合は終了
+    if (!deployment_map_.contains(selected_id_)) {
+        return;
+    }
+
+    // 方向キーによって選択中のボタンを更新
+    if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_UP) == 1) {
+        if (deployment_map_[selected_id_].deployment_map.contains(kUp)) {
+            selected_id_ = deployment_map_[selected_id_].deployment_map[kUp];
+        }
+    } else if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_DOWN) == 1) {
+        if (deployment_map_[selected_id_].deployment_map.contains(kDown)) {
+            selected_id_ = deployment_map_[selected_id_].deployment_map[kDown];
+        }
+    } else if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_LEFT) == 1) {
+        if (deployment_map_[selected_id_].deployment_map.contains(kLeft)) {
+            selected_id_ = deployment_map_[selected_id_].deployment_map[kLeft];
+        }
+    } else if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_RIGHT) == 1) {
+        if (deployment_map_[selected_id_].deployment_map.contains(kRight)) {
+            selected_id_ = deployment_map_[selected_id_].deployment_map[kRight];
+        }
+    }
 }
 
 }  // namespace match_stick
