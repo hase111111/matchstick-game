@@ -207,6 +207,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="match_game_field.cpp" />
     <ClCompile Include="menu_back_ground_base.cpp" />
+    <ClCompile Include="menu_button.cpp" />
     <ClCompile Include="menu_scene.cpp" />
     <ClCompile Include="menu_scene_resource_loader.cpp" />
     <ClCompile Include="menu_ui.cpp" />
@@ -278,6 +279,7 @@
     <ClInclude Include="match_game_rule.h" />
     <ClInclude Include="math_const.h" />
     <ClInclude Include="menu_back_ground_base.h" />
+    <ClInclude Include="menu_button.h" />
     <ClInclude Include="menu_scene.h" />
     <ClInclude Include="menu_scene_resource_loader.h" />
     <ClInclude Include="menu_ui.h" />
