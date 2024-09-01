@@ -5,33 +5,47 @@
 #include <memory>
 #include <vector>
 
+#include "dxlib_input.h"
 #include "i_entity.h"
 
 namespace match_stick {
 
 class IDxLibInterface : public IEntity {
 public:
-    enum class InterfaceType {
-        kNormalButton,
-        kToggleButton,
-    };
-
     IDxLibInterface() = default;
     ~IDxLibInterface() = default;
 
-    virtual bool isHovered(int left_x, int top_y, int right_x, int bottom_y) const = 0;
+    virtual bool isHovered(int mouse_x, int mouse_y) const = 0;
 
-    virtual InterfaceType getInterfaceType() const = 0;
+    virtual void callbackWhenClicked() = 0;
+
+    virtual void callbackWhenHoverStarted() = 0;
+
+    virtual void callbackWhenHoverEnded() = 0;
+};
+
+struct DxLibInterfaceDeployment final {
+    enum class Direction {
+        kUp,
+        kDown,
+        kLeft,
+        kRight,
+    };
+
+    // 方向とその方向に配置するインターフェイスのid
+    std::map<Direction, int> deployment_map;
 };
 
 class DxLibUserInterfaceBase final : IEntity {
 public:
-    DxLibUserInterfaceBase() = default;
+    DxLibUserInterfaceBase(const std::shared_ptr<const DxLibInput>& dxlib_input);
     ~DxLibUserInterfaceBase() = default;
 
     void registerInterface(const std::shared_ptr<IDxLibInterface>& dxlib_interface, int id);
 
-    void registerInterfaceDeployment(const std::map<int, std::vector<int>>& deployment_map);
+    void registerInterfaceDeployment(const std::map<int, DxLibInterfaceDeployment>& deployment_map);
+
+    void setDefaultSelectedId(const int id);
 
     bool update() override;
 
@@ -39,14 +53,27 @@ public:
         return constants::kUIFrontLayer;
     }
 
-    void draw() const override;
+    void draw() const override {};
 
 private:
+    static constexpr int kNoSelectedId = -1;
+
+    bool validateDeploymentMap() const;
+
+    void updateSelectedIdWhenMouseUsed();
+
+    void updateSelectedIdWhenKeyboardUsed();
+
+
     std::map<int, std::shared_ptr<IDxLibInterface>> dxlib_interfaces_;
 
-    std::map<int, std::vector<int>> deployment_map_;
+    std::map<int, DxLibInterfaceDeployment> deployment_map_;
 
-    int selected_id_ = -1;
+    const std::shared_ptr<const DxLibInput> dxlib_input_;
+
+    int default_selected_id_{ kNoSelectedId };
+
+    int selected_id_{ kNoSelectedId };
 };
 
 }  // namespace match_stick
