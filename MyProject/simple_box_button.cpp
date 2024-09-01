@@ -4,6 +4,7 @@
 #include <DxLib.h>
 
 #include "dxlib_assert.h"
+#include "game_const.h"
 
 namespace match_stick {
 
@@ -27,6 +28,10 @@ SimpleBoxButton::SimpleBoxButton(
     ASSERT_NOT_NULL_PTR(language_record);
     ASSERT_NOT_NULL_PTR(dxlib_resource_loader);
 
+    // 色を設定
+    button_base_color_ = GameConst::kWhiteColor;
+    button_hovered_color_ = GameConst::kGrayColor;
+    button_frame_color_ = GameConst::kBlackColor;
 }
 
 bool SimpleBoxButton::isHovered(const int mouse_x, const int mouse_y) const {
@@ -39,6 +44,8 @@ void SimpleBoxButton::initHoverState(const bool is_hovered) {
 }
 
 void SimpleBoxButton::callbackWhenClicked() {
+    DxLib::PlaySoundMem(click_sound_handle_, DX_PLAYTYPE_BACK);
+
     callback_when_clicked_();
 }
 
@@ -52,6 +59,27 @@ void SimpleBoxButton::callbackWhenHoverEnded() {
     is_hovered_ = false;
 }
 
-void SimpleBoxButton::draw() const {}
+void SimpleBoxButton::draw() const {
+    // ボタンの色を設定
+    const unsigned int button_color = is_hovered_ ? button_hovered_color_ : button_base_color_;
+
+    // ボタンの枠を描画
+    DxLib::DrawBox(center_x_ - width_ / 2, center_y_ - height_ / 2,
+                   center_x_ + width_ / 2, center_y_ + height_ / 2,
+                   button_frame_color_, TRUE);
+
+    // ボタンの中身を描画
+    DxLib::DrawBox(center_x_ - width_ / 2 + button_thickness_, center_y_ - height_ / 2 + button_thickness_,
+                   center_x_ + width_ / 2 - button_thickness_, center_y_ + height_ / 2 - button_thickness_,
+                   button_color, TRUE);
+
+    // テキストを描画
+    const int text_width = DxLib::GetDrawStringWidthToHandle(
+        text_.c_str(), static_cast<int>(text_.size()), font_handle_);
+    const int text_height = DxLib::GetFontSizeToHandle(font_handle_);
+
+    DxLib::DrawStringToHandle(center_x_ - text_width / 2, center_y_ - text_height / 2,
+                              text_.c_str(), button_frame_color_, font_handle_);
+}
 
 }  // namespace match_stick

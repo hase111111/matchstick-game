@@ -9,6 +9,11 @@ public:
     static constexpr int kResolutionY = 540;
 
     static constexpr char kWindowTitle[] = "Match Stick Game";
+
+    static const unsigned int kBlackColor;
+    static const unsigned int kGrayColor;
+    static const unsigned int kWhiteColor;
+
 private:
     GameConst() = delete;
 };

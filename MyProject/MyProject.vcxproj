@@ -190,6 +190,7 @@
     <ClCompile Include="fps_controller.cpp" />
     <ClCompile Include="fps_displayer.cpp" />
     <ClCompile Include="game_back_ground_base.cpp" />
+    <ClCompile Include="game_const.cpp" />
     <ClCompile Include="game_log.cpp" />
     <ClCompile Include="game_scene.cpp" />
     <ClCompile Include="game_setting_exporter.cpp" />

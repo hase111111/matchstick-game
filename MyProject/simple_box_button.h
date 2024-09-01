@@ -53,6 +53,11 @@ private:
     const int width_;
     const int height_;
 
+    int button_thickness_ = 3;
+    unsigned int button_base_color_;
+    unsigned int button_hovered_color_;
+    unsigned int button_frame_color_;
+
     const std::string text_;
 
     const std::function<void()> callback_when_clicked_;
