@@ -3,14 +3,25 @@
 [language]
     
     #param list : [ kJapanese , kEnglish , kChinese , kKorean ]
-    language_country = "kJapanese"
+    language_country = "kEnglish"
     
 #This is a setting for sound and volume.
 [sound]
     
     #The value range is from 0 to 100.
-    bgm_volume = 50
+    bgm_volume = 100
     
     #The value range is from 0 to 100.
-    sound_volume = 50
+    master_volume = 50
+    
+    #The value range is from 0 to 100.
+    sound_volume = 100
+
+[window]
+    
+    #The value range is from 960 to 1920.
+    window_height = 720
+    
+    #The value range is from 540 to 1080.
+    window_width = 1280
     

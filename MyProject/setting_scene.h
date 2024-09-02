@@ -34,6 +34,10 @@ private:
     const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
 
     const std::unique_ptr<EntityUpdater> entity_updater_ptr_;
+
+    void initUI(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+                const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
+                const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
 };
 
 }  // namespace match_stick

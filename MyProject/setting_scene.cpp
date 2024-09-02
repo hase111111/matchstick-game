@@ -38,20 +38,7 @@ SettingScene::SettingScene(const std::shared_ptr<SceneChangeListener>& scene_cha
     entity_updater_ptr_->registerEntity(std::make_shared<InputSchemeDisplayer>(
         dxlib_input_ptr, dxlib_resource_loader_ptr));
 
-    const auto dxlib_user_interface_base_ptr = std::make_shared<DxLibUserInterfaceBase>(dxlib_input_ptr);
-    entity_updater_ptr_->registerEntity(dxlib_user_interface_base_ptr);
-
-    const auto button_ptr = std::make_shared<SimpleBoxButton>(
-        language_record_ptr, dxlib_resource_loader_ptr,
-        GameConst::kResolutionX * 7 / 8, GameConst::kResolutionY * 7 / 8,
-        GameConst::kResolutionX * 5 / 24, GameConst::kResolutionY / 9,
-        "language_back", "data/font/azuki_font24.dft",
-        [this]() {
-            // シーン遷移
-            scene_change_listener_ptr_->requestDeleteScene(1, SceneChangeParameter());
-        });
-    entity_updater_ptr_->registerEntity(button_ptr);
-    dxlib_user_interface_base_ptr->registerInterface(button_ptr, 0);
+    initUI(language_record_ptr, dxlib_input_ptr, dxlib_resource_loader_ptr);
 
     // フェードイン演出を追加
     const auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeIn, []() {});
@@ -70,6 +57,38 @@ void SettingScene::draw() const {
 
 void SettingScene::onReturnFromOtherScene(const SceneChangeParameter&) {
     DEBUG_PRINT_IMPORTANT("Now, SettingScene is returned from other scene.");
+}
+
+void SettingScene::initUI(
+    const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+    const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
+    const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr) {
+    // ヌルチェック
+    ASSERT_NOT_NULL_PTR(language_record_ptr);
+    ASSERT_NOT_NULL_PTR(dxlib_input_ptr);
+    ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
+
+    const auto dxlib_user_interface_base_ptr = std::make_shared<DxLibUserInterfaceBase>(dxlib_input_ptr);
+    entity_updater_ptr_->registerEntity(dxlib_user_interface_base_ptr);
+
+    constexpr int button_center_x = GameConst::kResolutionX * 7 / 8;
+
+    constexpr int button_y_diff = GameConst::kResolutionY / 32;
+
+    constexpr int button_width = GameConst::kResolutionX * 5 / 24;
+    constexpr int button_height = GameConst::kResolutionY / 9;
+
+    const auto button_ptr = std::make_shared<SimpleBoxButton>(
+        language_record_ptr, dxlib_resource_loader_ptr,
+        button_center_x, GameConst::kResolutionY - button_y_diff - button_height / 2,
+        button_width, button_height,
+        "language_back", "data/font/azuki_font24.dft",
+        [this]() {
+            // シーン遷移
+            scene_change_listener_ptr_->requestDeleteScene(1, SceneChangeParameter());
+        });
+    entity_updater_ptr_->registerEntity(button_ptr);
+    dxlib_user_interface_base_ptr->registerInterface(button_ptr, 0);
 }
 
 }  // namespace match_stick
