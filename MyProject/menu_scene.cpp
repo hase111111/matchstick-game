@@ -15,7 +15,8 @@
 #include "input_scheme_displayer.h"
 #include "menu_back_ground_base.h"
 #include "menu_button.h"
-#include "menu_ui.h"
+#include "simple_box_button.h"
+
 
 namespace match_stick {
 
@@ -109,13 +110,31 @@ MenuScene::MenuScene(const std::shared_ptr<SceneChangeListener>& scene_change_li
     entity_updater_ptr_->registerEntity(to_language_button_ptr);
     dxlib_user_interface_base_ptr->registerInterface(to_language_button_ptr, 4);
 
-    //const auto game_end_callback = [this]() { game_end_ = true; };
-    //const auto scene_back_callback = [this]() { sceneBackCallback(); };
-    //const auto scene_change_callback = [this](const SceneName scene_name) { sceneChangeCallback(scene_name); };
+    constexpr int button_width = GameConst::kResolutionX * 5 / 24;
+    constexpr int button_height = GameConst::kResolutionY / 9;
+    constexpr int button_diff = GameConst::kResolutionX / 96;
 
-    //entity_updater_ptr_->registerEntity(std::make_shared<MenuUI>(
-    //    language_record_ptr, dxlib_input_ptr, dxlib_resource_loader_ptr,
-    //    game_end_callback, scene_back_callback, scene_change_callback));
+    const auto back_button_ptr = std::make_shared<SimpleBoxButton>(
+        language_record_ptr, dxlib_resource_loader_ptr,
+        GameConst::kResolutionX - button_width / 2 - button_diff,
+        GameConst::kResolutionY - button_height / 2 - button_diff,
+        button_width, button_height, "menu_back", "data/font/azuki_font24.dft",
+        [this]() {
+            sceneBackCallback();
+        });
+    entity_updater_ptr_->registerEntity(back_button_ptr);
+    dxlib_user_interface_base_ptr->registerInterface(back_button_ptr, 5);
+
+    const auto game_end_button_ptr = std::make_shared<SimpleBoxButton>(
+        language_record_ptr, dxlib_resource_loader_ptr,
+        GameConst::kResolutionX - button_width * 3 / 2 - button_diff * 2,
+        GameConst::kResolutionY - button_height / 2 - button_diff,
+        button_width, button_height, "menu_end", "data/font/azuki_font24.dft",
+        [this]() {
+            game_end_ = true;
+        });
+    entity_updater_ptr_->registerEntity(game_end_button_ptr);
+    dxlib_user_interface_base_ptr->registerInterface(game_end_button_ptr, 6);
 
     // フェードイン演出を追加
     const auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeIn, []() {});
