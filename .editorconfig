@@ -76,7 +76,7 @@ cpp_include_cleanup_remove_unused_error_tag_type = dimmed
 
 
 # 保存時の文字コードおよび改行コード
-end_of_line = crlf
+end_of_line = lf
 charset = utf-8-bom
 
 
