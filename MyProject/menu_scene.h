@@ -35,9 +35,9 @@ private:
 
     const std::unique_ptr<EntityUpdater> entity_updater_ptr_;
 
-    void sceneBackCallback();
-
-    void sceneChangeCallback(SceneName scene_name);
+    void initUI(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+                const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
+                const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
 
     bool now_scene_change_{ false };
 

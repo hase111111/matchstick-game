@@ -55,9 +55,6 @@
     <Filter Include="ソース ファイル\scenes\rule_scene">
       <UniqueIdentifier>{afff030a-61a9-445a-8c34-440f6497911a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\entity\interface">
-      <UniqueIdentifier>{7bdf37b9-162d-4ffd-a269-da92cf887456}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\scenes\rule_scene\entity">
       <UniqueIdentifier>{fa3e000e-4298-4dcc-aaa4-6f8d0712367b}</UniqueIdentifier>
     </Filter>
@@ -93,6 +90,12 @@
     </Filter>
     <Filter Include="ソース ファイル\entity\test">
       <UniqueIdentifier>{7ca04839-9972-4223-bf4b-de478dea962a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\entity\system">
+      <UniqueIdentifier>{7bdf37b9-162d-4ffd-a269-da92cf887456}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\entity\user_interface">
+      <UniqueIdentifier>{55612203-f13a-447b-bbab-099f0c87d8eb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -148,7 +151,7 @@
       <Filter>ソース ファイル\common</Filter>
     </ClCompile>
     <ClCompile Include="entity_updater.cpp">
-      <Filter>ソース ファイル\entity\interface</Filter>
+      <Filter>ソース ファイル\entity\system</Filter>
     </ClCompile>
     <ClCompile Include="title_back_ground_base.cpp">
       <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
@@ -264,6 +267,18 @@
     <ClCompile Include="test_runner.cpp">
       <Filter>ソース ファイル\common\test_system</Filter>
     </ClCompile>
+    <ClCompile Include="dxlib_user_interface_base.cpp">
+      <Filter>ソース ファイル\entity\user_interface</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_box_button.cpp">
+      <Filter>ソース ファイル\entity\user_interface</Filter>
+    </ClCompile>
+    <ClCompile Include="game_const.cpp">
+      <Filter>ソース ファイル\common</Filter>
+    </ClCompile>
+    <ClCompile Include="menu_button.cpp">
+      <Filter>ソース ファイル\scenes\menu_scene\entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game_const.h">
@@ -333,10 +348,10 @@
       <Filter>ソース ファイル\common</Filter>
     </ClInclude>
     <ClInclude Include="i_entity.h">
-      <Filter>ソース ファイル\entity\interface</Filter>
+      <Filter>ソース ファイル\entity\system</Filter>
     </ClInclude>
     <ClInclude Include="entity_updater.h">
-      <Filter>ソース ファイル\entity\interface</Filter>
+      <Filter>ソース ファイル\entity\system</Filter>
     </ClInclude>
     <ClInclude Include="title_logo.h">
       <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
@@ -496,6 +511,18 @@
     </ClInclude>
     <ClInclude Include="entity_updater_test.h">
       <Filter>ソース ファイル\entity\test</Filter>
+    </ClInclude>
+    <ClInclude Include="dxlib_user_interface_base.h">
+      <Filter>ソース ファイル\entity\user_interface</Filter>
+    </ClInclude>
+    <ClInclude Include="i_dxlib_user_interface.h">
+      <Filter>ソース ファイル\entity\user_interface</Filter>
+    </ClInclude>
+    <ClInclude Include="simple_box_button.h">
+      <Filter>ソース ファイル\entity\user_interface</Filter>
+    </ClInclude>
+    <ClInclude Include="menu_button.h">
+      <Filter>ソース ファイル\scenes\menu_scene\entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
