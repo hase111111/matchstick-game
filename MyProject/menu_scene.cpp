@@ -84,6 +84,7 @@ void MenuScene::initUI(
     const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr) {
     // ポインタが nullptr でないことを確認
     ASSERT_NOT_NULL_PTR(language_record_ptr);
+    ASSERT_NOT_NULL_PTR(dxlib_input_ptr);
     ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
 
     // UI に渡すコールバック関数を設定
