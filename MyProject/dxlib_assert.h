@@ -30,10 +30,10 @@ const std::source_location location = std::source_location::current(); \
 ::match_stick::assert_internal::ErrorAssert(expression, error_mes, location.file_name(), \
     location.function_name(), location.line());
 
-//! @brief エラーが発生したときにエラーメッセージを表示する
-//! DxLib の動作を止め，独自のエラーメッセージを表示する
-//! DxLib が初期化されていない場合は，例外を投げるが，そもそも呼び出さないこと
-//! @param expr true であることが期待される条件
+//! @brief エラーが発生したときにエラーメッセージを表示する．
+//! DxLib の動作を止め，独自のエラーメッセージを表示する．
+//! DxLib が初期化されていない場合は，例外を投げるが，そもそも呼び出さないこと．
+//! @param expr TRUE であることが期待される条件
 //! @param error_mes エラーメッセージ
 #define ASSERT(expr, error_mes)                                     \
 do {                                                                \
@@ -48,7 +48,7 @@ do {                                                                \
     }                                                               \
 } while (0)
 
-#define ASSERT_NOT_NULL_PTR(ptr) ASSERT(ptr != nullptr, "nullptr passed.")
+#define ASSERT_NOT_NULL_PTR(ptr) ASSERT((ptr) != nullptr, "nullptr passed.")
 
 #define ASSERT_MUST_NOT_REACH_HERE() ASSERT(false, "This part is never reached.")
 
