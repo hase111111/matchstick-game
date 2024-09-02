@@ -11,23 +11,16 @@
 
 namespace match_stick {
 
-struct DxLibInterfaceDeployment final {
-    enum class Direction {
-        kUp,
-        kDown,
-        kLeft,
-        kRight,
+struct DxLibUIDeployment final {
+    struct DirectionMap {
+        int up_id{ -1 };
+        int down_id{ -1 };
+        int left_id{ -1 };
+        int right_id{ -1 };
     };
 
-    DxLibInterfaceDeployment() {
-        deployment_map[Direction::kUp] = -1;
-        deployment_map[Direction::kDown] = -1;
-        deployment_map[Direction::kLeft] = -1;
-        deployment_map[Direction::kRight] = -1;
-    }
-
-    // 方向とその方向に配置するインターフェイスのid
-    std::map<Direction, int> deployment_map;
+    // UI の id と，その id の UI から移動できる UI
+    std::map<int, DirectionMap> id_to_direction_map;
 };
 
 class DxLibUserInterfaceBase final : public IEntity {
@@ -37,7 +30,7 @@ public:
 
     void registerInterface(const std::shared_ptr<IDxLibUserInterface>& dxlib_interface, int id);
 
-    void registerInterfaceDeployment(const std::map<int, DxLibInterfaceDeployment>& deployment_map);
+    void registerInterfaceDeployment(int target_id, int up_id, int down_id, int left_id, int right_id);
 
     void setDefaultSelectedId(const int id);
 
@@ -52,7 +45,6 @@ public:
 private:
     static constexpr int kNoSelectedId = -1;
 
-    bool validateDeploymentMap() const;
 
     void updateSelectedIdWhenMouseUsed();
 
@@ -61,7 +53,7 @@ private:
 
     std::map<int, std::shared_ptr<IDxLibUserInterface>> dxlib_interfaces_;
 
-    std::map<int, DxLibInterfaceDeployment> deployment_map_;
+    DxLibUIDeployment ui_deployment_;
 
     const std::shared_ptr<const DxLibInput> dxlib_input_;
 

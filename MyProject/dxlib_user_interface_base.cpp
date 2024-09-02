@@ -6,6 +6,7 @@
 #include <DxLib.h>
 
 #include "dxlib_assert.h"
+#include "dxlib_debug_print.h"
 
 namespace match_stick {
 
@@ -30,12 +31,14 @@ void DxLibUserInterfaceBase::registerInterface(
     setDefaultSelectedId(id);
 }
 
-void DxLibUserInterfaceBase::registerInterfaceDeployment(const std::map<int, DxLibInterfaceDeployment>& map) {
-    // 登録する
-    deployment_map_ = map;
+void DxLibUserInterfaceBase::registerInterfaceDeployment(
+    int target_id, int up_id, int down_id, int left_id, int right_id) {
+    // すでに登録されているならば，警告を出す
+    if (ui_deployment_.id_to_direction_map.contains(target_id)) {
+        DEBUG_PRINT_WARNING(std::format("target_id:{} duplicated", target_id));
+    }
 
-    // マップが正しいか確認する
-    ASSERT(validateDeploymentMap(), "Deployment map is invalid.");
+    ui_deployment_.id_to_direction_map[target_id] = { up_id, down_id, left_id, right_id };
 }
 
 void DxLibUserInterfaceBase::setDefaultSelectedId(const int id) {
@@ -97,23 +100,6 @@ bool DxLibUserInterfaceBase::update() {
     return true;
 }
 
-bool DxLibUserInterfaceBase::validateDeploymentMap() const {
-    // map に存在しているインターフェイスの id が実際に登録されているか確認する
-    for (const auto& [id, deployment] : deployment_map_) {
-        if (!dxlib_interfaces_.contains(id)) {
-            return false;
-        }
-
-        for (const auto& [direction, interface_id] : deployment.deployment_map) {
-            if (!dxlib_interfaces_.contains(interface_id)) {
-                return false;
-            }
-        }
-    }
-
-    return true;
-}
-
 void DxLibUserInterfaceBase::updateSelectedIdWhenMouseUsed() {
     // 選択中のボタンを更新
     for (const auto& [id, dxlib_interface] : dxlib_interfaces_) {
@@ -127,33 +113,32 @@ void DxLibUserInterfaceBase::updateSelectedIdWhenMouseUsed() {
 }
 
 void DxLibUserInterfaceBase::updateSelectedIdWhenKeyboardUsed() {
-    using enum DxLibInterfaceDeployment::Direction;
-
     // キーボード操作を行う場合は，選択されていない状態を許可しない
     selected_id_ = selected_id_ == kNoSelectedId ? 0 : selected_id_;
 
     // 選択中のボタンの id が配置図に存在しない場合は終了
-    if (!deployment_map_.contains(selected_id_)) {
+    if (!ui_deployment_.id_to_direction_map.contains(selected_id_)) {
         return;
     }
 
+    const auto map = ui_deployment_.id_to_direction_map[selected_id_];
+
     // 方向キーによって選択中のボタンを更新
     if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_UP) == 1) {
-        if (deployment_map_[selected_id_].deployment_map.contains(kUp)) {
-            selected_id_ = deployment_map_[selected_id_].deployment_map[kUp];
-        }
+        selected_id_ = map.up_id;
     } else if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_DOWN) == 1) {
-        if (deployment_map_[selected_id_].deployment_map.contains(kDown)) {
-            selected_id_ = deployment_map_[selected_id_].deployment_map[kDown];
-        }
+        selected_id_ = map.down_id;
     } else if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_LEFT) == 1) {
-        if (deployment_map_[selected_id_].deployment_map.contains(kLeft)) {
-            selected_id_ = deployment_map_[selected_id_].deployment_map[kLeft];
-        }
+        selected_id_ = map.left_id;
     } else if (dxlib_input_->getKeyboardPressingCount(KEY_INPUT_RIGHT) == 1) {
-        if (deployment_map_[selected_id_].deployment_map.contains(kRight)) {
-            selected_id_ = deployment_map_[selected_id_].deployment_map[kRight];
-        }
+        selected_id_ = map.right_id;
+    }
+
+    // selected_id_ の値の UI が存在しているか確かめ，なければデフォルト値に指定する
+    if (!dxlib_interfaces_.contains(selected_id_)) {
+        DEBUG_PRINT_ERROR(std::format("UI deployment error, selected_id_{} is none", selected_id_));
+
+        selected_id_ = default_selected_id_;
     }
 }
 

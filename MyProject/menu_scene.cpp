@@ -197,6 +197,17 @@ void MenuScene::initUI(
 
     // UI の設定を初期化
     dxlib_user_interface_base_ptr->setDefaultSelectedId(0);
+
+    // UI の配置を設定
+    dxlib_user_interface_base_ptr->registerInterfaceDeployment(0, 6, 2, 1, 1);
+    dxlib_user_interface_base_ptr->registerInterfaceDeployment(1, 5, 4, 0, 0);
+
+    dxlib_user_interface_base_ptr->registerInterfaceDeployment(2, 0, 6, 4, 3);
+    dxlib_user_interface_base_ptr->registerInterfaceDeployment(3, 0, 6, 2, 4);
+    dxlib_user_interface_base_ptr->registerInterfaceDeployment(4, 1, 5, 3, 2);
+
+    dxlib_user_interface_base_ptr->registerInterfaceDeployment(5, 4, 1, 6, 6);
+    dxlib_user_interface_base_ptr->registerInterfaceDeployment(6, 2, 0, 5, 5);
 }
 
 }  // namespace match_stick
