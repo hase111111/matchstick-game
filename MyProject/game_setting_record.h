@@ -25,6 +25,7 @@ MATCH_STICK_TOML11_DESCRIPTION_CLASS(GameSettingRecord) {
 
     MATCH_STICK_TOML11_TABLE_ADD_DESCRIPTION(
         "language", "This is a setting for language.",
+        "window", "This is a setting for window size and full screen."
         "sound", "This is a setting for sound and volume.");
 
     MATCH_STICK_TOML11_VARIABLE_ADD_DESCRIPTION(language_country, "language",
