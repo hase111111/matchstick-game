@@ -68,6 +68,7 @@ void SettingScene::initUI(
     ASSERT_NOT_NULL_PTR(dxlib_input_ptr);
     ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
 
+    // UI Base を追加
     const auto dxlib_user_interface_base_ptr = std::make_shared<DxLibUserInterfaceBase>(dxlib_input_ptr);
     entity_updater_ptr_->registerEntity(dxlib_user_interface_base_ptr);
 
@@ -78,17 +79,90 @@ void SettingScene::initUI(
     constexpr int button_width = GameConst::kResolutionX * 5 / 24;
     constexpr int button_height = GameConst::kResolutionY / 9;
 
+    // 戻るボタン
     const auto button_ptr = std::make_shared<SimpleBoxButton>(
         language_record_ptr, dxlib_resource_loader_ptr,
         button_center_x, GameConst::kResolutionY - button_y_diff - button_height / 2,
         button_width, button_height,
-        "language_back", "data/font/azuki_font24.dft",
+        "setting_back", "data/font/azuki_font24.dft",
         [this]() {
-            // シーン遷移
-            scene_change_listener_ptr_->requestDeleteScene(1, SceneChangeParameter());
+            // フェードアウト演出を追加
+            const auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeOut, [this]() {
+                scene_change_listener_ptr_->requestDeleteScene(1, SceneChangeParameter{});
+            });
+
+            entity_updater_ptr_->registerEntity(fade_effect_ptr);
         });
     entity_updater_ptr_->registerEntity(button_ptr);
     dxlib_user_interface_base_ptr->registerInterface(button_ptr, 0);
+
+    // 適用して戻るボタン
+    const auto apply_button_ptr = std::make_shared<SimpleBoxButton>(
+        language_record_ptr, dxlib_resource_loader_ptr,
+        button_center_x, GameConst::kResolutionY - button_y_diff * 2 - button_height * 3 / 2,
+        button_width, button_height,
+        "setting_apply_and_back", "data/font/azuki_font24.dft",
+        [this]() {
+            // フェードアウト演出を追加
+            const auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeOut, [this]() {
+                scene_change_listener_ptr_->requestDeleteAllScene();
+            });
+
+            entity_updater_ptr_->registerEntity(fade_effect_ptr);
+        });
+    entity_updater_ptr_->registerEntity(apply_button_ptr);
+    dxlib_user_interface_base_ptr->registerInterface(apply_button_ptr, 1);
+
+    // リセットボタン
+    const auto reset_button_ptr = std::make_shared<SimpleBoxButton>(
+        language_record_ptr, dxlib_resource_loader_ptr,
+        button_center_x, GameConst::kResolutionY - button_y_diff * 3 - button_height * 5 / 2,
+        button_width, button_height,
+        "setting_reset", "data/font/azuki_font24.dft",
+        [this]() {
+            // フェードアウト演出を追加
+            const auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeOut, [this]() {
+                scene_change_listener_ptr_->requestDeleteAllScene();
+            });
+
+            entity_updater_ptr_->registerEntity(fade_effect_ptr);
+        });
+    entity_updater_ptr_->registerEntity(reset_button_ptr);
+    dxlib_user_interface_base_ptr->registerInterface(reset_button_ptr, 2);
+
+    // クレジットへ
+    const auto to_credit_button_ptr = std::make_shared<SimpleBoxButton>(
+        language_record_ptr, dxlib_resource_loader_ptr,
+        button_center_x, GameConst::kResolutionY - button_y_diff * 4 - button_height * 7 / 2,
+        button_width, button_height,
+        "setting_to_credit", "data/font/azuki_font24.dft",
+        [this]() {
+            // フェードアウト演出を追加
+            const auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeOut, [this]() {
+                scene_change_listener_ptr_->requestAddScene(SceneName::kDebug, SceneChangeParameter{});
+            });
+
+            entity_updater_ptr_->registerEntity(fade_effect_ptr);
+        });
+    entity_updater_ptr_->registerEntity(to_credit_button_ptr);
+    dxlib_user_interface_base_ptr->registerInterface(to_credit_button_ptr, 3);
+
+    // 操作方法へ
+    const auto to_how_to_play_button_ptr = std::make_shared<SimpleBoxButton>(
+        language_record_ptr, dxlib_resource_loader_ptr,
+        button_center_x, GameConst::kResolutionY - button_y_diff * 5 - button_height * 9 / 2,
+        button_width, button_height,
+        "setting_to_control", "data/font/azuki_font24.dft",
+        [this]() {
+            // フェードアウト演出を追加
+            const auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeOut, [this]() {
+                scene_change_listener_ptr_->requestAddScene(SceneName::kDebug, SceneChangeParameter{});
+            });
+
+            entity_updater_ptr_->registerEntity(fade_effect_ptr);
+        });
+    entity_updater_ptr_->registerEntity(to_how_to_play_button_ptr);
+    dxlib_user_interface_base_ptr->registerInterface(to_how_to_play_button_ptr, 4);
 }
 
 }  // namespace match_stick
