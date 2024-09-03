@@ -279,6 +279,9 @@
     <ClCompile Include="menu_button.cpp">
       <Filter>ソース ファイル\scenes\menu_scene\entity</Filter>
     </ClCompile>
+    <ClCompile Include="setting_scene_ui_creator.cpp">
+      <Filter>ソース ファイル\scenes\setting_scene\entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game_const.h">
@@ -523,6 +526,9 @@
     </ClInclude>
     <ClInclude Include="menu_button.h">
       <Filter>ソース ファイル\scenes\menu_scene\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="setting_scene_ui_creator.h">
+      <Filter>ソース ファイル\scenes\setting_scene\entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,7 @@
 #include "i_scene.h"
 #include "language_record.h"
 #include "scene_change_listener.h"
+#include "setting_scene_ui_creator.h"
 
 namespace match_stick {
 
@@ -34,6 +35,8 @@ private:
     const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
 
     const std::unique_ptr<EntityUpdater> entity_updater_ptr_;
+
+    const std::unique_ptr<SettingSceneUiCreator> setting_scene_ui_creator_ptr_;
 
     void initUI(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
                 const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
