@@ -8,6 +8,7 @@
 #include "game_const.h"
 #include "fade_effect.h"
 #include "simple_box_button.h"
+#include "sound_change_bar.h"
 
 namespace match_stick {
 
@@ -15,7 +16,7 @@ SettingSceneUiCreator::SettingSceneUiCreator(
     const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
     const std::shared_ptr<const LanguageRecord>& language_record_ptr,
     const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
-    const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr) :
+    const std::shared_ptr<DxLibResourceLoader>& dxlib_resource_loader_ptr) :
     scene_change_listener_ptr_(scene_change_listener_ptr),
     language_record_ptr_(language_record_ptr),
     dxlib_input_ptr_(dxlib_input_ptr),
@@ -131,6 +132,13 @@ void SettingSceneUiCreator::initUI(const std::unique_ptr<EntityUpdater>& entity_
         });
     entity_updater_ptr->registerEntity(to_how_to_play_button_ptr);
     dxlib_user_interface_base_ptr->registerInterface(to_how_to_play_button_ptr, 4);
+
+    // 音量調整バー
+    const auto sound_change_bar_ptr = std::make_shared<SoundChangeBar>(
+        dxlib_resource_loader_ptr_, GameConst::kResolutionX / 2, GameConst::kResolutionY / 2);
+
+    entity_updater_ptr->registerEntity(sound_change_bar_ptr);
+    dxlib_user_interface_base_ptr->registerInterface(sound_change_bar_ptr, 5);
 }
 
 }  // namespace match_stick

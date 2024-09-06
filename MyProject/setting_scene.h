@@ -20,7 +20,7 @@ public:
                  const std::shared_ptr<const FpsController>& fps_controller_ptr,
                  const std::shared_ptr<const LanguageRecord>& language_record_ptr,
                  const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
-                 const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
+                 const std::shared_ptr<DxLibResourceLoader>& dxlib_resource_loader_ptr);
     ~SettingScene() = default;
 
     bool update() override;
@@ -37,10 +37,6 @@ private:
     const std::unique_ptr<EntityUpdater> entity_updater_ptr_;
 
     const std::unique_ptr<SettingSceneUiCreator> setting_scene_ui_creator_ptr_;
-
-    void initUI(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-                const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
-                const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
 };
 
 }  // namespace match_stick
