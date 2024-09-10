@@ -116,23 +116,6 @@ void SettingSceneUiCreator::initUI(const std::unique_ptr<EntityUpdater>& entity_
     entity_updater_ptr->registerEntity(to_credit_button_ptr);
     dxlib_user_interface_base_ptr->registerInterface(to_credit_button_ptr, 3);
 
-    // 操作方法へ
-    const auto to_how_to_play_button_ptr = std::make_shared<SimpleBoxButton>(
-        language_record_ptr_, dxlib_resource_loader_ptr_,
-        button_center_x, GameConst::kResolutionY - button_y_diff * 5 - button_height * 9 / 2,
-        button_width, button_height,
-        "setting_to_control", "data/font/azuki_font24.dft",
-        [this, &entity_updater_ptr]() {
-            // フェードアウト演出を追加
-            const auto fade_effect_ptr = std::make_shared<FadeEffect>(30, FadeEffect::FadeType::kFadeOut, [this]() {
-                scene_change_listener_ptr_->requestAddScene(SceneName::kDebug, SceneChangeParameter{});
-            });
-
-            entity_updater_ptr->registerEntity(fade_effect_ptr);
-        });
-    entity_updater_ptr->registerEntity(to_how_to_play_button_ptr);
-    dxlib_user_interface_base_ptr->registerInterface(to_how_to_play_button_ptr, 4);
-
     // 音量調整バー
     const auto sound_change_bar_ptr = std::make_shared<SoundChangeBar>(
         dxlib_resource_loader_ptr_, GameConst::kResolutionX / 2, GameConst::kResolutionY / 2);

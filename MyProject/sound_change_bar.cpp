@@ -4,6 +4,14 @@
 #include <DxLib.h>
 
 #include "dxlib_assert.h"
+#include "game_const.h"
+
+namespace {
+
+constexpr int kBarWidth = ::match_stick::GameConst::kResolutionX * 2 / 3;
+constexpr int kBarHeight = ::match_stick::GameConst::kResolutionY / 3;
+
+}  // namespace
 
 namespace match_stick {
 
@@ -23,7 +31,13 @@ bool SoundChangeBar::update() {
 }
 
 void SoundChangeBar::draw() const {
-    DrawBox(center_x_ - 100, center_y_ - 10, center_x_ + 100, center_y_ + 10, GetColor(0, 255, 255), TRUE);
+    DrawBox(
+        center_x_ - kBarWidth / 2,
+        center_y_ - kBarHeight / 2,
+        center_x_ + kBarWidth / 2,
+        center_y_ + kBarHeight / 2,
+        GetColor(255, 255, 255),
+        TRUE);
 }
 
 bool SoundChangeBar::isHovered(int mouse_x, int mouse_y) const {
