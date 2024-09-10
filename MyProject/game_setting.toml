@@ -9,8 +9,23 @@
 [sound]
     
     #The value range is from 0 to 100.
-    bgm_volume = 50
+    bgm_volume = 100
     
     #The value range is from 0 to 100.
-    sound_volume = 50
+    master_volume = 50
+    
+    #The value range is from 0 to 100.
+    sound_volume = 100
+    
+#This is a setting for window size and full screen.
+[window]
+    
+    #The value is true or false.
+    is_full_screen = false
+    
+    #The value range is from 960 to 1920.
+    window_height = 720
+    
+    #The value range is from 540 to 1080.
+    window_width = 1280
     
