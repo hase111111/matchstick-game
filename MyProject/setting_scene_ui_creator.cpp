@@ -118,7 +118,7 @@ void SettingSceneUiCreator::initUI(const std::unique_ptr<EntityUpdater>& entity_
 
     // 音量調整バー
     const auto sound_change_bar_ptr = std::make_shared<SoundChangeBar>(
-        dxlib_resource_loader_ptr_, GameConst::kResolutionX / 2, GameConst::kResolutionY / 2);
+        dxlib_resource_loader_ptr_, GameConst::kResolutionX / 2 - 100, GameConst::kResolutionY / 2);
 
     entity_updater_ptr->registerEntity(sound_change_bar_ptr);
     dxlib_user_interface_base_ptr->registerInterface(sound_change_bar_ptr, 5);
