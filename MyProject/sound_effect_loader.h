@@ -22,7 +22,7 @@ public:
     //! @return SEのハンドル．
     [[nodiscard]]
     inline int getSoundHandle(const std::string& file_path) const {
-        ASSERT(sound_handle_.count(file_path) != 0, "The sound effect is not loaded. File is " + file_path);
+        ASSERT(isSoundLoaded(file_path), "The sound effect is not loaded. File is " + file_path);
         return sound_handle_.at(file_path);
     }
 
@@ -41,7 +41,7 @@ public:
 private:
     [[nodiscard]]
     inline bool isSoundLoaded(const std::string& file_path) const {
-        return sound_handle_.count(file_path) != 0;
+        return sound_handle_.contains(file_path);
     }
 
     std::map<std::string, int> sound_handle_;  //!< SEを格納する配列．キーはファイルパス．

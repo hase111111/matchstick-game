@@ -48,6 +48,11 @@ public:
         sound_effect_loader_.changeAllSoundVolume(volume);
     }
 
+    [[nodiscard]]
+    inline int getVolumePercent() const {
+        return sound_effect_loader_.getVolumePercent();
+    }
+
 private:
     BgmPlayer bgm_player_;
     FontLoader font_loader_;

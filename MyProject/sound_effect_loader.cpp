@@ -9,7 +9,7 @@
 namespace match_stick {
 
 void SoundEffectLoader::loadSoundHandle(const std::string& file_path) {
-    if (sound_handle_.count(file_path) != 0) {
+    if (isSoundLoaded(file_path)) {
         return;
     }
 
