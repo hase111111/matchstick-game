@@ -12,6 +12,7 @@ namespace match_stick {
 class SoundChangeBar final : public IDxLibUserInterface, public IEntity {
 public:
     SoundChangeBar(
+        const std::shared_ptr<const LanguageRecord>& language_record_ptr,
         const std::shared_ptr<DxLibResourceLoader>& dxlib_resource_loader_ptr,
         int center_x,
         int center_y);
@@ -37,6 +38,8 @@ public:
 
 private:
     const std::shared_ptr<const DxLibResourceLoader> dxlib_resource_loader_ptr_;
+
+    const int font32_handle_;
 
     const int center_x_;
     const int center_y_;

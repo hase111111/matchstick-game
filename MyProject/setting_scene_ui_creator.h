@@ -26,8 +26,6 @@ private:
     const std::shared_ptr<const LanguageRecord> language_record_ptr_;
     const std::shared_ptr<const DxLibInput> dxlib_input_ptr_;
     const std::shared_ptr<DxLibResourceLoader> dxlib_resource_loader_ptr_;
-
-
 };
 
 }  // namespace match_stick

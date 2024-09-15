@@ -15,7 +15,7 @@
     master_volume = 50
     
     #The value range is from 0 to 100.
-    sound_volume = 100
+    sound_volume = 10
     
 #This is a setting for window size and full screen.
 [window]

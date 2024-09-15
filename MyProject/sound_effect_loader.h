@@ -13,16 +13,19 @@ class SoundEffectLoader final {
 public:
     //! @brief SEを読み込む．
     //! 既に読み込んでいる場合は何もしない．
-    //! ファイルが存在しない場合はASSERTを発生させる．
+    //! ファイルが存在しない場合はアサートを発生させる．
     //! @param file_path ファイルパス．
     void loadSoundHandle(const std::string& file_path);
 
     //! @brief SEのハンドルを取得する．
+    //! ファイルが読み込まれていない場合はアサートを発生させる．
     //! @param file_path ファイルパス．
     //! @return SEのハンドル．
     [[nodiscard]]
     inline int getSoundHandle(const std::string& file_path) const {
-        ASSERT(isSoundLoaded(file_path), "The sound effect is not loaded. File is " + file_path);
+        ASSERT(isSoundLoaded(file_path), "The sound effect is not loaded. File is " + file_path +
+            "Please call loadSoundHandle() before calling getSoundHandle().");
+
         return sound_handle_.at(file_path);
     }
 

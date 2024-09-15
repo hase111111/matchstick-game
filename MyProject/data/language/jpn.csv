@@ -28,6 +28,8 @@ setting_apply_and_back,適用して戻る
 setting_reset,リセットする
 setting_to_credit,クレジットへ
 setting_to_control,操作方法へ
+setting_volume_up,+
+setting_volume_down,-
 rule_back_scene, 前画面に戻る
 rule_text_0_0,この画面の使い方
 rule_text_0_1,左側のメニューの項目を選択してルールを確認してください。
