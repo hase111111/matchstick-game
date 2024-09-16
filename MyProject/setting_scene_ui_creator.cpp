@@ -117,39 +117,113 @@ void SettingSceneUiCreator::initUI(const std::unique_ptr<EntityUpdater>& entity_
     dxlib_user_interface_base_ptr->registerInterface(to_credit_button_ptr, 3);
 
     // 音量調整バー
+    const int bgm_bar_x = GameConst::kResolutionX * 19 / 48;
+    const int bgm_bar_y = GameConst::kResolutionY * 45 / 108;
+
+    const int button_width2 = GameConst::kResolutionX / 24;
+
     const auto sound_change_bar_ptr = std::make_shared<SoundChangeBar>(
-        language_record_ptr_, dxlib_resource_loader_ptr_,
-        GameConst::kResolutionX / 2 - 100, GameConst::kResolutionY / 2 - 60);
+        language_record_ptr_, dxlib_resource_loader_ptr_, bgm_bar_x, bgm_bar_y);
 
     entity_updater_ptr->registerEntity(sound_change_bar_ptr);
     dxlib_user_interface_base_ptr->registerInterface(sound_change_bar_ptr, 5);
 
+    // BGM 音量調整ボタン
+    const auto bgm_volume_up5_button_ptr = std::make_shared<SimpleBoxButton>(
+        language_record_ptr_, dxlib_resource_loader_ptr_,
+        bgm_bar_x - GameConst::kResolutionX * 57 / 192, bgm_bar_y - GameConst::kResolutionY * 3 / 108,
+        button_width2, button_width2,
+        "setting_volume_up", "data/font/azuki_font32.dft", [this]() { changeBGMVolume(5); });
+
+    const auto bgm_volume_up_button_ptr = std::make_shared<SimpleBoxButton>(
+        language_record_ptr_, dxlib_resource_loader_ptr_,
+        bgm_bar_x - GameConst::kResolutionX * 47 / 192, bgm_bar_y - GameConst::kResolutionY * 3 / 108,
+        button_width2, button_width2,
+        "setting_volume_up", "data/font/azuki_font32.dft", [this]() { changeBGMVolume(1); });
+
+    const auto bgm_volume_down_button_ptr = std::make_shared<SimpleBoxButton>(
+        language_record_ptr_, dxlib_resource_loader_ptr_,
+        bgm_bar_x + GameConst::kResolutionX * 47 / 192, bgm_bar_y - GameConst::kResolutionY * 3 / 108,
+        button_width2, button_width2,
+        "setting_volume_down", "data/font/azuki_font32.dft", [this]() { changeBGMVolume(-1); });
+
+    const auto bgm_volume_down5_button_ptr = std::make_shared<SimpleBoxButton>(
+        language_record_ptr_, dxlib_resource_loader_ptr_,
+        bgm_bar_x + GameConst::kResolutionX * 57 / 192, bgm_bar_y - GameConst::kResolutionY * 3 / 108,
+        button_width2, button_width2,
+        "setting_volume_down", "data/font/azuki_font32.dft", [this]() { changeBGMVolume(-5); });
+
+    const auto sound_effect_volume_up5_button_ptr = std::make_shared<SimpleBoxButton>(
+        language_record_ptr_, dxlib_resource_loader_ptr_,
+        bgm_bar_x - GameConst::kResolutionX * 57 / 192, bgm_bar_y + GameConst::kResolutionY * 15 / 108,
+        button_width2, button_width2,
+        "setting_volume_up", "data/font/azuki_font32.dft", [this]() { changeSEVolume(5); });
+
     const auto sound_effect_volume_up_button_ptr = std::make_shared<SimpleBoxButton>(
         language_record_ptr_, dxlib_resource_loader_ptr_,
-        GameConst::kResolutionX / 2 - 335, GameConst::kResolutionY / 2 - 60,
-        40, 40,
-        "setting_volume_up", "data/font/azuki_font32.dft",
-        [this]() {
-            auto volume = dxlib_resource_loader_ptr_->getSEVolumePercent();
-            const int plus = 5;
-            volume = volume + plus > 100 ? 100 : volume + plus;
-            dxlib_resource_loader_ptr_->changeAllSEVolume(volume);
-        });
-    entity_updater_ptr->registerEntity(sound_effect_volume_up_button_ptr);
-    dxlib_user_interface_base_ptr->registerInterface(sound_effect_volume_up_button_ptr, 6);
+        bgm_bar_x - GameConst::kResolutionX * 47 / 192, bgm_bar_y + GameConst::kResolutionY * 15 / 108,
+        button_width2, button_width2,
+        "setting_volume_up", "data/font/azuki_font32.dft", [this]() { changeSEVolume(1); });
+
 
     const auto sound_effect_volume_down_button_ptr = std::make_shared<SimpleBoxButton>(
         language_record_ptr_, dxlib_resource_loader_ptr_,
-        GameConst::kResolutionX / 2 - 100, GameConst::kResolutionY / 2 - 60,
-        40, 40,
-        "setting_volume_down", "data/font/azuki_font32.dft",
-        [this]() {
-            auto volume = dxlib_resource_loader_ptr_->getSEVolumePercent();
-            volume = volume - 10 < 0 ? 0 : volume - 10;
-            dxlib_resource_loader_ptr_->changeAllSEVolume(volume);
-        });
+        bgm_bar_x + GameConst::kResolutionX * 47 / 192, bgm_bar_y + GameConst::kResolutionY * 15 / 108,
+        button_width2, button_width2,
+        "setting_volume_down", "data/font/azuki_font32.dft", [this]() { changeSEVolume(-1); });
+
+
+    const auto sound_effect_volume_down5_button_ptr = std::make_shared<SimpleBoxButton>(
+        language_record_ptr_, dxlib_resource_loader_ptr_,
+        bgm_bar_x + GameConst::kResolutionX * 57 / 192, bgm_bar_y + GameConst::kResolutionY * 15 / 108,
+        button_width2, button_width2,
+        "setting_volume_down", "data/font/azuki_font32.dft", [this]() { changeSEVolume(-5); });
+
+    entity_updater_ptr->registerEntity(bgm_volume_up5_button_ptr);
+    entity_updater_ptr->registerEntity(bgm_volume_up_button_ptr);
+    entity_updater_ptr->registerEntity(bgm_volume_down_button_ptr);
+    entity_updater_ptr->registerEntity(bgm_volume_down5_button_ptr);
+    entity_updater_ptr->registerEntity(sound_effect_volume_up5_button_ptr);
+    entity_updater_ptr->registerEntity(sound_effect_volume_up_button_ptr);
     entity_updater_ptr->registerEntity(sound_effect_volume_down_button_ptr);
-    dxlib_user_interface_base_ptr->registerInterface(sound_effect_volume_down_button_ptr, 7);
+    entity_updater_ptr->registerEntity(sound_effect_volume_down5_button_ptr);
+
+    dxlib_user_interface_base_ptr->registerInterface(bgm_volume_up5_button_ptr, 6);
+    dxlib_user_interface_base_ptr->registerInterface(bgm_volume_up_button_ptr, 7);
+    dxlib_user_interface_base_ptr->registerInterface(bgm_volume_down_button_ptr, 8);
+    dxlib_user_interface_base_ptr->registerInterface(bgm_volume_down5_button_ptr, 9);
+    dxlib_user_interface_base_ptr->registerInterface(sound_effect_volume_up5_button_ptr, 10);
+    dxlib_user_interface_base_ptr->registerInterface(sound_effect_volume_up_button_ptr, 11);
+    dxlib_user_interface_base_ptr->registerInterface(sound_effect_volume_down_button_ptr, 12);
+    dxlib_user_interface_base_ptr->registerInterface(sound_effect_volume_down5_button_ptr, 13);
+}
+
+void SettingSceneUiCreator::changeBGMVolume(const int volume_dif) {
+    auto current_volume = dxlib_resource_loader_ptr_->getBGMVolumePercent();
+
+    current_volume += volume_dif;
+
+    if (current_volume < 0) {
+        current_volume = 0;
+    } else if (current_volume > 100) {
+        current_volume = 100;
+    }
+
+    dxlib_resource_loader_ptr_->changeAllBGMVolume(current_volume);
+}
+
+void SettingSceneUiCreator::changeSEVolume(const int volume_dif) {
+    auto current_volume = dxlib_resource_loader_ptr_->getSEVolumePercent();
+
+    current_volume += volume_dif;
+
+    if (current_volume < 0) {
+        current_volume = 0;
+    } else if (current_volume > 100) {
+        current_volume = 100;
+    }
+
+    dxlib_resource_loader_ptr_->changeAllSEVolume(current_volume);
 }
 
 }  // namespace match_stick

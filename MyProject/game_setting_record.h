@@ -15,7 +15,6 @@ struct GameSettingRecord final {
 
     bool is_full_screen{ false };
 
-    int master_volume{ 50 };
     int sound_volume{ 100 };
     int bgm_volume{ 100 };
 };
@@ -37,8 +36,6 @@ MATCH_STICK_TOML11_DESCRIPTION_CLASS(GameSettingRecord) {
 
     MATCH_STICK_TOML11_VARIABLE_ADD_DESCRIPTION(is_full_screen, "window", "The value is true or false.");
 
-    MATCH_STICK_TOML11_VARIABLE_ADD_DESCRIPTION(master_volume, "sound", "The value range is from 0 to 100.");
-
     MATCH_STICK_TOML11_VARIABLE_ADD_DESCRIPTION(sound_volume, "sound", "The value range is from 0 to 100.");
 
     MATCH_STICK_TOML11_VARIABLE_ADD_DESCRIPTION(bgm_volume, "sound", "The value range is from 0 to 100.");
@@ -49,4 +46,4 @@ MATCH_STICK_TOML11_DESCRIPTION_CLASS(GameSettingRecord) {
 MATCH_STICK_TOML11_SERIALIZE(
     match_stick::GameSettingRecord,
     window_width, window_height, is_full_screen,
-    master_volume, language_country, sound_volume, bgm_volume);
+    language_country, sound_volume, bgm_volume);

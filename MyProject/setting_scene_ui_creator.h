@@ -22,6 +22,9 @@ public:
     void initUI(const std::unique_ptr<EntityUpdater>& entity_updater_ptr_);
 
 private:
+    void changeBGMVolume(int volume_dif);
+    void changeSEVolume(int volume_dif);
+
     const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
     const std::shared_ptr<const LanguageRecord> language_record_ptr_;
     const std::shared_ptr<const DxLibInput> dxlib_input_ptr_;

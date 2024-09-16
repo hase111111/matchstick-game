@@ -37,12 +37,16 @@ public:
     void callbackWhenHoverEnded();
 
 private:
+    void drawBar() const;
+
     const std::shared_ptr<const DxLibResourceLoader> dxlib_resource_loader_ptr_;
 
     const int font32_handle_;
 
     const int center_x_;
     const int center_y_;
+
+    const int triangle_width_{ 20 };
 };
 
 }  // match_stick
