@@ -123,7 +123,7 @@ void SettingSceneUiCreator::initUI(const std::unique_ptr<EntityUpdater>& entity_
     const int button_width2 = GameConst::kResolutionX / 24;
 
     const auto sound_change_bar_ptr = std::make_shared<SoundChangeBar>(
-        language_record_ptr_, dxlib_resource_loader_ptr_, bgm_bar_x, bgm_bar_y);
+        language_record_ptr_, dxlib_input_ptr_, dxlib_resource_loader_ptr_, bgm_bar_x, bgm_bar_y);
 
     entity_updater_ptr->registerEntity(sound_change_bar_ptr);
     dxlib_user_interface_base_ptr->registerInterface(sound_change_bar_ptr, 5);
@@ -196,6 +196,14 @@ void SettingSceneUiCreator::initUI(const std::unique_ptr<EntityUpdater>& entity_
     dxlib_user_interface_base_ptr->registerInterface(sound_effect_volume_up_button_ptr, 11);
     dxlib_user_interface_base_ptr->registerInterface(sound_effect_volume_down_button_ptr, 12);
     dxlib_user_interface_base_ptr->registerInterface(sound_effect_volume_down5_button_ptr, 13);
+
+    // 配置を設定
+    dxlib_user_interface_base_ptr->registerInterfaceDeployment(0, 1, 3, 0, 0);
+    dxlib_user_interface_base_ptr->registerInterfaceDeployment(1, 2, 0, 0, 1);
+    dxlib_user_interface_base_ptr->registerInterfaceDeployment(2, 3, 1, 0, 2);
+    dxlib_user_interface_base_ptr->registerInterfaceDeployment(3, 0, 2, 0, 2);
+
+    dxlib_user_interface_base_ptr->setDefaultSelectedId(0);
 }
 
 void SettingSceneUiCreator::changeBGMVolume(const int volume_dif) {

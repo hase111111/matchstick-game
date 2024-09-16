@@ -3,6 +3,7 @@
 
 #include <memory>
 
+#include "dxlib_input.h"
 #include "dxlib_resource_loader.h"
 #include "i_dxlib_user_interface.h"
 #include "i_entity.h"
@@ -13,6 +14,7 @@ class SoundChangeBar final : public IDxLibUserInterface, public IEntity {
 public:
     SoundChangeBar(
         const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+        const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
         const std::shared_ptr<DxLibResourceLoader>& dxlib_resource_loader_ptr,
         int center_x,
         int center_y);
@@ -39,6 +41,7 @@ public:
 private:
     void drawBar() const;
 
+    const std::shared_ptr<const DxLibInput>& dxlib_input_ptr_;
     const std::shared_ptr<const DxLibResourceLoader> dxlib_resource_loader_ptr_;
 
     const int font32_handle_;
