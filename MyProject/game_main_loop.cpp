@@ -77,7 +77,7 @@ std::shared_ptr<SceneStack> GameMainLoop::initializeSceneStack() const {
             language_record_initializer.initialize(game_setting_record_ptr_->language_country));
 
     const auto dxlib_resource_loader_ptr = std::make_shared<DxLibResourceLoader>();
-    dxlib_resource_loader_ptr->changeAllSoundVolume(game_setting_record_ptr_->sound_volume);
+    dxlib_resource_loader_ptr->changeAllSEVolume(game_setting_record_ptr_->sound_volume);
 
     auto scene_creator_ptr = std::make_unique<SceneCreator>(
         scene_change_listener_ptr_,

@@ -119,33 +119,34 @@ void SettingSceneUiCreator::initUI(const std::unique_ptr<EntityUpdater>& entity_
     // 音量調整バー
     const auto sound_change_bar_ptr = std::make_shared<SoundChangeBar>(
         language_record_ptr_, dxlib_resource_loader_ptr_,
-        GameConst::kResolutionX / 2 - 100, GameConst::kResolutionY / 2);
+        GameConst::kResolutionX / 2 - 100, GameConst::kResolutionY / 2 - 60);
 
     entity_updater_ptr->registerEntity(sound_change_bar_ptr);
     dxlib_user_interface_base_ptr->registerInterface(sound_change_bar_ptr, 5);
 
     const auto sound_effect_volume_up_button_ptr = std::make_shared<SimpleBoxButton>(
         language_record_ptr_, dxlib_resource_loader_ptr_,
-        GameConst::kResolutionX / 2 + 100, GameConst::kResolutionY / 2 - 50,
-        50, 50,
+        GameConst::kResolutionX / 2 - 335, GameConst::kResolutionY / 2 - 60,
+        40, 40,
         "setting_volume_up", "data/font/azuki_font32.dft",
         [this]() {
-            auto volume = dxlib_resource_loader_ptr_->getVolumePercent();
-            volume = volume + 10 > 100 ? 100 : volume + 10;
-            dxlib_resource_loader_ptr_->changeAllSoundVolume(volume);
+            auto volume = dxlib_resource_loader_ptr_->getSEVolumePercent();
+            const int plus = 5;
+            volume = volume + plus > 100 ? 100 : volume + plus;
+            dxlib_resource_loader_ptr_->changeAllSEVolume(volume);
         });
     entity_updater_ptr->registerEntity(sound_effect_volume_up_button_ptr);
     dxlib_user_interface_base_ptr->registerInterface(sound_effect_volume_up_button_ptr, 6);
 
     const auto sound_effect_volume_down_button_ptr = std::make_shared<SimpleBoxButton>(
         language_record_ptr_, dxlib_resource_loader_ptr_,
-        GameConst::kResolutionX / 2 + 100, GameConst::kResolutionY / 2 + 50,
-        50, 50,
+        GameConst::kResolutionX / 2 - 100, GameConst::kResolutionY / 2 - 60,
+        40, 40,
         "setting_volume_down", "data/font/azuki_font32.dft",
         [this]() {
-            auto volume = dxlib_resource_loader_ptr_->getVolumePercent();
+            auto volume = dxlib_resource_loader_ptr_->getSEVolumePercent();
             volume = volume - 10 < 0 ? 0 : volume - 10;
-            dxlib_resource_loader_ptr_->changeAllSoundVolume(volume);
+            dxlib_resource_loader_ptr_->changeAllSEVolume(volume);
         });
     entity_updater_ptr->registerEntity(sound_effect_volume_down_button_ptr);
     dxlib_user_interface_base_ptr->registerInterface(sound_effect_volume_down_button_ptr, 7);

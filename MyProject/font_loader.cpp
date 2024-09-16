@@ -9,7 +9,7 @@
 namespace match_stick {
 
 int FontLoader::getFontHandle(const Country country, const std::string& file_path) const {
-    ASSERT(alreadyLoadedFont(country, file_path), "The font has not been loaded yet.");
+    ASSERT(alreadyLoadedFont(country, file_path), "The font has not been loaded yet : " + file_path);
 
     const int result_handle = isCountryForOtherLanguage(country) ?
         font_handle_for_other_language_.at(file_path) : font_handle_.at(file_path);

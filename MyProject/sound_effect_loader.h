@@ -23,8 +23,8 @@ public:
     //! @return SEのハンドル．
     [[nodiscard]]
     inline int getSoundHandle(const std::string& file_path) const {
-        ASSERT(isSoundLoaded(file_path), "The sound effect is not loaded. File is " + file_path +
-            "Please call loadSoundHandle() before calling getSoundHandle().");
+        ASSERT(isLoaded(file_path), "The sound effect is not loaded. File Path : " + file_path +
+            ". Please call loadSoundHandle() before calling getSoundHandle().");
 
         return sound_handle_.at(file_path);
     }
@@ -32,7 +32,7 @@ public:
     //! @brief 全てのSEの音量を変更する．
     //! 読み込んだSEの音量を変更し，今後読み込むSEの音量も変更する．
     //! @param volume 音量．
-    void changeAllSoundVolume(int volume);
+    void changeAllVolume(int volume);
 
     //! @brief SEの音量を取得する．
     //! @return SEの音量．
@@ -43,7 +43,7 @@ public:
 
 private:
     [[nodiscard]]
-    inline bool isSoundLoaded(const std::string& file_path) const {
+    inline bool isLoaded(const std::string& file_path) const {
         return sound_handle_.contains(file_path);
     }
 

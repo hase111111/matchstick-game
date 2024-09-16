@@ -7,12 +7,12 @@
 
 namespace match_stick {
 
-class MenuSceneResourceLoader final {
+class SettingSceneResourceLoader final {
 public:
-    explicit MenuSceneResourceLoader(const std::shared_ptr<DxLibResourceLoader>& dxlib_resource_loader_ptr);
-    ~MenuSceneResourceLoader() = default;
+    explicit SettingSceneResourceLoader(const std::shared_ptr<DxLibResourceLoader>& dxlib_resource_loader_ptr);
+    ~SettingSceneResourceLoader() = default;
 
-    void loadImage();
+    void load();
 
 private:
     const std::shared_ptr<DxLibResourceLoader> dxlib_resource_loader_ptr_;

@@ -9,13 +9,25 @@ namespace match_stick {
 
 class BgmPlayer final {
 public:
-    void load(const std::string& bgm_file);
-    void play(const std::string& bgm_file);
-    void loadAndPlay(const std::string& bgm_file);
-    void stop();
-    void changeVolume(int volume);
+    void loadBGM(const std::string& bgm_file);
+
+    void playBGM(const std::string& bgm_file);
+
+    void stopBGM();
+
+    void changeAllVolume(int volume);
+
+    [[nodiscard]]
+    inline int getVolumePercent() const {
+        return volume_percent_;
+    }
 
 private:
+    [[nodiscard]]
+    inline bool isLoaded(const std::string& file_path) const {
+        return bgm_handle_.contains(file_path);
+    }
+
     std::map<std::string, int> bgm_handle_;
     int volume_percent_{ 100 };
 

@@ -44,13 +44,35 @@ public:
         sound_effect_loader_.loadSoundHandle(file_path);
     }
 
-    inline void changeAllSoundVolume(const int volume) {
-        sound_effect_loader_.changeAllSoundVolume(volume);
+    inline void changeAllSEVolume(const int volume) {
+        sound_effect_loader_.changeAllVolume(volume);
     }
 
     [[nodiscard]]
-    inline int getVolumePercent() const {
+    inline int getSEVolumePercent() const {
         return sound_effect_loader_.getVolumePercent();
+    }
+
+    // BgmPlayer
+    inline void loadBGM(const std::string& bgm_file) {
+        bgm_player_.loadBGM(bgm_file);
+    }
+
+    inline void playBGM(const std::string& bgm_file) {
+        bgm_player_.playBGM(bgm_file);
+    }
+
+    inline void stopBGM() {
+        bgm_player_.stopBGM();
+    }
+
+    inline void changeAllBGMVolume(const int volume) {
+        bgm_player_.changeAllVolume(volume);
+    }
+
+    [[nodiscard]]
+    inline int getBGMVolumePercent() const {
+        return bgm_player_.getVolumePercent();
     }
 
 private:

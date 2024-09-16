@@ -9,8 +9,8 @@
 namespace match_stick {
 
 void ImageLoader::loadImageHandle(const std::string& file_path) {
-    // 既に読み込み済みならば，そのハンドルを返す．
-    if (image_handle_.contains(file_path)) {
+    // 既に読み込み済みならば終了する．
+    if (isImageLoaded(file_path)) {
         return;
     }
 
@@ -27,7 +27,7 @@ void ImageLoader::loadImageHandle(const std::string& file_path) {
 }
 
 int ImageLoader::getImageHandle(const std::string& file_path) const {
-    ASSERT(isImageLoaded(file_path), "The image is not loaded. File is " + file_path);
+    ASSERT(isImageLoaded(file_path), "The image is not loaded. File Path : " + file_path);
     return image_handle_.at(file_path);
 }
 

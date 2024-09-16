@@ -12,6 +12,7 @@
 #include "rule_scene.h"
 #include "rule_scene_resource_loader.h"
 #include "setting_scene.h"
+#include "setting_scene_resource_loader.h"
 #include "title_scene.h"
 #include "title_scene_resource_loader.h"
 
@@ -117,6 +118,11 @@ std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) co
     }
     case SceneName::kSetting: {
         DEBUG_PRINT_IMPORTANT("SceneName::kSetting");
+
+        // 設定シーンのリソースをロード
+        SettingSceneResourceLoader setting_scene_resource_loader(dxlib_resource_loader_ptr_);
+
+        setting_scene_resource_loader.load();
 
         return std::make_unique<SettingScene>(
             scene_change_listener_ptr_,

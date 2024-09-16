@@ -285,6 +285,9 @@
     <ClCompile Include="sound_change_bar.cpp">
       <Filter>ソース ファイル\scenes\setting_scene\entity</Filter>
     </ClCompile>
+    <ClCompile Include="setting_scene_resource_loader.cpp">
+      <Filter>ソース ファイル\scenes\setting_scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game_const.h">
@@ -535,6 +538,9 @@
     </ClInclude>
     <ClInclude Include="sound_change_bar.h">
       <Filter>ソース ファイル\scenes\setting_scene\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="setting_scene_resource_loader.h">
+      <Filter>ソース ファイル\scenes\setting_scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
