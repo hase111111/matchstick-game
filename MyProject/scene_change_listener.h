@@ -1,4 +1,10 @@
 ﻿
+//! @file scene_change_listener.h
+//! @brief
+//! Copyright(c) 2024 Taisei Hasegawa
+//! Released under the MIT license
+//! https://opensource.org/licenses/mit-license.php
+
 #pragma once
 
 #include "scene_change_parameter.h"
@@ -15,11 +21,21 @@ public:
         kDeleteAllScene
     };
 
+    //! @brief シーンの追加をリクエストする．
+    //! @param[in] scene_name シーン名．
+    //! @param[in] parameter パラメータ．
     void requestAddScene(SceneName scene_name, const SceneChangeParameter& parameter);
+
+    //! @brief シーンの削除をリクエストする．
+    //! @param[in] delete_num 削除するシーンの数．
+    //! @param[in] parameter パラメータ．
     void requestDeleteScene(int delete_num, const SceneChangeParameter& parameter);
+
+    //! @brief 全てのシーンの削除をリクエストする．
     void requestDeleteAllScene();
 
-    bool hasRequest() const;
+    //! @brief リクエストがあるかどうかを返す．
+    [[nodiscard]] bool hasRequest() const;
 
     //! @brief リクエストを受け取る．
     //! 受け取った後，リクエストはリセットされる．

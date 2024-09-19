@@ -18,8 +18,8 @@ namespace match_stick {
 //! 名前空間でもよかったか．
 class ErrorMessageBox final {
 public:
-    //! @brief エラーメッセージを表示する．
-    //! 静的メソッド．
+    //! @brief エラーメッセージを表示する．静的メソッド．
+    //! @param[in] err_str エラーメッセージ．
     static void show(const std::string err_str) {
         MessageBox(NULL, TEXT(err_str.c_str()), TEXT("報告"), MB_ICONERROR);
     }

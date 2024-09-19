@@ -1,4 +1,10 @@
 ﻿
+//! @file scene_change_executer.h
+//! @brief
+//! Copyright(c) 2024 Taisei Hasegawa
+//! Released under the MIT license
+//! https://opensource.org/licenses/mit-license.php
+
 #pragma once
 
 #include <memory>
@@ -10,12 +16,12 @@ namespace match_stick {
 
 class SceneChangeExecuter final {
 public:
-    SceneChangeExecuter() = delete;  //!< デフォルトコンストラクタは使用不可．
-
     SceneChangeExecuter(
         const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
         const std::shared_ptr<SceneStack>& scene_stack_ptr);
 
+    //! @brief シーンの変更を実行する．
+    //! リクエストがない場合は何もしない．
     void execute();
 
 private:

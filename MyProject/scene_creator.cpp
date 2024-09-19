@@ -1,4 +1,10 @@
 ﻿
+//! @file scene_creator.cpp
+//! @brief
+//! Copyright(c) 2024 Taisei Hasegawa
+//! Released under the MIT license
+//! https://opensource.org/licenses/mit-license.php
+
 #include "scene_creator.h"
 
 #include "debug_scene.h"
