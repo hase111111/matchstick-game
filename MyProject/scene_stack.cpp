@@ -1,4 +1,10 @@
 ﻿
+//! @file scene_stack.cpp
+//! @brief
+//! Copyright(c) 2024 Taisei Hasegawa
+//! Released under the MIT license
+//! https://opensource.org/licenses/mit-license.php
+
 #include "scene_stack.h"
 
 #include <utility>
@@ -43,8 +49,12 @@ void SceneStack::deleteNowScene(const int delete_num,
         scene_ptr_stack_.pop();
     }
 
-    ASSERT(!scene_ptr_stack_.empty(),
-           "The scene does not exist.");  // 冗長になるが，確認する．
+    if (scene_ptr_stack_.empty()) {
+        // シーンがなくなった場合は，初期シーンを再度生成する．
+        initializeScene(parameter);
+
+        return;
+    }
 
     // 削除後のシーンに対して，引数のパラメータを渡して，初期化処理を行う．
     scene_ptr_stack_.top()->onReturnFromOtherScene(parameter);
@@ -60,9 +70,8 @@ void SceneStack::deleteAllScene() {
     initializeScene();
 }
 
-void SceneStack::initializeScene() {
+void SceneStack::initializeScene(const SceneChangeParameter& parameter) {
     auto first_scene_ptr = scene_creator_ptr_->createScene(SceneName::kSetting);
-    SceneChangeParameter parameter;
 
     // 空のパラメータを渡して，初期化処理を行う．
     first_scene_ptr->onStart(parameter);

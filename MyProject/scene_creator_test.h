@@ -17,13 +17,13 @@
 
 
 TEST_CASE("SceneCreator::createScene when create debug scene, should not return nullptr") {
-    using match_stick::SceneCreator;
-    using match_stick::SceneChangeListener;
-    using match_stick::FpsController;
-    using match_stick::LanguageRecord;
-    using match_stick::DxLibInput;
-    using match_stick::DxLibResourceLoader;
-    using match_stick::SceneName;
+    using ::match_stick::SceneCreator;
+    using ::match_stick::SceneChangeListener;
+    using ::match_stick::FpsController;
+    using ::match_stick::LanguageRecord;
+    using ::match_stick::DxLibInput;
+    using ::match_stick::DxLibResourceLoader;
+    using ::match_stick::SceneName;
 
     // Arrange
     const auto scene_change_listener = std::make_shared<SceneChangeListener>();
