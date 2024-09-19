@@ -51,6 +51,8 @@ private:
 
     //!< シーンを生成するクラス．
     const std::unique_ptr<SceneCreator> scene_creator_ptr_;
+
+    const SceneName initial_scene_name_;
 };
 
 }  // namespace match_stick

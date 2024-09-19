@@ -14,7 +14,8 @@
 namespace match_stick {
 
 SceneStack::SceneStack(std::unique_ptr<SceneCreator>&& scene_creator_ptr) :
-    scene_creator_ptr_(std::move(scene_creator_ptr)) {
+    scene_creator_ptr_(std::move(scene_creator_ptr)),
+    initial_scene_name_(SceneName::kSetting) {
     initializeScene();
 }
 
@@ -71,7 +72,7 @@ void SceneStack::deleteAllScene() {
 }
 
 void SceneStack::initializeScene(const SceneChangeParameter& parameter) {
-    auto first_scene_ptr = scene_creator_ptr_->createScene(SceneName::kSetting);
+    auto first_scene_ptr = scene_creator_ptr_->createScene(initial_scene_name_);
 
     // 空のパラメータを渡して，初期化処理を行う．
     first_scene_ptr->onStart(parameter);
