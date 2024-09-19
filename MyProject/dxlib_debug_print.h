@@ -1,4 +1,10 @@
 ﻿
+//! @file dxlib_debug_print.h
+//! @brief
+//! Copyright(c) 2024 Taisei Hasegawa
+//! Released under the MIT license
+//! https ://opensource.org/licenses/mit-license.php
+
 #pragma once
 
 #include <string>
@@ -6,8 +12,7 @@
 namespace match_stick {
 
 //! @namespace match_stick::debug_print_internal
-//! @brief デバッグ用のプリント関数を提供する名前空間
-//! インターナルな関数にするため，深い階層にしている
+//! @brief デバッグ用のプリント関数を提供する名前空間．インターナルな関数にするため，深い階層にしている．
 namespace debug_print_internal {
 
 //! @brief デバッグ用プリントが実行された回数
@@ -53,6 +58,7 @@ void debugPrint(const std::string& func_name, const std::string& str, DebugPrint
 
 #ifdef _DEBUG
 
+//! @brief DEBUG_PRINT が出力する先のコンソールを作成し，テストを実行する
 #define PREPAER_DEBUG_PRINT_AND_ACTIVATE_TEST() \
 ::match_stick::debug_print_internal::createConsole(); \
 ::match_stick::debug_print_internal::runTest();
@@ -79,16 +85,22 @@ void debugPrint(const std::string& func_name, const std::string& str, DebugPrint
 
 #else
 
-#define PREPAER_DEBUG_PRINT() ((void)0)
+//! @brief 現在有効化されていません．Visual Studio のビルド構成を Debug に変更してください．
+#define PREPAER_DEBUG_PRINT_AND_ACTIVATE_TEST() ((void)0)
 
+//! @brief 現在有効化されていません．Visual Studio のビルド構成を Debug に変更してください．
 #define DEBUG_PRINT(str) ((void)0)
 
+//! @brief 現在有効化されていません．Visual Studio のビルド構成を Debug に変更してください．
 #define DEBUG_PRINT_WARNING(str) ((void)0)
 
+//! @brief 現在有効化されていません．Visual Studio のビルド構成を Debug に変更してください．
 #define DEBUG_PRINT_ERROR(str) ((void)0)
 
+//! @brief 現在有効化されていません．Visual Studio のビルド構成を Debug に変更してください．
 #define DEBUG_PRINT_IMPORTANT(str) ((void)0)
 
+//! @brief 現在有効化されていません．Visual Studio のビルド構成を Debug に変更してください．
 #define DEBUG_PRINT_INFO(str) ((void)0)
 
 #endif  // _DEBUG

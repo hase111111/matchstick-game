@@ -10,7 +10,7 @@ public:
     Sample() = default;
     ~Sample() = default;
 
-    inline int add(int a, int b) const {
+    constexpr int add(int a, int b) const {
         return a + b;
     }
 };

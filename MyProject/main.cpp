@@ -1,4 +1,10 @@
 ﻿
+//! @file main.cpp
+//! @brief
+//! Copyright(c) 2024 Taisei Hasegawa
+//! Released under the MIT license
+//! https ://opensource.org/licenses/mit-license.php
+
 // 表示→その他のウィンドウ→プロパティ→マネージャー
 // myBuildSettings → マクロ に DXLIB_DIR が定義されている．
 
