@@ -1,4 +1,10 @@
 ﻿
+//! @file game_main_loop.h
+//! @brief
+//! Copyright(c) 2024 Taisei Hasegawa
+//! Released under the MIT license
+//! https://opensource.org/licenses/mit-license.php
+
 #pragma once
 
 #include <memory>
@@ -12,19 +18,23 @@
 
 namespace match_stick {
 
-class GameMainLoop {
+//! @class GameMainLoop
+//! @brief ゲームのメインループ内で1フレームごとに行う処理を呼ぶクラス．
+class GameMainLoop final {
 public:
-    GameMainLoop(const std::shared_ptr<const GameSettingRecord>& game_setting_record);
+    explicit GameMainLoop(const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr);
     ~GameMainLoop() = default;
 
+    //! @brief メインループ内で1フレームごとに行う処理を呼ぶ．
+    //! @return false : ゲームを終了する．
     bool loop();
 
 private:
-    std::shared_ptr<SceneStack> initializeSceneStack() const;
+    [[nodiscard]] std::shared_ptr<SceneStack> initializeSceneStack() const;
 
     const std::shared_ptr<DxLibInput> dxlib_input_ptr_;
 
-    const std::shared_ptr<FpsController> fps_controller_;
+    const std::shared_ptr<FpsController> fps_controller_ptr_;
 
     const std::shared_ptr<const GameSettingRecord> game_setting_record_ptr_;
 

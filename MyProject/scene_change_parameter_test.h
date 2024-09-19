@@ -1,9 +1,18 @@
 ﻿
+//! @file scene_change_parameter_test.h
+//! @brief
+//! Copyright(c) 2024 Taisei Hasegawa
+//! Released under the MIT license
+//! https://opensource.org/licenses/mit-license.php
+
 #pragma once
 
 #include <doctest.h>
 
+#include <string>
+
 #include "scene_change_parameter.h"
+
 
 TEST_CASE("SceneChangeParameter::setParameter") {
     using ::match_stick::SceneChangeParameter;
@@ -21,8 +30,8 @@ TEST_CASE("SceneChangeParameter::setParameter") {
     CHECK(parameter.hasParameter("double"));
     CHECK(parameter.hasParameter("string"));
 
-    // 存在しないキーを指定した場合は false を返す
-    CHECK_FALSE(parameter.hasParameter("not_exist"));
+    // 存在しないキーを指定した場合は false を返す．
+    CHECK_FALSE(parameter.hasParameter("A-key-that-obviously-should-not-exist."));
 }
 
 TEST_CASE("SceneChangeParameter::getParameter") {

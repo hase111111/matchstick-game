@@ -1,18 +1,10 @@
 ﻿
 //! @file game_main_loop.cpp
-//! @copyright 2024 Taisei Hasegawa
 //! @brief
-//! 
-//!  ----------------------------------------------------------------------------
-//! | ##   ##   ##   ######   ####  ##   ##   #####  ###### ####   ####  ###  ## |
-//! | ### ###  ####  # ## #  ##  ## ##   ##  ##   ## # ## #  ##   ##  ##  ##  ## |
-//! | ####### ##  ##   ##   ##      ##   ##  #         ##    ##  ##       ## ##  |
-//! | ####### ##  ##   ##   ##      #######   #####    ##    ##  ##       ####   |
-//! | ## # ## ######   ##   ##      ##   ##       ##   ##    ##  ##       ## ##  |
-//! | ##   ## ##  ##   ##    ##  ## ##   ##  ##   ##   ##    ##   ##  ##  ##  ## |
-//! | ##   ## ##  ##  ####    ####  ##   ##   #####   ####  ####   ####  ###  ## |
-//!  ----------------------------------------------------------------------------
-//!
+//! Copyright(c) 2024 Taisei Hasegawa
+//! Released under the MIT license
+//! https://opensource.org/licenses/mit-license.php
+
 
 #include "game_main_loop.h"
 
@@ -25,13 +17,22 @@
 
 namespace match_stick {
 
-GameMainLoop::GameMainLoop(const std::shared_ptr<const GameSettingRecord>& game_setting_record) :
+GameMainLoop::GameMainLoop(const std::shared_ptr<const GameSettingRecord>& game_setting_record_ptr) :
     dxlib_input_ptr_(std::make_shared<DxLibInput>()),
-    fps_controller_(std::make_shared<FpsController>(60)),
-    game_setting_record_ptr_(game_setting_record),
+    fps_controller_ptr_(std::make_shared<FpsController>(60)),
+    game_setting_record_ptr_(game_setting_record_ptr),
     scene_change_listener_ptr_(std::make_shared<SceneChangeListener>()),
     scene_stack_ptr_(initializeSceneStack()),
-    scene_change_executer_{ scene_change_listener_ptr_, scene_stack_ptr_ } {}
+    scene_change_executer_{ scene_change_listener_ptr_, scene_stack_ptr_ } {
+    // NULLチェック．
+    ASSERT_NOT_NULL_PTR(game_setting_record_ptr);
+
+    ASSERT_NOT_NULL_PTR(dxlib_input_ptr_);
+    ASSERT_NOT_NULL_PTR(fps_controller_ptr_);
+    ASSERT_NOT_NULL_PTR(game_setting_record_ptr_);
+    ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
+    ASSERT_NOT_NULL_PTR(scene_stack_ptr_);
+}
 
 bool GameMainLoop::loop() {
     // 入力を取得
@@ -43,9 +44,9 @@ bool GameMainLoop::loop() {
     }
 
     // 処理が重い場合はここでコマ落ちさせる．
-    if (!fps_controller_->skipDrawScene()) {
+    if (!fps_controller_ptr_->skipDrawScene()) {
         // スクリーンを消す．
-        if (ClearDrawScreen() != 0) {
+        if (DxLib::ClearDrawScreen() != 0) {
             return false;
         }
 
@@ -53,13 +54,13 @@ bool GameMainLoop::loop() {
         scene_stack_ptr_->drawTopScene();
 
         // スクリーンに表示する．
-        if (ScreenFlip() != 0) {
+        if (DxLib::ScreenFlip() != 0) {
             return false;
         }
     }
 
     // FPSを調整するための処理．
-    fps_controller_->wait();
+    fps_controller_ptr_->wait();
 
     // シーンの変更を実行する．
     scene_change_executer_.execute();
@@ -68,8 +69,11 @@ bool GameMainLoop::loop() {
 }
 
 std::shared_ptr<SceneStack> GameMainLoop::initializeSceneStack() const {
-    ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
+    // NULLチェック．
     ASSERT_NOT_NULL_PTR(dxlib_input_ptr_);
+    ASSERT_NOT_NULL_PTR(fps_controller_ptr_);
+    ASSERT_NOT_NULL_PTR(game_setting_record_ptr_);
+    ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
 
     LanguageRecordInitializer language_record_initializer;
     const auto language_record_ptr =
@@ -81,7 +85,7 @@ std::shared_ptr<SceneStack> GameMainLoop::initializeSceneStack() const {
 
     auto scene_creator_ptr = std::make_unique<SceneCreator>(
         scene_change_listener_ptr_,
-        fps_controller_,
+        fps_controller_ptr_,
         language_record_ptr,
         dxlib_input_ptr_,
         dxlib_resource_loader_ptr);
