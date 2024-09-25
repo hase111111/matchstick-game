@@ -1,351 +1,351 @@
-ï»¿//#include "ResultString.h"
-//#include "Font.h"
-//#include "define.h"
-//#include "DxLib.h"
-//
-//ResultString::ResultString()
-//{
-//	m_font_16 = myLoadFont("data/font/PixelMplus10_size16.dft");
-//	m_font_32 = myLoadFont("data/font/PixelMplus10_size32.dft");
-//}
-//
-//void ResultString::init(const std::vector<MatchField> _list, const bool mod, const bool self)
-//{
-//	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒªã‚¹ãƒˆã‚’èª­ã¿è¾¼ã‚€
-//	for (auto &i : _list)
-//	{
-//		m_field_list.push_back(i);
-//	}
-//
-//	std::map<MatchField, int> _counter;
-//	for (auto& i : _list)
-//	{
-//		_counter[i]++;
-//		m_field_sennitite_list.push_back(_counter[i]);
-//	}
-//
-//	//ãƒ«ãƒ¼ãƒ«ã‚’èª­ã¿è¾¼ã‚€
-//	m_mod_rule = mod;
-//	m_self_rule = self;
-//
-//	//åˆæœŸåŒ–æ¸ˆã¿ãƒ•ãƒ©ã‚°ã‚’ç«‹ã¦ã‚‹
-//	m_init_flag = true;
-//}
-//
-//void ResultString::update(const int select_field)
-//{
-//	//åˆæœŸåŒ–ãŒçµ‚ã‚ã£ã¦ã„ãªã„ãªã‚‰çµ‚äº†
-//	if (m_init_flag == false) { return; }
-//
-//	//é¸æŠã—ãŸç›¤é¢ã‚’å—ã‘å–ã‚‹
-//	m_select_field = select_field;
-//
-//	//è©•ä¾¡ã™ã‚‹ç›¤é¢ã¨é¸æŠç›¤é¢ãŒé•ã†ãªã‚‰åŒä¸€ã«ã™ã‚‹
-//	if (m_select_field != m_hyouka_field) {
-//		m_Hyouka();
-//	}
-//}
-//
-//void ResultString::draw(const bool _replay, const bool _replay_fail) const
-//{
-//	//åˆæœŸåŒ–ãŒçµ‚ã‚ã£ã¦ã„ãªã„ãªã‚‰çµ‚äº†
-//	if (m_init_flag == false) { return; }
-//
-//	//ãƒ­ã‚°ã‚’è¡¨ç¤º
-//	m_drawLog(_replay, _replay_fail);
-//
-//	//ç›¤é¢ã®éƒ¨åˆ†ã®æ–‡å­—ã®æç”»
-//	m_drawField();
-//
-//	//ç‚¹æ•°
-//	m_drawEvaluation();
-//}
-//
-//
-//void ResultString::m_drawLog(const bool _replay, const bool _replay_fail) const
-//{
-//	int Log_HalfX = Define::kWindowSizeX * 17 / 128;
-//	std::string str = "";
-//	
-//	//ç”»é¢ä¸Šéƒ¨ã®ã‚¢ãƒŠã‚¦ãƒ³ã‚¹
-//	str = "ãƒ­ã‚°";
-//	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * 7 / 128, str.c_str(), GetColor(0, 0, 0), m_font_16);
-//
-//	//ç”»é¢ä¸‹éƒ¨ã®ã‚¢ãƒŠã‚¦ãƒ³ã‚¹
-//	const int MOJIKAN_ANA = Define::kWindowSizeY / 33;
-//	str = "ï¼­ï¼¯ï¼¤:";
-//	str += (m_mod_rule == true) ? "ã‚ã‚Š" : "ãªã—";
-//	str += " è‡ªå‚·:";
-//	str += (m_self_rule == true) ? "ã‚ã‚Š " : "ãªã— ";
-//	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * 106 / 128, str.c_str(), GetColor(0, 0, 0), m_font_16);
-//	str = "ä¸Šä¸‹ã‚­ãƒ¼ã§é¸æŠã€€ã€€ã€€ã€€\n";
-//	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * 106 / 128 + MOJIKAN_ANA, str.c_str(), GetColor(0, 0, 0), m_font_16);
-//	str = (_replay == true) ? "ãƒªãƒ—ãƒ¬ã‚¤ä¿å­˜æ¸ˆã¿ã€€ã€€ã€€\n" : "ï¼ºã‚­ãƒ¼ã§ãƒªãƒ—ãƒ¬ã‚¤ä¿å­˜ã€€\n";
-//	if (_replay_fail == true) { str = "ãƒªãƒ—ãƒ¬ã‚¤ä¿å­˜å¤±æ•—ã€€ã€€ã€€\n"; }
-//	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * 106 / 128 + MOJIKAN_ANA * 2, str.c_str(), GetColor(0, 0, 0), m_font_16);
-//	str = "ESCã‚­ãƒ¼ã§æˆ»ã‚‹ã€€ã€€ã€€ã€€ \n";
-//	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * 106 / 128 + MOJIKAN_ANA * 3, str.c_str(), GetColor(0, 0, 0), m_font_16);
-//
-//	//ç›¤é¢ãƒªã‚¹ãƒˆ
-//	const int HYOUJIDEKIRU_SAIDAISUU = 25;
-//	const int MOJIKAN = Define::kWindowSizeY / 34;
-//	int y = 0, color = 0;
-//	for (int i = 0; i < m_field_list.size(); i++)
-//	{
-//		str = std::to_string(i + 1) + "ã‚¿ãƒ¼ãƒ³ç›®:";
-//		str += m_getStrForField(m_field_list.at(i));
-//
-//		if (str.size() > 23)
-//		{
-//			while (str.size() > 20) { str.pop_back(); }
-//			str += "â€•";
-//		}
-//
-//		y = Define::kWindowSizeY * 13 / 128 + MOJIKAN * (i % HYOUJIDEKIRU_SAIDAISUU);
-//		color = GetColor(0, 0, 0);
-//		if (m_field_sennitite_list.at(i) == VariousFunctionsForMatchGame::SENNICHITE - 2) { color = GetColor(0xff, 0xa5, 0x00); }
-//		else if (m_field_sennitite_list.at(i) == VariousFunctionsForMatchGame::SENNICHITE - 1) { color = GetColor(0x80, 0x00, 0x00); }
-//		else if (m_field_sennitite_list.at(i) == VariousFunctionsForMatchGame::SENNICHITE) { color = GetColor(0x00, 0x00, 0x8b); }
-//
-//		if((m_select_field < HYOUJIDEKIRU_SAIDAISUU && i < HYOUJIDEKIRU_SAIDAISUU) || (m_select_field >= HYOUJIDEKIRU_SAIDAISUU && i >= HYOUJIDEKIRU_SAIDAISUU))
-//		{
-//			DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, y, str.c_str(), color, m_font_16);
-//		}
-//	}
-//
-//	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)(pow(sin(2 * Define::PI * GetNowCount() / 1500), 2) * 128.0));
-//	const int BOX_X = Define::kWindowSizeX * 26 / 128;
-//	y = Define::kWindowSizeY * 27 / 256 + MOJIKAN * (m_select_field % HYOUJIDEKIRU_SAIDAISUU);
-//	DrawBox(Log_HalfX - BOX_X / 2, y, Log_HalfX + BOX_X / 2, y + Define::kWindowSizeY / 43, GetColor(0, 0, 0), TRUE);
-//	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-//}
-//
-//void ResultString::m_drawField() const
-//{
-//	std::string str = "";
-//	int color = 0;
-//	int Field_HalfX = Define::kWindowSizeX * 79 / 128;
-//
-//	//å‹æ•—ã‚’æ›¸ã
-//	if (m_field_list.back().doesWinFirstPlayer() == true)
-//	{
-//		color = GetColor(0xff, 0, 0);
-//		str = "ã‚ãªãŸã®å‹åˆ©"; 
-//	}
-//	else  if (m_field_list.back().doesWinSecondPlayer() == true) 
-//	{
-//		color = GetColor(0, 0, 0xff);
-//		str = "ã‚ãªãŸã®æ•—åŒ—"; 
-//	}
-//	else 
-//	{
-//		color = GetColor(0, 0, 0);
-//		str = "åŒä¸€ç›¤é¢ãŒ4å›ç¾ã‚ŒãŸã®ã§å¼•ãåˆ†ã‘"; 
-//	}
-//	DrawStringToHandle(Field_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::kWindowSizeY / 16, str.c_str(), color, m_font_32);
-//
-//	//è¡¨ç¤ºã—ã¦ã„ã‚‹ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®çŠ¶æ³ã‚’è¡¨ç¤ºã™ã‚‹
-//	if (m_select_field >= 0 && m_select_field < m_field_list.size()) 
-//	{
-//		str = " " + std::to_string(m_select_field + 1) + "ã‚¿ãƒ¼ãƒ³ç›®  ";
-//		str += (m_field_list.at(m_select_field).turn == true) ? "ã‚ãªãŸã®ç•ª" : "æ•µã®ç•ª";
-//		DrawStringToHandle(Define::kWindowSizeX * 34 / 128, Define::kWindowSizeY * 93 / 128, str.c_str(), GetColor(0, 0, 0), m_font_16);
-//	}
-//
-//	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®æ–‡å­—
-//	str = "ã‚ãªãŸ";
-//	DrawStringToHandle(Field_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * 87 / 128, str.c_str(), GetColor(0,0,0), m_font_16);
-//	str = "æ•µ";
-//	DrawStringToHandle(Field_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * 21 / 128, str.c_str(), GetColor(0,0,0), m_font_16);
-//}
-//
-//void ResultString::m_drawEvaluation() const
-//{
-//	std::string str = "";
-//	int _tempx = 0;
-//	int Result_HalfX = Define::kWindowSizeX * 34 / 128;
-//	int Result_HalfY = Define::kWindowSizeY * 103 / 128;
-//
-//	//é¸æŠã—ã¦ã„ã‚‹ç›¤é¢ãŒç¯„å›²å¤–ãªã‚‰ã°ä½•ã‚‚ã—ãªã„
-//	if (m_select_field >= 0 && m_select_field < m_field_list.size())
-//	{
-//		//ç¾åœ¨ã®ç›¤é¢ â†’ æ¬¡ã®ç›¤é¢
-//		{
-//			if (m_field_list.at(m_select_field).turn == true) { str = " ã‚ãªãŸã®ç•ª/ "; }
-//			else { str = " æ•µã®ç•ª/ "; }
-//			str += m_getStrForField(m_field_list.at(m_select_field));
-//
-//			if (m_select_field + 1 < (int)m_field_list.size())
-//			{
-//				//æ¬¡ç›¤é¢ãŒå­˜åœ¨ã—ã¦ã„ã‚‹ãªã‚‰ã°
-//				str += +" â†’ ";
-//				str += m_getStrForField(m_field_list.at((size_t)m_select_field + 1));
-//			}
-//			else
-//			{
-//				//æ¬¡ç›¤é¢ãŒãã‚“ã–ã„ã—ã¦ã„ãªã„ãªã‚‰ã°
-//				if (m_field_list.at(m_select_field).doesWinFirstPlayer() == true) { str += " ã‚ãªãŸã®å‹åˆ©"; }
-//				else if (m_field_list.at(m_select_field).doesWinSecondPlayer() == true) { str += " ã‚ãªãŸã®æ•—åŒ—"; }
-//				else { str += " åŒä¸€ç›¤é¢4å›ç›®ãªã®ã§å¼•ãåˆ†ã‘"; }
-//			}
-//
-//			DrawStringToHandle(Result_HalfX, Result_HalfY, str.c_str(), GetColor(0, 0, 0), m_font_16); 
-//		}
-//
-//		//æ¡ç‚¹
-//		{
-//			//é¸æŠã—ã¦ã„ã‚‹ç›¤é¢ã¨è©•ä¾¡ã—ã¦ã„ã‚‹ç›¤é¢ãŒåŒã˜æ™‚ã®ã¿å®Ÿè¡Œ
-//			if (m_hyouka_field == m_select_field) 
-//			{
-//				str = " ";
-//
-//				if (m_hyouka_next_num == 0) //ç›¤é¢ãŒä¸€ã¤ã®ã¿
-//				{
-//					str += "å‹æ•—ãŒæ±ºå®šã—ãŸãŸã‚ã€æ¬¡ç›¤é¢ã¯å­˜åœ¨ã—ãªã„";
-//				}
-//				else if (m_hyouka_next_num > 0) //æ¬¡ç›¤é¢ãŒå­˜åœ¨ã™ã‚‹
-//				{
-//					if (m_field_list.at(m_select_field).turn == true) { str += "ã‚ãªãŸã®"; }
-//					else { str += "æ•µã®"; }
-//
-//					str += "è¡Œå‹•/";
-//					if (m_hyouka_command == VariousFunctionsForMatchGame::COMMAND_SAIHAI_HIGH || m_hyouka_command == VariousFunctionsForMatchGame::COMMAND_SAIHAI_LOW) { str += "é‡‡é…"; }
-//					else if (m_hyouka_command == VariousFunctionsForMatchGame::COMMAND_1_SELF) { str += "è‡ªå‚·(å³ã«æ”»æ’ƒ)"; }
-//					else if (m_hyouka_command == VariousFunctionsForMatchGame::COMMAND_2_SELF) { str += "è‡ªå‚·(å·¦ã«æ”»æ’ƒ)"; }
-//					else if (m_hyouka_command == VariousFunctionsForMatchGame::COMMAND_1_TO_1) { str += "å·¦æ‰‹ã§å·¦æ‰‹ã«æ”»æ’ƒ"; }
-//					else if (m_hyouka_command == VariousFunctionsForMatchGame::COMMAND_1_TO_2) { str += "å·¦æ‰‹ã§å³æ‰‹ã«æ”»æ’ƒ"; }
-//					else if (m_hyouka_command == VariousFunctionsForMatchGame::COMMAND_2_TO_1) { str += "å³æ‰‹ã§å·¦æ‰‹ã«æ”»æ’ƒ"; }
-//					else if (m_hyouka_command == VariousFunctionsForMatchGame::COMMAND_2_TO_2) { str += "å³æ‰‹ã§å³æ‰‹ã«æ”»æ’ƒ"; }
-//					str += " ã“ã®è¡Œå‹•ã¯" + std::to_string(m_hyouka_point) + "ç‚¹";
-//					str += " (å‹ç‡ ã‚ãªãŸ" + std::to_string(m_hyouka_percent) + "% æ•µ" + std::to_string(100 - m_hyouka_percent) + "%)";
-//				}
-//
-//				DrawStringToHandle(Result_HalfX, Result_HalfY + Define::kWindowSizeY / 20, str.c_str(), GetColor(0x60, 0x60, 0x60), m_font_16);
-//			}
-//		}
-//
-//		//æœ€é«˜è©•ä¾¡ç›¤é¢ã‚’è¡¨ç¤ºã™ã‚‹
-//		{
-//			str = " ";
-//
-//			//æ¬¡ç›¤é¢ãŒä¸€ã¤ã—ã‹ãªã„ãªã‚‰ã°
-//			if (m_hyouka_next_num == 0) {
-//			}
-//			else if (m_hyouka_next_num == 1) 
-//			{
-//				str += "æ¬¡ç›¤é¢ã¯ã“ã‚Œã®ã¿";
-//			}
-//			//é¸æŠã—ãŸæ‰‹ã¨æœ€å–„æ‰‹ãŒä¸€è‡´ã—ã¦ã„ã‚‹ãªã‚‰ã°
-//			else if (m_hyouka_point == m_hyouka_saizente_point) 
-//			{
-//				str += "ã“ã®è¡Œå‹•ã¯æœ€å–„æ‰‹";
-//			}
-//			else 
-//			{
-//				str += "ã“ã®ç›¤é¢ã§ã®æœ€å–„æ‰‹ ";
-//				str += m_getStrForField(m_hyouka_Saizente);
-//				str += " æœ€å–„æ‰‹ã®å¾—ç‚¹/" + std::to_string(m_hyouka_saizente_point) + "ç‚¹";
-//			}
-//
-//			DrawStringToHandle(Result_HalfX, Result_HalfY + Define::kWindowSizeY / 10, str.c_str(), GetColor(0x60, 0x60, 0x60), m_font_16);
-//		}
-//	}
-//}
-//
-//
-//std::string ResultString::m_getStrForField(const MatchField _field) const
-//{
-//	std::string str = "ã‚ãªãŸ[";
-//	str += std::to_string(_field.player1.first) + "," + std::to_string(_field.player1.second) + "]æ•µ[";
-//	str += std::to_string(_field.player2.first) + "," + std::to_string(_field.player2.second) + "]";
-//
-//	//é‡‡é…ãŒæ®‹ã£ã¦ã„ã‚‹ãªã‚‰ã°
-//	if (_field.player1_avatar_num != 0 || _field.player2_avatar_num != 0) {
-//		str += " é‡‡é…[" + std::to_string(_field.player1_avatar_num) + "," + std::to_string(_field.player2_avatar_num) + "]";
-//	}
-//	
-//	return str;
-//}
-//
-//int ResultString::m_getPointForSaiten(const int _point) const
-//{
-//	int res = 0;
-//	const int MANTEN = 100;
-//	const int GOMI = 0;
-//	const int MANNAKA = 50;
-//
-//	if (_point > VariousFunctionsForMatchGame::WIN / 2) 
-//	{
-//		res = MANTEN;
-//		res -= VariousFunctionsForMatchGame::WIN - _point;
-//	}
-//	else if (_point < VariousFunctionsForMatchGame::LOSE / 2) 
-//	{
-//		res = GOMI;
-//		res -= VariousFunctionsForMatchGame::LOSE - _point;
-//	}
-//	else {
-//		res = MANNAKA; 
-//	}
-//
-//	return res;
-//}
-//
-//void ResultString::m_Hyouka()
-//{
-//	if (0 <= m_select_field && m_select_field < (int)m_field_list.size()) 
-//	{
-//		//è©•ä¾¡ã™ã‚‹ç›¤é¢ã‚’æ›´æ–°
-//		m_hyouka_field = m_select_field;
-//
-//		std::vector<MatchField> _list;	//æ¬¡ç›¤é¢ã‚’ä»£å…¥ã™ã‚‹ãƒªã‚¹ãƒˆ
-//
-//		//æ¬¡ç›¤é¢ç”Ÿæˆ
-//		VariousFunctionsForMatchGame::makeNextFieldList(_list, m_field_list.at(m_hyouka_field), m_mod_rule, m_self_rule);
-//
-//		//æ¬¡ç›¤é¢ã®æ•°ã‚’ä»£å…¥
-//		m_hyouka_next_num = (int)_list.size();
-//
-//		if (m_select_field + 1 >= (int)m_field_list.size()) { m_hyouka_next_num = 0; }	//å¼•ãåˆ†ã‘ã‚’åˆ¤æ–­ã™ã‚‹å‡¦ç†
-//
-//		//æ¬¡ç›¤é¢ã®æ•°ãŒ1ã¤ä»¥ä¸Šãªã‚‰ã°æ¡ç‚¹ã—ã¦ã‚ã’ã‚‹
-//		if (m_hyouka_next_num >= 1 && m_select_field + 1 < (int)m_field_list.size())
-//		{
-//			//æ¡ç‚¹ã™ã‚‹
-//			if (m_mod_rule == true) 
-//			{
-//				m_hyouka_point = VariousFunctionsForMatchGame::evaluationFunctionForMod(m_field_list.at((size_t)m_select_field + 1), m_field_list.at(m_select_field).turn, m_self_rule, 0);
-//				m_hyouka_point = m_getPointForSaiten(m_hyouka_point);
-//				m_hyouka_percent = VariousFunctionsForMatchGame::evaluationFunctionForMod(m_field_list.at((size_t)m_select_field + 1), true, m_self_rule, 0);
-//				m_hyouka_percent = m_getPointForSaiten(m_hyouka_percent);
-//			}
-//			else 
-//			{
-//				m_hyouka_point = VariousFunctionsForMatchGame::evaluationFunction(m_field_list.at((size_t)m_select_field + 1), m_field_list.at(m_select_field).turn, m_self_rule, 0);
-//				m_hyouka_point = m_getPointForSaiten(m_hyouka_point);
-//				m_hyouka_percent = VariousFunctionsForMatchGame::evaluationFunction(m_field_list.at((size_t)m_select_field + 1), true, m_self_rule, 0);
-//				m_hyouka_percent = m_getPointForSaiten(m_hyouka_percent);
-//			}
-//
-//			//ã‚³ãƒãƒ³ãƒ‰ã‚’èª¿ã¹ã‚‹
-//			m_hyouka_command = VariousFunctionsForMatchGame::getCommand(m_field_list.at(m_select_field), m_field_list.at((size_t)m_select_field + 1), m_mod_rule, m_self_rule);
-//		}
-//
-//		//æœ€å–„æ‰‹ã‚’å–å¾—
-//		VariousFunctionsForMatchGame::matchGameCOM(3, m_field_list.at(m_hyouka_field), m_hyouka_Saizente, m_self_rule, m_mod_rule);
-//		if (m_mod_rule == true) 
-//		{
-//			m_hyouka_saizente_point = VariousFunctionsForMatchGame::evaluationFunctionForMod(m_hyouka_Saizente, m_field_list.at(m_select_field).turn, m_self_rule, 0);
-//			m_hyouka_saizente_point = m_getPointForSaiten(m_hyouka_saizente_point);
-//		}
-//		else 
-//		{
-//			m_hyouka_saizente_point = VariousFunctionsForMatchGame::evaluationFunction(m_hyouka_Saizente, m_field_list.at(m_select_field).turn, m_self_rule);
-//			m_hyouka_saizente_point = m_getPointForSaiten(m_hyouka_saizente_point);
-//		}
-//	}
-//	else 
-//	{
-//		m_hyouka_field = -1;
-//	}
-//}
+#include "ResultString.h"
+#include "Font.h"
+#include "Define.h"
+#include "DxLib.h"
+
+ResultString::ResultString()
+{
+	m_font_16 = myLoadFont("data/font/PixelMplus10_size16.dft");
+	m_font_32 = myLoadFont("data/font/PixelMplus10_size32.dft");
+}
+
+void ResultString::init(const std::vector<MatchField> _list, const bool mod, const bool self)
+{
+	//ƒtƒB[ƒ‹ƒhƒŠƒXƒg‚ğ“Ç‚İ‚Ş
+	for (auto &i : _list)
+	{
+		m_field_list.push_back(i);
+	}
+
+	std::map<MatchField, int> _counter;
+	for (auto& i : _list)
+	{
+		_counter[i]++;
+		m_field_sennitite_list.push_back(_counter[i]);
+	}
+
+	//ƒ‹[ƒ‹‚ğ“Ç‚İ‚Ş
+	m_mod_rule = mod;
+	m_self_rule = self;
+
+	//‰Šú‰»Ï‚İƒtƒ‰ƒO‚ğ—§‚Ä‚é
+	m_init_flag = true;
+}
+
+void ResultString::update(const int select_field)
+{
+	//‰Šú‰»‚ªI‚í‚Á‚Ä‚¢‚È‚¢‚È‚çI—¹
+	if (m_init_flag == false) { return; }
+
+	//‘I‘ğ‚µ‚½”Õ–Ê‚ğó‚¯æ‚é
+	m_select_field = select_field;
+
+	//•]‰¿‚·‚é”Õ–Ê‚Æ‘I‘ğ”Õ–Ê‚ªˆá‚¤‚È‚ç“¯ˆê‚É‚·‚é
+	if (m_select_field != m_hyouka_field) {
+		m_Hyouka();
+	}
+}
+
+void ResultString::draw(const bool _replay, const bool _replay_fail) const
+{
+	//‰Šú‰»‚ªI‚í‚Á‚Ä‚¢‚È‚¢‚È‚çI—¹
+	if (m_init_flag == false) { return; }
+
+	//ƒƒO‚ğ•\¦
+	m_drawLog(_replay, _replay_fail);
+
+	//”Õ–Ê‚Ì•”•ª‚Ì•¶š‚Ì•`‰æ
+	m_drawField();
+
+	//“_”
+	m_drawEvaluation();
+}
+
+
+void ResultString::m_drawLog(const bool _replay, const bool _replay_fail) const
+{
+	int Log_HalfX = Define::WIN_SIZEX * 17 / 128;
+	std::string str = "";
+	
+	//‰æ–Êã•”‚ÌƒAƒiƒEƒ“ƒX
+	str = "ƒƒO";
+	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * 7 / 128, str.c_str(), GetColor(0, 0, 0), m_font_16);
+
+	//‰æ–Ê‰º•”‚ÌƒAƒiƒEƒ“ƒX
+	const int MOJIKAN_ANA = Define::WIN_SIZEY / 33;
+	str = "‚l‚n‚c:";
+	str += (m_mod_rule == true) ? "‚ ‚è" : "‚È‚µ";
+	str += " ©:";
+	str += (m_self_rule == true) ? "‚ ‚è " : "‚È‚µ ";
+	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * 106 / 128, str.c_str(), GetColor(0, 0, 0), m_font_16);
+	str = "ã‰ºƒL[‚Å‘I‘ğ@@@@\n";
+	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * 106 / 128 + MOJIKAN_ANA, str.c_str(), GetColor(0, 0, 0), m_font_16);
+	str = (_replay == true) ? "ƒŠƒvƒŒƒC•Û‘¶Ï‚İ@@@\n" : "‚yƒL[‚ÅƒŠƒvƒŒƒC•Û‘¶@\n";
+	if (_replay_fail == true) { str = "ƒŠƒvƒŒƒC•Û‘¶¸”s@@@\n"; }
+	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * 106 / 128 + MOJIKAN_ANA * 2, str.c_str(), GetColor(0, 0, 0), m_font_16);
+	str = "ESCƒL[‚Å–ß‚é@@@@ \n";
+	DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * 106 / 128 + MOJIKAN_ANA * 3, str.c_str(), GetColor(0, 0, 0), m_font_16);
+
+	//”Õ–ÊƒŠƒXƒg
+	const int HYOUJIDEKIRU_SAIDAISUU = 25;
+	const int MOJIKAN = Define::WIN_SIZEY / 34;
+	int y = 0, color = 0;
+	for (int i = 0; i < m_field_list.size(); i++)
+	{
+		str = std::to_string(i + 1) + "ƒ^[ƒ“–Ú:";
+		str += m_getStrForField(m_field_list.at(i));
+
+		if (str.size() > 23)
+		{
+			while (str.size() > 20) { str.pop_back(); }
+			str += "\";
+		}
+
+		y = Define::WIN_SIZEY * 13 / 128 + MOJIKAN * (i % HYOUJIDEKIRU_SAIDAISUU);
+		color = GetColor(0, 0, 0);
+		if (m_field_sennitite_list.at(i) == VariousFunctionsForMatchGame::SENNICHITE - 2) { color = GetColor(0xff, 0xa5, 0x00); }
+		else if (m_field_sennitite_list.at(i) == VariousFunctionsForMatchGame::SENNICHITE - 1) { color = GetColor(0x80, 0x00, 0x00); }
+		else if (m_field_sennitite_list.at(i) == VariousFunctionsForMatchGame::SENNICHITE) { color = GetColor(0x00, 0x00, 0x8b); }
+
+		if((m_select_field < HYOUJIDEKIRU_SAIDAISUU && i < HYOUJIDEKIRU_SAIDAISUU) || (m_select_field >= HYOUJIDEKIRU_SAIDAISUU && i >= HYOUJIDEKIRU_SAIDAISUU))
+		{
+			DrawStringToHandle(Log_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, y, str.c_str(), color, m_font_16);
+		}
+	}
+
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)(pow(sin(2 * Define::PI * GetNowCount() / 1500), 2) * 128.0));
+	const int BOX_X = Define::WIN_SIZEX * 26 / 128;
+	y = Define::WIN_SIZEY * 27 / 256 + MOJIKAN * (m_select_field % HYOUJIDEKIRU_SAIDAISUU);
+	DrawBox(Log_HalfX - BOX_X / 2, y, Log_HalfX + BOX_X / 2, y + Define::WIN_SIZEY / 43, GetColor(0, 0, 0), TRUE);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+}
+
+void ResultString::m_drawField() const
+{
+	std::string str = "";
+	int color = 0;
+	int Field_HalfX = Define::WIN_SIZEX * 79 / 128;
+
+	//Ÿ”s‚ğ‘‚­
+	if (m_field_list.back().doesWinFirstPlayer() == true)
+	{
+		color = GetColor(0xff, 0, 0);
+		str = "‚ ‚È‚½‚ÌŸ—˜"; 
+	}
+	else  if (m_field_list.back().doesWinSecondPlayer() == true) 
+	{
+		color = GetColor(0, 0, 0xff);
+		str = "‚ ‚È‚½‚Ì”s–k"; 
+	}
+	else 
+	{
+		color = GetColor(0, 0, 0);
+		str = "“¯ˆê”Õ–Ê‚ª4‰ñŒ»‚ê‚½‚Ì‚Åˆø‚«•ª‚¯"; 
+	}
+	DrawStringToHandle(Field_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_32) / 2, Define::WIN_SIZEY / 16, str.c_str(), color, m_font_32);
+
+	//•\¦‚µ‚Ä‚¢‚éƒtƒB[ƒ‹ƒh‚Ìó‹µ‚ğ•\¦‚·‚é
+	if (m_select_field >= 0 && m_select_field < m_field_list.size()) 
+	{
+		str = " " + std::to_string(m_select_field + 1) + "ƒ^[ƒ“–Ú  ";
+		str += (m_field_list.at(m_select_field).turn == true) ? "‚ ‚È‚½‚Ì”Ô" : "“G‚Ì”Ô";
+		DrawStringToHandle(Define::WIN_SIZEX * 34 / 128, Define::WIN_SIZEY * 93 / 128, str.c_str(), GetColor(0, 0, 0), m_font_16);
+	}
+
+	//ƒtƒB[ƒ‹ƒh‚Ì•¶š
+	str = "‚ ‚È‚½";
+	DrawStringToHandle(Field_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * 87 / 128, str.c_str(), GetColor(0,0,0), m_font_16);
+	str = "“G";
+	DrawStringToHandle(Field_HalfX - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * 21 / 128, str.c_str(), GetColor(0,0,0), m_font_16);
+}
+
+void ResultString::m_drawEvaluation() const
+{
+	std::string str = "";
+	int _tempx = 0;
+	int Result_HalfX = Define::WIN_SIZEX * 34 / 128;
+	int Result_HalfY = Define::WIN_SIZEY * 103 / 128;
+
+	//‘I‘ğ‚µ‚Ä‚¢‚é”Õ–Ê‚ª”ÍˆÍŠO‚È‚ç‚Î‰½‚à‚µ‚È‚¢
+	if (m_select_field >= 0 && m_select_field < m_field_list.size())
+	{
+		//Œ»İ‚Ì”Õ–Ê ¨ Ÿ‚Ì”Õ–Ê
+		{
+			if (m_field_list.at(m_select_field).turn == true) { str = " ‚ ‚È‚½‚Ì”Ô/ "; }
+			else { str = " “G‚Ì”Ô/ "; }
+			str += m_getStrForField(m_field_list.at(m_select_field));
+
+			if (m_select_field + 1 < (int)m_field_list.size())
+			{
+				//Ÿ”Õ–Ê‚ª‘¶İ‚µ‚Ä‚¢‚é‚È‚ç‚Î
+				str += +" ¨ ";
+				str += m_getStrForField(m_field_list.at((size_t)m_select_field + 1));
+			}
+			else
+			{
+				//Ÿ”Õ–Ê‚ª‚¼‚ñ‚´‚¢‚µ‚Ä‚¢‚È‚¢‚È‚ç‚Î
+				if (m_field_list.at(m_select_field).doesWinFirstPlayer() == true) { str += " ‚ ‚È‚½‚ÌŸ—˜"; }
+				else if (m_field_list.at(m_select_field).doesWinSecondPlayer() == true) { str += " ‚ ‚È‚½‚Ì”s–k"; }
+				else { str += " “¯ˆê”Õ–Ê4‰ñ–Ú‚È‚Ì‚Åˆø‚«•ª‚¯"; }
+			}
+
+			DrawStringToHandle(Result_HalfX, Result_HalfY, str.c_str(), GetColor(0, 0, 0), m_font_16); 
+		}
+
+		//Ì“_
+		{
+			//‘I‘ğ‚µ‚Ä‚¢‚é”Õ–Ê‚Æ•]‰¿‚µ‚Ä‚¢‚é”Õ–Ê‚ª“¯‚¶‚Ì‚İÀs
+			if (m_hyouka_field == m_select_field) 
+			{
+				str = " ";
+
+				if (m_hyouka_next_num == 0) //”Õ–Ê‚ªˆê‚Â‚Ì‚İ
+				{
+					str += "Ÿ”s‚ªŒˆ’è‚µ‚½‚½‚ßAŸ”Õ–Ê‚Í‘¶İ‚µ‚È‚¢";
+				}
+				else if (m_hyouka_next_num > 0) //Ÿ”Õ–Ê‚ª‘¶İ‚·‚é
+				{
+					if (m_field_list.at(m_select_field).turn == true) { str += "‚ ‚È‚½‚Ì"; }
+					else { str += "“G‚Ì"; }
+
+					str += "s“®/";
+					if (m_hyouka_command == VariousFunctionsForMatchGame::COMMAND_SAIHAI_HIGH || m_hyouka_command == VariousFunctionsForMatchGame::COMMAND_SAIHAI_LOW) { str += "Ñ”z"; }
+					else if (m_hyouka_command == VariousFunctionsForMatchGame::COMMAND_1_SELF) { str += "©(‰E‚ÉUŒ‚)"; }
+					else if (m_hyouka_command == VariousFunctionsForMatchGame::COMMAND_2_SELF) { str += "©(¶‚ÉUŒ‚)"; }
+					else if (m_hyouka_command == VariousFunctionsForMatchGame::COMMAND_1_TO_1) { str += "¶è‚Å¶è‚ÉUŒ‚"; }
+					else if (m_hyouka_command == VariousFunctionsForMatchGame::COMMAND_1_TO_2) { str += "¶è‚Å‰Eè‚ÉUŒ‚"; }
+					else if (m_hyouka_command == VariousFunctionsForMatchGame::COMMAND_2_TO_1) { str += "‰Eè‚Å¶è‚ÉUŒ‚"; }
+					else if (m_hyouka_command == VariousFunctionsForMatchGame::COMMAND_2_TO_2) { str += "‰Eè‚Å‰Eè‚ÉUŒ‚"; }
+					str += " ‚±‚Ìs“®‚Í" + std::to_string(m_hyouka_point) + "“_";
+					str += " (Ÿ—¦ ‚ ‚È‚½" + std::to_string(m_hyouka_percent) + "% “G" + std::to_string(100 - m_hyouka_percent) + "%)";
+				}
+
+				DrawStringToHandle(Result_HalfX, Result_HalfY + Define::WIN_SIZEY / 20, str.c_str(), GetColor(0x60, 0x60, 0x60), m_font_16);
+			}
+		}
+
+		//Å‚•]‰¿”Õ–Ê‚ğ•\¦‚·‚é
+		{
+			str = " ";
+
+			//Ÿ”Õ–Ê‚ªˆê‚Â‚µ‚©‚È‚¢‚È‚ç‚Î
+			if (m_hyouka_next_num == 0) {
+			}
+			else if (m_hyouka_next_num == 1) 
+			{
+				str += "Ÿ”Õ–Ê‚Í‚±‚ê‚Ì‚İ";
+			}
+			//‘I‘ğ‚µ‚½è‚ÆÅ‘Pè‚ªˆê’v‚µ‚Ä‚¢‚é‚È‚ç‚Î
+			else if (m_hyouka_point == m_hyouka_saizente_point) 
+			{
+				str += "‚±‚Ìs“®‚ÍÅ‘Pè";
+			}
+			else 
+			{
+				str += "‚±‚Ì”Õ–Ê‚Å‚ÌÅ‘Pè ";
+				str += m_getStrForField(m_hyouka_Saizente);
+				str += " Å‘Pè‚Ì“¾“_/" + std::to_string(m_hyouka_saizente_point) + "“_";
+			}
+
+			DrawStringToHandle(Result_HalfX, Result_HalfY + Define::WIN_SIZEY / 10, str.c_str(), GetColor(0x60, 0x60, 0x60), m_font_16);
+		}
+	}
+}
+
+
+std::string ResultString::m_getStrForField(const MatchField _field) const
+{
+	std::string str = "‚ ‚È‚½[";
+	str += std::to_string(_field.player1.first) + "," + std::to_string(_field.player1.second) + "]“G[";
+	str += std::to_string(_field.player2.first) + "," + std::to_string(_field.player2.second) + "]";
+
+	//Ñ”z‚ªc‚Á‚Ä‚¢‚é‚È‚ç‚Î
+	if (_field.player1_avatar_num != 0 || _field.player2_avatar_num != 0) {
+		str += " Ñ”z[" + std::to_string(_field.player1_avatar_num) + "," + std::to_string(_field.player2_avatar_num) + "]";
+	}
+	
+	return str;
+}
+
+int ResultString::m_getPointForSaiten(const int _point) const
+{
+	int res = 0;
+	const int MANTEN = 100;
+	const int GOMI = 0;
+	const int MANNAKA = 50;
+
+	if (_point > VariousFunctionsForMatchGame::WIN / 2) 
+	{
+		res = MANTEN;
+		res -= VariousFunctionsForMatchGame::WIN - _point;
+	}
+	else if (_point < VariousFunctionsForMatchGame::LOSE / 2) 
+	{
+		res = GOMI;
+		res -= VariousFunctionsForMatchGame::LOSE - _point;
+	}
+	else {
+		res = MANNAKA; 
+	}
+
+	return res;
+}
+
+void ResultString::m_Hyouka()
+{
+	if (0 <= m_select_field && m_select_field < (int)m_field_list.size()) 
+	{
+		//•]‰¿‚·‚é”Õ–Ê‚ğXV
+		m_hyouka_field = m_select_field;
+
+		std::vector<MatchField> _list;	//Ÿ”Õ–Ê‚ğ‘ã“ü‚·‚éƒŠƒXƒg
+
+		//Ÿ”Õ–Ê¶¬
+		VariousFunctionsForMatchGame::makeNextFieldList(_list, m_field_list.at(m_hyouka_field), m_mod_rule, m_self_rule);
+
+		//Ÿ”Õ–Ê‚Ì”‚ğ‘ã“ü
+		m_hyouka_next_num = (int)_list.size();
+
+		if (m_select_field + 1 >= (int)m_field_list.size()) { m_hyouka_next_num = 0; }	//ˆø‚«•ª‚¯‚ğ”»’f‚·‚éˆ—
+
+		//Ÿ”Õ–Ê‚Ì”‚ª1‚ÂˆÈã‚È‚ç‚ÎÌ“_‚µ‚Ä‚ ‚°‚é
+		if (m_hyouka_next_num >= 1 && m_select_field + 1 < (int)m_field_list.size())
+		{
+			//Ì“_‚·‚é
+			if (m_mod_rule == true) 
+			{
+				m_hyouka_point = VariousFunctionsForMatchGame::evaluationFunctionForMod(m_field_list.at((size_t)m_select_field + 1), m_field_list.at(m_select_field).turn, m_self_rule, 0);
+				m_hyouka_point = m_getPointForSaiten(m_hyouka_point);
+				m_hyouka_percent = VariousFunctionsForMatchGame::evaluationFunctionForMod(m_field_list.at((size_t)m_select_field + 1), true, m_self_rule, 0);
+				m_hyouka_percent = m_getPointForSaiten(m_hyouka_percent);
+			}
+			else 
+			{
+				m_hyouka_point = VariousFunctionsForMatchGame::evaluationFunction(m_field_list.at((size_t)m_select_field + 1), m_field_list.at(m_select_field).turn, m_self_rule, 0);
+				m_hyouka_point = m_getPointForSaiten(m_hyouka_point);
+				m_hyouka_percent = VariousFunctionsForMatchGame::evaluationFunction(m_field_list.at((size_t)m_select_field + 1), true, m_self_rule, 0);
+				m_hyouka_percent = m_getPointForSaiten(m_hyouka_percent);
+			}
+
+			//ƒRƒ}ƒ“ƒh‚ğ’²‚×‚é
+			m_hyouka_command = VariousFunctionsForMatchGame::getCommand(m_field_list.at(m_select_field), m_field_list.at((size_t)m_select_field + 1), m_mod_rule, m_self_rule);
+		}
+
+		//Å‘Pè‚ğæ“¾
+		VariousFunctionsForMatchGame::matchGameCOM(3, m_field_list.at(m_hyouka_field), m_hyouka_Saizente, m_self_rule, m_mod_rule);
+		if (m_mod_rule == true) 
+		{
+			m_hyouka_saizente_point = VariousFunctionsForMatchGame::evaluationFunctionForMod(m_hyouka_Saizente, m_field_list.at(m_select_field).turn, m_self_rule, 0);
+			m_hyouka_saizente_point = m_getPointForSaiten(m_hyouka_saizente_point);
+		}
+		else 
+		{
+			m_hyouka_saizente_point = VariousFunctionsForMatchGame::evaluationFunction(m_hyouka_Saizente, m_field_list.at(m_select_field).turn, m_self_rule);
+			m_hyouka_saizente_point = m_getPointForSaiten(m_hyouka_saizente_point);
+		}
+	}
+	else 
+	{
+		m_hyouka_field = -1;
+	}
+}

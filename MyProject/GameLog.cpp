@@ -1,230 +1,230 @@
-ï»¿//#include "GameLog.h"
-//#include "Font.h"
-//#include "DxLib.h"
-//#include "define.h"
-//#include "Keyboard.h"
-//
-//GameLog::GameLog() : m_DISPLAY_LOG_MAX(5)
-//{
-//	m_font_16 = Font::getIns()->getFontHandle("data/font/PixelMplus10_size16.dft");	
-//}
-//
-//bool GameLog::update()
-//{
-//	//ä¸Šä¸‹ã‚­ãƒ¼ã§è¡¨ç¤ºã™ã‚‹ãƒ­ã‚°ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹å‡¦ç†
-//	if (m_log.size() > DISPLAY_STR) 
-//	{
-//		if (Keyboard::getIns()->getPressingCount(KEY_INPUT_UP) == 1 || Keyboard::getIns()->getPressingCount(KEY_INPUT_DOWN) == 1) 
-//		{
-//			which_field_display++;
-//		}
-//	}
-//
-//	//åŒç›¤é¢ãŒæ—¢ã«4å›ä»¥ä¸Šå‡ºã¦ã„ã‚‹ãªã‚‰ã°FALSEã‚’è¿”ã™
-//	for (auto &i : m_field_count)
-//	{
-//		if (i.second >= VariousFunctionsForMatchGame::SENNICHITE) { return false; }
-//	}
-//
-//	return true;
-//}
-//
-//void GameLog::getFieldList(std::vector<MatchField>& _field)
-//{
-//	for (auto &i : m_field_list)
-//	{
-//		_field.push_back(i);
-//	}
-//}
-//
-//void GameLog::draw(const MatchField _field, const int _turn, const bool _player_is_first, const bool _mod_rule, const bool _self_harm_rule, const int _enemy_level) const
-//{
-//	//èƒŒæ™¯
-//	DrawBox(Define::kWindowSizeX * 9 / 32, 0, 0, Define::kWindowSizeY, GetColor(0xc3, 0xc3, 0xc3), TRUE);
-//	DrawBox(Define::kWindowSizeX * 23 / 32, 0, Define::kWindowSizeX, Define::kWindowSizeY, GetColor(0xc3, 0xc3, 0xc3), TRUE);
-//
-//	int _centerx = (Define::kWindowSizeX * 23 / 32 + Define::kWindowSizeX) / 2;
-//	int temp = 0;
-//	std::string temp_str = "";
-//
-//	//ç›¤é¢çŠ¶æ³ã®ã‚¢ãƒŠã‚¦ãƒ³ã‚¹
-//	{
-//		temp = GetDrawStringWidthToHandle("=ç¾åœ¨ã®ç›¤é¢=", 13, m_font_16);
-//		DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 3 / 64, GetColor(0, 0, 0), m_font_16, "=ç¾åœ¨ã®ç›¤é¢=");
-//	}
-//
-//	//ã‚¿ãƒ¼ãƒ³
-//	{
-//		temp_str = std::to_string(_turn) + "ã‚¿ãƒ¼ãƒ³ç›®";
-//		if (_field.turn) { temp_str += " ã‚ãªãŸã®ç•ªã§ã™"; }
-//		else { temp_str += " ã‚ã„ã¦ã®ç•ªã§ã™"; }
-//		temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_16);
-//		DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 7 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
-//	}
-//
-//	//ç›¤é¢çŠ¶æ³
-//	{
-//		if (_player_is_first) { temp_str = "ã‚ãªãŸ(å…ˆæ‰‹)[" + std::to_string(_field.player1.first) + "," + std::to_string(_field.player1.second) + "]"; }
-//		else { temp_str = "ã‚ãªãŸ(å¾Œæ‰‹)[" + std::to_string(_field.player1.first) + "," + std::to_string(_field.player1.second) + "]"; }
-//		if (_field.player1_avatar_num > 0) { temp_str += ",é‡‡é…æ®‹ã‚Š" + std::to_string(_field.player1_avatar_num); }
-//		temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_16);
-//		DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 12 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
-//
-//		if (_player_is_first) { temp_str = "ã‚ã„ã¦(å¾Œæ‰‹) [" + std::to_string(_field.player2.first) + "," + std::to_string(_field.player2.second) + "]"; }
-//		else { temp_str = "ã‚ã„ã¦(å…ˆæ‰‹) [" + std::to_string(_field.player2.first) + "," + std::to_string(_field.player2.second) + "]"; }
-//		if (_field.player2_avatar_num > 0) { temp_str += ",é‡‡é…æ®‹ã‚Š" + std::to_string(_field.player2_avatar_num); }
-//		temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_16);
-//		DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 15 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
-//	}
-//
-//	//ç‰¹æ®Šãƒ«ãƒ¼ãƒ«
-//	{
-//		temp_str = "MOD 5 ãƒ«ãƒ¼ãƒ«...";
-//		if (_mod_rule) { temp_str += "ã‚ã‚Š"; }
-//		else { temp_str += "ãªã—"; }
-//		temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_16);
-//		DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 21 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
-//
-//		temp_str = "è‡ªå‚· ãƒ«ãƒ¼ãƒ«...";
-//		if (_self_harm_rule) { temp_str += "ã‚ã‚Š"; }
-//		else { temp_str += "ãªã—"; }
-//		temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_16);
-//		DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 24 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
-//	}
-//
-//	//CPUãƒ¬ãƒ™ãƒ«
-//	{
-//		temp_str = "CPU LEVEL ...";
-//		if (_enemy_level > 100) { temp_str += "REPLAY"; }
-//		else if (_enemy_level % 4 == 0) { temp_str += "EASY"; }
-//		else if (_enemy_level % 4 == 1) { temp_str += "NORMAL"; }
-//		else if (_enemy_level % 4 == 2) { temp_str += "HARD"; }
-//		else { temp_str += "IMPOSSIBLE"; }
-//		temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_16);
-//		DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 30 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
-//	}
-//
-//	//æ“ä½œæ–¹æ³•
-//	{
-//		const int posy = 37;
-//		std::string str = "";
-//
-//		str = "=æ“ä½œæ–¹æ³•=";
-//		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * posy / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
-//
-//		str = "ãƒ»å·¦å³ã‚­ãƒ¼ã§é¸æŠ    ";
-//		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * (posy + 4) / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
-//
-//		str = "ãƒ»ï¼ºã‚­ãƒ¼ã§æ±ºå®š      ";
-//		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * (posy + 7) / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
-//
-//		str = "ãƒ»ï¼¸ã‚­ãƒ¼ã§ã‚­ãƒ£ãƒ³ã‚»ãƒ«";
-//		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * (posy + 10) / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
-//
-//		str = "ãƒ»ï¼£ã‚­ãƒ¼ã§é‡‡é…ã€€ã€€ã€€";
-//		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * (posy + 13) / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
-//	}
-//
-//	//ãƒ­ã‚°
-//	m_drawLog();
-//
-//	//ãƒ­ã‚°ã®åˆ‡ã‚Šæ›¿ãˆã‚¢ãƒŠã‚¦ãƒ³ã‚¹
-//	if (m_log.size() > DISPLAY_STR) {
-//		DrawBox(Define::kWindowSizeX * 9 / 32, Define::kWindowSizeY * 123 / 128, 0, Define::kWindowSizeY, GetColor(0xa3, 0xa3, 0xa3), TRUE);
-//
-//		std::string str = "ä¸Šä¸‹ã‚­ãƒ¼ã§åˆ‡ã‚Šæ›¿ãˆ" + std::to_string(which_field_display % 2 + 1) + "/2";
-//
-//		const int CHAR_SIZE = 18;
-//		DrawFormatStringToHandle(Define::kWindowSizeX * 9 / 64 - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::kWindowSizeY * 4 / 64 + CHAR_SIZE * 27, GetColor(0, 0, 0), m_font_16, str.c_str());
-//	}
-//}
-//
-//void GameLog::pushLog(std::string _log)
-//{
-//	//intå‹ã®æ•°å€¤ã¨æŠ±ãåˆã‚ã›ã®ãƒ‡ãƒ¼ã‚¿ã‚’ä½œã‚‹
-//	std::pair<int, std::string> temp;
-//
-//	temp.first = 1;
-//	temp.second = _log;
-//
-//	//ãƒ—ãƒƒã‚·ãƒ¥ã™ã‚‹
-//	m_log.push_back(temp);
-//
-//	//å¤§é‡ã®ãƒ‡ãƒ¼ã‚¿ãŒæŒ¿å…¥ã•ã‚ŒãŸå ´åˆæ¬¡ãƒšãƒ¼ã‚¸ã«åˆ‡ã‚Šæ›¿ãˆã‚‹
-//	if (m_log.size() > DISPLAY_STR) { which_field_display = 1; }
-//}
-//
-//void GameLog::pushLogByField(const MatchField _field)
-//{
-//	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’è¿½åŠ ã™ã‚‹
-//	m_field_list.push_back(_field);
-//
-//	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®æ•°ã‚’è¿½åŠ 
-//	m_field_count[_field]++;
-//
-//	//æ–‡å­—ã‚’è¿½åŠ ã™ã‚‹
-//	std::string str = "";
-//
-//	if (_field.turn == true)str += "â—‹";
-//	str += "è²´æ–¹[" + std::to_string(_field.player1.first) + "," + std::to_string(_field.player1.second) + "] ";
-//
-//	if (_field.turn == false)str += "â—‹";
-//	str += "æ•µ[" + std::to_string(_field.player2.first) + "," + std::to_string(_field.player2.second) + "] ";
-//
-//	if (_field.player1_avatar_num != 0 || _field.player2_avatar_num != 0) {
-//		str += "é‡‡é…[" + std::to_string(_field.player1_avatar_num) + "," + std::to_string(_field.player2_avatar_num) + "]";
-//	}
-//
-//	//intå‹ã®æ•°å€¤ã¨æŠ±ãåˆã‚ã›ã®ãƒ‡ãƒ¼ã‚¿ã‚’ä½œã‚‹
-//	std::pair<int, std::string> temp;
-//
-//	temp.first = m_field_count[_field];
-//	temp.second = str;
-//
-//	//ãƒ—ãƒƒã‚·ãƒ¥ã™ã‚‹
-//	m_log.push_back(temp);
-//
-//	//å¤§é‡ã®ãƒ‡ãƒ¼ã‚¿ãŒæŒ¿å…¥ã•ã‚ŒãŸå ´åˆæ¬¡ãƒšãƒ¼ã‚¸ã«åˆ‡ã‚Šæ›¿ãˆã‚‹
-//	if (m_log.size() > DISPLAY_STR) { which_field_display = 1; }
-//}
-//
-//void GameLog::m_drawLog() const
-//{
-//	int _centerx = Define::kWindowSizeX * 9 / 32 / 2;
-//	int temp = 0;
-//
-//	temp = GetDrawStringWidthToHandle("=ãƒ­ã‚°=", 7, m_font_16);
-//	DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 3 / 64, GetColor(0, 0, 0), m_font_16, "=ãƒ­ã‚°=");
-//
-//	const int CHAR_SIZE = 18;//æ–°ã—ã„ã‚‚ã®ã®ã¿è¡¨ç¤ºã—ãŸã„
-//
-//	//m_DISPLAY_LOG_MAX
-//	for (int i = 0; i < m_log.size(); i++)
-//	{
-//		if (m_log.size() > DISPLAY_STR && which_field_display % 2 == 1)
-//		{
-//			if (i >= DISPLAY_STR)
-//			{
-//				temp = GetDrawStringWidthToHandle(m_log.at(i).second.c_str(), (int)m_log.at(i).second.size(), m_font_16);
-//
-//				int color = GetColor(0, 0, 0);
-//				if (m_log.at(i).first == VariousFunctionsForMatchGame::SENNICHITE - 2) { color = GetColor(0xff, 0xa5, 0x00); }
-//				else if (m_log.at(i).first == VariousFunctionsForMatchGame::SENNICHITE - 1) { color = GetColor(0x80, 0x00, 0x00); }
-//				else if (m_log.at(i).first >= VariousFunctionsForMatchGame::SENNICHITE) { color = GetColor(0x00, 0x00, 0x8b); }
-//
-//				DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 4 / 64 + CHAR_SIZE * (i + 1 - DISPLAY_STR), color, m_font_16, m_log.at(i).second.c_str());
-//			}
-//		}
-//		else if (i < DISPLAY_STR)
-//		{
-//			temp = GetDrawStringWidthToHandle(m_log.at(i).second.c_str(), (int)m_log.at(i).second.size(), m_font_16);
-//
-//			int color = GetColor(0, 0, 0);
-//			if (m_log.at(i).first == VariousFunctionsForMatchGame::SENNICHITE - 2) { color = GetColor(0xff, 0xa5, 0x00); }
-//			else if (m_log.at(i).first == VariousFunctionsForMatchGame::SENNICHITE - 1) { color = GetColor(0x80, 0x00, 0x00); }
-//			else if (m_log.at(i).first >= VariousFunctionsForMatchGame::SENNICHITE) { color = GetColor(0x00, 0x00, 0x8b); }
-//
-//			DrawFormatStringToHandle(_centerx - temp / 2, Define::kWindowSizeY * 4 / 64 + CHAR_SIZE * (i + 1), color, m_font_16, m_log.at(i).second.c_str());
-//		}
-//	}
-//}
+#include "GameLog.h"
+#include "Font.h"
+#include "DxLib.h"
+#include "Define.h"
+#include "Keyboard.h"
+
+GameLog::GameLog() : m_DISPLAY_LOG_MAX(5)
+{
+	m_font_16 = Font::getIns()->getFontHandle("data/font/PixelMplus10_size16.dft");	
+}
+
+bool GameLog::update()
+{
+	//ã‰ºƒL[‚Å•\¦‚·‚éƒƒO‚ğØ‚è‘Ö‚¦‚éˆ—
+	if (m_log.size() > DISPLAY_STR) 
+	{
+		if (Keyboard::getIns()->getPressingCount(KEY_INPUT_UP) == 1 || Keyboard::getIns()->getPressingCount(KEY_INPUT_DOWN) == 1) 
+		{
+			which_field_display++;
+		}
+	}
+
+	//“¯”Õ–Ê‚ªŠù‚É4‰ñˆÈão‚Ä‚¢‚é‚È‚ç‚ÎFALSE‚ğ•Ô‚·
+	for (auto &i : m_field_count)
+	{
+		if (i.second >= VariousFunctionsForMatchGame::SENNICHITE) { return false; }
+	}
+
+	return true;
+}
+
+void GameLog::getFieldList(std::vector<MatchField>& _field)
+{
+	for (auto &i : m_field_list)
+	{
+		_field.push_back(i);
+	}
+}
+
+void GameLog::draw(const MatchField _field, const int _turn, const bool _player_is_first, const bool _mod_rule, const bool _self_harm_rule, const int _enemy_level) const
+{
+	//”wŒi
+	DrawBox(Define::WIN_SIZEX * 9 / 32, 0, 0, Define::WIN_SIZEY, GetColor(0xc3, 0xc3, 0xc3), TRUE);
+	DrawBox(Define::WIN_SIZEX * 23 / 32, 0, Define::WIN_SIZEX, Define::WIN_SIZEY, GetColor(0xc3, 0xc3, 0xc3), TRUE);
+
+	int _centerx = (Define::WIN_SIZEX * 23 / 32 + Define::WIN_SIZEX) / 2;
+	int temp = 0;
+	std::string temp_str = "";
+
+	//”Õ–Êó‹µ‚ÌƒAƒiƒEƒ“ƒX
+	{
+		temp = GetDrawStringWidthToHandle("=Œ»İ‚Ì”Õ–Ê=", 13, m_font_16);
+		DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 3 / 64, GetColor(0, 0, 0), m_font_16, "=Œ»İ‚Ì”Õ–Ê=");
+	}
+
+	//ƒ^[ƒ“
+	{
+		temp_str = std::to_string(_turn) + "ƒ^[ƒ“–Ú";
+		if (_field.turn) { temp_str += " ‚ ‚È‚½‚Ì”Ô‚Å‚·"; }
+		else { temp_str += " ‚ ‚¢‚Ä‚Ì”Ô‚Å‚·"; }
+		temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_16);
+		DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 7 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
+	}
+
+	//”Õ–Êó‹µ
+	{
+		if (_player_is_first) { temp_str = "‚ ‚È‚½(æè)[" + std::to_string(_field.player1.first) + "," + std::to_string(_field.player1.second) + "]"; }
+		else { temp_str = "‚ ‚È‚½(Œãè)[" + std::to_string(_field.player1.first) + "," + std::to_string(_field.player1.second) + "]"; }
+		if (_field.player1_avatar_num > 0) { temp_str += ",Ñ”zc‚è" + std::to_string(_field.player1_avatar_num); }
+		temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_16);
+		DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 12 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
+
+		if (_player_is_first) { temp_str = "‚ ‚¢‚Ä(Œãè) [" + std::to_string(_field.player2.first) + "," + std::to_string(_field.player2.second) + "]"; }
+		else { temp_str = "‚ ‚¢‚Ä(æè) [" + std::to_string(_field.player2.first) + "," + std::to_string(_field.player2.second) + "]"; }
+		if (_field.player2_avatar_num > 0) { temp_str += ",Ñ”zc‚è" + std::to_string(_field.player2_avatar_num); }
+		temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_16);
+		DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 15 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
+	}
+
+	//“Áêƒ‹[ƒ‹
+	{
+		temp_str = "MOD 5 ƒ‹[ƒ‹...";
+		if (_mod_rule) { temp_str += "‚ ‚è"; }
+		else { temp_str += "‚È‚µ"; }
+		temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_16);
+		DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 21 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
+
+		temp_str = "© ƒ‹[ƒ‹...";
+		if (_self_harm_rule) { temp_str += "‚ ‚è"; }
+		else { temp_str += "‚È‚µ"; }
+		temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_16);
+		DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 24 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
+	}
+
+	//CPUƒŒƒxƒ‹
+	{
+		temp_str = "CPU LEVEL ...";
+		if (_enemy_level > 100) { temp_str += "REPLAY"; }
+		else if (_enemy_level % 4 == 0) { temp_str += "EASY"; }
+		else if (_enemy_level % 4 == 1) { temp_str += "NORMAL"; }
+		else if (_enemy_level % 4 == 2) { temp_str += "HARD"; }
+		else { temp_str += "IMPOSSIBLE"; }
+		temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_16);
+		DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 30 / 64, GetColor(0, 0, 0), m_font_16, temp_str.c_str());
+	}
+
+	//‘€ì•û–@
+	{
+		const int posy = 37;
+		std::string str = "";
+
+		str = "=‘€ì•û–@=";
+		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * posy / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
+
+		str = "E¶‰EƒL[‚Å‘I‘ğ    ";
+		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * (posy + 4) / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
+
+		str = "E‚yƒL[‚ÅŒˆ’è      ";
+		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * (posy + 7) / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
+
+		str = "E‚wƒL[‚ÅƒLƒƒƒ“ƒZƒ‹";
+		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * (posy + 10) / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
+
+		str = "E‚bƒL[‚ÅÑ”z@@@";
+		DrawFormatStringToHandle(_centerx - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * (posy + 13) / 64, GetColor(0, 0, 0), m_font_16, str.c_str());
+	}
+
+	//ƒƒO
+	m_drawLog();
+
+	//ƒƒO‚ÌØ‚è‘Ö‚¦ƒAƒiƒEƒ“ƒX
+	if (m_log.size() > DISPLAY_STR) {
+		DrawBox(Define::WIN_SIZEX * 9 / 32, Define::WIN_SIZEY * 123 / 128, 0, Define::WIN_SIZEY, GetColor(0xa3, 0xa3, 0xa3), TRUE);
+
+		std::string str = "ã‰ºƒL[‚ÅØ‚è‘Ö‚¦" + std::to_string(which_field_display % 2 + 1) + "/2";
+
+		const int CHAR_SIZE = 18;
+		DrawFormatStringToHandle(Define::WIN_SIZEX * 9 / 64 - GetDrawStringWidthToHandle(str.c_str(), (int)str.size(), m_font_16) / 2, Define::WIN_SIZEY * 4 / 64 + CHAR_SIZE * 27, GetColor(0, 0, 0), m_font_16, str.c_str());
+	}
+}
+
+void GameLog::pushLog(std::string _log)
+{
+	//intŒ^‚Ì”’l‚Æ•ø‚«‡‚í‚¹‚Ìƒf[ƒ^‚ğì‚é
+	std::pair<int, std::string> temp;
+
+	temp.first = 1;
+	temp.second = _log;
+
+	//ƒvƒbƒVƒ…‚·‚é
+	m_log.push_back(temp);
+
+	//‘å—Ê‚Ìƒf[ƒ^‚ª‘}“ü‚³‚ê‚½ê‡Ÿƒy[ƒW‚ÉØ‚è‘Ö‚¦‚é
+	if (m_log.size() > DISPLAY_STR) { which_field_display = 1; }
+}
+
+void GameLog::pushLogByField(const MatchField _field)
+{
+	//ƒtƒB[ƒ‹ƒh‚ğ’Ç‰Á‚·‚é
+	m_field_list.push_back(_field);
+
+	//ƒtƒB[ƒ‹ƒh‚Ì”‚ğ’Ç‰Á
+	m_field_count[_field]++;
+
+	//•¶š‚ğ’Ç‰Á‚·‚é
+	std::string str = "";
+
+	if (_field.turn == true)str += "›";
+	str += "‹M•û[" + std::to_string(_field.player1.first) + "," + std::to_string(_field.player1.second) + "] ";
+
+	if (_field.turn == false)str += "›";
+	str += "“G[" + std::to_string(_field.player2.first) + "," + std::to_string(_field.player2.second) + "] ";
+
+	if (_field.player1_avatar_num != 0 || _field.player2_avatar_num != 0) {
+		str += "Ñ”z[" + std::to_string(_field.player1_avatar_num) + "," + std::to_string(_field.player2_avatar_num) + "]";
+	}
+
+	//intŒ^‚Ì”’l‚Æ•ø‚«‡‚í‚¹‚Ìƒf[ƒ^‚ğì‚é
+	std::pair<int, std::string> temp;
+
+	temp.first = m_field_count[_field];
+	temp.second = str;
+
+	//ƒvƒbƒVƒ…‚·‚é
+	m_log.push_back(temp);
+
+	//‘å—Ê‚Ìƒf[ƒ^‚ª‘}“ü‚³‚ê‚½ê‡Ÿƒy[ƒW‚ÉØ‚è‘Ö‚¦‚é
+	if (m_log.size() > DISPLAY_STR) { which_field_display = 1; }
+}
+
+void GameLog::m_drawLog() const
+{
+	int _centerx = Define::WIN_SIZEX * 9 / 32 / 2;
+	int temp = 0;
+
+	temp = GetDrawStringWidthToHandle("=ƒƒO=", 7, m_font_16);
+	DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 3 / 64, GetColor(0, 0, 0), m_font_16, "=ƒƒO=");
+
+	const int CHAR_SIZE = 18;//V‚µ‚¢‚à‚Ì‚Ì‚İ•\¦‚µ‚½‚¢
+
+	//m_DISPLAY_LOG_MAX
+	for (int i = 0; i < m_log.size(); i++)
+	{
+		if (m_log.size() > DISPLAY_STR && which_field_display % 2 == 1)
+		{
+			if (i >= DISPLAY_STR)
+			{
+				temp = GetDrawStringWidthToHandle(m_log.at(i).second.c_str(), (int)m_log.at(i).second.size(), m_font_16);
+
+				int color = GetColor(0, 0, 0);
+				if (m_log.at(i).first == VariousFunctionsForMatchGame::SENNICHITE - 2) { color = GetColor(0xff, 0xa5, 0x00); }
+				else if (m_log.at(i).first == VariousFunctionsForMatchGame::SENNICHITE - 1) { color = GetColor(0x80, 0x00, 0x00); }
+				else if (m_log.at(i).first >= VariousFunctionsForMatchGame::SENNICHITE) { color = GetColor(0x00, 0x00, 0x8b); }
+
+				DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 4 / 64 + CHAR_SIZE * (i + 1 - DISPLAY_STR), color, m_font_16, m_log.at(i).second.c_str());
+			}
+		}
+		else if (i < DISPLAY_STR)
+		{
+			temp = GetDrawStringWidthToHandle(m_log.at(i).second.c_str(), (int)m_log.at(i).second.size(), m_font_16);
+
+			int color = GetColor(0, 0, 0);
+			if (m_log.at(i).first == VariousFunctionsForMatchGame::SENNICHITE - 2) { color = GetColor(0xff, 0xa5, 0x00); }
+			else if (m_log.at(i).first == VariousFunctionsForMatchGame::SENNICHITE - 1) { color = GetColor(0x80, 0x00, 0x00); }
+			else if (m_log.at(i).first >= VariousFunctionsForMatchGame::SENNICHITE) { color = GetColor(0x00, 0x00, 0x8b); }
+
+			DrawFormatStringToHandle(_centerx - temp / 2, Define::WIN_SIZEY * 4 / 64 + CHAR_SIZE * (i + 1), color, m_font_16, m_log.at(i).second.c_str());
+		}
+	}
+}

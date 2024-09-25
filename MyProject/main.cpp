@@ -1,30 +1,18 @@
-ï»¿
-// C28251 ã‚’ç„¡è¦–ã™ã‚‹
-#pragma warning(disable: 28251)
+#include"DxLib.h"
+#include"SystemMain.h"
 
-#include <DxLib.h>
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+{
+	SystemMain _sys;
 
-#include "dxlib_debug_print.h"
-#include "error_message_box.h"
-#include "system_main.h"
+	if ( _sys.initialize() ) {
+		_sys.main();
+	}
+	else{
+		MessageBox(NULL, TEXT("ŠÖ”:DxLibInit‚ªƒGƒ‰[‚ğ‹N‚±‚µ‚½‚½‚ß\n‹Ù‹}I—¹‚µ‚Ü‚µ‚½B\nP.S ‚±‚ÌƒAƒvƒŠ‚Í“ñd‹N“®‚Å‚«‚Ü‚¹‚ñ"), TEXT("•ñ"), MB_ICONERROR);
+	}
 
+	_sys.finalize();
 
-int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
-
-    PREPAER_DEBUG_PRINT();
-
-    using match_stick::ErrorMessageBox;
-    using match_stick::SystemMain;
-
-    SystemMain system_main;
-
-    if (system_main.initialize()) {
-        system_main.main();
-    } else {
-        ErrorMessageBox::show("åˆæœŸåŒ–ã«å¤±æ•—ã—ã¾ã—ãŸã€‚");
-    }
-
-    system_main.finalize();
-
-    return 0;
+	return 0;
 }

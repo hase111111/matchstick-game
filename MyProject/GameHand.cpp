@@ -1,149 +1,149 @@
-Ôªø//#include "GameHand.h"
-//#include "Image.h"
-//#include "DxLib.h"
-//#include "define.h"
-//#include "Font.h"
-//
-//GameHand::GameHand()
-//{
-//	//ÁîªÂÉè„ÅÆË™≠„ÅøËæº„Åø
-//	m_gr_hand[0] = myLoadGraph("data/img/hand/0_hand.png");
-//	m_gr_hand[1] = myLoadGraph("data/img/hand/1_hand.png");
-//	m_gr_hand[2] = myLoadGraph("data/img/hand/2_hand.png");
-//	m_gr_hand[3] = myLoadGraph("data/img/hand/3_hand.png");
-//	m_gr_hand[4] = myLoadGraph("data/img/hand/4_hand.png");
-//	m_gr_hand[5] = myLoadGraph("data/img/hand/5_hand.png");
-//
-//	m_gr_arrow = myLoadGraph("data/img/arrow.png");
-//
-//	//„Éï„Ç©„É≥„Éà
-//	m_font_32 = Font::getIns()->getFontHandle("data/font/PixelMplus10_size32.dft");
-//	m_font_20 = Font::getIns()->getFontHandle("data/font/PixelMplus10_size20.dft");
-//}
-//
-//void GameHand::draw(MatchField _field, const bool _select_now, const int _which_player, const int _which_hand_pl1, const int _which_hand_pl2, const bool _self, const int _saihai) const
-//{
-//	//ÈÅ∏Êäû‰∏≠„Å™„ÇâË°®Á§∫„ÇíÊîπ„ÇÅ„Çã 1.1ÔΩû1.35ÂÄç„Åæ„Åß2ÁßíÂë®Êúü
-//	double ex_rate_big = 1.1 + 0.25 * pow(sin(GetNowCount() / 1500.0 * 2 * Define::PI), 2);
-//
-//	//Êâã„ÅÆÊèèÂÜô
-//	if (_select_now == true && _saihai % 3 == 0) {
-//		if (_which_hand_pl1 % 2 == 0 || _self) { DrawRotaGraph(Define::kWindowSizeX * 23 / 64, Define::kWindowSizeY * 12 / 16, ex_rate_big, 0.0, m_gr_hand[_field.player1.first], TRUE, TRUE, FALSE); }
-//		else { DrawRotaGraph(Define::kWindowSizeX * 23 / 64, Define::kWindowSizeY * 12 / 16, 1.0, 0.0, m_gr_hand[_field.player1.first], TRUE, TRUE, FALSE); }
-//
-//		if (_which_hand_pl1 % 2 == 1 || _self) { DrawRotaGraph(Define::kWindowSizeX * 41 / 64, Define::kWindowSizeY * 12 / 16, ex_rate_big, 0.0, m_gr_hand[_field.player1.second], TRUE, FALSE, FALSE); }
-//		else { DrawRotaGraph(Define::kWindowSizeX * 41 / 64, Define::kWindowSizeY * 12 / 16, 1.0, 0.0, m_gr_hand[_field.player1.second], TRUE, FALSE, FALSE); }
-//
-//		if (_which_hand_pl2 % 2 == 0 && _which_player == 1 && !_self) { DrawRotaGraph(Define::kWindowSizeX * 23 / 64, Define::kWindowSizeY * 4 / 16, ex_rate_big, 0.0, m_gr_hand[_field.player2.first], TRUE, TRUE, TRUE); }
-//		else { DrawRotaGraph(Define::kWindowSizeX * 23 / 64, Define::kWindowSizeY * 4 / 16, 1.0, 0.0, m_gr_hand[_field.player2.first], TRUE, TRUE, TRUE); }
-//
-//		if (_which_hand_pl2 % 2 == 1 && _which_player == 1 && !_self) { DrawRotaGraph(Define::kWindowSizeX * 41 / 64, Define::kWindowSizeY * 4 / 16, ex_rate_big, 0.0, m_gr_hand[_field.player2.second], TRUE, FALSE, TRUE); }
-//		else { DrawRotaGraph(Define::kWindowSizeX * 41 / 64, Define::kWindowSizeY * 4 / 16, 1.0, 0.0, m_gr_hand[_field.player2.second], TRUE, FALSE, TRUE); }
-//		
-//	}
-//	else {
-//		DrawRotaGraph(Define::kWindowSizeX * 23 / 64, Define::kWindowSizeY * 12 / 16, 1.0, 0.0, m_gr_hand[_field.player1.first], TRUE, TRUE, FALSE);
-//		DrawRotaGraph(Define::kWindowSizeX * 41 / 64, Define::kWindowSizeY * 12 / 16, 1.0, 0.0, m_gr_hand[_field.player1.second], TRUE, FALSE, FALSE);
-//		DrawRotaGraph(Define::kWindowSizeX * 23 / 64, Define::kWindowSizeY * 4 / 16, 1.0, 0.0, m_gr_hand[_field.player2.first], TRUE, TRUE, TRUE);
-//		DrawRotaGraph(Define::kWindowSizeX * 41 / 64, Define::kWindowSizeY * 4 / 16, 1.0, 0.0, m_gr_hand[_field.player2.second], TRUE, FALSE, TRUE);
-//	}
-//
-//	//Êâã„ÅÆÊï∞Â≠ó„ÇíÊñáÂ≠ó„ÅßË°®Á§∫
-//	DrawFormatStringToHandle(Define::kWindowSizeX * 45 / 128, Define::kWindowSizeY * 14 / 16, GetColor(0, 0, 0), m_font_32, "%d", _field.player1.first);
-//	DrawFormatStringToHandle(Define::kWindowSizeX * 82 / 128, Define::kWindowSizeY * 14 / 16, GetColor(0, 0, 0), m_font_32, "%d", _field.player1.second);
-//	DrawFormatStringToHandle(Define::kWindowSizeX * 45 / 128, Define::kWindowSizeY * 1 / 16, GetColor(0, 0, 0), m_font_32, "%d", _field.player2.first);
-//	DrawFormatStringToHandle(Define::kWindowSizeX * 81 / 128, Define::kWindowSizeY * 1 / 16, GetColor(0, 0, 0), m_font_32, "%d", _field.player2.second);
-//
-//	//ÊñáÂ≠ó
-//	m_drawString();
-//
-//	//Áü¢Âç∞„ÇíË°®Á§∫
-//	bool _saihai_state = (_saihai % 3 == 0) ? false : true;
-//	m_drawArrow(_which_player, _which_hand_pl1, _which_hand_pl2, _self, _saihai_state);
-//
-//	//ÈááÈÖç„ÅÆË°®Á§∫
-//	if (_saihai % 3 == 1 || _saihai % 3 == 2) 
-//	{
-//		//ÁÆ±„ÅÆË°®Á§∫
-//		float half_boxx = Define::kWindowSizeX * 39.0f / 128 / 2;
-//		float half_boxy = Define::kWindowSizeX * 17.0f / 128 / 2;
-//		DrawBoxAA(Define::kWindowSizeX / 2 - half_boxx, Define::kWindowSizeY / 2 - half_boxy, Define::kWindowSizeX / 2 + half_boxx, Define::kWindowSizeY / 2 + half_boxy, GetColor(0, 0, 0), FALSE, 3.0f);
-//
-//		//Êâã„ÅÆË°®Á§∫
-//		double _angle = 0.25 * sin(GetNowCount() / 1500.0 * 2 * Define::PI);
-//		MatchField _saihai_field;
-//		if (_saihai % 3 == 1) {
-//			if (VariousFunctionsForMatchGame::executeCommand(VariousFunctionsForMatchGame::COMMAND_SAIHAI_LOW, _field, _saihai_field) == true) {
-//				DrawRotaGraph(Define::kWindowSizeX * 27 / 64, Define::kWindowSizeY / 2, 1.0, _angle, m_gr_hand[_saihai_field.player1.first], TRUE, TRUE, FALSE);
-//				DrawRotaGraph(Define::kWindowSizeX * 37 / 64, Define::kWindowSizeY / 2, 1.0, _angle, m_gr_hand[_saihai_field.player1.second], TRUE, FALSE, FALSE);
-//			}
-//		}
-//		else {
-//			if (VariousFunctionsForMatchGame::executeCommand(VariousFunctionsForMatchGame::COMMAND_SAIHAI_HIGH, _field, _saihai_field) == true) {
-//				DrawRotaGraph(Define::kWindowSizeX * 27 / 64, Define::kWindowSizeY / 2, 1.0, _angle, m_gr_hand[_saihai_field.player1.first], TRUE, TRUE, FALSE);
-//				DrawRotaGraph(Define::kWindowSizeX * 37 / 64, Define::kWindowSizeY / 2, 1.0, _angle, m_gr_hand[_saihai_field.player1.second], TRUE, FALSE, FALSE);
-//			}
-//		}
-//
-//		//„Ç¨„Ç§„ÉâÊñáÂ≠ó„ÅÆË°®Á§∫
-//		std::string _gide = "ÈááÈÖç C„Ç≠„Éº„ÅßÂàá„ÇäÊõø„Åà";
-//		DrawFormatStringToHandle(Define::kWindowSizeX / 2 - GetDrawStringWidthToHandle(_gide.c_str(), (int)_gide.size(), m_font_20) / 2, Define::kWindowSizeY * 42 / 128, GetColor(0, 0, 0), m_font_20, _gide.c_str());
-//	}
-//}
-//
-//void GameHand::m_drawString() const
-//{
-//	//„ÅÇ„Å™„Åü
-//	{
-//		std::string temp_str = "„ÅÇ„Å™„Åü";
-//		int temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_32);
-//		DrawFormatStringToHandle(Define::kWindowSizeX / 2 - temp / 2, Define::kWindowSizeY * 15 / 16, GetColor(0, 0, 0), m_font_32, temp_str.c_str());
-//	}
-//
-//	//Êïµ
-//	{
-//		std::string temp_str = "Êïµ";
-//		int temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_32);
-//		DrawFormatStringToHandle(Define::kWindowSizeX / 2 - temp / 2, 0, GetColor(0, 0, 0), m_font_32, temp_str.c_str());
-//	}
-//}
-//
-//void GameHand::m_drawArrow(const int _which, const int _pl1, const int _pl2, const bool _self, const bool _saihai) const
-//{
-//	//„Ç´„Ç¶„É≥„Çø„ÇíÂà©Áî®„Åó„Å¶ÁÇπÊªÖ„Åï„Åõ„Çã
-//	double alpha = 128.0 * sin(GetNowCount() * 2.0 * Define::PI / 2000) * sin(GetNowCount() * 2.0 * Define::PI / 2000);
-//	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)alpha);
-//
-//	if (_which == 1 && _saihai == false) 
-//	{
-//		if (_self == true) {
-//			if (_pl1 %2 == 0) {
-//				DrawRotaGraph(Define::kWindowSizeX * 64 / 128, Define::kWindowSizeY * 49 / 64, 1.0, Define::PI / 2, m_gr_arrow, TRUE);
-//			}
-//			else {
-//				DrawRotaGraph(Define::kWindowSizeX * 64 / 128, Define::kWindowSizeY * 49 / 64, 1.0, -Define::PI / 2, m_gr_arrow, TRUE);
-//			}
-//		}
-//		else {
-//			if (_pl1 % 2 == 0) {
-//				if (_pl2 % 2 == 0) {
-//					DrawRotaGraph(Define::kWindowSizeX * 46 / 128, Define::kWindowSizeY / 2, 1.0, 0.0, m_gr_arrow, TRUE);
-//				}
-//				else {
-//					DrawRotaGraph(Define::kWindowSizeX * 64 / 128, Define::kWindowSizeY / 2, 1.0, Define::PI / 4, m_gr_arrow, TRUE);
-//				}
-//			}
-//			else {
-//				if (_pl2 % 2 == 0) {
-//					DrawRotaGraph(Define::kWindowSizeX * 64 / 128, Define::kWindowSizeY / 2, 1.0, -Define::PI / 4, m_gr_arrow, TRUE);
-//				}
-//				else {
-//					DrawRotaGraph(Define::kWindowSizeX * 82 / 128, Define::kWindowSizeY / 2, 1.0, 0.0, m_gr_arrow, TRUE);
-//				}
-//			}
-//		}
-//
-//	}
-//
-//	SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
-//}
+#include "GameHand.h"
+#include "Image.h"
+#include "DxLib.h"
+#include "Define.h"
+#include "Font.h"
+
+GameHand::GameHand()
+{
+	//âÊëúÇÃì«Ç›çûÇ›
+	m_gr_hand[0] = myLoadGraph("data/img/hand/0_hand.png");
+	m_gr_hand[1] = myLoadGraph("data/img/hand/1_hand.png");
+	m_gr_hand[2] = myLoadGraph("data/img/hand/2_hand.png");
+	m_gr_hand[3] = myLoadGraph("data/img/hand/3_hand.png");
+	m_gr_hand[4] = myLoadGraph("data/img/hand/4_hand.png");
+	m_gr_hand[5] = myLoadGraph("data/img/hand/5_hand.png");
+
+	m_gr_arrow = myLoadGraph("data/img/arrow.png");
+
+	//ÉtÉHÉìÉg
+	m_font_32 = Font::getIns()->getFontHandle("data/font/PixelMplus10_size32.dft");
+	m_font_20 = Font::getIns()->getFontHandle("data/font/PixelMplus10_size20.dft");
+}
+
+void GameHand::draw(MatchField _field, const bool _select_now, const int _which_player, const int _which_hand_pl1, const int _which_hand_pl2, const bool _self, const int _saihai) const
+{
+	//ëIëíÜÇ»ÇÁï\é¶Çâ¸ÇﬂÇÈ 1.1Å`1.35î{Ç‹Ç≈2ïbé¸ä˙
+	double ex_rate_big = 1.1 + 0.25 * pow(sin(GetNowCount() / 1500.0 * 2 * Define::PI), 2);
+
+	//éËÇÃï`é 
+	if (_select_now == true && _saihai % 3 == 0) {
+		if (_which_hand_pl1 % 2 == 0 || _self) { DrawRotaGraph(Define::WIN_SIZEX * 23 / 64, Define::WIN_SIZEY * 12 / 16, ex_rate_big, 0.0, m_gr_hand[_field.player1.first], TRUE, TRUE, FALSE); }
+		else { DrawRotaGraph(Define::WIN_SIZEX * 23 / 64, Define::WIN_SIZEY * 12 / 16, 1.0, 0.0, m_gr_hand[_field.player1.first], TRUE, TRUE, FALSE); }
+
+		if (_which_hand_pl1 % 2 == 1 || _self) { DrawRotaGraph(Define::WIN_SIZEX * 41 / 64, Define::WIN_SIZEY * 12 / 16, ex_rate_big, 0.0, m_gr_hand[_field.player1.second], TRUE, FALSE, FALSE); }
+		else { DrawRotaGraph(Define::WIN_SIZEX * 41 / 64, Define::WIN_SIZEY * 12 / 16, 1.0, 0.0, m_gr_hand[_field.player1.second], TRUE, FALSE, FALSE); }
+
+		if (_which_hand_pl2 % 2 == 0 && _which_player == 1 && !_self) { DrawRotaGraph(Define::WIN_SIZEX * 23 / 64, Define::WIN_SIZEY * 4 / 16, ex_rate_big, 0.0, m_gr_hand[_field.player2.first], TRUE, TRUE, TRUE); }
+		else { DrawRotaGraph(Define::WIN_SIZEX * 23 / 64, Define::WIN_SIZEY * 4 / 16, 1.0, 0.0, m_gr_hand[_field.player2.first], TRUE, TRUE, TRUE); }
+
+		if (_which_hand_pl2 % 2 == 1 && _which_player == 1 && !_self) { DrawRotaGraph(Define::WIN_SIZEX * 41 / 64, Define::WIN_SIZEY * 4 / 16, ex_rate_big, 0.0, m_gr_hand[_field.player2.second], TRUE, FALSE, TRUE); }
+		else { DrawRotaGraph(Define::WIN_SIZEX * 41 / 64, Define::WIN_SIZEY * 4 / 16, 1.0, 0.0, m_gr_hand[_field.player2.second], TRUE, FALSE, TRUE); }
+		
+	}
+	else {
+		DrawRotaGraph(Define::WIN_SIZEX * 23 / 64, Define::WIN_SIZEY * 12 / 16, 1.0, 0.0, m_gr_hand[_field.player1.first], TRUE, TRUE, FALSE);
+		DrawRotaGraph(Define::WIN_SIZEX * 41 / 64, Define::WIN_SIZEY * 12 / 16, 1.0, 0.0, m_gr_hand[_field.player1.second], TRUE, FALSE, FALSE);
+		DrawRotaGraph(Define::WIN_SIZEX * 23 / 64, Define::WIN_SIZEY * 4 / 16, 1.0, 0.0, m_gr_hand[_field.player2.first], TRUE, TRUE, TRUE);
+		DrawRotaGraph(Define::WIN_SIZEX * 41 / 64, Define::WIN_SIZEY * 4 / 16, 1.0, 0.0, m_gr_hand[_field.player2.second], TRUE, FALSE, TRUE);
+	}
+
+	//éËÇÃêîéöÇï∂éöÇ≈ï\é¶
+	DrawFormatStringToHandle(Define::WIN_SIZEX * 45 / 128, Define::WIN_SIZEY * 14 / 16, GetColor(0, 0, 0), m_font_32, "%d", _field.player1.first);
+	DrawFormatStringToHandle(Define::WIN_SIZEX * 82 / 128, Define::WIN_SIZEY * 14 / 16, GetColor(0, 0, 0), m_font_32, "%d", _field.player1.second);
+	DrawFormatStringToHandle(Define::WIN_SIZEX * 45 / 128, Define::WIN_SIZEY * 1 / 16, GetColor(0, 0, 0), m_font_32, "%d", _field.player2.first);
+	DrawFormatStringToHandle(Define::WIN_SIZEX * 81 / 128, Define::WIN_SIZEY * 1 / 16, GetColor(0, 0, 0), m_font_32, "%d", _field.player2.second);
+
+	//ï∂éö
+	m_drawString();
+
+	//ñÓàÛÇï\é¶
+	bool _saihai_state = (_saihai % 3 == 0) ? false : true;
+	m_drawArrow(_which_player, _which_hand_pl1, _which_hand_pl2, _self, _saihai_state);
+
+	//ç—îzÇÃï\é¶
+	if (_saihai % 3 == 1 || _saihai % 3 == 2) 
+	{
+		//î†ÇÃï\é¶
+		float half_boxx = Define::WIN_SIZEX * 39.0f / 128 / 2;
+		float half_boxy = Define::WIN_SIZEX * 17.0f / 128 / 2;
+		DrawBoxAA(Define::WIN_SIZEX / 2 - half_boxx, Define::WIN_SIZEY / 2 - half_boxy, Define::WIN_SIZEX / 2 + half_boxx, Define::WIN_SIZEY / 2 + half_boxy, GetColor(0, 0, 0), FALSE, 3.0f);
+
+		//éËÇÃï\é¶
+		double _angle = 0.25 * sin(GetNowCount() / 1500.0 * 2 * Define::PI);
+		MatchField _saihai_field;
+		if (_saihai % 3 == 1) {
+			if (VariousFunctionsForMatchGame::executeCommand(VariousFunctionsForMatchGame::COMMAND_SAIHAI_LOW, _field, _saihai_field) == true) {
+				DrawRotaGraph(Define::WIN_SIZEX * 27 / 64, Define::WIN_SIZEY / 2, 1.0, _angle, m_gr_hand[_saihai_field.player1.first], TRUE, TRUE, FALSE);
+				DrawRotaGraph(Define::WIN_SIZEX * 37 / 64, Define::WIN_SIZEY / 2, 1.0, _angle, m_gr_hand[_saihai_field.player1.second], TRUE, FALSE, FALSE);
+			}
+		}
+		else {
+			if (VariousFunctionsForMatchGame::executeCommand(VariousFunctionsForMatchGame::COMMAND_SAIHAI_HIGH, _field, _saihai_field) == true) {
+				DrawRotaGraph(Define::WIN_SIZEX * 27 / 64, Define::WIN_SIZEY / 2, 1.0, _angle, m_gr_hand[_saihai_field.player1.first], TRUE, TRUE, FALSE);
+				DrawRotaGraph(Define::WIN_SIZEX * 37 / 64, Define::WIN_SIZEY / 2, 1.0, _angle, m_gr_hand[_saihai_field.player1.second], TRUE, FALSE, FALSE);
+			}
+		}
+
+		//ÉKÉCÉhï∂éöÇÃï\é¶
+		std::string _gide = "ç—îz CÉLÅ[Ç≈êÿÇËë÷Ç¶";
+		DrawFormatStringToHandle(Define::WIN_SIZEX / 2 - GetDrawStringWidthToHandle(_gide.c_str(), (int)_gide.size(), m_font_20) / 2, Define::WIN_SIZEY * 42 / 128, GetColor(0, 0, 0), m_font_20, _gide.c_str());
+	}
+}
+
+void GameHand::m_drawString() const
+{
+	//Ç†Ç»ÇΩ
+	{
+		std::string temp_str = "Ç†Ç»ÇΩ";
+		int temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_32);
+		DrawFormatStringToHandle(Define::WIN_SIZEX / 2 - temp / 2, Define::WIN_SIZEY * 15 / 16, GetColor(0, 0, 0), m_font_32, temp_str.c_str());
+	}
+
+	//ìG
+	{
+		std::string temp_str = "ìG";
+		int temp = GetDrawStringWidthToHandle(temp_str.c_str(), (int)temp_str.size(), m_font_32);
+		DrawFormatStringToHandle(Define::WIN_SIZEX / 2 - temp / 2, 0, GetColor(0, 0, 0), m_font_32, temp_str.c_str());
+	}
+}
+
+void GameHand::m_drawArrow(const int _which, const int _pl1, const int _pl2, const bool _self, const bool _saihai) const
+{
+	//ÉJÉEÉìÉ^ÇóòópÇµÇƒì_ñ≈Ç≥ÇπÇÈ
+	double alpha = 128.0 * sin(GetNowCount() * 2.0 * Define::PI / 2000) * sin(GetNowCount() * 2.0 * Define::PI / 2000);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)alpha);
+
+	if (_which == 1 && _saihai == false) 
+	{
+		if (_self == true) {
+			if (_pl1 %2 == 0) {
+				DrawRotaGraph(Define::WIN_SIZEX * 64 / 128, Define::WIN_SIZEY * 49 / 64, 1.0, Define::PI / 2, m_gr_arrow, TRUE);
+			}
+			else {
+				DrawRotaGraph(Define::WIN_SIZEX * 64 / 128, Define::WIN_SIZEY * 49 / 64, 1.0, -Define::PI / 2, m_gr_arrow, TRUE);
+			}
+		}
+		else {
+			if (_pl1 % 2 == 0) {
+				if (_pl2 % 2 == 0) {
+					DrawRotaGraph(Define::WIN_SIZEX * 46 / 128, Define::WIN_SIZEY / 2, 1.0, 0.0, m_gr_arrow, TRUE);
+				}
+				else {
+					DrawRotaGraph(Define::WIN_SIZEX * 64 / 128, Define::WIN_SIZEY / 2, 1.0, Define::PI / 4, m_gr_arrow, TRUE);
+				}
+			}
+			else {
+				if (_pl2 % 2 == 0) {
+					DrawRotaGraph(Define::WIN_SIZEX * 64 / 128, Define::WIN_SIZEY / 2, 1.0, -Define::PI / 4, m_gr_arrow, TRUE);
+				}
+				else {
+					DrawRotaGraph(Define::WIN_SIZEX * 82 / 128, Define::WIN_SIZEY / 2, 1.0, 0.0, m_gr_arrow, TRUE);
+				}
+			}
+		}
+
+	}
+
+	SetDrawBlendMode(DX_BLENDGRAPHTYPE_NORMAL, 0);
+}

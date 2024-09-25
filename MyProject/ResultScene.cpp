@@ -1,184 +1,184 @@
-ï»¿//#include "ResultScene.h"
-//#include "DxLib.h"
-//#include "GameParam.h"
-//#include "Keyboard.h"
-//#include "Sound.h"
-//
-//ResultScene::ResultScene(SceneChangeListenerInterface* pScli, const Parameter& parameter) : AbstractScene(pScli,parameter)
-//{
-//	//ã‚²ãƒ¼ãƒ ã‚¯ãƒ©ã‚¹ã‹ã‚‰ãƒ«ãƒ¼ãƒ«ã‚’å—ã‘å–ã‚‹
-//	if (parameter.getParam(GameParam::SELF_HARM_RULE) == GameParam::TRUE_STATE) { m_self_rule = true; }
-//	else { m_self_rule = false; }
-//
-//	if (parameter.getParam(GameParam::MOD_RULE) == GameParam::TRUE_STATE) { m_mod_rule = true; }
-//	else { m_mod_rule = false; }
-//	m_drawKey.init(m_mod_rule, m_self_rule);
-//
-//	m_scene_back_num = parameter.getParam(GameParam::RESULT_BACK_NUM);
-//	m_scene_back_num = (m_scene_back_num == 1 || m_scene_back_num == 2) ? m_scene_back_num : 1;
-//	if (m_scene_back_num == 1) { m_replay_save = true; }
-//
-//	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’ã‚²ãƒ¼ãƒ ã‚¯ãƒ©ã‚¹ã‹ã‚‰å—ã‘å–ã‚‹
-//	parameter.getFieldParam(m_field_list);
-//
-//	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒªã‚¹ãƒˆã‚’ç¢ºèªã—ã¦ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿ã‹ã©ã†ã‹èª¿ã¹ã‚‹
-//	clsDx();
-//	if (m_isIllegalFieldList(m_field_list) == true) 
-//	{
-//		m_illegal_field = true;
-//		printfDx("ä¸æ­£ãªãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿ã§ã™\n"); 
-//	}
-//
-//	//æ–‡å­—æç”»ç”¨é–¢æ•°ã«ãƒ‡ãƒ¼ã‚¿ã‚’æ•™ãˆã‚‹
-//	if (m_illegal_field == false) 
-//	{
-//		m_drawString.init(m_field_list, m_mod_rule, m_self_rule);
-//		m_drawString.update(0);
-//
-//		m_drawHand.init(m_field_list);
-//		m_drawHand.update(0);
-//	}
-//
-//	//ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’æŒ¿å…¥ã™ã‚‹
-//	m_sceneChange.init(1);
-//}
-//
-//bool ResultScene::update()
-//{
-//	if (m_sceneChange.update() == false)
-//	{
-//		//ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿ã§ãªã‘ã‚Œã°å‡¦ç†ã‚’è¡Œã†
-//		if (m_illegal_field == false)
-//		{
-//			//ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã®ãƒ•ãƒ©ã‚°ãŒãŸã£ã¦ã„ã‚‹ãªã‚‰ã‚·ãƒ¼ãƒ³ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
-//			if (m_scene_change == true)
-//			{
-//				Parameter p;
-//				mp_listenerInterface->deleteNowScene(p, m_scene_back_num);	//2ã‚·ãƒ¼ãƒ³æˆ»ã™
-//			}
-//
-//			//ESCã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸå ´åˆã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚’ã™ã‚‹
-//			if (m_drawKey.update(m_field_list, m_select_field, m_replay_save, m_replay_fail) == false)
-//			{
-//				m_sceneChange.init(0);	//ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’æŒ¿å…¥
-//				m_scene_change = true;	//ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã®ãƒ•ãƒ©ã‚°ã‚’ã‚ªãƒ³ã«ã™ã‚‹				
-//			}
-//
-//			//æç”»ç”¨é–¢æ•°ã«ç¾åœ¨é¸æŠã—ã¦ã„ã‚‹å ´æ‰€ã‚’æ•™ãˆã‚‹
-//			m_drawString.update(m_select_field);
-//			m_drawHand.update(m_select_field);
-//		}
-//		//ä¸æ­£ãªãƒ‡ãƒ¼ã‚¿ã ã£ãŸå ´åˆã‚·ãƒ¼ãƒ³ã‚’çµ‚äº†ã™ã‚‹
-//		else
-//		{
-//			if (m_scene_change == true)
-//			{
-//				//ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚’ã™ã‚‹
-//				Parameter p;
-//				mp_listenerInterface->deleteNowScene(p, m_scene_back_num);	//2ã‚·ãƒ¼ãƒ³åˆã¯1ã‚·ãƒ¼ãƒ³æˆ»ã™
-//			}
-//			else
-//			{
-//				m_sceneChange.init(0);	//ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’æŒ¿å…¥
-//				m_scene_change = true;	//ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã®ãƒ•ãƒ©ã‚°ã‚’ã‚ªãƒ³ã«ã™ã‚‹	
-//			}
-//		}
-//	}
-//
-//	return true;
-//}
-//
-//void ResultScene::draw() const
-//{
-//	//èƒŒæ™¯
-//	m_drawBack.draw();
-//
-//	//æ–‡å­—è¡¨ç¤º
-//	m_drawString.draw(m_replay_save, m_replay_fail);
-//
-//	//æ‰‹ã®è¡¨ç¤º
-//	m_drawHand.draw();
-//
-//	//ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
-//	m_sceneChange.draw();
-//}
-//
-//void ResultScene::receiveParameterInCaseOfDeleteScene(const Parameter& parameter)
-//{
-//	//ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’æŒ¿å…¥ã™ã‚‹
-//	m_sceneChange.init(1);
-//}
-//
-////ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒªã‚¹ãƒˆãŒä¸æ­£ã‹ã©ã†ã‹èª¿ã¹ã‚‹
-//bool ResultScene::m_isIllegalFieldList(const std::vector<MatchField>& _field) const
-//{
-//	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®æ•°ãŒ 0 or 1 ãªã‚‰ä¸æ­£ã¨ã™ã‚‹
-//	if (_field.size() == 0 || _field.size() == 1) 
-//	{
-//		printfDx("ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãŒç©º,ã‚ã‚‹ã„ã¯1ã®ã¿ã§ã™\n\n");
-//		return true; 
-//	}
-//
-//	//ã¾ãšã¯å‹æ•—ãŒã¤ã„ã¦ã„ã‚‹ã‹ã©ã†ã‹èª¿ã¹ã‚‹
-//	if (_field.back().isEndOfGame() == false) 
-//	{
-//		//å‹æ•—ãŒã¤ã„ã¦ã„ãªã„å ´åˆå¼•ãåˆ†ã‘ã‹ã©ã†ã‹èª¿ã¹ã‚‹
-//		std::map<MatchField, int> _map_checker;
-//
-//		//ãƒãƒƒãƒ—ã‚¯ãƒ©ã‚¹ã‚’ç”¨ã„ã¦å„ç›¤é¢ãŒç™»å ´ã—ãŸå›æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹
-//		for (auto &i : _field)
-//		{
-//			_map_checker[i]++;
-//		}
-//
-//		//ä¸€ç•ªå¤šãç™»å ´ã—ãŸç›¤é¢ã®ç™»å ´å›æ•°ã‚’è¨˜éŒ²ã™ã‚‹
-//		int _MAX_field_num = -1;
-//
-//		for (auto &i : _map_checker)
-//		{
-//			if (i.second > _MAX_field_num) { _MAX_field_num = i.second; }
-//		}
-//
-//		//åƒæ—¥æ‰‹ã¨åˆ¤æ–­ã•ã‚Œã‚‹å›æ•°ã‚’ä¸‹å›ã£ã¦ã„ãŸå ´åˆä¸æ­£
-//		if (_MAX_field_num < VariousFunctionsForMatchGame::SENNICHITE) 
-//		{
-//			printfDx("å‹è² ãŒã¤ã„ã¦ã„ã¾ã›ã‚“ãŒã€åƒæ—¥æ‰‹ã§ã¯ã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n");
-//			return true;
-//		}
-//	}
-//	else {
-//		//å‹è² ãŒã¤ã„ã¦ã„ã‚‹å ´åˆä¸¡è€…å‹åˆ©ã¨ãªã£ã¦ã„ãªã„ã‹ç¢ºã‹ã‚ã‚‹
-//		if(_field.back().doesWinFirstPlayer() == true && _field.back().doesWinSecondPlayer() == true)
-//		{
-//			//ä¸¡è€…å‹åˆ©ã¨ãªã‚‹ç›¤é¢ã¯ä¸æ­£
-//			printfDx("ä¸¡è€…å‹åˆ©åˆ¤å®šã¨ãªã‚‹ç›¤é¢ã§ã™\n");
-//			return true;
-//		}
-//	}
-//
-//	//æ¬¡ã«ã€ç›¤é¢ãŒæ­£ã—ã„é †åºã§ä¸¦ã‚“ã§ã„ã‚‹ã‹èª¿ã¹ã‚‹
-//	MatchField _next;
-//	int command = 0;
-//
-//	for (size_t i = 0; i < _field.size(); i++)
-//	{
-//		//ç›¤é¢ãŒæœ€å¾Œã®ç›¤é¢ã§ãªã„å ´åˆ
-//		if (i < _field.size() - 1)
-//		{
-//			//æ¬¡ç›¤é¢ã¸ã®ã‚³ãƒãƒ³ãƒ‰ã‚’å–å¾—ã™ã‚‹
-//			command = VariousFunctionsForMatchGame::getCommand(_field.at(i), _field.at(i + 1), m_mod_rule, m_self_rule);
-//
-//			//ã‚³ãƒãƒ³ãƒ‰ãŒä¸æ­£ãªã‚‚ã®ã‹èª¿ã¹ã‚‹
-//			if (command == VariousFunctionsForMatchGame::COMMAND_ERROR)
-//			{
-//				printfDx("ç›¤é¢ã«é€£ç¶šæ€§ãŒã‚ã‚Šã¾ã›ã‚“%d\n", i);
-//				return true;
-//			}
-//		}
-//	}
-//
-//	//å…¨ã¦èª¿ã¹çµ‚ã‚ã£ãŸãªã‚‰ãµã›ã„ã§ãªã„
-//	return false;
-//}
-//
-//
+#include "ResultScene.h"
+#include "DxLib.h"
+#include "GameParam.h"
+#include "Keyboard.h"
+#include "Sound.h"
+
+ResultScene::ResultScene(SceneChangeListenerInterface* pScli, const Parameter& parameter) : AbstractScene(pScli,parameter)
+{
+	//ƒQ[ƒ€ƒNƒ‰ƒX‚©‚çƒ‹[ƒ‹‚ğó‚¯æ‚é
+	if (parameter.getParam(GameParam::SELF_HARM_RULE) == GameParam::TRUE_STATE) { m_self_rule = true; }
+	else { m_self_rule = false; }
+
+	if (parameter.getParam(GameParam::MOD_RULE) == GameParam::TRUE_STATE) { m_mod_rule = true; }
+	else { m_mod_rule = false; }
+	m_drawKey.init(m_mod_rule, m_self_rule);
+
+	m_scene_back_num = parameter.getParam(GameParam::RESULT_BACK_NUM);
+	m_scene_back_num = (m_scene_back_num == 1 || m_scene_back_num == 2) ? m_scene_back_num : 1;
+	if (m_scene_back_num == 1) { m_replay_save = true; }
+
+	//ƒtƒB[ƒ‹ƒh‚ğƒQ[ƒ€ƒNƒ‰ƒX‚©‚çó‚¯æ‚é
+	parameter.getFieldParam(m_field_list);
+
+	//ƒtƒB[ƒ‹ƒhƒŠƒXƒg‚ğŠm”F‚µ‚Ä•s³‚Èƒf[ƒ^‚©‚Ç‚¤‚©’²‚×‚é
+	clsDx();
+	if (m_isIllegalFieldList(m_field_list) == true) 
+	{
+		m_illegal_field = true;
+		printfDx("•s³‚ÈƒtƒB[ƒ‹ƒhƒf[ƒ^‚Å‚·\n"); 
+	}
+
+	//•¶š•`‰æ—pŠÖ”‚Éƒf[ƒ^‚ğ‹³‚¦‚é
+	if (m_illegal_field == false) 
+	{
+		m_drawString.init(m_field_list, m_mod_rule, m_self_rule);
+		m_drawString.update(0);
+
+		m_drawHand.init(m_field_list);
+		m_drawHand.update(0);
+	}
+
+	//ƒV[ƒ“ƒ`ƒFƒ“ƒW‚ÌƒGƒtƒFƒNƒg‚ğ‘}“ü‚·‚é
+	m_sceneChange.init(1);
+}
+
+bool ResultScene::update()
+{
+	if (m_sceneChange.update() == false)
+	{
+		//•s³‚Èƒf[ƒ^‚Å‚È‚¯‚ê‚Îˆ—‚ğs‚¤
+		if (m_illegal_field == false)
+		{
+			//ƒV[ƒ“ƒ`ƒFƒ“ƒW‚Ìƒtƒ‰ƒO‚ª‚½‚Á‚Ä‚¢‚é‚È‚çƒV[ƒ“‚ğØ‚è‘Ö‚¦‚é
+			if (m_scene_change == true)
+			{
+				Parameter p;
+				mp_listenerInterface->deleteNowScene(p, m_scene_back_num);	//2ƒV[ƒ“–ß‚·
+			}
+
+			//ESCƒL[‚ª‰Ÿ‚³‚ê‚½ê‡ƒV[ƒ“ƒ`ƒFƒ“ƒW‚ğ‚·‚é
+			if (m_drawKey.update(m_field_list, m_select_field, m_replay_save, m_replay_fail) == false)
+			{
+				m_sceneChange.init(0);	//ƒV[ƒ“ƒ`ƒFƒ“ƒW‚ÌƒGƒtƒFƒNƒg‚ğ‘}“ü
+				m_scene_change = true;	//ƒV[ƒ“ƒ`ƒFƒ“ƒW‚Ìƒtƒ‰ƒO‚ğƒIƒ“‚É‚·‚é				
+			}
+
+			//•`‰æ—pŠÖ”‚ÉŒ»İ‘I‘ğ‚µ‚Ä‚¢‚éêŠ‚ğ‹³‚¦‚é
+			m_drawString.update(m_select_field);
+			m_drawHand.update(m_select_field);
+		}
+		//•s³‚Èƒf[ƒ^‚¾‚Á‚½ê‡ƒV[ƒ“‚ğI—¹‚·‚é
+		else
+		{
+			if (m_scene_change == true)
+			{
+				//ƒV[ƒ“ƒ`ƒFƒ“ƒW‚ğ‚·‚é
+				Parameter p;
+				mp_listenerInterface->deleteNowScene(p, m_scene_back_num);	//2ƒV[ƒ“–”‚Í1ƒV[ƒ“–ß‚·
+			}
+			else
+			{
+				m_sceneChange.init(0);	//ƒV[ƒ“ƒ`ƒFƒ“ƒW‚ÌƒGƒtƒFƒNƒg‚ğ‘}“ü
+				m_scene_change = true;	//ƒV[ƒ“ƒ`ƒFƒ“ƒW‚Ìƒtƒ‰ƒO‚ğƒIƒ“‚É‚·‚é	
+			}
+		}
+	}
+
+	return true;
+}
+
+void ResultScene::draw() const
+{
+	//”wŒi
+	m_drawBack.draw();
+
+	//•¶š•\¦
+	m_drawString.draw(m_replay_save, m_replay_fail);
+
+	//è‚Ì•\¦
+	m_drawHand.draw();
+
+	//ƒV[ƒ“ƒ`ƒFƒ“ƒWƒGƒtƒFƒNƒg
+	m_sceneChange.draw();
+}
+
+void ResultScene::receiveParameterInCaseOfDeleteScene(const Parameter& parameter)
+{
+	//ƒV[ƒ“ƒ`ƒFƒ“ƒW‚ÌƒGƒtƒFƒNƒg‚ğ‘}“ü‚·‚é
+	m_sceneChange.init(1);
+}
+
+//ƒtƒB[ƒ‹ƒhƒŠƒXƒg‚ª•s³‚©‚Ç‚¤‚©’²‚×‚é
+bool ResultScene::m_isIllegalFieldList(const std::vector<MatchField>& _field) const
+{
+	//ƒtƒB[ƒ‹ƒh‚Ì”‚ª 0 or 1 ‚È‚ç•s³‚Æ‚·‚é
+	if (_field.size() == 0 || _field.size() == 1) 
+	{
+		printfDx("ƒtƒB[ƒ‹ƒh‚ª‹ó,‚ ‚é‚¢‚Í1‚Ì‚İ‚Å‚·\n\n");
+		return true; 
+	}
+
+	//‚Ü‚¸‚ÍŸ”s‚ª‚Â‚¢‚Ä‚¢‚é‚©‚Ç‚¤‚©’²‚×‚é
+	if (_field.back().isEndOfGame() == false) 
+	{
+		//Ÿ”s‚ª‚Â‚¢‚Ä‚¢‚È‚¢ê‡ˆø‚«•ª‚¯‚©‚Ç‚¤‚©’²‚×‚é
+		std::map<MatchField, int> _map_checker;
+
+		//ƒ}ƒbƒvƒNƒ‰ƒX‚ğ—p‚¢‚ÄŠe”Õ–Ê‚ª“oê‚µ‚½‰ñ”‚ğƒJƒEƒ“ƒg‚·‚é
+		for (auto &i : _field)
+		{
+			_map_checker[i]++;
+		}
+
+		//ˆê”Ô‘½‚­“oê‚µ‚½”Õ–Ê‚Ì“oê‰ñ”‚ğ‹L˜^‚·‚é
+		int _MAX_field_num = -1;
+
+		for (auto &i : _map_checker)
+		{
+			if (i.second > _MAX_field_num) { _MAX_field_num = i.second; }
+		}
+
+		//ç“úè‚Æ”»’f‚³‚ê‚é‰ñ”‚ğ‰º‰ñ‚Á‚Ä‚¢‚½ê‡•s³
+		if (_MAX_field_num < VariousFunctionsForMatchGame::SENNICHITE) 
+		{
+			printfDx("Ÿ•‰‚ª‚Â‚¢‚Ä‚¢‚Ü‚¹‚ñ‚ªAç“úè‚Å‚Í‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n");
+			return true;
+		}
+	}
+	else {
+		//Ÿ•‰‚ª‚Â‚¢‚Ä‚¢‚éê‡—¼ÒŸ—˜‚Æ‚È‚Á‚Ä‚¢‚È‚¢‚©Šm‚©‚ß‚é
+		if(_field.back().doesWinFirstPlayer() == true && _field.back().doesWinSecondPlayer() == true)
+		{
+			//—¼ÒŸ—˜‚Æ‚È‚é”Õ–Ê‚Í•s³
+			printfDx("—¼ÒŸ—˜”»’è‚Æ‚È‚é”Õ–Ê‚Å‚·\n");
+			return true;
+		}
+	}
+
+	//Ÿ‚ÉA”Õ–Ê‚ª³‚µ‚¢‡˜‚Å•À‚ñ‚Å‚¢‚é‚©’²‚×‚é
+	MatchField _next;
+	int command = 0;
+
+	for (size_t i = 0; i < _field.size(); i++)
+	{
+		//”Õ–Ê‚ªÅŒã‚Ì”Õ–Ê‚Å‚È‚¢ê‡
+		if (i < _field.size() - 1)
+		{
+			//Ÿ”Õ–Ê‚Ö‚ÌƒRƒ}ƒ“ƒh‚ğæ“¾‚·‚é
+			command = VariousFunctionsForMatchGame::getCommand(_field.at(i), _field.at(i + 1), m_mod_rule, m_self_rule);
+
+			//ƒRƒ}ƒ“ƒh‚ª•s³‚È‚à‚Ì‚©’²‚×‚é
+			if (command == VariousFunctionsForMatchGame::COMMAND_ERROR)
+			{
+				printfDx("”Õ–Ê‚É˜A‘±«‚ª‚ ‚è‚Ü‚¹‚ñ%d\n", i);
+				return true;
+			}
+		}
+	}
+
+	//‘S‚Ä’²‚×I‚í‚Á‚½‚È‚ç‚Ó‚¹‚¢‚Å‚È‚¢
+	return false;
+}
+
+

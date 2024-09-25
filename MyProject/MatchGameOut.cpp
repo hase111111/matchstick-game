@@ -1,436 +1,436 @@
-ï»¿//#include"MatchGameCommon.h"
-//#include<fstream>
-//#include"DxLib.h"
-//#include<string>
-//
-///// <summary>
-///// å®Ÿè¡Œã«çµæ§‹æ™‚é–“ã‹ã‹ã‚‹ã®ã§ã»ã©ã»ã©ã«
-///// </summary>
-///// <param name="_self_harm"></param>
-//void VariousFunctionsForMatchGame::outputEvaluationList(bool _self_harm)
-//{
-//	const int NOT_YET = 100000;
-//	const bool SAIHAI = true;
-//	const int SAIHAI_NUM = (SAIHAI == true) ? 2 : 1;
-//
-//	//ãƒ•ã‚¡ã‚¤ãƒ«æ›¸ãè¾¼ã¿ã®æº–å‚™
-//	std::string filename = "OutputEvaluationList.txt";
-//	std::ofstream result_file;
-//	result_file.open(filename, std::ios::out);
-//
-//	//è€ƒãˆã†ã‚‹å…¨ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’ã‚³ãƒ³ãƒ†ãƒŠã«å…¥ã‚Œã‚‹
-//	std::map<MatchField, int> brain_first;
-//	MatchField _temp;
-//	
-//	for (int pl1f = 0; pl1f < 5; pl1f++) { for (int pl1s = 0; pl1s < 5; pl1s++) { for (int pl2f = 0; pl2f < 5; pl2f++) { for (int pl2s = 0; pl2s < 5; pl2s++) 
-//	{
-//		for (int turn = 0; turn < 2; turn++)
-//		{
-//			for (int saihai1 = 0; saihai1 < SAIHAI_NUM; saihai1++) {	for (int saihai2 = 0; saihai2 < SAIHAI_NUM; saihai2++) {
-//				_temp.player1.first = pl1f;
-//				_temp.player1.second = pl1s;
-//				_temp.player2.first = pl2f;
-//				_temp.player2.second = pl2s;
-//				_temp.turn = (turn == 0) ? true : false;
-//				_temp.player1_avatar_num = saihai1;
-//				_temp.player2_avatar_num = saihai2;
-//
-//				_temp.Optimisation();
-//				brain_first[_temp] = NOT_YET;
-//			}}
-//		}
-//	}}}}
-//
-//	//å…¨ã¦ã‚’ç¶²ç¾…ã—ã€è©•ä¾¡çµæœã‚’è¨˜éŒ²ã™ã‚‹
-//	for (auto i = brain_first.begin(); i != brain_first.end(); i++)
-//	{
-//		(*i).second = VariousFunctionsForMatchGame::evaluationFunction((*i).first, true, _self_harm);
-//	}
-//
-//	//å‡ºåŠ›ã‚’è¡Œã†
-//	result_file << "MatchField _temp;\n";
-//
-//	for (auto &i : brain_first)
-//	{
-//		result_file << "_temp.player1.first = " << i.first.player1.first << ";";
-//		result_file << "_temp.player1.second = " << i.first.player1.second << ";";
-//		result_file << "_temp.player2.first = " << i.first.player2.first << ";";
-//		result_file << "_temp.player2.second = " << i.first.player2.second << ";";
-//
-//		result_file << "_temp.turn = " << i.first.turn << ";";
-//
-//		result_file << "_temp.player1_avatar_num = " << i.first.player1_avatar_num << ";";
-//		result_file << "_temp.player2_avatar_num = " << i.first.player2_avatar_num << ";\n";
-//
-//		if (_self_harm == true) {
-//			result_file << "m_list_self[_temp] = " << i.second << ";\n";
-//		}
-//		else {
-//			result_file << "m_list[_temp] = " << i.second << ";\n";
-//		}
-//	}
-//
-//	result_file.close();
-//}
-//
-//void VariousFunctionsForMatchGame::outputEvaluationListForMod(bool _self_harm)
-//{
-//	const int NOT_YET = 100000;
-//	const bool SAIHAI = true;
-//	const int SAIHAI_NUM = (SAIHAI == true) ? 2 : 1;
-//
-//	//ãƒ•ã‚¡ã‚¤ãƒ«æ›¸ãè¾¼ã¿ã®æº–å‚™
-//	std::string filename = "OutputEvaluationList.txt";
-//	std::ofstream result_file;
-//	result_file.open(filename, std::ios::out);
-//
-//	//è€ƒãˆã†ã‚‹å…¨ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’ã‚³ãƒ³ãƒ†ãƒŠã«å…¥ã‚Œã‚‹
-//	std::map<MatchField, int> brain_point;
-//	std::map<MatchField, std::vector<MatchField>> brain_vec;
-//	MatchField _temp;
-//	std::vector<MatchField> _blank;
-//
-//	for (int pl1f = 0; pl1f < 5; pl1f++) {
-//		for (int pl1s = 0; pl1s < 5; pl1s++) {
-//			for (int pl2f = 0; pl2f < 5; pl2f++) {
-//				for (int pl2s = 0; pl2s < 5; pl2s++)
-//				{
-//					for (int turn = 0; turn < 2; turn++)
-//					{
-//						for (int saihai1 = 0; saihai1 < SAIHAI_NUM; saihai1++) {
-//							for (int saihai2 = 0; saihai2 < SAIHAI_NUM; saihai2++) {
-//
-//								//æ‰‹ã®ãƒ‡ãƒ¼ã‚¿ 0ï½4 / ç¾åœ¨ã®ã‚¿ãƒ¼ãƒ³ 0or1 / é‡‡é…å›æ•° 0or1
-//								_temp.player1.first = pl1f;
-//								_temp.player1.second = pl1s;
-//								_temp.player2.first = pl2f;
-//								_temp.player2.second = pl2s;
-//								_temp.turn = (turn == 0) ? true : false;
-//								_temp.player1_avatar_num = saihai1;
-//								_temp.player2_avatar_num = saihai2;
-//
-//								_temp.Optimisation();	//æœ€é©åŒ–ã™ã‚‹
-//
-//								//mapã‚’æ‹¡å¼µ
-//								brain_point[_temp] = NOT_YET;
-//								brain_vec[_temp] = _blank;
-//							}
-//						}
-//					}
-//				}
-//			}
-//		}
-//	}
-//
-//	//ã‚²ãƒ¼ãƒ æœ¨ã‚’ä½œæˆã™ã‚‹
-//	for (auto i = brain_vec.begin(); i != brain_vec.end(); i++)
-//	{
-//		makeNextFieldList((*i).second, (*i).first, true, _self_harm);
-//	}
-//
-//	//å„ç›¤é¢ã‚’æ¡ç‚¹ã™ã‚‹
-//	const int __MAX_LOOP_NUM = 20;
-//	int loop_cnt = 0;
-//
-//	while (true)
-//	{
-//		//æ¡ç‚¹å®Œäº†ã—ã¦ã„ã‚‹ã‹ç¢ºèªã™ã‚‹
-//		int fin_counter = 0, fin_count = (int)brain_point.size() - 1;
-//
-//		//å®Ÿéš›ã«æ¡ç‚¹ã™ã‚‹
-//		for (auto i = brain_vec.begin(); i != brain_vec.end(); i++)
-//		{
-//			//æ¬¡ç›¤é¢ãŒç”Ÿæˆã§ãã¦ã„ãªã„(æ±ºç€ãŒã¤ã„ã¦ã„ã‚‹)å ´åˆ ã‹ã¤ æ¡ç‚¹ã—çµ‚ã‚ã£ã¦ã„ãªã„å ´åˆ
-//			if ((*i).second.empty() == true && brain_point[(*i).first] == NOT_YET)
-//			{
-//				if ((*i).first.isEndOfGame() == false) {	//errç™ºç”Ÿ
-//					brain_point[(*i).first] = ERROR_EVALUATION;
-//					printfDx("err\n");
-//				}
-//				else if ((*i).first.doesWinFirstPlayer() == true) {	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å´ãŒå‹åˆ©ã—ã¦ã„ãŸã‚‰WINã‚’ä»£å…¥ã•ã›ã‚‹
-//					brain_point[(*i).first] = WIN;
-//				}
-//				else {	//ãã†ã˜ã‚ƒãªã‘ã‚Œã°æ•—åŒ—ã¨ã™ã‚‹
-//					brain_point[(*i).first] = LOSE;
-//				}
-//			}
-//			//æ¬¡ç›¤é¢ãŒç”Ÿæˆã§ãã‚‹å ´åˆ ã‹ã¤ æ¡ç‚¹ã—çµ‚ã‚ã£ã¦ã„ãªã„å ´åˆ
-//			else if (brain_point[(*i).first] == NOT_YET)
-//			{
-//				//æ¬¡ç›¤é¢ã®æ¡ç‚¹ãŒã™ã¹ã¦çµ‚ã‚ã£ã¦ã„ã‚‹ã‹èª¿ã¹ã‚‹
-//				int win_num = 0, lose_num = 0, not_yet_num = 0;
-//				int point_MAX = LOSE * 3, point_min = WIN * 3;
-//
-//				//å…¨æ¬¡ç›¤é¢ã‚’å›ã—ã¦ãƒã‚¤ãƒ³ãƒˆã‚’ç¢ºèªã™ã‚‹
-//				for (auto& vec_itr : (*i).second)
-//				{
-//					if (brain_point[vec_itr] == NOT_YET) { //ã¾ã çµ‚ã‚ã£ã¦ã„ãªã„
-//						not_yet_num++;
-//					}
-//					//æ¡ç‚¹æ¸ˆã¿
-//					else 
-//					{	
-//						if (brain_point[vec_itr] > WIN - 30) { 
-//							win_num++; 
-//						}
-//						if (brain_point[vec_itr] < LOSE + 30) { 
-//							lose_num++; 
-//						}
-//
-//						if (point_MAX <= brain_point[vec_itr]) point_MAX = brain_point[vec_itr];
-//						if (point_min >= brain_point[vec_itr]) point_min = brain_point[vec_itr];
-//					}
-//				}
-//
-//				//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼å´ã®ã‚¿ãƒ¼ãƒ³ãªã‚‰æœ€å–„æ‰‹ã‚’é¸ã¶
-//				if ((*i).first.turn == true)
-//				{
-//					if (win_num >= 1) { brain_point[(*i).first] = point_MAX - 1; }							//ä¸€ã¤ã§ã‚‚å‹åˆ©ã—ãŸç›¤é¢ãŒã‚ã‚‹ãªã‚‰ã°ãã‚Œã‚’é¸æŠã™ã‚‹
-//					else if (win_num == 0 && not_yet_num == 0) { brain_point[(*i).first] = point_MAX + 1; }	//æ•—åŒ—ã™ã‚‹ç›¤é¢ã—ã‹ãªã„ã®ãªã‚‰è² ã‘
-//				}
-//				//æ•µã®ã‚¿ãƒ¼ãƒ³ãªã‚‰æœ€æ‚ªæ‰‹ã‚’é¸ã¶
-//				else {
-//					if (lose_num >= 1) { brain_point[(*i).first] = point_min + 1; }							//ä¸€ã¤ã§ã‚‚æ•—åŒ—ã—ãŸç›¤é¢ãŒã‚ã‚‹ãªã‚‰ã°ãã‚Œã‚’é¸æŠã™ã‚‹
-//					else if (lose_num == 0 && not_yet_num == 0) { brain_point[(*i).first] = point_min - 1; }	//å‹åˆ©ã™ã‚‹ç›¤é¢ã—ã‹ãªã„ã®ãªã‚‰
-//				}
-//
-//			}
-//			//æ¡ç‚¹å®Œäº†ã—ã¦ã„ã‚‹å ´åˆ
-//			else if(brain_point[(*i).first] != NOT_YET)
-//			{
-//				fin_counter++;	//ã‚«ã‚¦ãƒ³ã‚¿ã‚’å›ã™
-//			}
-//		}
-//
-//		//æ¡ç‚¹çµ‚äº†ã—ã¦ã„ã‚‹ãªã‚‰ãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã‚‹
-//		if (fin_counter == fin_count) { break; }
-//
-//		loop_cnt++;
-//		if (loop_cnt > __MAX_LOOP_NUM) {
-//			printfDx("\næ¡ç‚¹å®Œäº†ç›¤é¢...%då€‹/%då€‹ä¸­\nå¼·åˆ¶çµ‚äº†", fin_counter, fin_count + 1);
-//			break;
-//		}
-//	}
-//
-//	//æ¡ç‚¹çµ‚äº†ã—ã¦ã„ãªã„ç›¤é¢ã‚’0ç‚¹ã«è¨­å®š
-//	for (auto i = brain_point.begin(); i != brain_point.end(); i++)
-//	{
-//		if ((*i).second == NOT_YET) {
-//			(*i).second = 0;
-//		}
-//	}
-//
-//	//å‡ºåŠ›ã‚’è¡Œã†
-//	{
-//		result_file << "MatchField _temp;\n";
-//
-//		for (auto& i : brain_point)
-//		{
-//			result_file << "_temp.player1.first = " << i.first.player1.first << ";";
-//			result_file << "_temp.player1.second = " << i.first.player1.second << ";";
-//			result_file << "_temp.player2.first = " << i.first.player2.first << ";";
-//			result_file << "_temp.player2.second = " << i.first.player2.second << ";";
-//
-//			result_file << "_temp.turn = " << i.first.turn << ";";
-//
-//			result_file << "_temp.player1_avatar_num = " << i.first.player1_avatar_num << ";";
-//			result_file << "_temp.player2_avatar_num = " << i.first.player2_avatar_num << ";\n";
-//
-//			if (_self_harm == true) {
-//				result_file << "m_list_mod_self[_temp] = " << i.second << ";\n";
-//			}
-//			else {
-//				result_file << "m_list_mod[_temp] = " << i.second << ";\n";
-//			}
-//		}
-//	}
-//
-//	result_file.close();
-//}
-//
-//bool VariousFunctionsForMatchGame::outputFieldList(const std::vector<MatchField>& _field_list, const bool _mod_rule, const bool _self_harm)
-//{
-//	std::string filename = "./replay/";	//ãƒ•ã‚¡ã‚¤ãƒ«åã‚’æ±ºå®šã™ã‚‹
-//
-//	//æ—¥ä»˜å–å¾—
-//	DATEDATA _date;
-//	GetDateTime(&_date);
-//
-//	//ãƒ•ã‚¡ã‚¤ãƒ«åã«æ—¥ä»˜ã‚’å‡ºåŠ›
-//	filename += std::to_string(_date.Year);		//å¹´
-//	if (_date.Mon < 10) { filename += "0"; }	//æœˆãŒ10ä»¥ä¸‹ãªã‚‰ã°0ã‚’æŒ¿å…¥
-//	filename += std::to_string(_date.Mon);		//æœˆ
-//	if (_date.Day < 10) { filename += "0"; }	//æ—¥ãŒ10ä»¥ä¸‹ãªã‚‰ã°0ã‚’æŒ¿å…¥
-//	filename += std::to_string(_date.Day);		//æ—¥
-//
-//	filename += "_";	//ãƒã‚¤ãƒ•ãƒ³æŒ¿å…¥
-//
-//	if (_date.Hour < 10) { filename += "0"; }	//æ™‚é–“ãŒ10ä»¥ä¸‹ãªã‚‰ã°0ã‚’æŒ¿å…¥
-//	filename += std::to_string(_date.Hour);		//æ™‚é–“
-//	if (_date.Min < 10) { filename += "0"; }	//åˆ†ãŒ10ä»¥ä¸‹ãªã‚‰ã°0ã‚’æŒ¿å…¥
-//	filename += std::to_string(_date.Min);		//åˆ†
-//	if (_date.Sec < 10) { filename += "0"; }	//ç§’ãŒ10ä»¥ä¸‹ãªã‚‰ã°0ã‚’æŒ¿å…¥
-//	filename += std::to_string(_date.Sec);		//ç§’
-//
-//	filename += "_Match.dat";
-//
-//	std::ofstream result_file;
-//
-//	//å‡ºåŠ›ãƒ»ãƒã‚¤ãƒŠãƒªãƒ¢ãƒ¼ãƒ‰ã§ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
-//	result_file.open(filename, std::ios::out | std::ios::binary);
-//
-//	//å¤±æ•—ã—ãŸå ´åˆFALSEã‚’è¿”ã™
-//	if (!result_file.is_open())
-//	{
-//		return false;
-//	}
-//
-//	//æˆåŠŸã—ãŸå ´åˆãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã‚€
-//
-//	//ã‚¿ã‚¤ãƒˆãƒ«
-//	char title[] = "MRE";
-//	result_file.write(title, sizeof(title));
-//
-//	char buf;
-//	//MOD5ãƒ«ãƒ¼ãƒ«ã®é©ç”¨
-//	buf = (_mod_rule == true) ? 1 : 0;
-//	result_file.write(&buf, sizeof(buf));
-//
-//	//è‡ªå‚·ãƒ«ãƒ¼ãƒ«ã®é©ç”¨
-//	buf = (_self_harm == true) ? 1 : 0;
-//	result_file.write(&buf, sizeof(buf));
-//
-//	//ã“ã“ã‹ã‚‰ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’å‡ºåŠ›
-//	for (auto& i : _field_list)
-//	{
-//		//ãƒ‡ãƒ¼ã‚¿ã®é–‹å§‹åœ°ç‚¹ã«FEã‚’ä»•è¾¼ã‚€
-//		buf = 'S';
-//		result_file.write(&buf, sizeof(buf));
-//
-//		//PLAYER1ã®ãƒ‡ãƒ¼ã‚¿
-//		buf = (char)i.player1.first;
-//		result_file.write(&buf, sizeof(buf));
-//
-//		buf = (char)i.player1.second;
-//		result_file.write(&buf, sizeof(buf));
-//
-//		//PLAYER2ã®ãƒ‡ãƒ¼ã‚¿
-//		buf = (char)i.player2.first;
-//		result_file.write(&buf, sizeof(buf));
-//
-//		buf = (char)i.player2.second;
-//		result_file.write(&buf, sizeof(buf));
-//
-//		//TURNã®ãƒ‡ãƒ¼ã‚¿
-//		buf = (i.turn == true) ? 1 : 0;
-//		result_file.write(&buf, sizeof(buf));
-//
-//		//é‡‡é…ã®ãƒ‡ãƒ¼ã‚¿
-//		buf = (char)i.player1_avatar_num;
-//		result_file.write(&buf, sizeof(buf));
-//
-//		buf = (char)i.player2_avatar_num;
-//		result_file.write(&buf, sizeof(buf));
-//	}
-//
-//	//ãƒ‡ãƒ¼ã‚¿ã®çµ‚ç‚¹ã«FFã‚’ä»•è¾¼ã‚€
-//	buf = 'E';
-//	result_file.write(&buf, sizeof(buf));
-//
-//	result_file.close();
-//
-//	return true;
-//}
-//
-//bool VariousFunctionsForMatchGame::inputFieldList(const std::string _filename, std::vector<MatchField>& _field_list, bool& _mod_rule, bool& _self_harm)
-//{
-//	std::ifstream _file;
-//
-//	//å…¥åŠ›ãƒ»ãƒã‚¤ãƒŠãƒªãƒ¢ãƒ¼ãƒ‰ã§ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã
-//	_file.open(_filename, std::ios::in | std::ios::binary);
-//
-//	//å¤±æ•—ã—ãŸå ´åˆFALSEã‚’è¿”ã™
-//	if (!_file.is_open())
-//	{
-//		return false;
-//	}
-//
-//	char buf;
-//
-//	//ã‚¿ã‚¤ãƒˆãƒ«ãŒ MRE ã§ã‚ã‚‹ã“ã¨ã‚’ç¢ºèªã™ã‚‹
-//	if (_file.eof() == true) { return false; }
-//	_file.read(&buf, sizeof(buf));
-//	if (buf != 'M') { return false; }
-//
-//	if (_file.eof() == true) { return false; }
-//	_file.read(&buf, sizeof(buf));
-//	if (buf != 'R') { return false; }
-//
-//	if (_file.eof() == true) { return false; }
-//	_file.read(&buf, sizeof(buf));
-//	if (buf != 'E') { return false; }
-//
-//	if (_file.eof() == true) { return false; }
-//	_file.read(&buf, sizeof(buf));		//è™šç„¡ã‚’èª­ã¿è¾¼ã‚€
-//
-//	//ãƒ«ãƒ¼ãƒ«ã‚’èª­ã¿è¾¼ã‚€
-//	if (_file.eof() == true) { return false; }
-//	_file.read(&buf, sizeof(buf));
-//	if (buf != 1 && buf != 0) { return false; }
-//	_mod_rule = (buf == 1) ? true : false;
-//
-//	if (_file.eof() == true) { return false; }
-//	_file.read(&buf, sizeof(buf));
-//	if (buf != 1 && buf != 0) { return false; }
-//	_self_harm = (buf == 1) ? true : false;
-//
-//	//ãƒ•ã‚¡ã‚¤ãƒ«ã®çµ‚ç«¯ã«ãªã‚‹ã¾ã§ãƒ«ãƒ¼ãƒ—
-//	MatchField _temp_field;
-//
-//	while (_file.eof() == false)
-//	{
-//		//å…ˆé ­ã®æ–‡å­—ã‚’ç¢ºèª
-//		if (_file.eof() == true) { return false; }
-//		_file.read(&buf, sizeof(buf));
-//		if (buf == 'E') { break; }		//Eãªã‚‰çµ‚äº†
-//		if (buf != 'S') { return false; }	//Sã§ãªã„ãªã‚‰ã‚¨ãƒ©ãƒ¼
-//
-//		//player1
-//		if (_file.eof() == true) { return false; }
-//		_file.read(&buf, sizeof(buf));
-//		_temp_field.player1.first = (int)buf;
-//
-//		if (_file.eof() == true) { return false; }
-//		_file.read(&buf, sizeof(buf));
-//		_temp_field.player1.second = (int)buf;
-//
-//		//player2
-//		if (_file.eof() == true) { return false; }
-//		_file.read(&buf, sizeof(buf));
-//		_temp_field.player2.first = (int)buf;
-//
-//		if (_file.eof() == true) { return false; }
-//		_file.read(&buf, sizeof(buf));
-//		_temp_field.player2.second = (int)buf;
-//
-//		//ãŸãƒ¼ã‚“
-//		if (_file.eof() == true) { return false; }
-//		_file.read(&buf, sizeof(buf));
-//		if (buf != 1 && buf != 0) { return false; }
-//		_temp_field.turn = (buf == 1) ? true : false;
-//
-//		//é‡‡é…
-//		if (_file.eof() == true) { return false; }
-//		_file.read(&buf, sizeof(buf));
-//		_temp_field.player1_avatar_num = (int)buf;
-//
-//		if (_file.eof() == true) { return false; }
-//		_file.read(&buf, sizeof(buf));
-//		_temp_field.player2_avatar_num = (int)buf;
-//
-//		_temp_field.Optimisation();
-//		_field_list.push_back(_temp_field);
-//	}
-//
-//	return true;
-//}
+#include"MatchGameCommon.h"
+#include<fstream>
+#include"DxLib.h"
+#include<string>
+
+/// <summary>
+/// Às‚ÉŒ‹\ŠÔ‚©‚©‚é‚Ì‚Å‚Ù‚Ç‚Ù‚Ç‚É
+/// </summary>
+/// <param name="_self_harm"></param>
+void VariousFunctionsForMatchGame::outputEvaluationList(bool _self_harm)
+{
+	const int NOT_YET = 100000;
+	const bool SAIHAI = true;
+	const int SAIHAI_NUM = (SAIHAI == true) ? 2 : 1;
+
+	//ƒtƒ@ƒCƒ‹‘‚«‚İ‚Ì€”õ
+	std::string filename = "OutputEvaluationList.txt";
+	std::ofstream result_file;
+	result_file.open(filename, std::ios::out);
+
+	//l‚¦‚¤‚é‘Sƒpƒ^[ƒ“‚ğƒRƒ“ƒeƒi‚É“ü‚ê‚é
+	std::map<MatchField, int> brain_first;
+	MatchField _temp;
+	
+	for (int pl1f = 0; pl1f < 5; pl1f++) { for (int pl1s = 0; pl1s < 5; pl1s++) { for (int pl2f = 0; pl2f < 5; pl2f++) { for (int pl2s = 0; pl2s < 5; pl2s++) 
+	{
+		for (int turn = 0; turn < 2; turn++)
+		{
+			for (int saihai1 = 0; saihai1 < SAIHAI_NUM; saihai1++) {	for (int saihai2 = 0; saihai2 < SAIHAI_NUM; saihai2++) {
+				_temp.player1.first = pl1f;
+				_temp.player1.second = pl1s;
+				_temp.player2.first = pl2f;
+				_temp.player2.second = pl2s;
+				_temp.turn = (turn == 0) ? true : false;
+				_temp.player1_avatar_num = saihai1;
+				_temp.player2_avatar_num = saihai2;
+
+				_temp.Optimisation();
+				brain_first[_temp] = NOT_YET;
+			}}
+		}
+	}}}}
+
+	//‘S‚Ä‚ğ–Ô—…‚µA•]‰¿Œ‹‰Ê‚ğ‹L˜^‚·‚é
+	for (auto i = brain_first.begin(); i != brain_first.end(); i++)
+	{
+		(*i).second = VariousFunctionsForMatchGame::evaluationFunction((*i).first, true, _self_harm);
+	}
+
+	//o—Í‚ğs‚¤
+	result_file << "MatchField _temp;\n";
+
+	for (auto &i : brain_first)
+	{
+		result_file << "_temp.player1.first = " << i.first.player1.first << ";";
+		result_file << "_temp.player1.second = " << i.first.player1.second << ";";
+		result_file << "_temp.player2.first = " << i.first.player2.first << ";";
+		result_file << "_temp.player2.second = " << i.first.player2.second << ";";
+
+		result_file << "_temp.turn = " << i.first.turn << ";";
+
+		result_file << "_temp.player1_avatar_num = " << i.first.player1_avatar_num << ";";
+		result_file << "_temp.player2_avatar_num = " << i.first.player2_avatar_num << ";\n";
+
+		if (_self_harm == true) {
+			result_file << "m_list_self[_temp] = " << i.second << ";\n";
+		}
+		else {
+			result_file << "m_list[_temp] = " << i.second << ";\n";
+		}
+	}
+
+	result_file.close();
+}
+
+void VariousFunctionsForMatchGame::outputEvaluationListForMod(bool _self_harm)
+{
+	const int NOT_YET = 100000;
+	const bool SAIHAI = true;
+	const int SAIHAI_NUM = (SAIHAI == true) ? 2 : 1;
+
+	//ƒtƒ@ƒCƒ‹‘‚«‚İ‚Ì€”õ
+	std::string filename = "OutputEvaluationList.txt";
+	std::ofstream result_file;
+	result_file.open(filename, std::ios::out);
+
+	//l‚¦‚¤‚é‘Sƒpƒ^[ƒ“‚ğƒRƒ“ƒeƒi‚É“ü‚ê‚é
+	std::map<MatchField, int> brain_point;
+	std::map<MatchField, std::vector<MatchField>> brain_vec;
+	MatchField _temp;
+	std::vector<MatchField> _blank;
+
+	for (int pl1f = 0; pl1f < 5; pl1f++) {
+		for (int pl1s = 0; pl1s < 5; pl1s++) {
+			for (int pl2f = 0; pl2f < 5; pl2f++) {
+				for (int pl2s = 0; pl2s < 5; pl2s++)
+				{
+					for (int turn = 0; turn < 2; turn++)
+					{
+						for (int saihai1 = 0; saihai1 < SAIHAI_NUM; saihai1++) {
+							for (int saihai2 = 0; saihai2 < SAIHAI_NUM; saihai2++) {
+
+								//è‚Ìƒf[ƒ^ 0`4 / Œ»İ‚Ìƒ^[ƒ“ 0or1 / Ñ”z‰ñ” 0or1
+								_temp.player1.first = pl1f;
+								_temp.player1.second = pl1s;
+								_temp.player2.first = pl2f;
+								_temp.player2.second = pl2s;
+								_temp.turn = (turn == 0) ? true : false;
+								_temp.player1_avatar_num = saihai1;
+								_temp.player2_avatar_num = saihai2;
+
+								_temp.Optimisation();	//Å“K‰»‚·‚é
+
+								//map‚ğŠg’£
+								brain_point[_temp] = NOT_YET;
+								brain_vec[_temp] = _blank;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	//ƒQ[ƒ€–Ø‚ğì¬‚·‚é
+	for (auto i = brain_vec.begin(); i != brain_vec.end(); i++)
+	{
+		makeNextFieldList((*i).second, (*i).first, true, _self_harm);
+	}
+
+	//Še”Õ–Ê‚ğÌ“_‚·‚é
+	const int __MAX_LOOP_NUM = 20;
+	int loop_cnt = 0;
+
+	while (true)
+	{
+		//Ì“_Š®—¹‚µ‚Ä‚¢‚é‚©Šm”F‚·‚é
+		int fin_counter = 0, fin_count = (int)brain_point.size() - 1;
+
+		//ÀÛ‚ÉÌ“_‚·‚é
+		for (auto i = brain_vec.begin(); i != brain_vec.end(); i++)
+		{
+			//Ÿ”Õ–Ê‚ª¶¬‚Å‚«‚Ä‚¢‚È‚¢(Œˆ’…‚ª‚Â‚¢‚Ä‚¢‚é)ê‡ ‚©‚Â Ì“_‚µI‚í‚Á‚Ä‚¢‚È‚¢ê‡
+			if ((*i).second.empty() == true && brain_point[(*i).first] == NOT_YET)
+			{
+				if ((*i).first.isEndOfGame() == false) {	//err”­¶
+					brain_point[(*i).first] = ERROR_EVALUATION;
+					printfDx("err\n");
+				}
+				else if ((*i).first.doesWinFirstPlayer() == true) {	//ƒvƒŒƒCƒ„[‘¤‚ªŸ—˜‚µ‚Ä‚¢‚½‚çWIN‚ğ‘ã“ü‚³‚¹‚é
+					brain_point[(*i).first] = WIN;
+				}
+				else {	//‚»‚¤‚¶‚á‚È‚¯‚ê‚Î”s–k‚Æ‚·‚é
+					brain_point[(*i).first] = LOSE;
+				}
+			}
+			//Ÿ”Õ–Ê‚ª¶¬‚Å‚«‚éê‡ ‚©‚Â Ì“_‚µI‚í‚Á‚Ä‚¢‚È‚¢ê‡
+			else if (brain_point[(*i).first] == NOT_YET)
+			{
+				//Ÿ”Õ–Ê‚ÌÌ“_‚ª‚·‚×‚ÄI‚í‚Á‚Ä‚¢‚é‚©’²‚×‚é
+				int win_num = 0, lose_num = 0, not_yet_num = 0;
+				int point_MAX = LOSE * 3, point_min = WIN * 3;
+
+				//‘SŸ”Õ–Ê‚ğ‰ñ‚µ‚Äƒ|ƒCƒ“ƒg‚ğŠm”F‚·‚é
+				for (auto& vec_itr : (*i).second)
+				{
+					if (brain_point[vec_itr] == NOT_YET) { //‚Ü‚¾I‚í‚Á‚Ä‚¢‚È‚¢
+						not_yet_num++;
+					}
+					//Ì“_Ï‚İ
+					else 
+					{	
+						if (brain_point[vec_itr] > WIN - 30) { 
+							win_num++; 
+						}
+						if (brain_point[vec_itr] < LOSE + 30) { 
+							lose_num++; 
+						}
+
+						if (point_MAX <= brain_point[vec_itr]) point_MAX = brain_point[vec_itr];
+						if (point_min >= brain_point[vec_itr]) point_min = brain_point[vec_itr];
+					}
+				}
+
+				//ƒvƒŒƒCƒ„[‘¤‚Ìƒ^[ƒ“‚È‚çÅ‘Pè‚ğ‘I‚Ô
+				if ((*i).first.turn == true)
+				{
+					if (win_num >= 1) { brain_point[(*i).first] = point_MAX - 1; }							//ˆê‚Â‚Å‚àŸ—˜‚µ‚½”Õ–Ê‚ª‚ ‚é‚È‚ç‚Î‚»‚ê‚ğ‘I‘ğ‚·‚é
+					else if (win_num == 0 && not_yet_num == 0) { brain_point[(*i).first] = point_MAX + 1; }	//”s–k‚·‚é”Õ–Ê‚µ‚©‚È‚¢‚Ì‚È‚ç•‰‚¯
+				}
+				//“G‚Ìƒ^[ƒ“‚È‚çÅˆ«è‚ğ‘I‚Ô
+				else {
+					if (lose_num >= 1) { brain_point[(*i).first] = point_min + 1; }							//ˆê‚Â‚Å‚à”s–k‚µ‚½”Õ–Ê‚ª‚ ‚é‚È‚ç‚Î‚»‚ê‚ğ‘I‘ğ‚·‚é
+					else if (lose_num == 0 && not_yet_num == 0) { brain_point[(*i).first] = point_min - 1; }	//Ÿ—˜‚·‚é”Õ–Ê‚µ‚©‚È‚¢‚Ì‚È‚ç
+				}
+
+			}
+			//Ì“_Š®—¹‚µ‚Ä‚¢‚éê‡
+			else if(brain_point[(*i).first] != NOT_YET)
+			{
+				fin_counter++;	//ƒJƒEƒ“ƒ^‚ğ‰ñ‚·
+			}
+		}
+
+		//Ì“_I—¹‚µ‚Ä‚¢‚é‚È‚çƒ‹[ƒv‚ğ”²‚¯‚é
+		if (fin_counter == fin_count) { break; }
+
+		loop_cnt++;
+		if (loop_cnt > __MAX_LOOP_NUM) {
+			printfDx("\nÌ“_Š®—¹”Õ–Ê...%dŒÂ/%dŒÂ’†\n‹­§I—¹", fin_counter, fin_count + 1);
+			break;
+		}
+	}
+
+	//Ì“_I—¹‚µ‚Ä‚¢‚È‚¢”Õ–Ê‚ğ0“_‚Éİ’è
+	for (auto i = brain_point.begin(); i != brain_point.end(); i++)
+	{
+		if ((*i).second == NOT_YET) {
+			(*i).second = 0;
+		}
+	}
+
+	//o—Í‚ğs‚¤
+	{
+		result_file << "MatchField _temp;\n";
+
+		for (auto& i : brain_point)
+		{
+			result_file << "_temp.player1.first = " << i.first.player1.first << ";";
+			result_file << "_temp.player1.second = " << i.first.player1.second << ";";
+			result_file << "_temp.player2.first = " << i.first.player2.first << ";";
+			result_file << "_temp.player2.second = " << i.first.player2.second << ";";
+
+			result_file << "_temp.turn = " << i.first.turn << ";";
+
+			result_file << "_temp.player1_avatar_num = " << i.first.player1_avatar_num << ";";
+			result_file << "_temp.player2_avatar_num = " << i.first.player2_avatar_num << ";\n";
+
+			if (_self_harm == true) {
+				result_file << "m_list_mod_self[_temp] = " << i.second << ";\n";
+			}
+			else {
+				result_file << "m_list_mod[_temp] = " << i.second << ";\n";
+			}
+		}
+	}
+
+	result_file.close();
+}
+
+bool VariousFunctionsForMatchGame::outputFieldList(const std::vector<MatchField>& _field_list, const bool _mod_rule, const bool _self_harm)
+{
+	std::string filename = "./replay/";	//ƒtƒ@ƒCƒ‹–¼‚ğŒˆ’è‚·‚é
+
+	//“ú•tæ“¾
+	DATEDATA _date;
+	GetDateTime(&_date);
+
+	//ƒtƒ@ƒCƒ‹–¼‚É“ú•t‚ğo—Í
+	filename += std::to_string(_date.Year);		//”N
+	if (_date.Mon < 10) { filename += "0"; }	//Œ‚ª10ˆÈ‰º‚È‚ç‚Î0‚ğ‘}“ü
+	filename += std::to_string(_date.Mon);		//Œ
+	if (_date.Day < 10) { filename += "0"; }	//“ú‚ª10ˆÈ‰º‚È‚ç‚Î0‚ğ‘}“ü
+	filename += std::to_string(_date.Day);		//“ú
+
+	filename += "_";	//ƒnƒCƒtƒ“‘}“ü
+
+	if (_date.Hour < 10) { filename += "0"; }	//ŠÔ‚ª10ˆÈ‰º‚È‚ç‚Î0‚ğ‘}“ü
+	filename += std::to_string(_date.Hour);		//ŠÔ
+	if (_date.Min < 10) { filename += "0"; }	//•ª‚ª10ˆÈ‰º‚È‚ç‚Î0‚ğ‘}“ü
+	filename += std::to_string(_date.Min);		//•ª
+	if (_date.Sec < 10) { filename += "0"; }	//•b‚ª10ˆÈ‰º‚È‚ç‚Î0‚ğ‘}“ü
+	filename += std::to_string(_date.Sec);		//•b
+
+	filename += "_Match.dat";
+
+	std::ofstream result_file;
+
+	//o—ÍEƒoƒCƒiƒŠƒ‚[ƒh‚Åƒtƒ@ƒCƒ‹‚ğŠJ‚­
+	result_file.open(filename, std::ios::out | std::ios::binary);
+
+	//¸”s‚µ‚½ê‡FALSE‚ğ•Ô‚·
+	if (!result_file.is_open())
+	{
+		return false;
+	}
+
+	//¬Œ÷‚µ‚½ê‡ƒtƒ@ƒCƒ‹‚É‘‚«‚Ş
+
+	//ƒ^ƒCƒgƒ‹
+	char title[] = "MRE";
+	result_file.write(title, sizeof(title));
+
+	char buf;
+	//MOD5ƒ‹[ƒ‹‚Ì“K—p
+	buf = (_mod_rule == true) ? 1 : 0;
+	result_file.write(&buf, sizeof(buf));
+
+	//©ƒ‹[ƒ‹‚Ì“K—p
+	buf = (_self_harm == true) ? 1 : 0;
+	result_file.write(&buf, sizeof(buf));
+
+	//‚±‚±‚©‚çƒtƒB[ƒ‹ƒhƒf[ƒ^‚ğo—Í
+	for (auto& i : _field_list)
+	{
+		//ƒf[ƒ^‚ÌŠJn’n“_‚ÉFE‚ğd‚Ş
+		buf = 'S';
+		result_file.write(&buf, sizeof(buf));
+
+		//PLAYER1‚Ìƒf[ƒ^
+		buf = (char)i.player1.first;
+		result_file.write(&buf, sizeof(buf));
+
+		buf = (char)i.player1.second;
+		result_file.write(&buf, sizeof(buf));
+
+		//PLAYER2‚Ìƒf[ƒ^
+		buf = (char)i.player2.first;
+		result_file.write(&buf, sizeof(buf));
+
+		buf = (char)i.player2.second;
+		result_file.write(&buf, sizeof(buf));
+
+		//TURN‚Ìƒf[ƒ^
+		buf = (i.turn == true) ? 1 : 0;
+		result_file.write(&buf, sizeof(buf));
+
+		//Ñ”z‚Ìƒf[ƒ^
+		buf = (char)i.player1_avatar_num;
+		result_file.write(&buf, sizeof(buf));
+
+		buf = (char)i.player2_avatar_num;
+		result_file.write(&buf, sizeof(buf));
+	}
+
+	//ƒf[ƒ^‚ÌI“_‚ÉFF‚ğd‚Ş
+	buf = 'E';
+	result_file.write(&buf, sizeof(buf));
+
+	result_file.close();
+
+	return true;
+}
+
+bool VariousFunctionsForMatchGame::inputFieldList(const std::string _filename, std::vector<MatchField>& _field_list, bool& _mod_rule, bool& _self_harm)
+{
+	std::ifstream _file;
+
+	//“ü—ÍEƒoƒCƒiƒŠƒ‚[ƒh‚Åƒtƒ@ƒCƒ‹‚ğŠJ‚­
+	_file.open(_filename, std::ios::in | std::ios::binary);
+
+	//¸”s‚µ‚½ê‡FALSE‚ğ•Ô‚·
+	if (!_file.is_open())
+	{
+		return false;
+	}
+
+	char buf;
+
+	//ƒ^ƒCƒgƒ‹‚ª MRE ‚Å‚ ‚é‚±‚Æ‚ğŠm”F‚·‚é
+	if (_file.eof() == true) { return false; }
+	_file.read(&buf, sizeof(buf));
+	if (buf != 'M') { return false; }
+
+	if (_file.eof() == true) { return false; }
+	_file.read(&buf, sizeof(buf));
+	if (buf != 'R') { return false; }
+
+	if (_file.eof() == true) { return false; }
+	_file.read(&buf, sizeof(buf));
+	if (buf != 'E') { return false; }
+
+	if (_file.eof() == true) { return false; }
+	_file.read(&buf, sizeof(buf));		//‹•–³‚ğ“Ç‚İ‚Ş
+
+	//ƒ‹[ƒ‹‚ğ“Ç‚İ‚Ş
+	if (_file.eof() == true) { return false; }
+	_file.read(&buf, sizeof(buf));
+	if (buf != 1 && buf != 0) { return false; }
+	_mod_rule = (buf == 1) ? true : false;
+
+	if (_file.eof() == true) { return false; }
+	_file.read(&buf, sizeof(buf));
+	if (buf != 1 && buf != 0) { return false; }
+	_self_harm = (buf == 1) ? true : false;
+
+	//ƒtƒ@ƒCƒ‹‚ÌI’[‚É‚È‚é‚Ü‚Åƒ‹[ƒv
+	MatchField _temp_field;
+
+	while (_file.eof() == false)
+	{
+		//æ“ª‚Ì•¶š‚ğŠm”F
+		if (_file.eof() == true) { return false; }
+		_file.read(&buf, sizeof(buf));
+		if (buf == 'E') { break; }		//E‚È‚çI—¹
+		if (buf != 'S') { return false; }	//S‚Å‚È‚¢‚È‚çƒGƒ‰[
+
+		//player1
+		if (_file.eof() == true) { return false; }
+		_file.read(&buf, sizeof(buf));
+		_temp_field.player1.first = (int)buf;
+
+		if (_file.eof() == true) { return false; }
+		_file.read(&buf, sizeof(buf));
+		_temp_field.player1.second = (int)buf;
+
+		//player2
+		if (_file.eof() == true) { return false; }
+		_file.read(&buf, sizeof(buf));
+		_temp_field.player2.first = (int)buf;
+
+		if (_file.eof() == true) { return false; }
+		_file.read(&buf, sizeof(buf));
+		_temp_field.player2.second = (int)buf;
+
+		//‚½[‚ñ
+		if (_file.eof() == true) { return false; }
+		_file.read(&buf, sizeof(buf));
+		if (buf != 1 && buf != 0) { return false; }
+		_temp_field.turn = (buf == 1) ? true : false;
+
+		//Ñ”z
+		if (_file.eof() == true) { return false; }
+		_file.read(&buf, sizeof(buf));
+		_temp_field.player1_avatar_num = (int)buf;
+
+		if (_file.eof() == true) { return false; }
+		_file.read(&buf, sizeof(buf));
+		_temp_field.player2_avatar_num = (int)buf;
+
+		_temp_field.Optimisation();
+		_field_list.push_back(_temp_field);
+	}
+
+	return true;
+}

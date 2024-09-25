@@ -13,525 +13,300 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\scenes">
-      <UniqueIdentifier>{dc8261a6-02db-48e2-936a-87fa6180e624}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\title_scene">
-      <UniqueIdentifier>{5ca945e6-d8ff-4814-9283-e2289ba5fa76}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\title_scene\entity">
-      <UniqueIdentifier>{16700c1f-3448-45ff-b362-71079bfc61c8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\debug_scene">
-      <UniqueIdentifier>{ed66a868-ebc3-4331-b665-ad1239b2f582}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\common">
+    <Filter Include="ソース ファイル\Common">
       <UniqueIdentifier>{f7f73b4b-c1da-49d0-8fd2-8c504a922908}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\common\input">
-      <UniqueIdentifier>{9a6a7272-5bd8-4396-8770-4254a9dbfe84}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\common\toml11">
-      <UniqueIdentifier>{56dbbd5b-9d6b-4979-bf06-b4e8677b0ebb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\_old">
-      <UniqueIdentifier>{2ae8811f-ecde-4568-bed8-2f4ba0fea400}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\_old\ReplayScene">
-      <UniqueIdentifier>{6d689bb1-38dd-46dd-8137-06ff5a0bdf37}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\_old\GameScene">
-      <UniqueIdentifier>{9059677a-6910-4eed-b7f4-591d69d5cba6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\_old\GameScene\draw">
-      <UniqueIdentifier>{6cdbd00e-c51e-4e47-ba03-6605d69a91d2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\_old\GameScene\progress">
-      <UniqueIdentifier>{1e5ef222-d4b9-447a-9053-26cc20577e77}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\_old\ResultScene">
-      <UniqueIdentifier>{07b68408-6706-491e-99cf-2b8c5999451b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\_old\ResultScene\Draw">
-      <UniqueIdentifier>{6c3e3030-7301-4673-a563-e02c6edd3b16}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\entity">
-      <UniqueIdentifier>{2fa5bfcf-e71c-4168-af5b-e780e96d83a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\systems">
-      <UniqueIdentifier>{cd406cf8-0c3d-4f77-8926-cfe6fe8e77f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\scenes\_old\match game">
-      <UniqueIdentifier>{5ed7f2a4-5183-478c-8e04-3961fac60061}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\systems\scene_controller">
+    <Filter Include="ソース ファイル\SceneController">
       <UniqueIdentifier>{223e1ced-1b86-437f-8a66-23f5986bdfdb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\resource">
-      <UniqueIdentifier>{f7603a56-e309-4a8f-bf75-c71e2272fdcf}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\ConcreteScene">
+      <UniqueIdentifier>{dc8261a6-02db-48e2-936a-87fa6180e624}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\scenes\game_scene">
-      <UniqueIdentifier>{c62f7ccc-97cd-4758-9c1c-b86e087c05fa}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\Singleton">
+      <UniqueIdentifier>{31088077-db6a-45c3-9bd5-f528e3242b21}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\scenes\game_scene\entity">
-      <UniqueIdentifier>{1b54c982-3b78-42b0-9a69-9b4c09844042}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\match game">
+      <UniqueIdentifier>{5ed7f2a4-5183-478c-8e04-3961fac60061}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\scenes\rule_scene">
-      <UniqueIdentifier>{afff030a-61a9-445a-8c34-440f6497911a}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\ConcreteScene\TitleScene">
+      <UniqueIdentifier>{5ca945e6-d8ff-4814-9283-e2289ba5fa76}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\entity\interface">
-      <UniqueIdentifier>{7bdf37b9-162d-4ffd-a269-da92cf887456}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\ConcreteScene\GameScene">
+      <UniqueIdentifier>{9059677a-6910-4eed-b7f4-591d69d5cba6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\scenes\rule_scene\entity">
-      <UniqueIdentifier>{fa3e000e-4298-4dcc-aaa4-6f8d0712367b}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\ConcreteScene\MenuScene">
+      <UniqueIdentifier>{aacf0788-ffce-462c-9d96-f8c07fedbf3c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\match_gane">
-      <UniqueIdentifier>{8286e797-654b-4ca4-8ae3-843f09ec12a4}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\ConcreteScene\GameScene\draw">
+      <UniqueIdentifier>{6cdbd00e-c51e-4e47-ba03-6605d69a91d2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\scenes\menu_scene">
-      <UniqueIdentifier>{c880f14d-3dcd-4a79-b01e-6e012a53f1f0}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\ConcreteScene\ResultScene">
+      <UniqueIdentifier>{07b68408-6706-491e-99cf-2b8c5999451b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\scenes\menu_scene\entity">
-      <UniqueIdentifier>{4b2f0063-18f1-4a04-9d77-cf76983374d7}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\ConcreteScene\GameScene\progress">
+      <UniqueIdentifier>{1e5ef222-d4b9-447a-9053-26cc20577e77}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\scenes\language_scene">
-      <UniqueIdentifier>{36b5a625-d994-4cb4-b8d0-2b71db519d2d}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\ConcreteScene\RuleScene">
+      <UniqueIdentifier>{11c72331-3063-4d5f-a74a-fcf711cb95de}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\scenes\language_scene\entity">
-      <UniqueIdentifier>{d26bed60-bc0a-4e7f-8f52-671fd5a6f58e}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\ConcreteScene\DebugScene">
+      <UniqueIdentifier>{ed66a868-ebc3-4331-b665-ad1239b2f582}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ConcreteScene\ResultScene\Draw">
+      <UniqueIdentifier>{6c3e3030-7301-4673-a563-e02c6edd3b16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ConcreteScene\ReplayScene">
+      <UniqueIdentifier>{6d689bb1-38dd-46dd-8137-06ff5a0bdf37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ConcreteScene\ReplayScene\Draw">
+      <UniqueIdentifier>{90730051-02e8-40a7-a7c2-42efa4ce6a3d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Looper.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Define.cpp">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Fps.cpp">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Error.cpp">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractScene.cpp">
+      <Filter>ソース ファイル\SceneController</Filter>
+    </ClCompile>
+    <ClCompile Include="Parameter.cpp">
+      <Filter>ソース ファイル\SceneController</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>ソース ファイル\SceneController</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="Keyboard.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemMain.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClCompile>
     <ClCompile Include="MatchGameCommon.cpp">
-      <Filter>ソース ファイル\scenes\_old\match game</Filter>
+      <Filter>ソース ファイル\match game</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleAnime.cpp">
+      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
     </ClCompile>
     <ClCompile Include="GameScene.cpp">
-      <Filter>ソース ファイル\scenes\_old\GameScene</Filter>
+      <Filter>ソース ファイル\ConcreteScene\GameScene</Filter>
     </ClCompile>
-    <ClCompile Include="GameHand.cpp">
-      <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
-    </ClCompile>
-    <ClCompile Include="GameLog.cpp">
-      <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
-    </ClCompile>
-    <ClCompile Include="GameParam.cpp">
-      <Filter>ソース ファイル\scenes\_old\GameScene</Filter>
-    </ClCompile>
-    <ClCompile Include="GameAnime.cpp">
-      <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
-    </ClCompile>
-    <ClCompile Include="ResultScene.cpp">
-      <Filter>ソース ファイル\scenes\_old\ResultScene</Filter>
-    </ClCompile>
-    <ClCompile Include="MatchGameCPU.cpp">
-      <Filter>ソース ファイル\scenes\_old\match game</Filter>
-    </ClCompile>
-    <ClCompile Include="MatchGameList.cpp">
-      <Filter>ソース ファイル\scenes\_old\match game</Filter>
-    </ClCompile>
-    <ClCompile Include="MatchGameOut.cpp">
-      <Filter>ソース ファイル\scenes\_old\match game</Filter>
-    </ClCompile>
-    <ClCompile Include="MatchGameList2.cpp">
-      <Filter>ソース ファイル\scenes\_old\match game</Filter>
-    </ClCompile>
-    <ClCompile Include="ResultDrawBack.cpp">
-      <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
-    </ClCompile>
-    <ClCompile Include="ResultDrawHand.cpp">
-      <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
-    </ClCompile>
-    <ClCompile Include="ResultString.cpp">
-      <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
-    </ClCompile>
-    <ClCompile Include="ResultKey.cpp">
-      <Filter>ソース ファイル\scenes\_old\ResultScene</Filter>
-    </ClCompile>
-    <ClCompile Include="ReplayScene.cpp">
-      <Filter>ソース ファイル\scenes\_old\ReplayScene</Filter>
-    </ClCompile>
-    <ClCompile Include="dxlib_mouse.cpp">
-      <Filter>ソース ファイル\common\input</Filter>
-    </ClCompile>
-    <ClCompile Include="dxlib_keyboard.cpp">
-      <Filter>ソース ファイル\common\input</Filter>
-    </ClCompile>
-    <ClCompile Include="fps_controller.cpp">
-      <Filter>ソース ファイル\common</Filter>
-    </ClCompile>
-    <ClCompile Include="toml_serialize_macro.cpp">
-      <Filter>ソース ファイル\common\toml11</Filter>
-    </ClCompile>
-    <ClCompile Include="game_main_loop.cpp">
-      <Filter>ソース ファイル\systems</Filter>
-    </ClCompile>
-    <ClCompile Include="system_main.cpp">
-      <Filter>ソース ファイル\systems</Filter>
-    </ClCompile>
-    <ClCompile Include="scene_change_executer.cpp">
-      <Filter>ソース ファイル\systems\scene_controller</Filter>
-    </ClCompile>
-    <ClCompile Include="scene_change_listener.cpp">
-      <Filter>ソース ファイル\systems\scene_controller</Filter>
-    </ClCompile>
-    <ClCompile Include="scene_change_parameter.cpp">
-      <Filter>ソース ファイル\systems\scene_controller</Filter>
-    </ClCompile>
-    <ClCompile Include="scene_creator.cpp">
-      <Filter>ソース ファイル\systems\scene_controller</Filter>
-    </ClCompile>
-    <ClCompile Include="scene_stack.cpp">
-      <Filter>ソース ファイル\systems\scene_controller</Filter>
-    </ClCompile>
-    <ClCompile Include="image_loader.cpp">
-      <Filter>ソース ファイル\resource</Filter>
-    </ClCompile>
-    <ClCompile Include="bgm_player.cpp">
-      <Filter>ソース ファイル\resource</Filter>
-    </ClCompile>
-    <ClCompile Include="font_loader.cpp">
-      <Filter>ソース ファイル\resource</Filter>
-    </ClCompile>
-    <ClCompile Include="sound_effect_loader.cpp">
-      <Filter>ソース ファイル\resource</Filter>
-    </ClCompile>
-    <ClCompile Include="language_record.cpp">
-      <Filter>ソース ファイル\resource</Filter>
-    </ClCompile>
-    <ClCompile Include="language_record_initializer.cpp">
-      <Filter>ソース ファイル\resource</Filter>
-    </ClCompile>
-    <ClCompile Include="debug_scene.cpp">
-      <Filter>ソース ファイル\scenes\debug_scene</Filter>
-    </ClCompile>
-    <ClCompile Include="title_scene.cpp">
-      <Filter>ソース ファイル\scenes\title_scene</Filter>
-    </ClCompile>
-    <ClCompile Include="dxlib_assert.cpp">
-      <Filter>ソース ファイル\common</Filter>
-    </ClCompile>
-    <ClCompile Include="entity_updater.cpp">
-      <Filter>ソース ファイル\entity\interface</Filter>
-    </ClCompile>
-    <ClCompile Include="title_back_ground_base.cpp">
-      <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
-    </ClCompile>
-    <ClCompile Include="title_hand_animation.cpp">
-      <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
-    </ClCompile>
-    <ClCompile Include="title_logo.cpp">
-      <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
+    <ClCompile Include="MenuScene.cpp">
+      <Filter>ソース ファイル\ConcreteScene\MenuScene</Filter>
     </ClCompile>
     <ClCompile Include="SceneChangeEffect.cpp">
-      <Filter>ソース ファイル\scenes\_old</Filter>
+      <Filter>ソース ファイル\ConcreteScene</Filter>
     </ClCompile>
-    <ClCompile Include="fade_effect.cpp">
-      <Filter>ソース ファイル\entity</Filter>
+    <ClCompile Include="GameHand.cpp">
+      <Filter>ソース ファイル\ConcreteScene\GameScene\draw</Filter>
     </ClCompile>
-    <ClCompile Include="dxlib_debug_print.cpp">
-      <Filter>ソース ファイル\common</Filter>
+    <ClCompile Include="GameLog.cpp">
+      <Filter>ソース ファイル\ConcreteScene\GameScene\draw</Filter>
     </ClCompile>
-    <ClCompile Include="game_scene.cpp">
-      <Filter>ソース ファイル\scenes\game_scene</Filter>
+    <ClCompile Include="GameParam.cpp">
+      <Filter>ソース ファイル\ConcreteScene\GameScene</Filter>
     </ClCompile>
-    <ClCompile Include="game_back_ground_base.cpp">
-      <Filter>ソース ファイル\scenes\game_scene\entity</Filter>
+    <ClCompile Include="GameAnime.cpp">
+      <Filter>ソース ファイル\ConcreteScene\GameScene\draw</Filter>
     </ClCompile>
-    <ClCompile Include="game_log.cpp">
-      <Filter>ソース ファイル\scenes\game_scene\entity</Filter>
+    <ClCompile Include="ResultScene.cpp">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene</Filter>
     </ClCompile>
-    <ClCompile Include="fps_displayer.cpp">
-      <Filter>ソース ファイル\entity</Filter>
+    <ClCompile Include="MenuDrawBack.cpp">
+      <Filter>ソース ファイル\ConcreteScene\MenuScene</Filter>
     </ClCompile>
-    <ClCompile Include="rule_scene.cpp">
-      <Filter>ソース ファイル\scenes\rule_scene</Filter>
+    <ClCompile Include="MenuBox.cpp">
+      <Filter>ソース ファイル\ConcreteScene\MenuScene</Filter>
     </ClCompile>
-    <ClCompile Include="dxlib_input.cpp">
-      <Filter>ソース ファイル\common\input</Filter>
+    <ClCompile Include="MatchGameCPU.cpp">
+      <Filter>ソース ファイル\match game</Filter>
     </ClCompile>
-    <ClCompile Include="input_scheme_displayer.cpp">
-      <Filter>ソース ファイル\entity</Filter>
+    <ClCompile Include="MatchGameList.cpp">
+      <Filter>ソース ファイル\match game</Filter>
     </ClCompile>
-    <ClCompile Include="rule_back_ground_base.cpp">
-      <Filter>ソース ファイル\scenes\rule_scene\entity</Filter>
+    <ClCompile Include="MatchGameOut.cpp">
+      <Filter>ソース ファイル\match game</Filter>
     </ClCompile>
-    <ClCompile Include="title_scene_switcher.cpp">
-      <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
+    <ClCompile Include="RuleScene.cpp">
+      <Filter>ソース ファイル\ConcreteScene\RuleScene</Filter>
     </ClCompile>
-    <ClCompile Include="rule_ui.cpp">
-      <Filter>ソース ファイル\scenes\rule_scene\entity</Filter>
+    <ClCompile Include="RuleParam.cpp">
+      <Filter>ソース ファイル\ConcreteScene\RuleScene</Filter>
     </ClCompile>
-    <ClCompile Include="rule_ui_hexagon.cpp">
-      <Filter>ソース ファイル\scenes\rule_scene\entity</Filter>
+    <ClCompile Include="RulePage.cpp">
+      <Filter>ソース ファイル\ConcreteScene\RuleScene</Filter>
     </ClCompile>
-    <ClCompile Include="game_setting_importer.cpp">
-      <Filter>ソース ファイル\resource</Filter>
+    <ClCompile Include="MatchGameList2.cpp">
+      <Filter>ソース ファイル\match game</Filter>
     </ClCompile>
-    <ClCompile Include="string_util.cpp">
-      <Filter>ソース ファイル\common</Filter>
+    <ClCompile Include="DebugScene.cpp">
+      <Filter>ソース ファイル\ConcreteScene\DebugScene</Filter>
     </ClCompile>
-    <ClCompile Include="rule_text.cpp">
-      <Filter>ソース ファイル\scenes\rule_scene\entity</Filter>
+    <ClCompile Include="ResultDrawBack.cpp">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
     </ClCompile>
-    <ClCompile Include="match_game_field.cpp">
-      <Filter>ソース ファイル\match_gane</Filter>
+    <ClCompile Include="ResultDrawHand.cpp">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
     </ClCompile>
-    <ClCompile Include="menu_ui.cpp">
-      <Filter>ソース ファイル\scenes\menu_scene\entity</Filter>
+    <ClCompile Include="ResultString.cpp">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
     </ClCompile>
-    <ClCompile Include="menu_back_ground_base.cpp">
-      <Filter>ソース ファイル\scenes\menu_scene\entity</Filter>
+    <ClCompile Include="ResultKey.cpp">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene</Filter>
     </ClCompile>
-    <ClCompile Include="menu_scene.cpp">
-      <Filter>ソース ファイル\scenes\menu_scene</Filter>
+    <ClCompile Include="Setting.cpp">
+      <Filter>ソース ファイル\Singleton</Filter>
     </ClCompile>
-    <ClCompile Include="language_scene.cpp">
-      <Filter>ソース ファイル\scenes\language_scene</Filter>
-    </ClCompile>
-    <ClCompile Include="language_back_ground_base.cpp">
-      <Filter>ソース ファイル\scenes\language_scene\entity</Filter>
-    </ClCompile>
-    <ClCompile Include="language_ui.cpp">
-      <Filter>ソース ファイル\scenes\language_scene\entity</Filter>
-    </ClCompile>
-    <ClCompile Include="game_setting_exporter.cpp">
-      <Filter>ソース ファイル\resource</Filter>
+    <ClCompile Include="ReplayScene.cpp">
+      <Filter>ソース ファイル\ConcreteScene\ReplayScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="define.h">
-      <Filter>ソース ファイル\common</Filter>
+    <ClInclude Include="Looper.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Fps.h">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Error.h">
+      <Filter>ソース ファイル\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractScene.h">
+      <Filter>ソース ファイル\SceneController</Filter>
+    </ClInclude>
+    <ClInclude Include="Parameter.h">
+      <Filter>ソース ファイル\SceneController</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneEnum.h">
+      <Filter>ソース ファイル\ConcreteScene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>ソース ファイル\SceneController</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneChangeListenerInterface.h">
+      <Filter>ソース ファイル\SceneController</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Keyboard.h">
+      <Filter>ソース ファイル\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemMain.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>ソース ファイル\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="MatchGameCommon.h">
-      <Filter>ソース ファイル\scenes\_old\match game</Filter>
+      <Filter>ソース ファイル\match game</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleAnime.h">
+      <Filter>ソース ファイル\ConcreteScene\TitleScene</Filter>
     </ClInclude>
     <ClInclude Include="GameScene.h">
-      <Filter>ソース ファイル\scenes\_old\GameScene</Filter>
+      <Filter>ソース ファイル\ConcreteScene\GameScene</Filter>
     </ClInclude>
-    <ClInclude Include="GameParam.h">
-      <Filter>ソース ファイル\scenes\_old\GameScene</Filter>
-    </ClInclude>
-    <ClInclude Include="GameHand.h">
-      <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
-    </ClInclude>
-    <ClInclude Include="GameLog.h">
-      <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
-    </ClInclude>
-    <ClInclude Include="GameAnime.h">
-      <Filter>ソース ファイル\scenes\_old\GameScene\draw</Filter>
-    </ClInclude>
-    <ClInclude Include="ResultScene.h">
-      <Filter>ソース ファイル\scenes\_old\ResultScene</Filter>
-    </ClInclude>
-    <ClInclude Include="GameSelectingHand.h">
-      <Filter>ソース ファイル\scenes\_old\GameScene\progress</Filter>
-    </ClInclude>
-    <ClInclude Include="ResultDrawBack.h">
-      <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
-    </ClInclude>
-    <ClInclude Include="ResultDrawHand.h">
-      <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
-    </ClInclude>
-    <ClInclude Include="ResultString.h">
-      <Filter>ソース ファイル\scenes\_old\ResultScene\Draw</Filter>
-    </ClInclude>
-    <ClInclude Include="ResultKey.h">
-      <Filter>ソース ファイル\scenes\_old\ResultScene</Filter>
-    </ClInclude>
-    <ClInclude Include="ReplayScene.h">
-      <Filter>ソース ファイル\scenes\_old\ReplayScene</Filter>
-    </ClInclude>
-    <ClInclude Include="error_message_box.h">
-      <Filter>ソース ファイル\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="dxlib_keyboard.h">
-      <Filter>ソース ファイル\common\input</Filter>
-    </ClInclude>
-    <ClInclude Include="dxlib_mouse.h">
-      <Filter>ソース ファイル\common\input</Filter>
-    </ClInclude>
-    <ClInclude Include="fps_controller.h">
-      <Filter>ソース ファイル\common</Filter>
-    </ClInclude>
-    <ClInclude Include="toml11_define.h">
-      <Filter>ソース ファイル\common\toml11</Filter>
-    </ClInclude>
-    <ClInclude Include="toml_serialize_macro.h">
-      <Filter>ソース ファイル\common\toml11</Filter>
-    </ClInclude>
-    <ClInclude Include="implicit_metafunction_for_toml11.h">
-      <Filter>ソース ファイル\common\toml11</Filter>
-    </ClInclude>
-    <ClInclude Include="game_main_loop.h">
-      <Filter>ソース ファイル\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="system_main.h">
-      <Filter>ソース ファイル\systems</Filter>
-    </ClInclude>
-    <ClInclude Include="scene_change_executer.h">
-      <Filter>ソース ファイル\systems\scene_controller</Filter>
-    </ClInclude>
-    <ClInclude Include="scene_change_listener.h">
-      <Filter>ソース ファイル\systems\scene_controller</Filter>
-    </ClInclude>
-    <ClInclude Include="scene_change_parameter.h">
-      <Filter>ソース ファイル\systems\scene_controller</Filter>
-    </ClInclude>
-    <ClInclude Include="scene_creator.h">
-      <Filter>ソース ファイル\systems\scene_controller</Filter>
-    </ClInclude>
-    <ClInclude Include="scene_name.h">
-      <Filter>ソース ファイル\systems\scene_controller</Filter>
-    </ClInclude>
-    <ClInclude Include="scene_stack.h">
-      <Filter>ソース ファイル\systems\scene_controller</Filter>
-    </ClInclude>
-    <ClInclude Include="i_scene.h">
-      <Filter>ソース ファイル\systems\scene_controller</Filter>
-    </ClInclude>
-    <ClInclude Include="image_loader.h">
-      <Filter>ソース ファイル\resource</Filter>
-    </ClInclude>
-    <ClInclude Include="bgm_player.h">
-      <Filter>ソース ファイル\resource</Filter>
-    </ClInclude>
-    <ClInclude Include="font_loader.h">
-      <Filter>ソース ファイル\resource</Filter>
-    </ClInclude>
-    <ClInclude Include="sound_effect_loader.h">
-      <Filter>ソース ファイル\resource</Filter>
-    </ClInclude>
-    <ClInclude Include="language_record.h">
-      <Filter>ソース ファイル\resource</Filter>
-    </ClInclude>
-    <ClInclude Include="language_record_initializer.h">
-      <Filter>ソース ファイル\resource</Filter>
-    </ClInclude>
-    <ClInclude Include="debug_scene.h">
-      <Filter>ソース ファイル\scenes\debug_scene</Filter>
-    </ClInclude>
-    <ClInclude Include="title_scene.h">
-      <Filter>ソース ファイル\scenes\title_scene</Filter>
-    </ClInclude>
-    <ClInclude Include="dxlib_assert.h">
-      <Filter>ソース ファイル\common</Filter>
-    </ClInclude>
-    <ClInclude Include="i_entity.h">
-      <Filter>ソース ファイル\entity\interface</Filter>
-    </ClInclude>
-    <ClInclude Include="entity_updater.h">
-      <Filter>ソース ファイル\entity\interface</Filter>
-    </ClInclude>
-    <ClInclude Include="title_logo.h">
-      <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="title_back_ground_base.h">
-      <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="title_hand_animation.h">
-      <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
+    <ClInclude Include="MenuScene.h">
+      <Filter>ソース ファイル\ConcreteScene\MenuScene</Filter>
     </ClInclude>
     <ClInclude Include="SceneChangeEffect.h">
-      <Filter>ソース ファイル\scenes\_old</Filter>
+      <Filter>ソース ファイル\ConcreteScene</Filter>
     </ClInclude>
-    <ClInclude Include="fade_effect.h">
-      <Filter>ソース ファイル\entity</Filter>
+    <ClInclude Include="GameParam.h">
+      <Filter>ソース ファイル\ConcreteScene\GameScene</Filter>
     </ClInclude>
-    <ClInclude Include="dxlib_debug_print.h">
-      <Filter>ソース ファイル\common</Filter>
+    <ClInclude Include="GameHand.h">
+      <Filter>ソース ファイル\ConcreteScene\GameScene\draw</Filter>
     </ClInclude>
-    <ClInclude Include="game_scene.h">
-      <Filter>ソース ファイル\scenes\game_scene</Filter>
+    <ClInclude Include="GameLog.h">
+      <Filter>ソース ファイル\ConcreteScene\GameScene\draw</Filter>
     </ClInclude>
-    <ClInclude Include="game_back_ground_base.h">
-      <Filter>ソース ファイル\scenes\game_scene\entity</Filter>
+    <ClInclude Include="GameAnime.h">
+      <Filter>ソース ファイル\ConcreteScene\GameScene\draw</Filter>
     </ClInclude>
-    <ClInclude Include="game_log.h">
-      <Filter>ソース ファイル\scenes\game_scene\entity</Filter>
+    <ClInclude Include="ResultScene.h">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene</Filter>
     </ClInclude>
-    <ClInclude Include="fps_displayer.h">
-      <Filter>ソース ファイル\entity</Filter>
+    <ClInclude Include="GameSelectingHand.h">
+      <Filter>ソース ファイル\ConcreteScene\GameScene\progress</Filter>
     </ClInclude>
-    <ClInclude Include="rule_scene.h">
-      <Filter>ソース ファイル\scenes\rule_scene</Filter>
+    <ClInclude Include="MenuDrawBack.h">
+      <Filter>ソース ファイル\ConcreteScene\MenuScene</Filter>
     </ClInclude>
-    <ClInclude Include="dxlib_input.h">
-      <Filter>ソース ファイル\common\input</Filter>
+    <ClInclude Include="MenuBox.h">
+      <Filter>ソース ファイル\ConcreteScene\MenuScene</Filter>
     </ClInclude>
-    <ClInclude Include="input_scheme_displayer.h">
-      <Filter>ソース ファイル\entity</Filter>
+    <ClInclude Include="RuleScene.h">
+      <Filter>ソース ファイル\ConcreteScene\RuleScene</Filter>
     </ClInclude>
-    <ClInclude Include="title_scene_switcher.h">
-      <Filter>ソース ファイル\scenes\title_scene\entity</Filter>
+    <ClInclude Include="RuleParam.h">
+      <Filter>ソース ファイル\ConcreteScene\RuleScene</Filter>
     </ClInclude>
-    <ClInclude Include="rule_back_ground_base.h">
-      <Filter>ソース ファイル\scenes\rule_scene\entity</Filter>
+    <ClInclude Include="RulePage.h">
+      <Filter>ソース ファイル\ConcreteScene\RuleScene</Filter>
     </ClInclude>
-    <ClInclude Include="rule_ui.h">
-      <Filter>ソース ファイル\scenes\rule_scene\entity</Filter>
+    <ClInclude Include="DebugScene.h">
+      <Filter>ソース ファイル\ConcreteScene\DebugScene</Filter>
     </ClInclude>
-    <ClInclude Include="math_const.h">
-      <Filter>ソース ファイル\common</Filter>
+    <ClInclude Include="ResultDrawBack.h">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
     </ClInclude>
-    <ClInclude Include="rule_ui_hexagon.h">
-      <Filter>ソース ファイル\scenes\rule_scene\entity</Filter>
+    <ClInclude Include="ResultDrawHand.h">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
     </ClInclude>
-    <ClInclude Include="game_setting_record.h">
-      <Filter>ソース ファイル\resource</Filter>
+    <ClInclude Include="ResultString.h">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene\Draw</Filter>
     </ClInclude>
-    <ClInclude Include="game_setting_importer.h">
-      <Filter>ソース ファイル\resource</Filter>
+    <ClInclude Include="ResultKey.h">
+      <Filter>ソース ファイル\ConcreteScene\ResultScene</Filter>
     </ClInclude>
-    <ClInclude Include="toml_file_importer.h">
-      <Filter>ソース ファイル\common\toml11</Filter>
+    <ClInclude Include="Setting.h">
+      <Filter>ソース ファイル\Singleton</Filter>
     </ClInclude>
-    <ClInclude Include="toml_file_exporter.h">
-      <Filter>ソース ファイル\common\toml11</Filter>
-    </ClInclude>
-    <ClInclude Include="interface_toml_data_validator.h">
-      <Filter>ソース ファイル\common\toml11</Filter>
-    </ClInclude>
-    <ClInclude Include="toml_data_validator_always_true.h">
-      <Filter>ソース ファイル\common\toml11</Filter>
-    </ClInclude>
-    <ClInclude Include="string_util.h">
-      <Filter>ソース ファイル\common</Filter>
-    </ClInclude>
-    <ClInclude Include="rule_text.h">
-      <Filter>ソース ファイル\scenes\rule_scene\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="match_game_field.h">
-      <Filter>ソース ファイル\match_gane</Filter>
-    </ClInclude>
-    <ClInclude Include="match_game_rule.h">
-      <Filter>ソース ファイル\match_gane</Filter>
-    </ClInclude>
-    <ClInclude Include="game_hand_renderer.h">
-      <Filter>ソース ファイル\scenes\game_scene\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="menu_ui.h">
-      <Filter>ソース ファイル\scenes\menu_scene\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="menu_back_ground_base.h">
-      <Filter>ソース ファイル\scenes\menu_scene\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="menu_scene.h">
-      <Filter>ソース ファイル\scenes\menu_scene</Filter>
-    </ClInclude>
-    <ClInclude Include="language_scene.h">
-      <Filter>ソース ファイル\scenes\language_scene</Filter>
-    </ClInclude>
-    <ClInclude Include="language_back_ground_base.h">
-      <Filter>ソース ファイル\scenes\language_scene\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="language_ui.h">
-      <Filter>ソース ファイル\scenes\language_scene\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="game_setting_exporter.h">
-      <Filter>ソース ファイル\resource</Filter>
+    <ClInclude Include="ReplayScene.h">
+      <Filter>ソース ファイル\ConcreteScene\ReplayScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

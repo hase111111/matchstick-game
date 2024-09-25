@@ -1,28 +1,28 @@
-ï»¿//#pragma once
-//#include<string>
-//
-////ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³ã¸ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’æ¸¡ã™æ™‚ã®å®šæ•°ã‚’ç½®ã
-//class GameParam final
-//{
-//public:
-//	const static std::string MOD_RULE;
-//	const static std::string SAIHAI_RULE;
-//	const static std::string SELF_HARM_RULE;
-//	const static std::string PLAYER_IS_FIRST;
-//
-//	const static int TRUE_STATE;
-//	const static int FALSE_STATE;
-//
-//	const static std::string ENEMY_LEVEL;
-//
-//	const static int ENEMY_LEVEL_EASY;
-//	const static int ENEMY_LEVEL_NORMAL;
-//	const static int ENEMY_LEVEL_HARD;
-//	const static int ENEMY_LEVEL_IMPOSSIBLE;
-//
-//	const static std::string RESULT_BACK_NUM;
-//
-//private:
-//	//å®Ÿä½“ã‚’ä½œã‚‰ã›ãªã„
-//	GameParam() = delete;
-//};
+#pragma once
+#include<string>
+
+//ƒQ[ƒ€ƒV[ƒ“‚Öƒpƒ‰ƒ[ƒ^‚ğ“n‚·‚Ì’è”‚ğ’u‚­
+class GameParam final
+{
+public:
+	const static std::string MOD_RULE;
+	const static std::string SAIHAI_RULE;
+	const static std::string SELF_HARM_RULE;
+	const static std::string PLAYER_IS_FIRST;
+
+	const static int TRUE_STATE;
+	const static int FALSE_STATE;
+
+	const static std::string ENEMY_LEVEL;
+
+	const static int ENEMY_LEVEL_EASY;
+	const static int ENEMY_LEVEL_NORMAL;
+	const static int ENEMY_LEVEL_HARD;
+	const static int ENEMY_LEVEL_IMPOSSIBLE;
+
+	const static std::string RESULT_BACK_NUM;
+
+private:
+	//À‘Ì‚ğì‚ç‚¹‚È‚¢
+	GameParam() = delete;
+};

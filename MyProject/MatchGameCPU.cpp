@@ -1,477 +1,477 @@
-ï»¿//#include"MatchGameCommon.h"
-//#include <algorithm>
-//#include "DxLib.h"
-//
-//namespace MG = VariousFunctionsForMatchGame;
-//
-//bool VariousFunctionsForMatchGame::matchGameCOM(const int _level, const MatchField& _field, MatchField& _result, const bool _self_harm, const bool _mod_rule)
-//{
-//    //å®šç¾©ã™ã‚‹
-//    const int RAND_KAKURITU = 35;   //HARD - ã“ã“ã«ä»£å…¥ã—ãŸæ•°å€¤%ã§ãƒ©ãƒ³ãƒ€ãƒ ã«è¡Œå‹•ã™ã‚‹
-//
-//    switch (_level) 
-//    {
-//    case 0://EASY
-//
-//        //MODãƒ«ãƒ¼ãƒ«ã‚ã‚Šã®æ™‚
-//        if (_mod_rule == true)
-//        {
-//            //ç›¤é¢ã‚’ç”Ÿæˆã™ã‚‹
-//            if (matchGameCOM_EasyForMod(_field, _result, _self_harm) == true) {
-//                return true;
-//            }
-//        }
-//        //MODãƒ«ãƒ¼ãƒ«ãªã—ã®æ™‚
-//        else
-//        {
-//            //ç›¤é¢ã‚’ç”Ÿæˆã™ã‚‹
-//            if (matchGameCOM_Easy(_field, _result, _self_harm) == true) {
-//                return true;
-//            }
-//        }
-//        break;
-//
-//    case 1://NORMAL
-//
-//        //ãƒ©ãƒ³ãƒ€ãƒ ãªç›¤é¢ã‚’å‡ºåŠ›ã™ã‚‹
-//        if (matchGameCOM_Rand(_field, _result, _self_harm, _mod_rule) == true) {
-//            return true;
-//        }
-//        break;
-//
-//    case 2://HARD
-//
-//        //ãƒ©ãƒ³ãƒ€ãƒ ãªç›¤é¢å‡ºåŠ›
-//        if (GetRand((100 / RAND_KAKURITU) + 1) == 0) {
-//            if (matchGameCOM_Rand(_field, _result, _self_harm, _mod_rule) == true) {
-//                return true;
-//            }
-//        }
-//        //ã‚¬ãƒç›¤é¢å‡ºåŠ›
-//        else {
-//            //MODãƒ«ãƒ¼ãƒ«ã‚ã‚Šã®æ™‚
-//            if (_mod_rule == true)
-//            {
-//                //ç›¤é¢ã‚’ç”Ÿæˆã™ã‚‹
-//                if (matchGameCOM_HardForMod(_field, _result, _self_harm) == true) {
-//                    return true;
-//                }
-//            }
-//            //MODãƒ«ãƒ¼ãƒ«ãªã—ã®æ™‚
-//            else
-//            {
-//                //ç›¤é¢ã‚’ç”Ÿæˆã™ã‚‹
-//                if (matchGameCOM_Hard(_field, _result, _self_harm) == true) {
-//                    return true;
-//                }
-//            }
-//        }
-//
-//        break;
-//
-//    default://Impossible
-//
-//        //MODãƒ«ãƒ¼ãƒ«ã‚ã‚Šã®æ™‚
-//        if (_mod_rule == true)
-//        {
-//            //ç›¤é¢ã‚’ç”Ÿæˆã™ã‚‹
-//            if (matchGameCOM_HardForMod(_field, _result, _self_harm) == true) {
-//                return true;
-//            }
-//        }
-//        //MODãƒ«ãƒ¼ãƒ«ãªã—ã®æ™‚
-//        else
-//        {
-//            //ç›¤é¢ã‚’ç”Ÿæˆã™ã‚‹
-//            if (matchGameCOM_Hard(_field, _result, _self_harm) == true) {
-//                return true;
-//            }
-//        }
-//
-//        break;
-//    }
-//
-//    return false;
-//}
-//
-//bool VariousFunctionsForMatchGame::matchGameCOM_Easy(const MatchField& _field, MatchField& _result, bool _self_harm)
-//{
-//    //æ¬¡ç›¤é¢ã‚’ç”Ÿæˆã™ã‚‹
-//    std::vector<MatchField> _list;
-//    makeNextFieldList(_list, _field, false, _self_harm);
-//
-//    //ç”Ÿæˆå¯èƒ½ãªç›¤é¢ãŒãªã„ã®ãªã‚‰ã°Falseã‚’è¿”ã—ã¦çµ‚äº†
-//    if (_list.size() == 0) { return false; }
-//
-//    //ç”Ÿæˆã—ãŸç›¤é¢ã‚’æ¡ç‚¹ã—ã€ãƒã‚¤ãƒŠã‚¹ã—ãŸã‚‚ã®ã‚’ãƒªã‚¹ãƒˆã«è¿½åŠ 
-//    std::vector<int> _point;
-//    for (int i = 0; i < _list.size(); i++)
-//    {
-//        _point.push_back(evaluationFunction(_list.at(i), !_field.turn, _self_harm, 0));
-//    }
-//
-//    //ä¸€ç•ªè‰¯ã„ç›¤é¢ã‚’é¸æŠ
-//    int MAX = -10000;
-//    int which = 0;
-//    for (size_t c = 0; c < _point.size(); c++)
-//    {
-//        if (_point.at(c) > MAX)
-//        {
-//            MAX = _point.at(c);
-//            which = (int)c;
-//        }
-//    }
-//
-//    //ç›¤é¢ã‚’è¨˜éŒ²
-//    _result = _list.at(which);
-//
-//    return true;
-//}
-//
-//bool VariousFunctionsForMatchGame::matchGameCOM_EasyForMod(const MatchField& _field, MatchField& _result, bool _self_harm)
-//{
-//    //æ¬¡ç›¤é¢ã‚’ç”Ÿæˆã™ã‚‹
-//    std::vector<MatchField> _list;
-//    makeNextFieldList(_list, _field, true, _self_harm);
-//
-//    //ç”Ÿæˆå¯èƒ½ãªç›¤é¢ãŒãªã„ã®ãªã‚‰ã°Falseã‚’è¿”ã—ã¦çµ‚äº†
-//    if (_list.size() == 0) { return false; }
-//
-//    //ç”Ÿæˆã—ãŸç›¤é¢ã‚’æ¡ç‚¹ã™ã‚‹
-//    std::vector<int> _point;
-//    for (int i = 0; i < _list.size(); i++)
-//    {
-//        _point.push_back(evaluationFunctionForMod(_list.at(i), !_field.turn, _self_harm, 0));
-//    }
-//
-//    //ä¸€ç•ªè‰¯ã„ç›¤é¢ã‚’é¸æŠ
-//    int MAX = -10000;
-//    for (size_t c = 0; c < _point.size(); c++)
-//    {
-//        if (_point.at(c) > MAX)
-//        {
-//            MAX = _point.at(c);
-//        }
-//    }
-//
-//    //è‰¯ã„ç›¤é¢ã‹ã‚‰ãƒ©ãƒ³ãƒ€ãƒ ã«é¸æŠ
-//    std::vector<MatchField> _rand;
-//
-//    for (size_t c = 0; c < _point.size(); c++)
-//    {
-//        if (_point.at(c) == MAX) {
-//            _rand.push_back(_list.at(c));
-//        }
-//    }
-//
-//    //ãƒ©ãƒ³ãƒ€ãƒ 
-//    int ans = GetRand((int)_rand.size() - 1);
-//
-//    //ç›¤é¢ã‚’è¨˜éŒ²
-//    _result = _rand.at(ans);
-//
-//    return true;
-//}
-//
-//bool VariousFunctionsForMatchGame::matchGameCOM_Rand(const MatchField& _field, MatchField& _result, bool _self_harm, const bool _mod_rule)
-//{
-//    //æ¬¡ç›¤é¢ã‚’ç”Ÿæˆã™ã‚‹
-//    std::vector<MatchField> _list;
-//    makeNextFieldList(_list, _field, _mod_rule, _self_harm);
-//
-//    //ç”Ÿæˆå¯èƒ½ãªç›¤é¢ãŒãªã„ã®ãªã‚‰ã°Falseã‚’è¿”ã—ã¦çµ‚äº†
-//    if (_list.size() == 0) { return false; }
-//
-//    //é©å½“ã«ä¸€ã¤ã‚’é¸æŠ
-//    int ans = GetRand((int)_list.size() - 1);
-//
-//    //å‡ºåŠ›
-//    _result = _list.at(ans);
-//    return true;
-//}
-//
-//bool VariousFunctionsForMatchGame::matchGameCOM_Hard(const MatchField& _field, MatchField& _result, bool _self_harm)
-//{
-//    //æ¬¡ç›¤é¢ã‚’ç”Ÿæˆã™ã‚‹
-//    std::vector<MatchField> _list;
-//    makeNextFieldList(_list, _field, false, _self_harm);
-//
-//    //ç”Ÿæˆå¯èƒ½ãªç›¤é¢ãŒãªã„ã®ãªã‚‰ã°Falseã‚’è¿”ã—ã¦çµ‚äº†
-//    if (_list.size() == 0) { return false; }
-//
-//    //ç”Ÿæˆã—ãŸç›¤é¢ã‚’æ¡ç‚¹ã™ã‚‹
-//    std::vector<int> _point;
-//    for (int i = 0; i < _list.size(); i++)
-//    {
-//        _point.push_back(evaluationFunction(_list.at(i), _field.turn, _self_harm, 0));
-//    }
-//
-//    //ä¸€ç•ªè‰¯ã„ç›¤é¢ã‚’é¸æŠ
-//    int MAX = -10000;
-//    int which = 0;
-//    for (size_t c = 0; c < _point.size(); c++)
-//    {
-//        if (_point.at(c) > MAX)
-//        {
-//            MAX = _point.at(c);
-//            which = (int)c;
-//        }
-//    }
-//
-//    //ç›¤é¢ã‚’è¨˜éŒ²
-//    _result = _list.at(which);
-//
-//    return true;
-//}
-//
-//bool VariousFunctionsForMatchGame::matchGameCOM_HardForMod(const MatchField& _field, MatchField& _result, bool _self_harm)
-//{
-//    //æ¬¡ç›¤é¢ã‚’ç”Ÿæˆã™ã‚‹
-//    std::vector<MatchField> _list;
-//    makeNextFieldList(_list, _field, true, _self_harm);
-//
-//    //ç”Ÿæˆå¯èƒ½ãªç›¤é¢ãŒãªã„ã®ãªã‚‰ã°Falseã‚’è¿”ã—ã¦çµ‚äº†
-//    if (_list.size() == 0) { return false; }
-//
-//    //ç”Ÿæˆã—ãŸç›¤é¢ã‚’æ¡ç‚¹ã™ã‚‹
-//    std::vector<int> _point;
-//    for (int i = 0; i < _list.size(); i++)
-//    {
-//        _point.push_back(evaluationFunctionForMod(_list.at(i), _field.turn, _self_harm, 0));
-//    }
-//
-//    //ä¸€ç•ªè‰¯ã„ç›¤é¢ã‚’é¸æŠ
-//    int MAX = -10000;
-//    for (size_t c = 0; c < _point.size(); c++)
-//    {
-//        if (_point.at(c) > MAX)
-//        {
-//            MAX = _point.at(c);
-//        }
-//    }
-//
-//    //è‰¯ã„ç›¤é¢ã‹ã‚‰ãƒ©ãƒ³ãƒ€ãƒ ã«é¸æŠ
-//    std::vector<MatchField> _rand;
-//
-//    for (size_t c = 0; c < _point.size(); c++)
-//    {
-//        if (_point.at(c) == MAX) {
-//            _rand.push_back(_list.at(c));
-//        }
-//    }
-//
-//    //ãƒ©ãƒ³ãƒ€ãƒ 
-//    int ans = GetRand((int)_rand.size() - 1);
-//
-//    //ç›¤é¢ã‚’è¨˜éŒ²
-//    _result = _rand.at(ans);
-//
-//    return true;
-//}
-//
-//int VariousFunctionsForMatchGame::evaluationFunction(const MatchField _field, const  bool _player, const  bool _self_harm, int _loop_num)
-//{
-//    int res = 0;
-//    if (MatchGameList::getIns()->evaluationFunctionList(_field, _player, _self_harm, res) == true) { return res; }
-//
-//    if (_loop_num >= ERROR_LOOP) { return ERROR_EVALUATION; }
-//
-//    //æ—¢ã«å‹è² ãŒã¤ã„ã¦ã„ã‚‹ã‹èª¿ã¹ã‚‹
-//    if (_player == true) {
-//        if (_field.doesWinFirstPlayer() == true) {
-//            return WIN;
-//        }
-//        else if (_field.doesWinSecondPlayer() == true) {
-//            return LOSE;
-//        }
-//    }
-//    else {
-//        if (_field.doesWinSecondPlayer() == true) {
-//            return WIN;
-//        }
-//        else if (_field.doesWinFirstPlayer() == true) {
-//            return LOSE;
-//        }
-//    }
-//
-//    //å‹è² ãŒã¤ã„ã¦ã„ãªã„ãªã‚‰ã°ï¼Œæ¬¡ç›¤é¢ã‚’ç”Ÿæˆã™ã‚‹
-//    std::vector<MatchField> f_vec;
-//    MG::makeNextFieldList(f_vec, _field, false, _self_harm);
-//
-//    std::vector<int> _point;
-//    int temp = 0;
-//    for (auto& i : f_vec)
-//    {
-//        temp = evaluationFunction(i, _player, _self_harm, _loop_num + 1);
-//        if (temp < 0) { temp += 1; }
-//        else if (temp > 0) { temp -= 1; }
-//        _point.push_back(temp);
-//    }
-//
-//    if (_point.empty() == true) { return ERROR_EVALUATION; }
-//
-//    //ç”Ÿæˆã—ãŸå…¨ç›¤é¢ã®æœ€é«˜å¾—ç‚¹ã‚’å‡ºåŠ›ã™ã‚‹
-//    std::sort(_point.begin(), _point.end());
-//    if (_field.turn == _player) {
-//        //æœ€å¤§
-//        return _point.back();
-//    }
-//    else {
-//        //æœ€å°
-//        return _point.front();
-//    }
-//
-//    return ERROR_EVALUATION;
-//}
-//
-////CPUã‚’ä½œæˆã™ã‚‹ã®ãŒé¢å€’ã«ãªã£ãŸãŸã‚é©å½“ã«æ¡ä»¶åˆ†ã‘ã™ã‚‹
-//int VariousFunctionsForMatchGame::evaluationFunctionForMod(const MatchField _field, const  bool _player, const  bool _self_harm, int _loop_num)
-//{
-//    int res = 0;
-//    if (MatchGameList::getIns()->evaluationFunctionListForMod(_field, _player, _self_harm, res) == true) { return res; }
-//
-//    //æ—¢ã«å‹è² ãŒã¤ã„ã¦ã„ã‚‹ã‹èª¿ã¹ã‚‹
-//    if (_player == true) {
-//        if (_field.doesWinFirstPlayer() == true) {
-//            return WIN;
-//        }
-//        else if (_field.doesWinSecondPlayer() == true) {
-//            return LOSE;
-//        }
-//    }
-//    else {
-//        if (_field.doesWinSecondPlayer() == true) {
-//            return WIN;
-//        }
-//        else if (_field.doesWinFirstPlayer() == true) {
-//            return LOSE;
-//        }
-//    }
-//
-//    //å‹è² ãŒã¤ã„ã¦ã„ãªã„ã‹ã¤æ·±ã•ãŒã‚ã‚‹ç¨‹åº¦ã«é”ã—ãŸãªã‚‰ã°çµ‚äº†ã™ã‚‹
-//    if (_loop_num > 3) { 
-//        return evaluationFunctionForModSaiten(_field, _player);
-//    }
-//
-//    //å‹è² ãŒã¤ã„ã¦ã„ãªã„ãªã‚‰ã°ï¼Œæ¬¡ç›¤é¢ã‚’ç”Ÿæˆã™ã‚‹
-//    std::vector<MatchField> f_vec;
-//    MG::makeNextFieldList(f_vec, _field, true, _self_harm);
-//
-//    std::vector<int> _point;
-//    int temp = 0;
-//    for (auto& i : f_vec)
-//    {
-//        temp = evaluationFunctionForMod(i, _player, _self_harm, _loop_num + 1);
-//        if (temp < 0) { temp += 1; }
-//        else if (temp > 0) { temp -= 1; }
-//        _point.push_back(temp);
-//    }
-//
-//    if (_point.empty() == true) { return ERROR_EVALUATION; }
-//
-//    //ç”Ÿæˆã—ãŸå…¨ç›¤é¢ã®æœ€é«˜å¾—ç‚¹ã‚’å‡ºåŠ›ã™ã‚‹
-//    std::sort(_point.begin(), _point.end());
-//    if (_field.turn == _player) {
-//        //æœ€å¤§
-//        return _point.back();
-//    }
-//    else {
-//        //æœ€å°
-//        return _point.front();
-//    }
-//
-//    return ERROR_EVALUATION;
-//}
-//
-//int VariousFunctionsForMatchGame::evaluationFunctionForModSaiten(const MatchField _field, const  bool _player)
-//{
-//    const int PINCH = LOSE / 2;
-//    const int PINCH_HIGH = LOSE * 3 / 4;
-//    const int CHANCE = WIN / 2;
-//    const int CHANCE_LOW = WIN / 4;
-//    const int CHANCE_HIGH = WIN * 3 / 4;
-//    const int HUMEI = 0;
-//    int point = 0;
-//
-//    const int my1 = (_player) ? _field.player1.first : _field.player2.first;
-//    const int my2 = (_player) ? _field.player1.second : _field.player2.second;
-//    const int myS = (_player) ? _field.player1_avatar_num : _field.player2_avatar_num;
-//    const int ene1 = (_player) ? _field.player2.first : _field.player1.first;
-//    const int ene2 = (_player) ? _field.player2.second : _field.player1.second;
-//    const int eneS = (_player) ? _field.player2_avatar_num : _field.player1_avatar_num;
-//    const bool myTurn = !(_player ^ _field.turn);
-//
-//    if (ene1 == 0 && ene2 == 1) { return WIN; }
-//
-//    //ä¸¡è€…ç‰‡æ‰‹ã®ç›¤é¢
-//    if (my1 == 0 && ene1 == 0) 
-//    {
-//        //ä¸¡è€…é‡‡é…ãªã—
-//        if (myS == 0 && eneS == 0) {
-//            if (myTurn) {
-//                if (ene2 + my2 == 5) { return WIN; }
-//                else { return HUMEI; }
-//            }
-//            else {
-//                if (ene2 + my2 == 5) { return LOSE; }
-//                else { return HUMEI; }
-//            }
-//        }
-//
-//        //æ•µã ã‘é‡‡é…ã‚ã‚Š
-//        else if (myS == 0 && eneS != 0) {
-//            if (ene2 == 1) { return CHANCE_LOW; }
-//
-//            if (myTurn) {
-//                if (ene2 + my2 == 5) { return WIN; }
-//                else { return PINCH; }
-//            }
-//            else {
-//                return PINCH;
-//            }
-//        }
-//
-//        //è‡ªåˆ†ã ã‘é‡‡é…ã‚ã‚Š
-//        else if (myS != 0 && eneS == 0) {
-//            if (my2 == 1) { return PINCH; }
-//
-//            if (myTurn) {
-//                return CHANCE_LOW;
-//            }
-//            else {
-//                if (ene2 + my2 == 5) { return LOSE; }
-//                else { return CHANCE_LOW; }
-//            }
-//        }
-//
-//        //ä¸¡ç¤¾é‡‡é…ã‚ã‚Š
-//        else {
-//            if (my2 == 1 && ene2 == 1) { return HUMEI; }
-//            else if (my2 == 1) { return PINCH; }
-//            else if (ene2 == 1) { return CHANCE_LOW; }
-//            else { return HUMEI; }
-//        }
-//    }
-//    //ã©ã¡ã‚‰ã‹ãŒç‰‡æ‰‹ã®ç›¤é¢
-//    else if (my1 == 0 || ene1 == 0) {
-//        if (my1 == 0) { return PINCH_HIGH; }
-//        else { return CHANCE_HIGH; }
-//    }
-//    //ä¸¡è€…å¥åœ¨ã®å ´åˆ
-//    else {
-//        if (myTurn == true) {
-//            if (my1 + ene1 == 5 || my1 + ene2 == 5 || my2 + ene1 == 5 || my2 + ene2 == 5) {
-//                return CHANCE_HIGH;
-//            }
-//            else { return CHANCE; }
-//        }
-//        else {
-//            if (my1 + ene1 == 5 || my1 + ene2 == 5 || my2 + ene1 == 5 || my2 + ene2 == 5) {
-//                return PINCH;
-//            }
-//            else { return CHANCE; }
-//        }
-//    }
-//
-//    return HUMEI;
-//}
+#include"MatchGameCommon.h"
+#include <algorithm>
+#include "DxLib.h"
+
+namespace MG = VariousFunctionsForMatchGame;
+
+bool VariousFunctionsForMatchGame::matchGameCOM(const int _level, const MatchField& _field, MatchField& _result, const bool _self_harm, const bool _mod_rule)
+{
+    //’è‹`‚·‚é
+    const int RAND_KAKURITU = 35;   //HARD - ‚±‚±‚É‘ã“ü‚µ‚½”’l%‚Åƒ‰ƒ“ƒ_ƒ€‚És“®‚·‚é
+
+    switch (_level) 
+    {
+    case 0://EASY
+
+        //MODƒ‹[ƒ‹‚ ‚è‚Ì
+        if (_mod_rule == true)
+        {
+            //”Õ–Ê‚ğ¶¬‚·‚é
+            if (matchGameCOM_EasyForMod(_field, _result, _self_harm) == true) {
+                return true;
+            }
+        }
+        //MODƒ‹[ƒ‹‚È‚µ‚Ì
+        else
+        {
+            //”Õ–Ê‚ğ¶¬‚·‚é
+            if (matchGameCOM_Easy(_field, _result, _self_harm) == true) {
+                return true;
+            }
+        }
+        break;
+
+    case 1://NORMAL
+
+        //ƒ‰ƒ“ƒ_ƒ€‚È”Õ–Ê‚ğo—Í‚·‚é
+        if (matchGameCOM_Rand(_field, _result, _self_harm, _mod_rule) == true) {
+            return true;
+        }
+        break;
+
+    case 2://HARD
+
+        //ƒ‰ƒ“ƒ_ƒ€‚È”Õ–Êo—Í
+        if (GetRand((100 / RAND_KAKURITU) + 1) == 0) {
+            if (matchGameCOM_Rand(_field, _result, _self_harm, _mod_rule) == true) {
+                return true;
+            }
+        }
+        //ƒKƒ`”Õ–Êo—Í
+        else {
+            //MODƒ‹[ƒ‹‚ ‚è‚Ì
+            if (_mod_rule == true)
+            {
+                //”Õ–Ê‚ğ¶¬‚·‚é
+                if (matchGameCOM_HardForMod(_field, _result, _self_harm) == true) {
+                    return true;
+                }
+            }
+            //MODƒ‹[ƒ‹‚È‚µ‚Ì
+            else
+            {
+                //”Õ–Ê‚ğ¶¬‚·‚é
+                if (matchGameCOM_Hard(_field, _result, _self_harm) == true) {
+                    return true;
+                }
+            }
+        }
+
+        break;
+
+    default://Impossible
+
+        //MODƒ‹[ƒ‹‚ ‚è‚Ì
+        if (_mod_rule == true)
+        {
+            //”Õ–Ê‚ğ¶¬‚·‚é
+            if (matchGameCOM_HardForMod(_field, _result, _self_harm) == true) {
+                return true;
+            }
+        }
+        //MODƒ‹[ƒ‹‚È‚µ‚Ì
+        else
+        {
+            //”Õ–Ê‚ğ¶¬‚·‚é
+            if (matchGameCOM_Hard(_field, _result, _self_harm) == true) {
+                return true;
+            }
+        }
+
+        break;
+    }
+
+    return false;
+}
+
+bool VariousFunctionsForMatchGame::matchGameCOM_Easy(const MatchField& _field, MatchField& _result, bool _self_harm)
+{
+    //Ÿ”Õ–Ê‚ğ¶¬‚·‚é
+    std::vector<MatchField> _list;
+    makeNextFieldList(_list, _field, false, _self_harm);
+
+    //¶¬‰Â”\‚È”Õ–Ê‚ª‚È‚¢‚Ì‚È‚ç‚ÎFalse‚ğ•Ô‚µ‚ÄI—¹
+    if (_list.size() == 0) { return false; }
+
+    //¶¬‚µ‚½”Õ–Ê‚ğÌ“_‚µAƒ}ƒCƒiƒX‚µ‚½‚à‚Ì‚ğƒŠƒXƒg‚É’Ç‰Á
+    std::vector<int> _point;
+    for (int i = 0; i < _list.size(); i++)
+    {
+        _point.push_back(evaluationFunction(_list.at(i), !_field.turn, _self_harm, 0));
+    }
+
+    //ˆê”Ô—Ç‚¢”Õ–Ê‚ğ‘I‘ğ
+    int MAX = -10000;
+    int which = 0;
+    for (size_t c = 0; c < _point.size(); c++)
+    {
+        if (_point.at(c) > MAX)
+        {
+            MAX = _point.at(c);
+            which = (int)c;
+        }
+    }
+
+    //”Õ–Ê‚ğ‹L˜^
+    _result = _list.at(which);
+
+    return true;
+}
+
+bool VariousFunctionsForMatchGame::matchGameCOM_EasyForMod(const MatchField& _field, MatchField& _result, bool _self_harm)
+{
+    //Ÿ”Õ–Ê‚ğ¶¬‚·‚é
+    std::vector<MatchField> _list;
+    makeNextFieldList(_list, _field, true, _self_harm);
+
+    //¶¬‰Â”\‚È”Õ–Ê‚ª‚È‚¢‚Ì‚È‚ç‚ÎFalse‚ğ•Ô‚µ‚ÄI—¹
+    if (_list.size() == 0) { return false; }
+
+    //¶¬‚µ‚½”Õ–Ê‚ğÌ“_‚·‚é
+    std::vector<int> _point;
+    for (int i = 0; i < _list.size(); i++)
+    {
+        _point.push_back(evaluationFunctionForMod(_list.at(i), !_field.turn, _self_harm, 0));
+    }
+
+    //ˆê”Ô—Ç‚¢”Õ–Ê‚ğ‘I‘ğ
+    int MAX = -10000;
+    for (size_t c = 0; c < _point.size(); c++)
+    {
+        if (_point.at(c) > MAX)
+        {
+            MAX = _point.at(c);
+        }
+    }
+
+    //—Ç‚¢”Õ–Ê‚©‚çƒ‰ƒ“ƒ_ƒ€‚É‘I‘ğ
+    std::vector<MatchField> _rand;
+
+    for (size_t c = 0; c < _point.size(); c++)
+    {
+        if (_point.at(c) == MAX) {
+            _rand.push_back(_list.at(c));
+        }
+    }
+
+    //ƒ‰ƒ“ƒ_ƒ€
+    int ans = GetRand((int)_rand.size() - 1);
+
+    //”Õ–Ê‚ğ‹L˜^
+    _result = _rand.at(ans);
+
+    return true;
+}
+
+bool VariousFunctionsForMatchGame::matchGameCOM_Rand(const MatchField& _field, MatchField& _result, bool _self_harm, const bool _mod_rule)
+{
+    //Ÿ”Õ–Ê‚ğ¶¬‚·‚é
+    std::vector<MatchField> _list;
+    makeNextFieldList(_list, _field, _mod_rule, _self_harm);
+
+    //¶¬‰Â”\‚È”Õ–Ê‚ª‚È‚¢‚Ì‚È‚ç‚ÎFalse‚ğ•Ô‚µ‚ÄI—¹
+    if (_list.size() == 0) { return false; }
+
+    //“K“–‚Éˆê‚Â‚ğ‘I‘ğ
+    int ans = GetRand((int)_list.size() - 1);
+
+    //o—Í
+    _result = _list.at(ans);
+    return true;
+}
+
+bool VariousFunctionsForMatchGame::matchGameCOM_Hard(const MatchField& _field, MatchField& _result, bool _self_harm)
+{
+    //Ÿ”Õ–Ê‚ğ¶¬‚·‚é
+    std::vector<MatchField> _list;
+    makeNextFieldList(_list, _field, false, _self_harm);
+
+    //¶¬‰Â”\‚È”Õ–Ê‚ª‚È‚¢‚Ì‚È‚ç‚ÎFalse‚ğ•Ô‚µ‚ÄI—¹
+    if (_list.size() == 0) { return false; }
+
+    //¶¬‚µ‚½”Õ–Ê‚ğÌ“_‚·‚é
+    std::vector<int> _point;
+    for (int i = 0; i < _list.size(); i++)
+    {
+        _point.push_back(evaluationFunction(_list.at(i), _field.turn, _self_harm, 0));
+    }
+
+    //ˆê”Ô—Ç‚¢”Õ–Ê‚ğ‘I‘ğ
+    int MAX = -10000;
+    int which = 0;
+    for (size_t c = 0; c < _point.size(); c++)
+    {
+        if (_point.at(c) > MAX)
+        {
+            MAX = _point.at(c);
+            which = (int)c;
+        }
+    }
+
+    //”Õ–Ê‚ğ‹L˜^
+    _result = _list.at(which);
+
+    return true;
+}
+
+bool VariousFunctionsForMatchGame::matchGameCOM_HardForMod(const MatchField& _field, MatchField& _result, bool _self_harm)
+{
+    //Ÿ”Õ–Ê‚ğ¶¬‚·‚é
+    std::vector<MatchField> _list;
+    makeNextFieldList(_list, _field, true, _self_harm);
+
+    //¶¬‰Â”\‚È”Õ–Ê‚ª‚È‚¢‚Ì‚È‚ç‚ÎFalse‚ğ•Ô‚µ‚ÄI—¹
+    if (_list.size() == 0) { return false; }
+
+    //¶¬‚µ‚½”Õ–Ê‚ğÌ“_‚·‚é
+    std::vector<int> _point;
+    for (int i = 0; i < _list.size(); i++)
+    {
+        _point.push_back(evaluationFunctionForMod(_list.at(i), _field.turn, _self_harm, 0));
+    }
+
+    //ˆê”Ô—Ç‚¢”Õ–Ê‚ğ‘I‘ğ
+    int MAX = -10000;
+    for (size_t c = 0; c < _point.size(); c++)
+    {
+        if (_point.at(c) > MAX)
+        {
+            MAX = _point.at(c);
+        }
+    }
+
+    //—Ç‚¢”Õ–Ê‚©‚çƒ‰ƒ“ƒ_ƒ€‚É‘I‘ğ
+    std::vector<MatchField> _rand;
+
+    for (size_t c = 0; c < _point.size(); c++)
+    {
+        if (_point.at(c) == MAX) {
+            _rand.push_back(_list.at(c));
+        }
+    }
+
+    //ƒ‰ƒ“ƒ_ƒ€
+    int ans = GetRand((int)_rand.size() - 1);
+
+    //”Õ–Ê‚ğ‹L˜^
+    _result = _rand.at(ans);
+
+    return true;
+}
+
+int VariousFunctionsForMatchGame::evaluationFunction(const MatchField _field, const  bool _player, const  bool _self_harm, int _loop_num)
+{
+    int res = 0;
+    if (MatchGameList::getIns()->evaluationFunctionList(_field, _player, _self_harm, res) == true) { return res; }
+
+    if (_loop_num >= ERROR_LOOP) { return ERROR_EVALUATION; }
+
+    //Šù‚ÉŸ•‰‚ª‚Â‚¢‚Ä‚¢‚é‚©’²‚×‚é
+    if (_player == true) {
+        if (_field.doesWinFirstPlayer() == true) {
+            return WIN;
+        }
+        else if (_field.doesWinSecondPlayer() == true) {
+            return LOSE;
+        }
+    }
+    else {
+        if (_field.doesWinSecondPlayer() == true) {
+            return WIN;
+        }
+        else if (_field.doesWinFirstPlayer() == true) {
+            return LOSE;
+        }
+    }
+
+    //Ÿ•‰‚ª‚Â‚¢‚Ä‚¢‚È‚¢‚È‚ç‚ÎCŸ”Õ–Ê‚ğ¶¬‚·‚é
+    std::vector<MatchField> f_vec;
+    MG::makeNextFieldList(f_vec, _field, false, _self_harm);
+
+    std::vector<int> _point;
+    int temp = 0;
+    for (auto& i : f_vec)
+    {
+        temp = evaluationFunction(i, _player, _self_harm, _loop_num + 1);
+        if (temp < 0) { temp += 1; }
+        else if (temp > 0) { temp -= 1; }
+        _point.push_back(temp);
+    }
+
+    if (_point.empty() == true) { return ERROR_EVALUATION; }
+
+    //¶¬‚µ‚½‘S”Õ–Ê‚ÌÅ‚“¾“_‚ğo—Í‚·‚é
+    std::sort(_point.begin(), _point.end());
+    if (_field.turn == _player) {
+        //Å‘å
+        return _point.back();
+    }
+    else {
+        //Å¬
+        return _point.front();
+    }
+
+    return ERROR_EVALUATION;
+}
+
+//CPU‚ğì¬‚·‚é‚Ì‚ª–Ê“|‚É‚È‚Á‚½‚½‚ß“K“–‚ÉğŒ•ª‚¯‚·‚é
+int VariousFunctionsForMatchGame::evaluationFunctionForMod(const MatchField _field, const  bool _player, const  bool _self_harm, int _loop_num)
+{
+    int res = 0;
+    if (MatchGameList::getIns()->evaluationFunctionListForMod(_field, _player, _self_harm, res) == true) { return res; }
+
+    //Šù‚ÉŸ•‰‚ª‚Â‚¢‚Ä‚¢‚é‚©’²‚×‚é
+    if (_player == true) {
+        if (_field.doesWinFirstPlayer() == true) {
+            return WIN;
+        }
+        else if (_field.doesWinSecondPlayer() == true) {
+            return LOSE;
+        }
+    }
+    else {
+        if (_field.doesWinSecondPlayer() == true) {
+            return WIN;
+        }
+        else if (_field.doesWinFirstPlayer() == true) {
+            return LOSE;
+        }
+    }
+
+    //Ÿ•‰‚ª‚Â‚¢‚Ä‚¢‚È‚¢‚©‚Â[‚³‚ª‚ ‚é’ö“x‚É’B‚µ‚½‚È‚ç‚ÎI—¹‚·‚é
+    if (_loop_num > 3) { 
+        return evaluationFunctionForModSaiten(_field, _player);
+    }
+
+    //Ÿ•‰‚ª‚Â‚¢‚Ä‚¢‚È‚¢‚È‚ç‚ÎCŸ”Õ–Ê‚ğ¶¬‚·‚é
+    std::vector<MatchField> f_vec;
+    MG::makeNextFieldList(f_vec, _field, true, _self_harm);
+
+    std::vector<int> _point;
+    int temp = 0;
+    for (auto& i : f_vec)
+    {
+        temp = evaluationFunctionForMod(i, _player, _self_harm, _loop_num + 1);
+        if (temp < 0) { temp += 1; }
+        else if (temp > 0) { temp -= 1; }
+        _point.push_back(temp);
+    }
+
+    if (_point.empty() == true) { return ERROR_EVALUATION; }
+
+    //¶¬‚µ‚½‘S”Õ–Ê‚ÌÅ‚“¾“_‚ğo—Í‚·‚é
+    std::sort(_point.begin(), _point.end());
+    if (_field.turn == _player) {
+        //Å‘å
+        return _point.back();
+    }
+    else {
+        //Å¬
+        return _point.front();
+    }
+
+    return ERROR_EVALUATION;
+}
+
+int VariousFunctionsForMatchGame::evaluationFunctionForModSaiten(const MatchField _field, const  bool _player)
+{
+    const int PINCH = LOSE / 2;
+    const int PINCH_HIGH = LOSE * 3 / 4;
+    const int CHANCE = WIN / 2;
+    const int CHANCE_LOW = WIN / 4;
+    const int CHANCE_HIGH = WIN * 3 / 4;
+    const int HUMEI = 0;
+    int point = 0;
+
+    const int my1 = (_player) ? _field.player1.first : _field.player2.first;
+    const int my2 = (_player) ? _field.player1.second : _field.player2.second;
+    const int myS = (_player) ? _field.player1_avatar_num : _field.player2_avatar_num;
+    const int ene1 = (_player) ? _field.player2.first : _field.player1.first;
+    const int ene2 = (_player) ? _field.player2.second : _field.player1.second;
+    const int eneS = (_player) ? _field.player2_avatar_num : _field.player1_avatar_num;
+    const bool myTurn = !(_player ^ _field.turn);
+
+    if (ene1 == 0 && ene2 == 1) { return WIN; }
+
+    //—¼Ò•Ğè‚Ì”Õ–Ê
+    if (my1 == 0 && ene1 == 0) 
+    {
+        //—¼ÒÑ”z‚È‚µ
+        if (myS == 0 && eneS == 0) {
+            if (myTurn) {
+                if (ene2 + my2 == 5) { return WIN; }
+                else { return HUMEI; }
+            }
+            else {
+                if (ene2 + my2 == 5) { return LOSE; }
+                else { return HUMEI; }
+            }
+        }
+
+        //“G‚¾‚¯Ñ”z‚ ‚è
+        else if (myS == 0 && eneS != 0) {
+            if (ene2 == 1) { return CHANCE_LOW; }
+
+            if (myTurn) {
+                if (ene2 + my2 == 5) { return WIN; }
+                else { return PINCH; }
+            }
+            else {
+                return PINCH;
+            }
+        }
+
+        //©•ª‚¾‚¯Ñ”z‚ ‚è
+        else if (myS != 0 && eneS == 0) {
+            if (my2 == 1) { return PINCH; }
+
+            if (myTurn) {
+                return CHANCE_LOW;
+            }
+            else {
+                if (ene2 + my2 == 5) { return LOSE; }
+                else { return CHANCE_LOW; }
+            }
+        }
+
+        //—¼ĞÑ”z‚ ‚è
+        else {
+            if (my2 == 1 && ene2 == 1) { return HUMEI; }
+            else if (my2 == 1) { return PINCH; }
+            else if (ene2 == 1) { return CHANCE_LOW; }
+            else { return HUMEI; }
+        }
+    }
+    //‚Ç‚¿‚ç‚©‚ª•Ğè‚Ì”Õ–Ê
+    else if (my1 == 0 || ene1 == 0) {
+        if (my1 == 0) { return PINCH_HIGH; }
+        else { return CHANCE_HIGH; }
+    }
+    //—¼ÒŒ’İ‚Ìê‡
+    else {
+        if (myTurn == true) {
+            if (my1 + ene1 == 5 || my1 + ene2 == 5 || my2 + ene1 == 5 || my2 + ene2 == 5) {
+                return CHANCE_HIGH;
+            }
+            else { return CHANCE; }
+        }
+        else {
+            if (my1 + ene1 == 5 || my1 + ene2 == 5 || my2 + ene1 == 5 || my2 + ene2 == 5) {
+                return PINCH;
+            }
+            else { return CHANCE; }
+        }
+    }
+
+    return HUMEI;
+}

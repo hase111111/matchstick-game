@@ -1,21 +1,21 @@
-ï»¿//#pragma once
-//#include"MatchGameCommon.h"
-//#include<vector>
-//
-//class ResultKey
-//{
-//public:
-//	ResultKey();
-//
-//	void init(const bool _mod, const bool _self);
-//
-//	bool update(const std::vector<MatchField>& _field, int& _select, bool& _replay, bool& _replay_fail);
-//
-//private:
-//	//ã‚²ãƒ¼ãƒ ã®ãƒ«ãƒ¼ãƒ«
-//	bool m_mod_rule = false;
-//	bool m_self_harm = false;
-//
-//	//ã‚µã‚¦ãƒ³ãƒ‰
-//	int m_sound_select = 0;
-//};
+#pragma once
+#include"MatchGameCommon.h"
+#include<vector>
+
+class ResultKey
+{
+public:
+	ResultKey();
+
+	void init(const bool _mod, const bool _self);
+
+	bool update(const std::vector<MatchField>& _field, int& _select, bool& _replay, bool& _replay_fail);
+
+private:
+	//ƒQ[ƒ€‚Ìƒ‹[ƒ‹
+	bool m_mod_rule = false;
+	bool m_self_harm = false;
+
+	//ƒTƒEƒ“ƒh
+	int m_sound_select = 0;
+};

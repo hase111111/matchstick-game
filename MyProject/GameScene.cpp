@@ -1,455 +1,455 @@
-ï»¿//#include "GameScene.h"
-//#include "DxLib.h"
-//#include "define.h"
-//#include "Image.h"
-//#include "Keyboard.h"
-//#include "Font.h"
-//#include "GameParam.h"
-//#include "Sound.h"
-//
-//GameScene::GameScene(SceneChangeListenerInterface* pScli, const Parameter& parameter) : AbstractScene(pScli, parameter)
-//{
-//	//ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸æ™‚ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆï¼ˆãƒ•ã‚§ãƒ¼ãƒ‰ã‚¤ãƒ³ï¼‰ã‚’æŒ¿å…¥ã™ã‚‹
-//	m_sceneChange.init(1);
-//
-//	//ç›¤é¢ã‚’ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å…ƒã«åˆæœŸåŒ–ã™ã‚‹
-//	m_initField(parameter);
-//
-//	//ã‚²ãƒ¼ãƒ é–‹å§‹ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’æŒ¿å…¥ã™ã‚‹
-//	if (m_field.turn == true) { m_anime.addAnime(0); }
-//	else { m_anime.addAnime(1); }
-//
-//	//Logã«ç¾åœ¨ã®ç›¤é¢ã‚’è¿½åŠ ã™ã‚‹
-//	m_logDraw.pushLogByField(m_field);
-//
-//	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚¿ãƒ¼ã«ãƒ«ãƒ¼ãƒ«ã‚’ä¼ãˆã‚‹
-//	m_anime.init(m_self_harm_rule, m_mod_rule);
-//
-//	//ã‚µã‚¦ãƒ³ãƒ‰ã®èª­ã¿è¾¼ã¿
-//	m_sound_hand_select = Sound::getIns()->myLoadSound("data/sound/hand_select.mp3");
-//	m_sound_hand_cancel = Sound::getIns()->myLoadSound("data/sound/hand_cancel.mp3");
-//}
-//
-//bool GameScene::update()
-//{
-//	//ESCãŒæŠ¼ã•ã‚ŒãŸã‚‰å‰ã®ã‚·ãƒ¼ãƒ³ã«æˆ»ã‚‹
-//	if (Keyboard::getIns()->getPressingCount(KEY_INPUT_ESCAPE) == 1 && m_changescene_flag == false) 
-//	{
-//		m_changescene_flag = true;
-//		m_sceneChange.init(0);
-//		m_changescene_which = 1;
-//	}
-//
-//	//é¸æŠä¸­ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã¯åŸºæœ¬ã‚ªãƒ•
-//	m_is_selecting_now = false;
-//
-//	//ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãŒçµ‚ã‚ã£ãŸãªã‚‰ãƒ¡ã‚¤ãƒ³ã®å‡¦ç†ã‚’ã™ã‚‹
-//	if (m_sceneChange.update() == false)
-//	{
-//		//ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸ãªã‚‰ã“ã‚Œã‚’è¡Œã†
-//		if (m_changescene_flag == true)
-//		{
-//			Parameter p;
-//			if (m_changescene_which == 1)
-//			{
-//				mp_listenerInterface->deleteNowScene(p);
-//			}
-//			else if (m_changescene_which == 2)
-//			{
-//				Parameter p;
-//
-//				//ã‚²ãƒ¼ãƒ ã®ç›¤é¢ã‚’å ±å‘Šã™ã‚‹
-//				std::vector<MatchField> _temp_field_list;
-//				m_logDraw.getFieldList(_temp_field_list);
-//				p.setFieldParam(_temp_field_list);
-//
-//				//ã‚²ãƒ¼ãƒ ã®ãƒ«ãƒ¼ãƒ«ã‚’å ±å‘Šã™ã‚‹
-//				if (m_self_harm_rule == true) { p.setParam(GameParam::SELF_HARM_RULE, GameParam::TRUE_STATE); }
-//				else { p.setParam(GameParam::SELF_HARM_RULE, GameParam::FALSE_STATE); }
-//
-//				if (m_mod_rule == true) { p.setParam(GameParam::MOD_RULE, GameParam::TRUE_STATE); }
-//				else { p.setParam(GameParam::MOD_RULE, GameParam::FALSE_STATE); }
-//
-//				//ã‚Œã–ã‚‹ã¨ã‚·ãƒ¼ãƒ³ãŒä½•ã‚·ãƒ¼ãƒ³åˆ†æˆ»ã‚‹ã®ã‹
-//				p.setParam(GameParam::RESULT_BACK_NUM, 2);
-//
-//				//ã‚·ãƒ¼ãƒ³ã‚’è¿½åŠ ã™ã‚‹
-//				mp_listenerInterface->addNewScene(enumScene::result, p);
-//			}
-//
-//			return true;
-//		}
-//
-//		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å‡¦ç†ãŒçµ‚ã‚ã£ãŸãªã‚‰ãƒ¡ã‚¤ãƒ³ã®å‡¦ç†ã‚’ã™ã‚‹
-//		if (m_anime.update() == false)
-//		{
-//			//ã‚²ãƒ¼ãƒ ãŒçµ‚äº†ã—ã¦ã„ã‚‹ãªã‚‰ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿã™ã‚‹
-//			if (m_field.isEndOfGame() == true)
-//			{
-//				m_changescene_flag = true;
-//				m_sceneChange.init(0);
-//				m_changescene_which = 2;
-//			}
-//			//å¼•ãåˆ†ã‘ã®æ™‚ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿã™ã‚‹
-//			else if (m_logDraw.update() == false) 
-//			{
-//				m_changescene_flag = true;
-//				m_sceneChange.init(0);
-//				m_changescene_which = 2;
-//			}
-//			//è‡ªåˆ†ã®ã‚¿ãƒ¼ãƒ³ã®æ™‚
-//			else if (m_field.turn == true)
-//			{
-//				//m_selectEnenmy();
-//				m_is_selecting_now = true;
-//				m_selectMove();
-//			}
-//			//æ•µã®ã‚¿ãƒ¼ãƒ³ã®æ™‚
-//			else
-//			{
-//				m_selectEnenmy();
-//			}
-//		}
-//		//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãŒçµ‚äº†ã—ãŸã‚¿ã‚¤ãƒŸãƒ³ã‚°ã§ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã®æ›´æ–°ã‚’ã‹ã‘ã‚‹
-//		else if (m_anime.isEndTime() == true) {
-//			m_pushNewFieldExecute();
-//		}
-//	}
-//
-//	return true;
-//}
-//
-//void GameScene::draw() const
-//{
-//	//èƒŒæ™¯ã¯ç™½ã„è‰²
-//	DrawBox(0, 0, Define::kWindowSizeX, Define::kWindowSizeY, GetColor(255, 255, 255), TRUE);
-//
-//	//è…•ã‚’æç”»ã™ã‚‹
-//	m_handDraw.draw(m_field, m_is_selecting_now, m_which_player, m_which_one_player1, m_which_one_player2, m_use_self_hurm, m_use_saihai);
-//
-//	//å¯¾æˆ¦ãƒ­ã‚°ã‚’è¡¨ç¤ºã™ã‚‹
-//	m_logDraw.draw(m_field, m_turn, m_player_is_first, m_mod_rule, m_self_harm_rule, m_enemy_level);
-//
-//	//å„ç¨®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ä¸Šã«è¡¨ç¤º
-//	m_anime.draw();
-//
-//	//ã‚·ãƒ¼ãƒ³ãƒã‚§ãƒ³ã‚¸æ™‚ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ä¸€ç•ªä¸Šã«è¡¨ç¤º
-//	m_sceneChange.draw();
-//}
-//
-//void GameScene::receiveParameterInCaseOfDeleteScene(const Parameter& parameter)
-//{
-//}
-//
-//
-//void GameScene::m_initField(const Parameter& _pram)
-//{
-//	//ã©ã£ã¡ã®ã‚¿ãƒ¼ãƒ³ã‹èª¿ã¹ã‚‹
-//	if (_pram.getParam(GameParam::PLAYER_IS_FIRST) == GameParam::TRUE_STATE) {
-//		m_logDraw.pushLog("è²´æ–¹ã¯å…ˆæ‰‹ã§ã™");
-//		m_field.turn = m_player_is_first = true;
-//	}
-//	else {
-//		m_logDraw.pushLog("è²´æ–¹ã¯å¾Œæ‰‹ã§ã™");
-//		m_field.turn = m_player_is_first = false;
-//	}
-//
-//	//CPU
-//	if (_pram.getParam(GameParam::ENEMY_LEVEL) == GameParam::ENEMY_LEVEL_EASY) { m_enemy_level = 0; }
-//	else if (_pram.getParam(GameParam::ENEMY_LEVEL) == GameParam::ENEMY_LEVEL_NORMAL) { m_enemy_level = 1; }
-//	else if (_pram.getParam(GameParam::ENEMY_LEVEL) == GameParam::ENEMY_LEVEL_HARD) { m_enemy_level = 2; }
-//	else { m_enemy_level = 3; }
-//
-//	//MODãƒ«ãƒ¼ãƒ«ã‚’ä½¿ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
-//	if (_pram.getParam(GameParam::MOD_RULE) == GameParam::TRUE_STATE) { m_mod_rule = true; }
-//	else { m_mod_rule = false; }
-//
-//	//é‡‡é…ã‚’åˆ©ç”¨ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
-//	if (_pram.getParam(GameParam::SAIHAI_RULE) == GameParam::TRUE_STATE) {
-//		m_field.player1_avatar_num = 1;
-//		m_field.player2_avatar_num = 1;
-//	}
-//
-//	//è‡ªå‚·ã‚ã‚Šã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°
-//	if (_pram.getParam(GameParam::SELF_HARM_RULE) == GameParam::TRUE_STATE) { m_self_harm_rule = true; }
-//	else { m_self_harm_rule = false; }
-//}
-//
-//void GameScene::m_selectMove()
-//{
-//	//ã‚µã‚¦ãƒ³ãƒ‰ã‚’é³´ã‚‰ã™
-//	if (Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) == 1 || Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) == 1 || Keyboard::getIns()->getPressingCount(KEY_INPUT_Z) == 1 || Keyboard::getIns()->getPressingCount(KEY_INPUT_C) == 1)
-//	{
-//		PlaySoundMem(m_sound_hand_select, DX_PLAYTYPE_BACK);
-//	}
-//	else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_X) == 1)
-//	{
-//		PlaySoundMem(m_sound_hand_cancel, DX_PLAYTYPE_BACK);
-//	}
-//
-//	//è‡ªå‚·ãƒ«ãƒ¼ãƒ«ãŒãªã„ãªã‚‰ã°ãƒ•ãƒ©ã‚°ã‚’ã‚ªãƒ•ã«ã™ã‚‹
-//	if (m_self_harm_rule == false) { m_use_self_hurm = false; }
-//
-//	//é‡‡é…ã®å‡¦ç†
-//	if (m_field.player1_avatar_num != 0) 
-//	{
-//		if (m_use_saihai % 3 == 1 || m_use_saihai % 3 == 2) 
-//		{
-//			//ï½ƒã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‚‰ã‚«ã‚¦ãƒ³ã‚¿ã‚’å›ã—ã¦çµ‚äº†
-//			if (Keyboard::getIns()->getPressingCount(KEY_INPUT_C) == 1) {
-//				m_use_saihai++;
-//				return;
-//			}
-//
-//			//Xã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‚‰çµ‚äº†
-//			if (Keyboard::getIns()->getPressingCount(KEY_INPUT_X) == 1) {
-//				m_use_saihai = 0;
-//				return;
-//			}
-//
-//			//é‡‡é…çµæœã‚’ç®—å‡º
-//			MatchField _low;
-//			MatchField _high;
-//			if (VariousFunctionsForMatchGame::executeCommand(VariousFunctionsForMatchGame::COMMAND_SAIHAI_LOW, m_field, _low, m_mod_rule, m_self_harm_rule) == false) {
-//				m_use_saihai = 0;
-//				return;
-//			}
-//			if (VariousFunctionsForMatchGame::executeCommand(VariousFunctionsForMatchGame::COMMAND_SAIHAI_HIGH, m_field, _high, m_mod_rule, m_self_harm_rule) == false) {
-//				m_use_saihai = 0;
-//				return;
-//			}
-//
-//			//HIGHã¨LOWãŒç­‰ã—ã„ãªã‚‰ã°é‡‡é…ã‚’çµ‚äº†
-//			if (_low == _high && m_use_saihai % 3 == 2) {
-//				m_use_saihai = 0;
-//				return;
-//			}
-//
-//			//Zã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‚‰ç›¤é¢ã‚’ç¢ºå®šã—ã¦çµ‚äº†
-//			if (Keyboard::getIns()->getPressingCount(KEY_INPUT_Z) == 1) 
-//			{
-//				//æ¬¡ç›¤é¢ã‚’ç”Ÿæˆã—ã¦push
-//				m_pushNewFieldbyCommand((m_use_saihai % 3 == 1) ? VariousFunctionsForMatchGame::COMMAND_SAIHAI_LOW : VariousFunctionsForMatchGame::COMMAND_SAIHAI_HIGH);
-//
-//				//ã‚«ã‚¦ãƒ³ã‚¿ã‚’å…¨ã¦åˆæœŸåŒ–ã™ã‚‹
-//				m_which_player = 0;
-//				m_which_one_player1 = 0;
-//				m_which_one_player2 = 0;
-//				m_use_self_hurm = false;
-//				m_use_saihai = 0;
-//				return;
-//			}
-//
-//			//é‡‡é…é¸æŠä¸­ãªã‚‰ã°å¾Œã‚ã®å‡¦ç†ã‚’ã—ãªã„
-//			return;
-//		}
-//		else if(m_use_saihai % 3 == 0)
-//		{
-//			//ï½ƒã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã‚‰ã‚«ã‚¦ãƒ³ã‚¿ã‚’å›ã—ã¦çµ‚äº†
-//			if (Keyboard::getIns()->getPressingCount(KEY_INPUT_C) == 1) {
-//				m_use_saihai++;
-//				MatchField _low;
-//				if (VariousFunctionsForMatchGame::executeCommand(VariousFunctionsForMatchGame::COMMAND_SAIHAI_LOW, m_field, _low, m_mod_rule, m_self_harm_rule) == false) { m_use_saihai = 0; }
-//				return;
-//			}
-//		}
-//		else { m_use_saihai = 0; }
-//	}
-//
-//	//è‡ªåˆ†ã®è…•ã‚’é¸æŠã™ã‚‹çŠ¶æ…‹ãªã‚‰ã°
-//	if (m_which_player == 0)
-//	{
-//		m_use_self_hurm = false;
-//
-//		if (m_field.player1.first == 0) { //ç‰‡æ‰‹ãŒå­˜åœ¨ã—ãªã„ãªã‚‰ã°å›ºå®š
-//			m_which_one_player1 = 1;
-//		}
-//		else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) == 1 || Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) == 1) {	
-//			//ã‚­ãƒ¼å…¥åŠ›ã«ã‚ˆã£ã¦å¤‰åŒ–ã•ã›ã‚‹
-//			m_which_one_player1++;
-//		}
-//
-//		if (Keyboard::getIns()->getPressingCount(KEY_INPUT_Z) == 1)
-//		{
-//			if ((m_field.player1.first != 0 && m_which_one_player1 % 2 == 0) || (m_field.player1.second != 0 && m_which_one_player1 % 2 == 1)) {
-//				//ï½šã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸæ™‚ã€ãã‚ŒãŒ0ã§ãªã„ãªã‚‰ã°å›ºå®šã™ã‚‹
-//				m_which_player = 1;
-//
-//				if (m_field.player2.first == 0) { m_which_one_player2 = 1; }
-//			}
-//		}
-//	}
-//	else {
-//		//Xãƒœã‚¿ãƒ³ã§ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹
-//		if (Keyboard::getIns()->getPressingCount(KEY_INPUT_X) == 1) {
-//			m_which_player = 0;
-//			m_which_one_player2 = 0;
-//			m_use_self_hurm = false;
-//			return;
-//		}
-//
-//		//è‡ªå‚·ãƒ«ãƒ¼ãƒ«
-//		if (m_self_harm_rule == true) 
-//		{ 
-//			if (Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) == 1) {
-//				if (m_use_self_hurm == true) { 
-//					m_use_self_hurm = false;
-//					m_which_one_player2 = 1;
-//				}
-//				else {
-//					if (m_which_one_player2 % 2 == 0) { 
-//						m_use_self_hurm = true; 
-//						if (m_field.player1.first == 0 || m_field.player1.second == 0) {
-//							m_use_self_hurm = false;
-//							m_which_one_player2 = 1;
-//						}
-//					}
-//					else if (m_which_one_player2 % 2 == 1 && m_field.player2.first == 0 && (m_field.player1.first != 0 && m_field.player1.second != 0)) {
-//						m_use_self_hurm = true;
-//					}
-//					else { m_which_one_player2 = 0; }
-//				}
-//			}
-//			else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) == 1) 
-//			{
-//				if (m_use_self_hurm == true) {
-//					m_use_self_hurm = false;
-//					m_which_one_player2 = 0;
-//				}
-//				else {
-//					if (m_which_one_player2 % 2 == 1) { 
-//						m_use_self_hurm = true; 
-//						if (m_field.player1.first == 0 || m_field.player1.second == 0) {
-//							m_use_self_hurm = false;
-//							m_which_one_player2 = 0;
-//						}
-//					}
-//					else { m_which_one_player2 = 1; }
-//				}
-//			}
-//
-//			//é¸æŠã—ã¦ã„ã‚‹ã®ãŒï¼ãªã‚‰ã°å›ºå®š
-//			if (m_field.player2.first == 0 && m_use_self_hurm == false) { 
-//				m_which_one_player2 = 1;
-//			}
-//		}
-//		//é€šå¸¸ãƒ«ãƒ¼ãƒ«
-//		else { 
-//			if (m_field.player2.first == 0) { //é¸æŠã—ã¦ã„ã‚‹ã®ãŒï¼ãªã‚‰ã°å›ºå®š
-//				m_which_one_player2 = 1;
-//			}
-//			else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) == 1 || Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) == 1) {
-//				m_which_one_player2++;
-//			}
-//		}
-//
-//		// Zã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸãªã‚‰ã°æ±ºå®š
-//		if (Keyboard::getIns()->getPressingCount(KEY_INPUT_Z) == 1) { 
-//
-//			int temp_cmd = 0;
-//
-//			//ï¼ã‚’æ”»æ’ƒã—ãªã„
-//			if ((m_field.player2.first != 0 && m_which_one_player2 % 2 == 0) || (m_field.player2.second != 0 && m_which_one_player2 % 2 == 1))
-//			{
-//				//ã‚³ãƒãƒ³ãƒ‰ã‚’æ±‚ã‚ã‚‹
-//				if (m_use_self_hurm == true) {
-//					if (m_which_one_player1 % 2 == 0) { temp_cmd = VariousFunctionsForMatchGame::COMMAND_1_SELF; }
-//					else { temp_cmd = VariousFunctionsForMatchGame::COMMAND_2_SELF; }
-//				}
-//				else if (m_which_one_player2 % 2 == 0) {
-//					if (m_which_one_player1 % 2 == 0) { temp_cmd = VariousFunctionsForMatchGame::COMMAND_1_TO_1; }
-//					else { temp_cmd = VariousFunctionsForMatchGame::COMMAND_2_TO_1; }
-//				}
-//				else {
-//					if (m_which_one_player1 % 2 == 0) { temp_cmd = VariousFunctionsForMatchGame::COMMAND_1_TO_2; }
-//					else { temp_cmd = VariousFunctionsForMatchGame::COMMAND_2_TO_2; }
-//				}
-//
-//				//ã‚¢ãƒ‹ãƒ¡ã‚’è¿½åŠ ã™ã‚‹
-//				m_pushNewFieldbyCommand(temp_cmd);
-//
-//				//ã‚«ã‚¦ãƒ³ã‚¿ã‚’å…¨ã¦åˆæœŸåŒ–ã™ã‚‹
-//				m_which_player = 0;
-//				m_which_one_player1 = 0;
-//				m_which_one_player2 = 0;
-//				m_use_self_hurm = false;
-//				m_use_saihai = 0;
-//			}
-//		}
-//	}
-//}
-//
-//void GameScene::m_selectEnenmy()
-//{
-//	MatchField _new;
-//
-//	//æ–°ç›¤é¢ã‚’ç”Ÿæˆ
-//	_new = m_field;
-//
-//	if (VariousFunctionsForMatchGame::matchGameCOM(m_enemy_level, m_field, _new, m_self_harm_rule, m_mod_rule) == false) {
-//		Parameter _p;
-//		mp_listenerInterface->deleteNowScene(_p);
-//		printfDx("Gamescene Class ã‚ˆã‚Šæ•µã®ç›¤é¢ç”Ÿæˆé–¢æ•°ãŒã‚¨ãƒ©ãƒ¼ã‚’èµ·ã“ã—ã¾ã—ãŸ\nãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”»é¢ã«æˆ»ã‚Šã¾ã™");
-//	}
-//
-//	//æ–°ã—ã„ç›¤é¢ã‚’æŒ¿å…¥
-//	m_pushNewField(_new);
-//}
-//
-//
-//void GameScene::m_pushNewField(MatchField& _new)
-//{
-//	m_newfield_data = _new;	//ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚‹
-//
-//	//ã‚¢ãƒ‹ãƒ¡ã‚’è¿½åŠ 
-//	m_anime.addAnime(4);
-//	m_anime.addAnimeOption(m_field, _new);
-//	
-//	m_newfield_type = 1;	//ã‚¿ã‚¤ãƒ—ã‚’å¤‰æ›´
-//}
-//
-//void GameScene::m_pushNewFieldbyCommand(int _cmd)
-//{
-//	m_newfield_cmd = _cmd;	//ãƒ‡ãƒ¼ã‚¿ã‚’å—ã‘å–ã‚‹
-//
-//	//ã‚¢ãƒ‹ãƒ¡ã‚’è¿½åŠ 
-//	m_anime.addAnime(4);
-//	m_anime.addAnimeOption2(m_field, _cmd);
-//
-//	m_newfield_type = 2;	//ã‚¿ã‚¤ãƒ—ã‚’å¤‰æ›´
-//}
-//
-//void GameScene::m_pushNewFieldExecute()
-//{
-//	//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‹ã‚‰æ›´æ–°ã™ã‚‹å ´åˆ
-//	if (m_newfield_type == 1) 
-//	{
-//		//ãƒ­ã‚°ã‚’è¿½åŠ 
-//		m_logDraw.pushLogByField(m_newfield_data);
-//
-//		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’æ›´æ–°
-//		m_field = m_newfield_data;
-//
-//		//ã‚¿ãƒ¼ãƒ³ã‚’å¢—ã‚„ã™
-//		m_turn++;
-//	}
-//	//ã‚³ãƒãƒ³ãƒ‰ã‹ã‚‰æ›´æ–°ã™ã‚‹å ´åˆ
-//	else if (m_newfield_type == 2) 
-//	{
-//		//æ¬¡ç›¤é¢ã®ç”Ÿæˆ
-//		MatchField _temp;
-//		VariousFunctionsForMatchGame::executeCommand(m_newfield_cmd, m_field, _temp, m_mod_rule, m_self_harm_rule); //ã‚³ãƒãƒ³ãƒ‰ã‚’å®Ÿè¡Œ
-//
-//		//ãƒ­ã‚°ã‚’è¿½åŠ 
-//		m_logDraw.pushLogByField(_temp);
-//
-//		//ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã‚’æ›´æ–°
-//		m_field = _temp;
-//
-//		//ã‚¿ãƒ¼ãƒ³ã‚’å¢—ã‚„ã™
-//		m_turn++;
-//	}
-//
-//	m_newfield_type = 0;
-//	return;
-//}
+#include "GameScene.h"
+#include "DxLib.h"
+#include "Define.h"
+#include "Image.h"
+#include "Keyboard.h"
+#include "Font.h"
+#include "GameParam.h"
+#include "Sound.h"
+
+GameScene::GameScene(SceneChangeListenerInterface* pScli, const Parameter& parameter) : AbstractScene(pScli, parameter)
+{
+	//ƒV[ƒ“ƒ`ƒFƒ“ƒW‚ÌƒGƒtƒFƒNƒgiƒtƒF[ƒhƒCƒ“j‚ğ‘}“ü‚·‚é
+	m_sceneChange.init(1);
+
+	//”Õ–Ê‚ğƒpƒ‰ƒ[ƒ^‚ğŒ³‚É‰Šú‰»‚·‚é
+	m_initField(parameter);
+
+	//ƒQ[ƒ€ŠJn‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğ‘}“ü‚·‚é
+	if (m_field.turn == true) { m_anime.addAnime(0); }
+	else { m_anime.addAnime(1); }
+
+	//Log‚ÉŒ»İ‚Ì”Õ–Ê‚ğ’Ç‰Á‚·‚é
+	m_logDraw.pushLogByField(m_field);
+
+	//ƒAƒjƒ[ƒ^[‚Éƒ‹[ƒ‹‚ğ“`‚¦‚é
+	m_anime.init(m_self_harm_rule, m_mod_rule);
+
+	//ƒTƒEƒ“ƒh‚Ì“Ç‚İ‚İ
+	m_sound_hand_select = Sound::getIns()->myLoadSound("data/sound/hand_select.mp3");
+	m_sound_hand_cancel = Sound::getIns()->myLoadSound("data/sound/hand_cancel.mp3");
+}
+
+bool GameScene::update()
+{
+	//ESC‚ª‰Ÿ‚³‚ê‚½‚ç‘O‚ÌƒV[ƒ“‚É–ß‚é
+	if (Keyboard::getIns()->getPressingCount(KEY_INPUT_ESCAPE) == 1 && m_changescene_flag == false) 
+	{
+		m_changescene_flag = true;
+		m_sceneChange.init(0);
+		m_changescene_which = 1;
+	}
+
+	//‘I‘ğ’†‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO‚ÍŠî–{ƒIƒt
+	m_is_selecting_now = false;
+
+	//ƒV[ƒ“ƒ`ƒFƒ“ƒW‚ÌƒGƒtƒFƒNƒg‚ªI‚í‚Á‚½‚È‚çƒƒCƒ“‚Ìˆ—‚ğ‚·‚é
+	if (m_sceneChange.update() == false)
+	{
+		//ƒV[ƒ“ƒ`ƒFƒ“ƒW‚È‚ç‚±‚ê‚ğs‚¤
+		if (m_changescene_flag == true)
+		{
+			Parameter p;
+			if (m_changescene_which == 1)
+			{
+				mp_listenerInterface->deleteNowScene(p);
+			}
+			else if (m_changescene_which == 2)
+			{
+				Parameter p;
+
+				//ƒQ[ƒ€‚Ì”Õ–Ê‚ğ•ñ‚·‚é
+				std::vector<MatchField> _temp_field_list;
+				m_logDraw.getFieldList(_temp_field_list);
+				p.setFieldParam(_temp_field_list);
+
+				//ƒQ[ƒ€‚Ìƒ‹[ƒ‹‚ğ•ñ‚·‚é
+				if (m_self_harm_rule == true) { p.setParam(GameParam::SELF_HARM_RULE, GameParam::TRUE_STATE); }
+				else { p.setParam(GameParam::SELF_HARM_RULE, GameParam::FALSE_STATE); }
+
+				if (m_mod_rule == true) { p.setParam(GameParam::MOD_RULE, GameParam::TRUE_STATE); }
+				else { p.setParam(GameParam::MOD_RULE, GameParam::FALSE_STATE); }
+
+				//‚ê‚´‚é‚ÆƒV[ƒ“‚ª‰½ƒV[ƒ“•ª–ß‚é‚Ì‚©
+				p.setParam(GameParam::RESULT_BACK_NUM, 2);
+
+				//ƒV[ƒ“‚ğ’Ç‰Á‚·‚é
+				mp_listenerInterface->addNewScene(enumScene::result, p);
+			}
+
+			return true;
+		}
+
+		//ƒAƒjƒ[ƒVƒ‡ƒ“‚Ìˆ—‚ªI‚í‚Á‚½‚È‚çƒƒCƒ“‚Ìˆ—‚ğ‚·‚é
+		if (m_anime.update() == false)
+		{
+			//ƒQ[ƒ€‚ªI—¹‚µ‚Ä‚¢‚é‚È‚çƒAƒjƒ[ƒVƒ‡ƒ“‚ğÄ¶‚·‚é
+			if (m_field.isEndOfGame() == true)
+			{
+				m_changescene_flag = true;
+				m_sceneChange.init(0);
+				m_changescene_which = 2;
+			}
+			//ˆø‚«•ª‚¯‚ÌƒAƒjƒ[ƒVƒ‡ƒ“‚ğÄ¶‚·‚é
+			else if (m_logDraw.update() == false) 
+			{
+				m_changescene_flag = true;
+				m_sceneChange.init(0);
+				m_changescene_which = 2;
+			}
+			//©•ª‚Ìƒ^[ƒ“‚Ì
+			else if (m_field.turn == true)
+			{
+				//m_selectEnenmy();
+				m_is_selecting_now = true;
+				m_selectMove();
+			}
+			//“G‚Ìƒ^[ƒ“‚Ì
+			else
+			{
+				m_selectEnenmy();
+			}
+		}
+		//ƒAƒjƒ[ƒVƒ‡ƒ“‚ªI—¹‚µ‚½ƒ^ƒCƒ~ƒ“ƒO‚ÅƒtƒB[ƒ‹ƒh‚ÌXV‚ğ‚©‚¯‚é
+		else if (m_anime.isEndTime() == true) {
+			m_pushNewFieldExecute();
+		}
+	}
+
+	return true;
+}
+
+void GameScene::draw() const
+{
+	//”wŒi‚Í”’‚¢F
+	DrawBox(0, 0, Define::WIN_SIZEX, Define::WIN_SIZEY, GetColor(255, 255, 255), TRUE);
+
+	//˜r‚ğ•`‰æ‚·‚é
+	m_handDraw.draw(m_field, m_is_selecting_now, m_which_player, m_which_one_player1, m_which_one_player2, m_use_self_hurm, m_use_saihai);
+
+	//‘ÎíƒƒO‚ğ•\¦‚·‚é
+	m_logDraw.draw(m_field, m_turn, m_player_is_first, m_mod_rule, m_self_harm_rule, m_enemy_level);
+
+	//ŠeíƒAƒjƒ[ƒVƒ‡ƒ“‚ğã‚É•\¦
+	m_anime.draw();
+
+	//ƒV[ƒ“ƒ`ƒFƒ“ƒW‚ÌƒGƒtƒFƒNƒg‚ğˆê”Ôã‚É•\¦
+	m_sceneChange.draw();
+}
+
+void GameScene::receiveParameterInCaseOfDeleteScene(const Parameter& parameter)
+{
+}
+
+
+void GameScene::m_initField(const Parameter& _pram)
+{
+	//‚Ç‚Á‚¿‚Ìƒ^[ƒ“‚©’²‚×‚é
+	if (_pram.getParam(GameParam::PLAYER_IS_FIRST) == GameParam::TRUE_STATE) {
+		m_logDraw.pushLog("‹M•û‚Íæè‚Å‚·");
+		m_field.turn = m_player_is_first = true;
+	}
+	else {
+		m_logDraw.pushLog("‹M•û‚ÍŒãè‚Å‚·");
+		m_field.turn = m_player_is_first = false;
+	}
+
+	//CPU
+	if (_pram.getParam(GameParam::ENEMY_LEVEL) == GameParam::ENEMY_LEVEL_EASY) { m_enemy_level = 0; }
+	else if (_pram.getParam(GameParam::ENEMY_LEVEL) == GameParam::ENEMY_LEVEL_NORMAL) { m_enemy_level = 1; }
+	else if (_pram.getParam(GameParam::ENEMY_LEVEL) == GameParam::ENEMY_LEVEL_HARD) { m_enemy_level = 2; }
+	else { m_enemy_level = 3; }
+
+	//MODƒ‹[ƒ‹‚ğg—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+	if (_pram.getParam(GameParam::MOD_RULE) == GameParam::TRUE_STATE) { m_mod_rule = true; }
+	else { m_mod_rule = false; }
+
+	//Ñ”z‚ğ—˜—p‚·‚é‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+	if (_pram.getParam(GameParam::SAIHAI_RULE) == GameParam::TRUE_STATE) {
+		m_field.player1_avatar_num = 1;
+		m_field.player2_avatar_num = 1;
+	}
+
+	//©‚ ‚è‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒO
+	if (_pram.getParam(GameParam::SELF_HARM_RULE) == GameParam::TRUE_STATE) { m_self_harm_rule = true; }
+	else { m_self_harm_rule = false; }
+}
+
+void GameScene::m_selectMove()
+{
+	//ƒTƒEƒ“ƒh‚ğ–Â‚ç‚·
+	if (Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) == 1 || Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) == 1 || Keyboard::getIns()->getPressingCount(KEY_INPUT_Z) == 1 || Keyboard::getIns()->getPressingCount(KEY_INPUT_C) == 1)
+	{
+		PlaySoundMem(m_sound_hand_select, DX_PLAYTYPE_BACK);
+	}
+	else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_X) == 1)
+	{
+		PlaySoundMem(m_sound_hand_cancel, DX_PLAYTYPE_BACK);
+	}
+
+	//©ƒ‹[ƒ‹‚ª‚È‚¢‚È‚ç‚Îƒtƒ‰ƒO‚ğƒIƒt‚É‚·‚é
+	if (m_self_harm_rule == false) { m_use_self_hurm = false; }
+
+	//Ñ”z‚Ìˆ—
+	if (m_field.player1_avatar_num != 0) 
+	{
+		if (m_use_saihai % 3 == 1 || m_use_saihai % 3 == 2) 
+		{
+			//‚ƒƒL[‚ª‰Ÿ‚³‚ê‚½‚çƒJƒEƒ“ƒ^‚ğ‰ñ‚µ‚ÄI—¹
+			if (Keyboard::getIns()->getPressingCount(KEY_INPUT_C) == 1) {
+				m_use_saihai++;
+				return;
+			}
+
+			//XƒL[‚ª‰Ÿ‚³‚ê‚½‚çI—¹
+			if (Keyboard::getIns()->getPressingCount(KEY_INPUT_X) == 1) {
+				m_use_saihai = 0;
+				return;
+			}
+
+			//Ñ”zŒ‹‰Ê‚ğZo
+			MatchField _low;
+			MatchField _high;
+			if (VariousFunctionsForMatchGame::executeCommand(VariousFunctionsForMatchGame::COMMAND_SAIHAI_LOW, m_field, _low, m_mod_rule, m_self_harm_rule) == false) {
+				m_use_saihai = 0;
+				return;
+			}
+			if (VariousFunctionsForMatchGame::executeCommand(VariousFunctionsForMatchGame::COMMAND_SAIHAI_HIGH, m_field, _high, m_mod_rule, m_self_harm_rule) == false) {
+				m_use_saihai = 0;
+				return;
+			}
+
+			//HIGH‚ÆLOW‚ª“™‚µ‚¢‚È‚ç‚ÎÑ”z‚ğI—¹
+			if (_low == _high && m_use_saihai % 3 == 2) {
+				m_use_saihai = 0;
+				return;
+			}
+
+			//ZƒL[‚ª‰Ÿ‚³‚ê‚½‚ç”Õ–Ê‚ğŠm’è‚µ‚ÄI—¹
+			if (Keyboard::getIns()->getPressingCount(KEY_INPUT_Z) == 1) 
+			{
+				//Ÿ”Õ–Ê‚ğ¶¬‚µ‚Äpush
+				m_pushNewFieldbyCommand((m_use_saihai % 3 == 1) ? VariousFunctionsForMatchGame::COMMAND_SAIHAI_LOW : VariousFunctionsForMatchGame::COMMAND_SAIHAI_HIGH);
+
+				//ƒJƒEƒ“ƒ^‚ğ‘S‚Ä‰Šú‰»‚·‚é
+				m_which_player = 0;
+				m_which_one_player1 = 0;
+				m_which_one_player2 = 0;
+				m_use_self_hurm = false;
+				m_use_saihai = 0;
+				return;
+			}
+
+			//Ñ”z‘I‘ğ’†‚È‚ç‚ÎŒã‚ë‚Ìˆ—‚ğ‚µ‚È‚¢
+			return;
+		}
+		else if(m_use_saihai % 3 == 0)
+		{
+			//‚ƒƒL[‚ª‰Ÿ‚³‚ê‚½‚çƒJƒEƒ“ƒ^‚ğ‰ñ‚µ‚ÄI—¹
+			if (Keyboard::getIns()->getPressingCount(KEY_INPUT_C) == 1) {
+				m_use_saihai++;
+				MatchField _low;
+				if (VariousFunctionsForMatchGame::executeCommand(VariousFunctionsForMatchGame::COMMAND_SAIHAI_LOW, m_field, _low, m_mod_rule, m_self_harm_rule) == false) { m_use_saihai = 0; }
+				return;
+			}
+		}
+		else { m_use_saihai = 0; }
+	}
+
+	//©•ª‚Ì˜r‚ğ‘I‘ğ‚·‚éó‘Ô‚È‚ç‚Î
+	if (m_which_player == 0)
+	{
+		m_use_self_hurm = false;
+
+		if (m_field.player1.first == 0) { //•Ğè‚ª‘¶İ‚µ‚È‚¢‚È‚ç‚ÎŒÅ’è
+			m_which_one_player1 = 1;
+		}
+		else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) == 1 || Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) == 1) {	
+			//ƒL[“ü—Í‚É‚æ‚Á‚Ä•Ï‰»‚³‚¹‚é
+			m_which_one_player1++;
+		}
+
+		if (Keyboard::getIns()->getPressingCount(KEY_INPUT_Z) == 1)
+		{
+			if ((m_field.player1.first != 0 && m_which_one_player1 % 2 == 0) || (m_field.player1.second != 0 && m_which_one_player1 % 2 == 1)) {
+				//‚šƒL[‚ª‰Ÿ‚³‚ê‚½A‚»‚ê‚ª0‚Å‚È‚¢‚È‚ç‚ÎŒÅ’è‚·‚é
+				m_which_player = 1;
+
+				if (m_field.player2.first == 0) { m_which_one_player2 = 1; }
+			}
+		}
+	}
+	else {
+		//Xƒ{ƒ^ƒ“‚ÅƒLƒƒƒ“ƒZƒ‹‚·‚é
+		if (Keyboard::getIns()->getPressingCount(KEY_INPUT_X) == 1) {
+			m_which_player = 0;
+			m_which_one_player2 = 0;
+			m_use_self_hurm = false;
+			return;
+		}
+
+		//©ƒ‹[ƒ‹
+		if (m_self_harm_rule == true) 
+		{ 
+			if (Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) == 1) {
+				if (m_use_self_hurm == true) { 
+					m_use_self_hurm = false;
+					m_which_one_player2 = 1;
+				}
+				else {
+					if (m_which_one_player2 % 2 == 0) { 
+						m_use_self_hurm = true; 
+						if (m_field.player1.first == 0 || m_field.player1.second == 0) {
+							m_use_self_hurm = false;
+							m_which_one_player2 = 1;
+						}
+					}
+					else if (m_which_one_player2 % 2 == 1 && m_field.player2.first == 0 && (m_field.player1.first != 0 && m_field.player1.second != 0)) {
+						m_use_self_hurm = true;
+					}
+					else { m_which_one_player2 = 0; }
+				}
+			}
+			else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) == 1) 
+			{
+				if (m_use_self_hurm == true) {
+					m_use_self_hurm = false;
+					m_which_one_player2 = 0;
+				}
+				else {
+					if (m_which_one_player2 % 2 == 1) { 
+						m_use_self_hurm = true; 
+						if (m_field.player1.first == 0 || m_field.player1.second == 0) {
+							m_use_self_hurm = false;
+							m_which_one_player2 = 0;
+						}
+					}
+					else { m_which_one_player2 = 1; }
+				}
+			}
+
+			//‘I‘ğ‚µ‚Ä‚¢‚é‚Ì‚ª‚O‚È‚ç‚ÎŒÅ’è
+			if (m_field.player2.first == 0 && m_use_self_hurm == false) { 
+				m_which_one_player2 = 1;
+			}
+		}
+		//’Êíƒ‹[ƒ‹
+		else { 
+			if (m_field.player2.first == 0) { //‘I‘ğ‚µ‚Ä‚¢‚é‚Ì‚ª‚O‚È‚ç‚ÎŒÅ’è
+				m_which_one_player2 = 1;
+			}
+			else if (Keyboard::getIns()->getPressingCount(KEY_INPUT_LEFT) == 1 || Keyboard::getIns()->getPressingCount(KEY_INPUT_RIGHT) == 1) {
+				m_which_one_player2++;
+			}
+		}
+
+		// ZƒL[‚ª‰Ÿ‚³‚ê‚½‚È‚ç‚ÎŒˆ’è
+		if (Keyboard::getIns()->getPressingCount(KEY_INPUT_Z) == 1) { 
+
+			int temp_cmd = 0;
+
+			//‚O‚ğUŒ‚‚µ‚È‚¢
+			if ((m_field.player2.first != 0 && m_which_one_player2 % 2 == 0) || (m_field.player2.second != 0 && m_which_one_player2 % 2 == 1))
+			{
+				//ƒRƒ}ƒ“ƒh‚ğ‹‚ß‚é
+				if (m_use_self_hurm == true) {
+					if (m_which_one_player1 % 2 == 0) { temp_cmd = VariousFunctionsForMatchGame::COMMAND_1_SELF; }
+					else { temp_cmd = VariousFunctionsForMatchGame::COMMAND_2_SELF; }
+				}
+				else if (m_which_one_player2 % 2 == 0) {
+					if (m_which_one_player1 % 2 == 0) { temp_cmd = VariousFunctionsForMatchGame::COMMAND_1_TO_1; }
+					else { temp_cmd = VariousFunctionsForMatchGame::COMMAND_2_TO_1; }
+				}
+				else {
+					if (m_which_one_player1 % 2 == 0) { temp_cmd = VariousFunctionsForMatchGame::COMMAND_1_TO_2; }
+					else { temp_cmd = VariousFunctionsForMatchGame::COMMAND_2_TO_2; }
+				}
+
+				//ƒAƒjƒ‚ğ’Ç‰Á‚·‚é
+				m_pushNewFieldbyCommand(temp_cmd);
+
+				//ƒJƒEƒ“ƒ^‚ğ‘S‚Ä‰Šú‰»‚·‚é
+				m_which_player = 0;
+				m_which_one_player1 = 0;
+				m_which_one_player2 = 0;
+				m_use_self_hurm = false;
+				m_use_saihai = 0;
+			}
+		}
+	}
+}
+
+void GameScene::m_selectEnenmy()
+{
+	MatchField _new;
+
+	//V”Õ–Ê‚ğ¶¬
+	_new = m_field;
+
+	if (VariousFunctionsForMatchGame::matchGameCOM(m_enemy_level, m_field, _new, m_self_harm_rule, m_mod_rule) == false) {
+		Parameter _p;
+		mp_listenerInterface->deleteNowScene(_p);
+		printfDx("Gamescene Class ‚æ‚è“G‚Ì”Õ–Ê¶¬ŠÖ”‚ªƒGƒ‰[‚ğ‹N‚±‚µ‚Ü‚µ‚½\nƒƒjƒ…[‰æ–Ê‚É–ß‚è‚Ü‚·");
+	}
+
+	//V‚µ‚¢”Õ–Ê‚ğ‘}“ü
+	m_pushNewField(_new);
+}
+
+
+void GameScene::m_pushNewField(MatchField& _new)
+{
+	m_newfield_data = _new;	//ƒf[ƒ^‚ğó‚¯æ‚é
+
+	//ƒAƒjƒ‚ğ’Ç‰Á
+	m_anime.addAnime(4);
+	m_anime.addAnimeOption(m_field, _new);
+	
+	m_newfield_type = 1;	//ƒ^ƒCƒv‚ğ•ÏX
+}
+
+void GameScene::m_pushNewFieldbyCommand(int _cmd)
+{
+	m_newfield_cmd = _cmd;	//ƒf[ƒ^‚ğó‚¯æ‚é
+
+	//ƒAƒjƒ‚ğ’Ç‰Á
+	m_anime.addAnime(4);
+	m_anime.addAnimeOption2(m_field, _cmd);
+
+	m_newfield_type = 2;	//ƒ^ƒCƒv‚ğ•ÏX
+}
+
+void GameScene::m_pushNewFieldExecute()
+{
+	//ƒtƒB[ƒ‹ƒhƒf[ƒ^‚©‚çXV‚·‚éê‡
+	if (m_newfield_type == 1) 
+	{
+		//ƒƒO‚ğ’Ç‰Á
+		m_logDraw.pushLogByField(m_newfield_data);
+
+		//ƒtƒB[ƒ‹ƒh‚ğXV
+		m_field = m_newfield_data;
+
+		//ƒ^[ƒ“‚ğ‘‚â‚·
+		m_turn++;
+	}
+	//ƒRƒ}ƒ“ƒh‚©‚çXV‚·‚éê‡
+	else if (m_newfield_type == 2) 
+	{
+		//Ÿ”Õ–Ê‚Ì¶¬
+		MatchField _temp;
+		VariousFunctionsForMatchGame::executeCommand(m_newfield_cmd, m_field, _temp, m_mod_rule, m_self_harm_rule); //ƒRƒ}ƒ“ƒh‚ğÀs
+
+		//ƒƒO‚ğ’Ç‰Á
+		m_logDraw.pushLogByField(_temp);
+
+		//ƒtƒB[ƒ‹ƒh‚ğXV
+		m_field = _temp;
+
+		//ƒ^[ƒ“‚ğ‘‚â‚·
+		m_turn++;
+	}
+
+	m_newfield_type = 0;
+	return;
+}

@@ -59,19 +59,15 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="myBuildSettings.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="myBuildSettings.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="myBuildSettings.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="myBuildSettings.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -88,238 +84,156 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(DXLIB_DIR);$(SolutionDir)libraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <PreprocessToFile>false</PreprocessToFile>
-      <UseStandardPreprocessor>true</UseStandardPreprocessor>
-      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
-      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(DXLIB_DIR);$(SolutionDir)libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(DXLIB_DIR);$(SolutionDir)libraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <PreprocessToFile>false</PreprocessToFile>
-      <UseStandardPreprocessor>true</UseStandardPreprocessor>
-      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
-      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(DXLIB_DIR);$(SolutionDir)libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(DXLIB_DIR);$(SolutionDir)libraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <PreprocessToFile>false</PreprocessToFile>
-      <UseStandardPreprocessor>true</UseStandardPreprocessor>
-      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
-      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(DXLIB_DIR);$(SolutionDir)libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(DXLIB_DIR);$(SolutionDir)libraries;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <PreprocessToFile>false</PreprocessToFile>
-      <UseStandardPreprocessor>true</UseStandardPreprocessor>
-      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
-      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(DXLIB_DIR);$(SolutionDir)libraries;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="bgm_player.cpp" />
-    <ClCompile Include="debug_scene.cpp" />
-    <ClCompile Include="dxlib_assert.cpp" />
-    <ClCompile Include="dxlib_debug_print.cpp" />
-    <ClCompile Include="dxlib_input.cpp" />
-    <ClCompile Include="dxlib_keyboard.cpp" />
-    <ClCompile Include="dxlib_mouse.cpp" />
-    <ClCompile Include="entity_updater.cpp" />
-    <ClCompile Include="fade_effect.cpp" />
-    <ClCompile Include="font_loader.cpp" />
-    <ClCompile Include="fps_controller.cpp" />
-    <ClCompile Include="fps_displayer.cpp" />
+    <ClCompile Include="AbstractScene.cpp" />
+    <ClCompile Include="DebugScene.cpp" />
+    <ClCompile Include="Define.cpp" />
+    <ClCompile Include="Error.cpp" />
+    <ClCompile Include="Font.cpp" />
+    <ClCompile Include="Fps.cpp" />
     <ClCompile Include="GameAnime.cpp" />
     <ClCompile Include="GameHand.cpp" />
     <ClCompile Include="GameLog.cpp" />
     <ClCompile Include="GameParam.cpp" />
     <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="game_back_ground_base.cpp" />
-    <ClCompile Include="game_log.cpp" />
-    <ClCompile Include="game_scene.cpp" />
-    <ClCompile Include="game_setting_exporter.cpp" />
-    <ClCompile Include="game_setting_importer.cpp" />
-    <ClCompile Include="image_loader.cpp" />
-    <ClCompile Include="game_main_loop.cpp" />
-    <ClCompile Include="input_scheme_displayer.cpp" />
-    <ClCompile Include="language_back_ground_base.cpp" />
-    <ClCompile Include="language_record.cpp" />
-    <ClCompile Include="language_record_initializer.cpp" />
-    <ClCompile Include="language_scene.cpp" />
-    <ClCompile Include="language_ui.cpp" />
+    <ClCompile Include="Image.cpp" />
+    <ClCompile Include="Keyboard.cpp" />
+    <ClCompile Include="Looper.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MatchGameCommon.cpp" />
     <ClCompile Include="MatchGameCPU.cpp" />
     <ClCompile Include="MatchGameList.cpp" />
     <ClCompile Include="MatchGameList2.cpp" />
     <ClCompile Include="MatchGameOut.cpp" />
-    <ClCompile Include="match_game_field.cpp" />
-    <ClCompile Include="menu_back_ground_base.cpp" />
-    <ClCompile Include="menu_scene.cpp" />
-    <ClCompile Include="menu_ui.cpp" />
+    <ClCompile Include="MenuBox.cpp" />
+    <ClCompile Include="MenuDrawBack.cpp" />
+    <ClCompile Include="MenuScene.cpp" />
+    <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="Parameter.cpp" />
     <ClCompile Include="ReplayScene.cpp" />
     <ClCompile Include="ResultDrawBack.cpp" />
     <ClCompile Include="ResultDrawHand.cpp" />
     <ClCompile Include="ResultKey.cpp" />
     <ClCompile Include="ResultScene.cpp" />
     <ClCompile Include="ResultString.cpp" />
-    <ClCompile Include="rule_back_ground_base.cpp" />
-    <ClCompile Include="rule_scene.cpp" />
-    <ClCompile Include="rule_text.cpp" />
-    <ClCompile Include="rule_ui.cpp" />
-    <ClCompile Include="rule_ui_hexagon.cpp" />
+    <ClCompile Include="RulePage.cpp" />
+    <ClCompile Include="RuleParam.cpp" />
+    <ClCompile Include="RuleScene.cpp" />
     <ClCompile Include="SceneChangeEffect.cpp" />
-    <ClCompile Include="scene_change_executer.cpp" />
-    <ClCompile Include="scene_change_listener.cpp" />
-    <ClCompile Include="scene_change_parameter.cpp" />
-    <ClCompile Include="scene_creator.cpp" />
-    <ClCompile Include="scene_stack.cpp" />
-    <ClCompile Include="sound_effect_loader.cpp" />
-    <ClCompile Include="string_util.cpp" />
-    <ClCompile Include="system_main.cpp" />
-    <ClCompile Include="title_back_ground_base.cpp" />
-    <ClCompile Include="title_hand_animation.cpp" />
-    <ClCompile Include="title_logo.cpp" />
-    <ClCompile Include="title_scene.cpp" />
-    <ClCompile Include="title_scene_switcher.cpp" />
-    <ClCompile Include="toml_serialize_macro.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Setting.cpp" />
+    <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="SystemMain.cpp" />
+    <ClCompile Include="TitleAnime.cpp" />
+    <ClCompile Include="TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="bgm_player.h" />
-    <ClInclude Include="debug_scene.h" />
-    <ClInclude Include="define.h" />
-    <ClInclude Include="dxlib_assert.h" />
-    <ClInclude Include="dxlib_debug_print.h" />
-    <ClInclude Include="dxlib_input.h" />
-    <ClInclude Include="dxlib_keyboard.h" />
-    <ClInclude Include="dxlib_mouse.h" />
-    <ClInclude Include="entity_updater.h" />
-    <ClInclude Include="error_message_box.h" />
-    <ClInclude Include="fade_effect.h" />
-    <ClInclude Include="font_loader.h" />
-    <ClInclude Include="fps_controller.h" />
-    <ClInclude Include="fps_displayer.h" />
+    <ClInclude Include="AbstractScene.h" />
+    <ClInclude Include="DebugScene.h" />
+    <ClInclude Include="Define.h" />
+    <ClInclude Include="Error.h" />
+    <ClInclude Include="Font.h" />
+    <ClInclude Include="Fps.h" />
     <ClInclude Include="GameAnime.h" />
     <ClInclude Include="GameHand.h" />
     <ClInclude Include="GameLog.h" />
     <ClInclude Include="GameParam.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="GameSelectingHand.h" />
-    <ClInclude Include="game_back_ground_base.h" />
-    <ClInclude Include="game_hand_renderer.h" />
-    <ClInclude Include="game_log.h" />
-    <ClInclude Include="game_main_loop.h" />
-    <ClInclude Include="game_scene.h" />
-    <ClInclude Include="game_setting_exporter.h" />
-    <ClInclude Include="game_setting_importer.h" />
-    <ClInclude Include="game_setting_record.h" />
-    <ClInclude Include="image_loader.h" />
-    <ClInclude Include="implicit_metafunction_for_toml11.h" />
-    <ClInclude Include="input_scheme_displayer.h" />
-    <ClInclude Include="interface_toml_data_validator.h" />
-    <ClInclude Include="i_scene.h" />
-    <ClInclude Include="language_back_ground_base.h" />
-    <ClInclude Include="language_record.h" />
-    <ClInclude Include="language_record_initializer.h" />
-    <ClInclude Include="language_scene.h" />
-    <ClInclude Include="language_ui.h" />
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="Looper.h" />
     <ClInclude Include="MatchGameCommon.h" />
-    <ClInclude Include="match_game_field.h" />
-    <ClInclude Include="match_game_rule.h" />
-    <ClInclude Include="math_const.h" />
-    <ClInclude Include="menu_back_ground_base.h" />
-    <ClInclude Include="menu_scene.h" />
-    <ClInclude Include="menu_ui.h" />
+    <ClInclude Include="MenuBox.h" />
+    <ClInclude Include="MenuDrawBack.h" />
+    <ClInclude Include="MenuScene.h" />
+    <ClInclude Include="Mouse.h" />
+    <ClInclude Include="Parameter.h" />
     <ClInclude Include="ReplayScene.h" />
     <ClInclude Include="ResultDrawBack.h" />
     <ClInclude Include="ResultDrawHand.h" />
     <ClInclude Include="ResultKey.h" />
     <ClInclude Include="ResultScene.h" />
     <ClInclude Include="ResultString.h" />
-    <ClInclude Include="rule_back_ground_base.h" />
-    <ClInclude Include="rule_scene.h" />
-    <ClInclude Include="rule_text.h" />
-    <ClInclude Include="rule_ui.h" />
-    <ClInclude Include="rule_ui_hexagon.h" />
+    <ClInclude Include="RuleParam.h" />
+    <ClInclude Include="RuleScene.h" />
+    <ClInclude Include="RulePage.h" />
     <ClInclude Include="SceneChangeEffect.h" />
-    <ClInclude Include="scene_change_executer.h" />
-    <ClInclude Include="scene_change_listener.h" />
-    <ClInclude Include="scene_change_parameter.h" />
-    <ClInclude Include="scene_creator.h" />
-    <ClInclude Include="scene_name.h" />
-    <ClInclude Include="scene_stack.h" />
-    <ClInclude Include="sound_effect_loader.h" />
-    <ClInclude Include="string_util.h" />
-    <ClInclude Include="system_main.h" />
-    <ClInclude Include="title_back_ground_base.h" />
-    <ClInclude Include="title_hand_animation.h" />
-    <ClInclude Include="title_logo.h" />
-    <ClInclude Include="title_scene.h" />
-    <ClInclude Include="title_scene_switcher.h" />
-    <ClInclude Include="toml11_define.h" />
-    <ClInclude Include="toml_data_validator_always_true.h" />
-    <ClInclude Include="toml_file_exporter.h" />
-    <ClInclude Include="toml_file_importer.h" />
-    <ClInclude Include="toml_serialize_macro.h" />
-    <ClInclude Include="i_entity.h" />
+    <ClInclude Include="SceneChangeListenerInterface.h" />
+    <ClInclude Include="SceneEnum.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Setting.h" />
+    <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Sound.h" />
+    <ClInclude Include="SystemMain.h" />
+    <ClInclude Include="TitleAnime.h" />
+    <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\iconsetting.rc" />
