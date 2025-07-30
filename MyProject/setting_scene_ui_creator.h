@@ -12,23 +12,24 @@
 namespace match_stick {
 
 class SettingSceneUiCreator final {
-public:
-    SettingSceneUiCreator(const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
-                          const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-                          const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
-                          const std::shared_ptr<DxLibResourceLoader>& dxlib_resource_loader_ptr);
-    ~SettingSceneUiCreator() = default;
+ public:
+  SettingSceneUiCreator(
+      const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
+      const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+      const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
+      const std::shared_ptr<DxLibResourceLoader>& dxlib_resource_loader_ptr);
+  ~SettingSceneUiCreator() = default;
 
-    void initUI(const std::unique_ptr<EntityUpdater>& entity_updater_ptr_);
+  void initUI(const std::unique_ptr<EntityUpdater>& entity_updater_ptr_);
 
-private:
-    void changeBGMVolume(int volume_dif);
-    void changeSEVolume(int volume_dif);
+ private:
+  void changeBGMVolume(int volume_dif);
+  void changeSEVolume(int volume_dif);
 
-    const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
-    const std::shared_ptr<const LanguageRecord> language_record_ptr_;
-    const std::shared_ptr<const DxLibInput> dxlib_input_ptr_;
-    const std::shared_ptr<DxLibResourceLoader> dxlib_resource_loader_ptr_;
+  const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
+  const std::shared_ptr<const LanguageRecord> language_record_ptr_;
+  const std::shared_ptr<const DxLibInput> dxlib_input_ptr_;
+  const std::shared_ptr<DxLibResourceLoader> dxlib_resource_loader_ptr_;
 };
 
 }  // namespace match_stick

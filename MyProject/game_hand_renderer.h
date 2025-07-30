@@ -3,8 +3,6 @@
 
 namespace match_stick {
 
-class GameHandRenderer final {
-
-};
+class GameHandRenderer final {};
 
 }  // namespace match_stick

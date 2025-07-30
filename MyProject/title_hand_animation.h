@@ -11,45 +11,47 @@
 namespace match_stick {
 
 class TitleHandAnimation final : public IEntity {
-public:
-    TitleHandAnimation(const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
-    ~TitleHandAnimation() = default;
+ public:
+  TitleHandAnimation(const std::shared_ptr<const DxLibResourceLoader>&
+                         dxlib_resource_loader_ptr);
+  ~TitleHandAnimation() = default;
 
-    inline int getLayer() const override {
-        return constants::kUIBottomLayer;
-    }
+  inline int getLayer() const override { return constants::kUIBottomLayer; }
 
-    bool update() override;
+  bool update() override;
 
-    void draw() const override;
+  void draw() const override;
 
-private:
-    struct Hand final {
-        static constexpr int kVelocityDiscretization = 100;
-        static constexpr double kMaxVelocity = 4;
-        static constexpr double kMinVelocity = 1.5;
+ private:
+  struct Hand final {
+    static constexpr int kVelocityDiscretization = 100;
+    static constexpr double kMaxVelocity = 4;
+    static constexpr double kMinVelocity = 1.5;
 
-        double base_x{ 0.0 };
-        double x{ 0.0 };
-        double y{ 0.0 };
-        double v{ 3.0 };
-        unsigned int graphic_index{ 0 };
-    };
+    double base_x{0.0};
+    double x{0.0};
+    double y{0.0};
+    double v{3.0};
+    unsigned int graphic_index{0};
+  };
 
-    static constexpr unsigned int kImageNum = 6;  //<! タイトル画面の手のアニメーション画像の数
+  static constexpr unsigned int kImageNum =
+      6;  //<! タイトル画面の手のアニメーション画像の数
 
-    //! @brief タイトル画面の手のアニメーション画像をロードする
-    std::array<int, kImageNum> loadImages(
-        const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr) const;
+  //! @brief タイトル画面の手のアニメーション画像をロードする
+  std::array<int, kImageNum> loadImages(
+      const std::shared_ptr<const DxLibResourceLoader>&
+          dxlib_resource_loader_ptr) const;
 
-    void initHandPos();
+  void initHandPos();
 
-    const std::array<int, kImageNum> image_handle_;  //<! タイトル画面の手のアニメーション画像のハンドル
+  const std::array<int, kImageNum>
+      image_handle_;  //<! タイトル画面の手のアニメーション画像のハンドル
 
-    int hand_size_x_;  //!< グラフィックの横幅
-    int hand_size_y_;  //!< グラフィックの縦幅
+  int hand_size_x_;  //!< グラフィックの横幅
+  int hand_size_y_;  //!< グラフィックの縦幅
 
-    std::vector<Hand> hand_;  //!< 手の座標や速度などの情報
+  std::vector<Hand> hand_;  //!< 手の座標や速度などの情報
 };
 
 }  // namespace match_stick

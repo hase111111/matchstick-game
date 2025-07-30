@@ -12,7 +12,8 @@
 namespace match_stick {
 
 //! @namespace match_stick::debug_print_internal
-//! @brief デバッグ用のプリント関数を提供する名前空間．インターナルな関数にするため，深い階層にしている．
+//! @brief
+//! デバッグ用のプリント関数を提供する名前空間．インターナルな関数にするため，深い階層にしている．
 namespace debug_print_internal {
 
 //! @brief デバッグ用プリントが実行された回数
@@ -27,11 +28,11 @@ static bool is_console_created = false;
 static bool debug_print_off = false;
 
 enum class DebugPrintType {
-    kWarning,       //!< 警告
-    kError,         //!< エラー
-    kInfo,          //!< 一般的な情報
-    kImportant,     //!< 重要な情報
-    kDebug,         //!< デバッグ情報
+  kWarning,    //!< 警告
+  kError,      //!< エラー
+  kInfo,       //!< 一般的な情報
+  kImportant,  //!< 重要な情報
+  kDebug,      //!< デバッグ情報
 };
 
 //! @brief デバッグ用のコンソールを作成する
@@ -50,7 +51,8 @@ void createConsole();
 //! また，DxLib_Init が実行されるまえに実行する必要がある．
 void runTest();
 
-void debugPrint(const std::string& func_name, const std::string& str, DebugPrintType type);
+void debugPrint(const std::string& func_name, const std::string& str,
+                DebugPrintType type);
 
 }  // namespace debug_print_internal
 
@@ -59,48 +61,59 @@ void debugPrint(const std::string& func_name, const std::string& str, DebugPrint
 #ifdef _DEBUG
 
 //! @brief DEBUG_PRINT が出力する先のコンソールを作成し，テストを実行する
-#define PREPAER_DEBUG_PRINT_AND_ACTIVATE_TEST() \
-::match_stick::debug_print_internal::createConsole(); \
-::match_stick::debug_print_internal::runTest();
+#define PREPAER_DEBUG_PRINT_AND_ACTIVATE_TEST()         \
+  ::match_stick::debug_print_internal::createConsole(); \
+  ::match_stick::debug_print_internal::runTest();
 
-#define DEBUG_PRINT(str) \
-::match_stick::debug_print_internal::debugPrint( \
-    __FUNCTION__, str, ::match_stick::debug_print_internal::DebugPrintType::kDebug)
+#define DEBUG_PRINT(str)                           \
+  ::match_stick::debug_print_internal::debugPrint( \
+      __FUNCTION__, str,                           \
+      ::match_stick::debug_print_internal::DebugPrintType::kDebug)
 
-#define DEBUG_PRINT_WARNING(str) \
-::match_stick::debug_print_internal::debugPrint( \
-    __FUNCTION__, str, ::match_stick::debug_print_internal::DebugPrintType::kWarning)
+#define DEBUG_PRINT_WARNING(str)                   \
+  ::match_stick::debug_print_internal::debugPrint( \
+      __FUNCTION__, str,                           \
+      ::match_stick::debug_print_internal::DebugPrintType::kWarning)
 
-#define DEBUG_PRINT_ERROR(str) \
-::match_stick::debug_print_internal::debugPrint( \
-    __FUNCTION__, str, ::match_stick::debug_print_internal::DebugPrintType::kError)
+#define DEBUG_PRINT_ERROR(str)                     \
+  ::match_stick::debug_print_internal::debugPrint( \
+      __FUNCTION__, str,                           \
+      ::match_stick::debug_print_internal::DebugPrintType::kError)
 
-#define DEBUG_PRINT_IMPORTANT(str) \
-::match_stick::debug_print_internal::debugPrint( \
-    __FUNCTION__, str, ::match_stick::debug_print_internal::DebugPrintType::kImportant)
+#define DEBUG_PRINT_IMPORTANT(str)                 \
+  ::match_stick::debug_print_internal::debugPrint( \
+      __FUNCTION__, str,                           \
+      ::match_stick::debug_print_internal::DebugPrintType::kImportant)
 
-#define DEBUG_PRINT_INFO(str) \
-::match_stick::debug_print_internal::debugPrint( \
-    __FUNCTION__, str, ::match_stick::debug_print_internal::DebugPrintType::kInfo)
+#define DEBUG_PRINT_INFO(str)                      \
+  ::match_stick::debug_print_internal::debugPrint( \
+      __FUNCTION__, str,                           \
+      ::match_stick::debug_print_internal::DebugPrintType::kInfo)
 
 #else
 
-//! @brief 現在有効化されていません．Visual Studio のビルド構成を Debug に変更してください．
+//! @brief 現在有効化されていません．Visual Studio のビルド構成を Debug
+//! に変更してください．
 #define PREPAER_DEBUG_PRINT_AND_ACTIVATE_TEST() ((void)0)
 
-//! @brief 現在有効化されていません．Visual Studio のビルド構成を Debug に変更してください．
+//! @brief 現在有効化されていません．Visual Studio のビルド構成を Debug
+//! に変更してください．
 #define DEBUG_PRINT(str) ((void)0)
 
-//! @brief 現在有効化されていません．Visual Studio のビルド構成を Debug に変更してください．
+//! @brief 現在有効化されていません．Visual Studio のビルド構成を Debug
+//! に変更してください．
 #define DEBUG_PRINT_WARNING(str) ((void)0)
 
-//! @brief 現在有効化されていません．Visual Studio のビルド構成を Debug に変更してください．
+//! @brief 現在有効化されていません．Visual Studio のビルド構成を Debug
+//! に変更してください．
 #define DEBUG_PRINT_ERROR(str) ((void)0)
 
-//! @brief 現在有効化されていません．Visual Studio のビルド構成を Debug に変更してください．
+//! @brief 現在有効化されていません．Visual Studio のビルド構成を Debug
+//! に変更してください．
 #define DEBUG_PRINT_IMPORTANT(str) ((void)0)
 
-//! @brief 現在有効化されていません．Visual Studio のビルド構成を Debug に変更してください．
+//! @brief 現在有効化されていません．Visual Studio のビルド構成を Debug
+//! に変更してください．
 #define DEBUG_PRINT_INFO(str) ((void)0)
 
 #endif  // _DEBUG

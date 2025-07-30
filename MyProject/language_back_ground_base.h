@@ -11,31 +11,31 @@
 namespace match_stick {
 
 class LanguageBackGroundBase final : public IEntity {
-public:
-    LanguageBackGroundBase(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-                           const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
-    ~LanguageBackGroundBase() = default;
+ public:
+  LanguageBackGroundBase(
+      const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+      const std::shared_ptr<const DxLibResourceLoader>&
+          dxlib_resource_loader_ptr);
+  ~LanguageBackGroundBase() = default;
 
-    inline int getLayer() const override {
-        return constants::kBackGroundLayer;
-    }
+  inline int getLayer() const override { return constants::kBackGroundLayer; }
 
-    bool update() override {
-        ++counter_;
+  bool update() override {
+    ++counter_;
 
-        return true;
-    }
+    return true;
+  }
 
-    void draw() const override;
+  void draw() const override;
 
-private:
-    const std::string title_text_;
+ private:
+  const std::string title_text_;
 
-    const int font_handle_;
+  const int font_handle_;
 
-    const int icon_handle_;
+  const int icon_handle_;
 
-    int counter_{ 0 };
+  int counter_{0};
 };
 
 }  // namespace match_stick

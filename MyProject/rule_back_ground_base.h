@@ -8,19 +8,15 @@
 namespace match_stick {
 
 class RuleBackGroundBase final : public IEntity {
-public:
-    RuleBackGroundBase() = default;
-    ~RuleBackGroundBase() = default;
+ public:
+  RuleBackGroundBase() = default;
+  ~RuleBackGroundBase() = default;
 
-    inline int getLayer() const override {
-        return constants::kBackGroundLayer;
-    }
+  inline int getLayer() const override { return constants::kBackGroundLayer; }
 
-    bool update() override {
-        return true;
-    }
+  bool update() override { return true; }
 
-    void draw() const override;
+  void draw() const override;
 };
 
 }  // namespace match_stick

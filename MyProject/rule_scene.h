@@ -14,29 +14,31 @@
 namespace match_stick {
 
 class RuleScene final : public IScene {
-public:
-    RuleScene(const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
-              const std::shared_ptr<const FpsController>& fps_controller_ptr,
-              const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-              const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
-              const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
+ public:
+  RuleScene(
+      const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
+      const std::shared_ptr<const FpsController>& fps_controller_ptr,
+      const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+      const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
+      const std::shared_ptr<const DxLibResourceLoader>&
+          dxlib_resource_loader_ptr);
 
-    ~RuleScene() = default;
+  ~RuleScene() = default;
 
-    bool update() override;
+  bool update() override;
 
-    void draw() const override;
+  void draw() const override;
 
-    void onStart(const SceneChangeParameter&) override {};
+  void onStart(const SceneChangeParameter&) override{};
 
-    void onReturnFromOtherScene(const SceneChangeParameter&) override;
+  void onReturnFromOtherScene(const SceneChangeParameter&) override;
 
-private:
-    void callBackReturnButton();
+ private:
+  void callBackReturnButton();
 
-    const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
+  const std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
 
-    const std::unique_ptr<EntityUpdater> entity_updater_ptr_;
+  const std::unique_ptr<EntityUpdater> entity_updater_ptr_;
 };
 
 }  // namespace match_stick

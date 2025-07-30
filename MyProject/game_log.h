@@ -11,23 +11,20 @@
 namespace match_stick {
 
 class GameLog final : public IEntity {
-public:
-    GameLog(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-            const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
-    ~GameLog() = default;
+ public:
+  GameLog(const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+          const std::shared_ptr<const DxLibResourceLoader>&
+              dxlib_resource_loader_ptr);
+  ~GameLog() = default;
 
-    inline int getLayer() const override {
-        return constants::kUIFrontLayer;
-    }
+  inline int getLayer() const override { return constants::kUIFrontLayer; }
 
-    bool update() override {
-        return true;
-    }
+  bool update() override { return true; }
 
-    void draw() const override;
+  void draw() const override;
 
-private:
-    const int small_font_handle_;
+ private:
+  const int small_font_handle_;
 };
 
 }  // namespace match_stick

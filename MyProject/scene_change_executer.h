@@ -15,18 +15,18 @@
 namespace match_stick {
 
 class SceneChangeExecuter final {
-public:
-    SceneChangeExecuter(
-        const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
-        const std::shared_ptr<SceneStack>& scene_stack_ptr);
+ public:
+  SceneChangeExecuter(
+      const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
+      const std::shared_ptr<SceneStack>& scene_stack_ptr);
 
-    //! @brief シーンの変更を実行する．
-    //! リクエストがない場合は何もしない．
-    void execute();
+  //! @brief シーンの変更を実行する．
+  //! リクエストがない場合は何もしない．
+  void execute();
 
-private:
-    std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
-    std::shared_ptr<SceneStack> scene_stack_ptr_;
+ private:
+  std::shared_ptr<SceneChangeListener> scene_change_listener_ptr_;
+  std::shared_ptr<SceneStack> scene_stack_ptr_;
 };
 
 }  // namespace match_stick

@@ -9,22 +9,19 @@
 namespace match_stick {
 
 class TitleBackGroundBase final : public IEntity {
-public:
-    TitleBackGroundBase(const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
-    ~TitleBackGroundBase() = default;
+ public:
+  TitleBackGroundBase(const std::shared_ptr<const DxLibResourceLoader>&
+                          dxlib_resource_loader_ptr);
+  ~TitleBackGroundBase() = default;
 
-    inline int getLayer() const override {
-        return constants::kBackGroundLayer;
-    }
+  inline int getLayer() const override { return constants::kBackGroundLayer; }
 
-    bool update() override {
-        return true;
-    }
+  bool update() override { return true; }
 
-    void draw() const override;
+  void draw() const override;
 
-private:
-    const int image_handle_;  //<! 背景画像のハンドル
+ private:
+  const int image_handle_;  //<! 背景画像のハンドル
 };
 
 }  // namespace match_stick

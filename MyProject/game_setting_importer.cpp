@@ -8,12 +8,12 @@
 namespace match_stick {
 
 GameSettingRecord GameSettingImporter::importSetting() const {
-    TomlFileImporter<GameSettingRecord> importer;
-    const std::string file_path = "game_setting.toml";
+  TomlFileImporter<GameSettingRecord> importer;
+  const std::string file_path = "game_setting.toml";
 
-    auto record = importer.ImportOrUseDefault(file_path);
+  auto record = importer.ImportOrUseDefault(file_path);
 
-    return record;
+  return record;
 }
 
 }  // namespace match_stick

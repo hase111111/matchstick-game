@@ -9,29 +9,27 @@
 namespace match_stick {
 
 class FadeEffect final : public IEntity {
-public:
-    enum class FadeType {
-        kFadeIn,
-        kFadeOut,
-    };
+ public:
+  enum class FadeType {
+    kFadeIn,
+    kFadeOut,
+  };
 
-    FadeEffect(int fade_time, FadeType fade_type, std::function<void()> callback);
-    ~FadeEffect() = default;
+  FadeEffect(int fade_time, FadeType fade_type, std::function<void()> callback);
+  ~FadeEffect() = default;
 
-    inline int getLayer() const override {
-        return constants::kFrontLayer;
-    }
+  inline int getLayer() const override { return constants::kFrontLayer; }
 
-    bool update() override;
+  bool update() override;
 
-    void draw() const override;
+  void draw() const override;
 
-private:
-    const int fade_time_;
-    const FadeType fade_type_;
-    const std::function<void()> callback_;
+ private:
+  const int fade_time_;
+  const FadeType fade_type_;
+  const std::function<void()> callback_;
 
-    int counter_{ 0 };
+  int counter_{0};
 };
 
 }  // namespace match_stick

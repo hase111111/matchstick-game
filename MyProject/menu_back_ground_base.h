@@ -9,19 +9,15 @@
 namespace match_stick {
 
 class MenuBackGroundBase final : public IEntity {
-public:
-    MenuBackGroundBase() = default;
-    ~MenuBackGroundBase() = default;
+ public:
+  MenuBackGroundBase() = default;
+  ~MenuBackGroundBase() = default;
 
-    inline int getLayer() const override {
-        return constants::kBackGroundLayer;
-    }
+  inline int getLayer() const override { return constants::kBackGroundLayer; }
 
-    bool update() override {
-        return true;
-    }
+  bool update() override { return true; }
 
-    void draw() const override;
+  void draw() const override;
 };
 
 }  // namespace match_stick

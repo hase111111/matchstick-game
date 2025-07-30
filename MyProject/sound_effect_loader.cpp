@@ -5,34 +5,37 @@
 
 #include "dxlib_assert.h"
 
-
 namespace match_stick {
 
 void SoundEffectLoader::loadSoundHandle(const std::string& file_path) {
-    if (isLoaded(file_path)) {
-        return;
-    }
-
-    const int sound_handle = DxLib::LoadSoundMem(file_path.c_str());
-
-    ASSERT(sound_handle >= 0, "Failed to load sound effect. File Path : " + file_path);
-
-    sound_handle_[file_path] = sound_handle;
-
-    // 音量を変更する．
-    DxLib::ChangeVolumeSoundMem(255 * volume_percent_ / 100, sound_handle_[file_path]);
-
+  if (isLoaded(file_path)) {
     return;
+  }
+
+  const int sound_handle = DxLib::LoadSoundMem(file_path.c_str());
+
+  ASSERT(sound_handle >= 0,
+         "Failed to load sound effect. File Path : " + file_path);
+
+  sound_handle_[file_path] = sound_handle;
+
+  // 音量を変更する．
+  DxLib::ChangeVolumeSoundMem(255 * volume_percent_ / 100,
+                              sound_handle_[file_path]);
+
+  return;
 }
 
 void SoundEffectLoader::changeAllVolume(const int volume) {
-    ASSERT(volume >= 0 && volume <= 100, "Volume must be between 0 and 100. Volume : " + std::to_string(volume));
+  ASSERT(
+      volume >= 0 && volume <= 100,
+      "Volume must be between 0 and 100. Volume : " + std::to_string(volume));
 
-    volume_percent_ = volume;
+  volume_percent_ = volume;
 
-    for (auto& sound : sound_handle_) {
-        DxLib::ChangeVolumeSoundMem(255 * volume_percent_ / 100, sound.second);
-    }
+  for (auto& sound : sound_handle_) {
+    DxLib::ChangeVolumeSoundMem(255 * volume_percent_ / 100, sound.second);
+  }
 }
 
 }  // namespace match_stick

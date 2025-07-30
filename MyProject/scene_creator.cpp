@@ -24,124 +24,115 @@
 
 namespace match_stick {
 
-SceneCreator::SceneCreator(const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
-                           const std::shared_ptr<const FpsController>& fps_controller_ptr,
-                           const std::shared_ptr<LanguageRecord>& language_record_ptr,
-                           const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
-                           const std::shared_ptr<DxLibResourceLoader>& dxlib_resource_loader_ptr) :
-    scene_change_listener_ptr_(scene_change_listener_ptr),
-    fps_controller_ptr_(fps_controller_ptr),
-    language_record_ptr_(language_record_ptr),
-    dxlib_input_ptr_(dxlib_input_ptr),
-    dxlib_resource_loader_ptr_(dxlib_resource_loader_ptr) {
-    // ポインタが nullptr でないことを確認
-    ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
-    ASSERT_NOT_NULL_PTR(fps_controller_ptr);
-    ASSERT_NOT_NULL_PTR(language_record_ptr);
-    ASSERT_NOT_NULL_PTR(dxlib_input_ptr);
-    ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
+SceneCreator::SceneCreator(
+    const std::shared_ptr<SceneChangeListener>& scene_change_listener_ptr,
+    const std::shared_ptr<const FpsController>& fps_controller_ptr,
+    const std::shared_ptr<LanguageRecord>& language_record_ptr,
+    const std::shared_ptr<const DxLibInput>& dxlib_input_ptr,
+    const std::shared_ptr<DxLibResourceLoader>& dxlib_resource_loader_ptr)
+    : scene_change_listener_ptr_(scene_change_listener_ptr),
+      fps_controller_ptr_(fps_controller_ptr),
+      language_record_ptr_(language_record_ptr),
+      dxlib_input_ptr_(dxlib_input_ptr),
+      dxlib_resource_loader_ptr_(dxlib_resource_loader_ptr) {
+  // ポインタが nullptr でないことを確認
+  ASSERT_NOT_NULL_PTR(scene_change_listener_ptr);
+  ASSERT_NOT_NULL_PTR(fps_controller_ptr);
+  ASSERT_NOT_NULL_PTR(language_record_ptr);
+  ASSERT_NOT_NULL_PTR(dxlib_input_ptr);
+  ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr);
 
-    ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
-    ASSERT_NOT_NULL_PTR(fps_controller_ptr_);
-    ASSERT_NOT_NULL_PTR(language_record_ptr_);
-    ASSERT_NOT_NULL_PTR(dxlib_input_ptr_);
-    ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr_);
+  ASSERT_NOT_NULL_PTR(scene_change_listener_ptr_);
+  ASSERT_NOT_NULL_PTR(fps_controller_ptr_);
+  ASSERT_NOT_NULL_PTR(language_record_ptr_);
+  ASSERT_NOT_NULL_PTR(dxlib_input_ptr_);
+  ASSERT_NOT_NULL_PTR(dxlib_resource_loader_ptr_);
 }
 
-std::unique_ptr<IScene> SceneCreator::createScene(const SceneName scene_name) const {
-    switch (scene_name) {
+std::unique_ptr<IScene> SceneCreator::createScene(
+    const SceneName scene_name) const {
+  switch (scene_name) {
     case SceneName::kDebug: {
-        DEBUG_PRINT_IMPORTANT("SceneName::kDebug");
-        return std::make_unique<DebugScene>(scene_change_listener_ptr_, dxlib_input_ptr_);
+      DEBUG_PRINT_IMPORTANT("SceneName::kDebug");
+      return std::make_unique<DebugScene>(scene_change_listener_ptr_,
+                                          dxlib_input_ptr_);
     }
     case SceneName::kGame: {
-        DEBUG_PRINT_IMPORTANT("SceneName::kGame");
-        return std::make_unique<GameScene>(
-            scene_change_listener_ptr_,
-            language_record_ptr_,
-            dxlib_input_ptr_,
-            dxlib_resource_loader_ptr_);
+      DEBUG_PRINT_IMPORTANT("SceneName::kGame");
+      return std::make_unique<GameScene>(scene_change_listener_ptr_,
+                                         language_record_ptr_, dxlib_input_ptr_,
+                                         dxlib_resource_loader_ptr_);
     }
     case SceneName::kLanguage: {
-        DEBUG_PRINT_IMPORTANT("SceneName::kLanguage");
+      DEBUG_PRINT_IMPORTANT("SceneName::kLanguage");
 
-        // 言語シーンのリソースをロード
-        LanguageSceneResourceLoader language_scene_resource_loader(dxlib_resource_loader_ptr_);
+      // 言語シーンのリソースをロード
+      LanguageSceneResourceLoader language_scene_resource_loader(
+          dxlib_resource_loader_ptr_);
 
-        language_scene_resource_loader.loadImage();
+      language_scene_resource_loader.loadImage();
 
-        return std::make_unique<LanguageScene>(
-            scene_change_listener_ptr_,
-            fps_controller_ptr_,
-            language_record_ptr_,
-            dxlib_input_ptr_,
-            dxlib_resource_loader_ptr_);
+      return std::make_unique<LanguageScene>(
+          scene_change_listener_ptr_, fps_controller_ptr_, language_record_ptr_,
+          dxlib_input_ptr_, dxlib_resource_loader_ptr_);
     }
     case SceneName::kMenu: {
-        DEBUG_PRINT_IMPORTANT("SceneName::kMenu");
+      DEBUG_PRINT_IMPORTANT("SceneName::kMenu");
 
-        // メニューシーンのリソースをロード
-        MenuSceneResourceLoader menu_scene_resource_loader(dxlib_resource_loader_ptr_);
+      // メニューシーンのリソースをロード
+      MenuSceneResourceLoader menu_scene_resource_loader(
+          dxlib_resource_loader_ptr_);
 
-        menu_scene_resource_loader.loadImage();
+      menu_scene_resource_loader.loadImage();
 
-        return std::make_unique<MenuScene>(
-            scene_change_listener_ptr_,
-            fps_controller_ptr_,
-            language_record_ptr_,
-            dxlib_input_ptr_,
-            dxlib_resource_loader_ptr_);
+      return std::make_unique<MenuScene>(
+          scene_change_listener_ptr_, fps_controller_ptr_, language_record_ptr_,
+          dxlib_input_ptr_, dxlib_resource_loader_ptr_);
     }
     case SceneName::kRule: {
-        DEBUG_PRINT_IMPORTANT("SceneName::kRule");
+      DEBUG_PRINT_IMPORTANT("SceneName::kRule");
 
-        // ルールシーンのリソースをロード
-        RuleSceneResourceLoader rule_scene_resource_loader(dxlib_resource_loader_ptr_);
+      // ルールシーンのリソースをロード
+      RuleSceneResourceLoader rule_scene_resource_loader(
+          dxlib_resource_loader_ptr_);
 
-        rule_scene_resource_loader.loadImage();
+      rule_scene_resource_loader.loadImage();
 
-        return std::make_unique<RuleScene>(
-            scene_change_listener_ptr_,
-            fps_controller_ptr_,
-            language_record_ptr_,
-            dxlib_input_ptr_,
-            dxlib_resource_loader_ptr_);
+      return std::make_unique<RuleScene>(
+          scene_change_listener_ptr_, fps_controller_ptr_, language_record_ptr_,
+          dxlib_input_ptr_, dxlib_resource_loader_ptr_);
     }
     case SceneName::kTitle: {
-        DEBUG_PRINT_IMPORTANT("SceneName::kTitle");
+      DEBUG_PRINT_IMPORTANT("SceneName::kTitle");
 
-        // タイトルシーンのリソースをロード
-        TitleSceneResourceLoader title_scene_resource_loader(dxlib_resource_loader_ptr_);
+      // タイトルシーンのリソースをロード
+      TitleSceneResourceLoader title_scene_resource_loader(
+          dxlib_resource_loader_ptr_);
 
-        title_scene_resource_loader.loadImage();
+      title_scene_resource_loader.loadImage();
 
-        return std::make_unique<TitleScene>(
-            scene_change_listener_ptr_,
-            fps_controller_ptr_,
-            language_record_ptr_,
-            dxlib_input_ptr_,
-            dxlib_resource_loader_ptr_);
+      return std::make_unique<TitleScene>(
+          scene_change_listener_ptr_, fps_controller_ptr_, language_record_ptr_,
+          dxlib_input_ptr_, dxlib_resource_loader_ptr_);
     }
     case SceneName::kSetting: {
-        DEBUG_PRINT_IMPORTANT("SceneName::kSetting");
+      DEBUG_PRINT_IMPORTANT("SceneName::kSetting");
 
-        // 設定シーンのリソースをロード
-        SettingSceneResourceLoader setting_scene_resource_loader(dxlib_resource_loader_ptr_);
+      // 設定シーンのリソースをロード
+      SettingSceneResourceLoader setting_scene_resource_loader(
+          dxlib_resource_loader_ptr_);
 
-        setting_scene_resource_loader.load();
+      setting_scene_resource_loader.load();
 
-        return std::make_unique<SettingScene>(
-            scene_change_listener_ptr_,
-            fps_controller_ptr_,
-            language_record_ptr_,
-            dxlib_input_ptr_,
-            dxlib_resource_loader_ptr_);
+      return std::make_unique<SettingScene>(
+          scene_change_listener_ptr_, fps_controller_ptr_, language_record_ptr_,
+          dxlib_input_ptr_, dxlib_resource_loader_ptr_);
     }
     default: {
-        ASSERT_MUST_NOT_REACH_HERE();
-        return nullptr;
+      ASSERT_MUST_NOT_REACH_HERE();
+      return nullptr;
     }
-    }  // switch
+  }  // switch
 }
 
 }  // namespace match_stick

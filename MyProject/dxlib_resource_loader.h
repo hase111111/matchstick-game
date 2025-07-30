@@ -9,77 +9,72 @@
 namespace match_stick {
 
 class DxLibResourceLoader final {
-    using Country = LanguageRecord::Country;
-public:
-    DxLibResourceLoader() = default;
-    ~DxLibResourceLoader() = default;
+  using Country = LanguageRecord::Country;
 
-    // FontLoader
-    [[nodiscard]]
-    inline int getFontHandle(Country country, const std::string& file_path) const {
-        return font_loader_.getFontHandle(country, file_path);
-    }
+ public:
+  DxLibResourceLoader() = default;
+  ~DxLibResourceLoader() = default;
 
-    inline void loadFontHandle(Country country, const std::string& file_path) {
-        font_loader_.loadFontHandle(country, file_path);
-    }
+  // FontLoader
+  [[nodiscard]] inline int getFontHandle(Country country,
+                                         const std::string& file_path) const {
+    return font_loader_.getFontHandle(country, file_path);
+  }
 
-    // ImageLoader
-    [[nodiscard]]
-    inline int getImageHandle(const std::string& file_path) const {
-        return image_loader_.getImageHandle(file_path);
-    }
+  inline void loadFontHandle(Country country, const std::string& file_path) {
+    font_loader_.loadFontHandle(country, file_path);
+  }
 
-    inline void loadImageHandle(const std::string& file_path) {
-        image_loader_.loadImageHandle(file_path);
-    }
+  // ImageLoader
+  [[nodiscard]] inline int getImageHandle(const std::string& file_path) const {
+    return image_loader_.getImageHandle(file_path);
+  }
 
-    // SoundEffectLoader
-    [[nodiscard]]
-    inline int getSoundHandle(const std::string& file_path) const {
-        return sound_effect_loader_.getSoundHandle(file_path);
-    }
+  inline void loadImageHandle(const std::string& file_path) {
+    image_loader_.loadImageHandle(file_path);
+  }
 
-    inline void loadSoundHandle(const std::string& file_path) {
-        sound_effect_loader_.loadSoundHandle(file_path);
-    }
+  // SoundEffectLoader
+  [[nodiscard]] inline int getSoundHandle(const std::string& file_path) const {
+    return sound_effect_loader_.getSoundHandle(file_path);
+  }
 
-    inline void changeAllSEVolume(const int volume) {
-        sound_effect_loader_.changeAllVolume(volume);
-    }
+  inline void loadSoundHandle(const std::string& file_path) {
+    sound_effect_loader_.loadSoundHandle(file_path);
+  }
 
-    [[nodiscard]]
-    inline int getSEVolumePercent() const {
-        return sound_effect_loader_.getVolumePercent();
-    }
+  inline void changeAllSEVolume(const int volume) {
+    sound_effect_loader_.changeAllVolume(volume);
+  }
 
-    // BgmPlayer
-    inline void loadBGM(const std::string& bgm_file) {
-        bgm_player_.loadBGM(bgm_file);
-    }
+  [[nodiscard]] inline int getSEVolumePercent() const {
+    return sound_effect_loader_.getVolumePercent();
+  }
 
-    inline void playBGM(const std::string& bgm_file) {
-        bgm_player_.playBGM(bgm_file);
-    }
+  // BgmPlayer
+  inline void loadBGM(const std::string& bgm_file) {
+    bgm_player_.loadBGM(bgm_file);
+  }
 
-    inline void stopBGM() {
-        bgm_player_.stopBGM();
-    }
+  inline void playBGM(const std::string& bgm_file) {
+    bgm_player_.playBGM(bgm_file);
+  }
 
-    inline void changeAllBGMVolume(const int volume) {
-        bgm_player_.changeAllVolume(volume);
-    }
+  inline void stopBGM() { bgm_player_.stopBGM(); }
 
-    [[nodiscard]]
-    inline int getBGMVolumePercent() const {
-        return bgm_player_.getVolumePercent();
-    }
+  inline void changeAllBGMVolume(const int volume) {
+    bgm_player_.changeAllVolume(volume);
+  }
 
-private:
-    BgmPlayer bgm_player_;
-    FontLoader font_loader_;
-    ImageLoader image_loader_;
-    SoundEffectLoader sound_effect_loader_;
+  [[nodiscard]] inline int getBGMVolumePercent() const {
+    return bgm_player_.getVolumePercent();
+  }
+
+ private:
+  BgmPlayer bgm_player_;
+  FontLoader font_loader_;
+  ImageLoader image_loader_;
+  SoundEffectLoader sound_effect_loader_;
 };
 
-} // namespace match_stick
+}  // namespace match_stick

@@ -10,27 +10,24 @@
 namespace match_stick {
 
 class FpsDisplayer final : public IEntity {
-public:
-    FpsDisplayer(const std::shared_ptr<const FpsController>& fps_controller_ptr,
-                 const std::shared_ptr<const LanguageRecord>& language_record_ptr,
-                 const std::shared_ptr<const DxLibResourceLoader>& dxlib_resource_loader_ptr);
+ public:
+  FpsDisplayer(const std::shared_ptr<const FpsController>& fps_controller_ptr,
+               const std::shared_ptr<const LanguageRecord>& language_record_ptr,
+               const std::shared_ptr<const DxLibResourceLoader>&
+                   dxlib_resource_loader_ptr);
 
-    ~FpsDisplayer() = default;
+  ~FpsDisplayer() = default;
 
-    inline int getLayer() const override {
-        return constants::kUIFrontLayer;
-    }
+  inline int getLayer() const override { return constants::kUIFrontLayer; }
 
-    bool update() override {
-        return true;
-    }
+  bool update() override { return true; }
 
-    void draw() const override;
+  void draw() const override;
 
-private:
-    const std::shared_ptr<const FpsController> fps_controller_ptr_;
+ private:
+  const std::shared_ptr<const FpsController> fps_controller_ptr_;
 
-    const int font_handle_;
+  const int font_handle_;
 };
 
 }  // namespace match_stick

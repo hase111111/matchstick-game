@@ -8,14 +8,15 @@
 namespace match_stick {
 
 class MenuSceneResourceLoader final {
-public:
-    explicit MenuSceneResourceLoader(const std::shared_ptr<DxLibResourceLoader>& dxlib_resource_loader_ptr);
-    ~MenuSceneResourceLoader() = default;
+ public:
+  explicit MenuSceneResourceLoader(
+      const std::shared_ptr<DxLibResourceLoader>& dxlib_resource_loader_ptr);
+  ~MenuSceneResourceLoader() = default;
 
-    void loadImage();
+  void loadImage();
 
-private:
-    const std::shared_ptr<DxLibResourceLoader> dxlib_resource_loader_ptr_;
+ private:
+  const std::shared_ptr<DxLibResourceLoader> dxlib_resource_loader_ptr_;
 };
 
 }  // namespace match_stick

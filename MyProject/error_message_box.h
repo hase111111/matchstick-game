@@ -7,9 +7,9 @@
 
 #pragma once
 
-#include <string>
-
 #include <Dxlib.h>
+
+#include <string>
 
 namespace match_stick {
 
@@ -17,12 +17,12 @@ namespace match_stick {
 //! @brief エラーメッセージを表示するクラス．
 //! 名前空間でもよかったか．
 class ErrorMessageBox final {
-public:
-    //! @brief エラーメッセージを表示する．静的メソッド．
-    //! @param[in] err_str エラーメッセージ．
-    static void show(const std::string err_str) {
-        MessageBox(NULL, TEXT(err_str.c_str()), TEXT("報告"), MB_ICONERROR);
-    }
+ public:
+  //! @brief エラーメッセージを表示する．静的メソッド．
+  //! @param[in] err_str エラーメッセージ．
+  static void show(const std::string err_str) {
+    MessageBox(NULL, TEXT(err_str.c_str()), TEXT("報告"), MB_ICONERROR);
+  }
 };
 
 }  // namespace match_stick
